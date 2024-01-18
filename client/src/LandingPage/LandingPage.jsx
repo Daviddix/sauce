@@ -2,6 +2,7 @@ import sauceLogo from '../assets/landing page assets/icons/logo.svg'
 import webAppImage from "../assets/landing page assets/images/webapp.png"
 import menuIcon from "../assets/landing page assets/icons/hamburger-button.svg"
 import "./LandingPage.css"
+import {Link} from "react-router-dom"
 
 function LandingPage() {
   return (
@@ -11,8 +12,14 @@ function LandingPage() {
                 <img src={sauceLogo} alt="logo" className='logo' />
 
                 <div className="buttons">
-                    <button>Login</button>
+                    
+                    <Link>
+                    <button>Login</button>                    
+                    </Link>
+
+                    <Link>
                     <button>Signup</button>
+                    </Link>
                 </div>
 
                 <img src={menuIcon} alt="menu icon" className='menu-icon' />
@@ -24,9 +31,14 @@ function LandingPage() {
         <p className="sub-heading">Sauce uses advanced AI to dig up your fuzzy movie memories. No more forgetting! Rediscover your favorite films with a touch of AI magic. Movie time, reinvented just for you</p>
 
         <div className="body-buttons">
-                    <button className='button-secondary'>Login</button>
-                    <button className='button-primary'>Signup</button>
-                </div>
+            <Link to="/app/login">
+            <button className='button-secondary'>Login</button>
+            </Link>
+
+            <Link to="/app/signup">
+            <button className='button-primary'>Signup</button>
+            </Link>                    
+        </div>
 
         <img src={webAppImage} alt="image of the sauce webapp" className="webapp-image" />
     </main>
