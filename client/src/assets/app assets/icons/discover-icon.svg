@@ -1,0 +1,21 @@
+<svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="magic-wand" clip-path="url(#clip0_5_102)">
+<g id="Vector">
+<path d="M1.89483 8.85518C1.33076 8.04565 1 7.06145 1 6C1 3.23857 3.23857 1 6 1C8.76143 1 11 3.23857 11 6C11 8.76143 8.76143 11 6 11C4.93855 11 3.95435 10.6693 3.14482 10.1052M1.89483 8.85518C2.23414 9.34212 2.65787 9.76585 3.14482 10.1052L1.89483 8.85518ZM1.89483 8.85518L4 6.75L1.89483 8.85518ZM3.14482 10.1052L5.25 8L3.14482 10.1052ZM4 6.75L5 5.75L6.25 7L5.25 8M4 6.75L5.25 8L4 6.75Z" fill="url(#paint0_linear_5_102)"/>
+<path d="M1.89483 8.85518C1.33076 8.04565 1 7.06145 1 6C1 3.23857 3.23857 1 6 1C8.76143 1 11 3.23857 11 6C11 8.76143 8.76143 11 6 11C4.93855 11 3.95435 10.6693 3.14482 10.1052M1.89483 8.85518C2.23414 9.34213 2.65787 9.76585 3.14482 10.1052M1.89483 8.85518L4 6.75M3.14482 10.1052L5.25 8M4 6.75L5 5.75L6.25 7L5.25 8M4 6.75L5.25 8" stroke="black" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<path id="Vector_2" d="M4.25 3.5H5.25M4.75 3V4" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_3" d="M7 4.25H8.5M7.75 3.5V5" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_4" d="M8 7.25H9M8.5 6.75V7.75" stroke="white" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear_5_102" x1="6" y1="1" x2="6" y2="11" gradientUnits="userSpaceOnUse">
+<stop stop-color="#89C5F1"/>
+<stop offset="0.56" stop-color="#3A9FE8"/>
+<stop offset="1" stop-color="#235F8B"/>
+</linearGradient>
+<clipPath id="clip0_5_102">
+<rect width="12" height="12" fill="white"/>
+</clipPath>
+</defs>
+</svg>

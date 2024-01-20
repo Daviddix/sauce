@@ -7,11 +7,11 @@ import eyeIcon from "../../../assets/app assets/icons/eye-icon.svg"
 function Login() {
   return (
     <main className="login-main">
-      <div className="login-back-container back-button-container">
+      <button className="login-back-container back-button-container">
         <Link to="/">
         <img src={backIcon} alt="go back" />
         </Link>
-      </div>
+      </button>
 
       <div className="login-details-container">
         <h1 className="tight-heading-style">Welcome back to Sauce</h1>

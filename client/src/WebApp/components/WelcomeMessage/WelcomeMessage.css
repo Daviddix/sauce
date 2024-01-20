@@ -1,0 +1,29 @@
+.chat-body .sauce-logo{
+    width:8rem;
+    display:block;
+    margin: 2rem auto 1rem; 
+}
+
+.chat-body .welcome{
+    width:100%;
+    margin: auto;
+}
+
+.welcome > h1{
+    text-align: center;
+    margin: 0 0 2rem 0;
+}
+
+.welcome > p{
+    max-width: 40rem;
+    text-align: center;
+    font-size: 1.4rem;
+    margin: 0 auto 2rem;    
+}
+
+.welcome hr{
+    opacity: .1;
+    border: none;
+    height:.15rem;
+    background-color: black;
+}

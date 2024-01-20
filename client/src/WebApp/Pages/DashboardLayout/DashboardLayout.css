@@ -1,0 +1,40 @@
+.layout-main .chat{
+    display:flex;
+    flex-direction: column; 
+   width:100%;
+}
+
+.chat .chat-body{
+    overflow: visible;
+    flex: 1;
+}
+
+.layout-main .chat{
+    background: 
+    #fafafa
+    var(--bg-gradient)
+    ;
+    height: 100vh;
+}
+
+.chat-body .chat-body-inner{
+    width:90%;
+    margin:auto;
+}
+
+@media screen and (min-width: 1000px) {
+    .layout-main{
+        align-items: start;
+        justify-items: start; 
+        display:grid;
+        grid-template-columns: 30rem 1fr;
+    }
+
+    .chat header{
+        display:none;
+    }
+
+    .layout-main .chat{
+        max-width: 100% ;
+    }
+}

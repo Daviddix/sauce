@@ -3,6 +3,7 @@ import './App.css'
 import LandingPage from './LandingPage/LandingPage'
 import Login from "./WebApp/Pages/Login/Login"
 import Signup from "./WebApp/Pages/Signup/Signup"
+import DashboardLayout from "./WebApp/Pages/DashboardLayout/DashboardLayout"
 
 function App() {
 
@@ -11,6 +12,7 @@ function App() {
     <Route path='/' element={<LandingPage />} />
     <Route path='/app/login' element={<Login />} />
     <Route path='/app/signup' element={<Signup />} />
+    <Route path='/app' element={<DashboardLayout />} />
 
    </Routes>
   )

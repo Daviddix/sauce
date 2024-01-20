@@ -1,0 +1,16 @@
+.chat header{
+    padding: 1rem 0;
+}
+
+.chat .header-inner{
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    width:90%;
+    margin:auto;
+}
+
+.header-inner .menu{
+    background-color:transparent;
+    border:none;
+}

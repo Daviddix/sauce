@@ -1,0 +1,94 @@
+.layout-main .sidebar{
+    position: absolute;
+    top:0;
+    left:0;
+    background-color: white;
+    height:100vh;
+    overflow: scroll;
+    width: 60vw;
+    z-index: 1;
+}
+
+.sidebar .list-header{
+    padding: 3rem 0 1rem;
+    border-bottom: 1.8px solid rgba(0, 0, 0, 0.199);
+}
+
+.list-header .list-header-inner{
+    width:90%;
+    margin: auto;
+    display:flex;
+    align-items: start;
+    justify-content: space-between;
+}
+
+.list-header-inner .close-sidebar{
+    background-color: transparent;
+    border:none;
+}
+
+.list-header-inner .icon-and-heading{
+    display: flex;
+    column-gap: .5rem;
+}
+
+.sidebar .lists-container{
+    width:90%;
+    margin:1rem auto;
+}
+
+.lists-container .single-list{
+    position: relative;
+    overflow: hidden;
+    color:white;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
+.single-list .list-inner{
+    width:90%;
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    margin:auto;
+}
+
+.single-list .bg{
+    max-width: 100%;
+    position: absolute;
+    top: 0;
+    left:0;
+    isolation: isolate;
+
+}
+
+.list-inner p,
+.list-inner h2{
+    color: white;
+}
+
+.list-inner .view-list-button{
+    background-color: transparent;
+    border:none;
+}
+
+.sidebar .profile-view-list{
+    display: none;
+}
+
+@media screen and (min-width:1000px) {
+    .layout-main .sidebar{
+        display:initial;
+        border:solid green;
+        width:100%;
+        height:100vh;
+        overflow: scroll;
+    }
+    
+    
+
+
+}

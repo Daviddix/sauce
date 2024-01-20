@@ -6,11 +6,11 @@ import "./Signup.css"
 function Signup() {
   return (
     <main className="signup-main">
-      <div className="signup-back-container back-button-container">
+      <button className="signup-back-container back-button-container">
         <Link to="/">
         <img src={backIcon} alt="go back" />
         </Link>
-      </div>
+      </button>
 
       <div className="signup-details-container">
         <h1 className="tight-heading-style">Create a new account to get started</h1>

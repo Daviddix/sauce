@@ -35,15 +35,17 @@ button{
     --primary-700 : #235F8B;
     --primary-800 : #17405D;
     --primary-900 : #0C202E;
+
+    --desktop-breakpoint : 1000px;
 }
 
 .search-input{
     border-radius: 3rem;
-    border: 1px solid #0C202E;
+    border: 1.7px solid #0C202E;
     background: #F1F8FD;
 }
 
-.home-nav{
+.home-header{
     background: var(--white, #FFF);
     box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.05);
 }

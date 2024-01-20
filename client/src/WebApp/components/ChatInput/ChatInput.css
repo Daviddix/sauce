@@ -1,0 +1,74 @@
+.layout-main .chat-input{
+    background-color: #fafafa;
+
+}
+
+.layout-main .chat-input-inner{
+    padding: 0 0 1rem 0;
+    display:flex;
+    flex-direction: column;
+    align-items: end;
+    row-gap:.5rem;
+    width:90%;
+    max-width: 60rem;
+    margin:auto;
+}
+
+.chat-input-inner .discover{
+    background-color: transparent;
+    border:none;
+    font-size:1.4rem;
+    font-weight: 500;
+    font-family: manrope;
+    display: flex;
+    align-items: center;
+    column-gap: .5rem;
+    margin:0 2rem 0 0;
+}
+
+.discover img{
+    width: 1.6rem;
+}
+
+.chat-input-inner .home-input{
+    width:100%;
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 .5rem 0 1rem;
+    overflow: hidden;
+    height:4.5rem;
+    border-radius: 100vw;
+    -webkit-border-radius: 100vw;
+    -moz-border-radius: 100vw;
+    -ms-border-radius: 100vw;
+    -o-border-radius: 100vw;
+}
+
+.home-input > input{
+    flex:1;
+    height:100%;
+    background-color: transparent;
+    border:none;
+    font-family: clashG;
+}
+
+.home-input > input::placeholder{
+    font-weight: 500;
+}
+
+.home-input > button{
+    border:none;
+    background-color: var(--primary-800);
+    width:3.5rem;
+    height:3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /*padding:1rem;
+    */border-radius: 50%;
+}
+
+.home-input > button img{
+    max-width: 2.5rem;
+}
