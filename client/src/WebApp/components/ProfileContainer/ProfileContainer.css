@@ -1,0 +1,35 @@
+.list-inner .view-list-button{
+    background-color: transparent;
+    border:none;
+}
+
+.sidebar .profile-view-list{
+    display: none;
+}
+
+@media screen and (min-width:1000px) {
+    .sidebar .profile-view-list{
+        display: block;
+        border-top:var(--faint-line-style);
+        padding: 1rem 0 2rem 0;
+    }
+    
+    .profile-view-list .profile-view-list-inner{
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        width:90%;
+        margin:auto;
+        column-gap: .5rem;
+    }
+
+    .profile-view-list-inner > img{
+        width:3rem;
+        border-radius: 50%;
+        aspect-ratio: 1/1;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+        -o-border-radius: 50%;
+    }
+}

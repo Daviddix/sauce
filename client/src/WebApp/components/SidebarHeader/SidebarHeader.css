@@ -1,0 +1,23 @@
+.list-header .list-header-inner{
+    width:90%;
+    margin: auto;
+    display:flex;
+    align-items: start;
+    justify-content: space-between;
+}
+
+.list-header-inner .close-sidebar{
+    background-color: transparent;
+    border:none;
+}
+
+.list-header-inner .icon-and-heading{
+    display: flex;
+    column-gap: .5rem;
+}
+
+@media screen and (min-width:1000px) {
+    .list-header-inner .close-sidebar{
+        display:none;
+    }
+}

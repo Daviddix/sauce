@@ -13,6 +13,8 @@ function App() {
     <Route path='/app/login' element={<Login />} />
     <Route path='/app/signup' element={<Signup />} />
     <Route path='/app' element={<DashboardLayout />} />
+    <Route path='/app/memories' element={
+    <DashboardLayout><p>m</p></DashboardLayout>} />
 
    </Routes>
   )

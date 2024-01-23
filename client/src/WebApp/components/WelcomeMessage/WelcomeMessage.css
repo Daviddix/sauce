@@ -7,6 +7,7 @@
 .chat-body .welcome{
     width:100%;
     margin: auto;
+    border-bottom: var(--faint-line-style);
 }
 
 .welcome > h1{
@@ -19,11 +20,4 @@
     text-align: center;
     font-size: 1.4rem;
     margin: 0 auto 2rem;    
-}
-
-.welcome hr{
-    opacity: .1;
-    border: none;
-    height:.15rem;
-    background-color: black;
 }

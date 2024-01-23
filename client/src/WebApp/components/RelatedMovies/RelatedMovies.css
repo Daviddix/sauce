@@ -1,0 +1,9 @@
+.gpt-response-container .related-movies{
+    margin: 2rem 0 2rem 0;
+}
+
+.related-movies .single-related-movie-container{
+    display:flex;
+    overflow: auto;
+    column-gap: 1rem;
+}

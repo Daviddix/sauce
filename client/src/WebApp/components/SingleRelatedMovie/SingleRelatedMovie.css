@@ -1,0 +1,18 @@
+.single-related-movie-container .single-related-movie{
+    aspect-ratio: 9/14;
+    max-width:15rem;
+    display:flex;
+    flex-direction: column;
+
+}
+
+.single-related-movie img{
+    width:100%;
+    flex:1;
+    object-fit: cover;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+}

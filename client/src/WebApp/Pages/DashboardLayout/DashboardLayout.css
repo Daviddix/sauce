@@ -5,7 +5,7 @@
 }
 
 .chat .chat-body{
-    overflow: visible;
+    overflow-y: scroll;
     flex: 1;
 }
 
@@ -35,6 +35,6 @@
     }
 
     .layout-main .chat{
-        max-width: 100% ;
+        max-width: 100%;
     }
 }

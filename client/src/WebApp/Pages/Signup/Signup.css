@@ -64,8 +64,8 @@
     text-align: center;
     font-family: clashG;
     font-weight: 500;
+}
 
-    & a{
+.signup-form a{
     color: var(--primary-500);
     }
-}

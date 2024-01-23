@@ -1,0 +1,40 @@
+.user-prompt{
+    max-width: 60rem;
+    margin: auto;
+    display:flex;
+    align-items: start;
+    column-gap: .8rem;
+    padding: 3rem 0 .8rem 0;
+    border-bottom:var(--faint-line-style);
+}
+
+.user-prompt > img{
+    aspect-ratio: 1/1;
+    width:2rem;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+
+.prompt-text-and-edit p{
+    max-width: 80rem;
+ }
+
+.prompt-text-and-edit button{
+    border:none;
+    background-color: transparent;
+    margin: .4rem 0 0 0;
+}
+
+.prompt-text-and-edit button img{
+    width: 100%;
+    height:100%;
+}
+
+@media screen and (min-width:1000px) {
+    .user-prompt{
+        max-width: 100%;
+    }   
+}
