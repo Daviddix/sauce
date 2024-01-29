@@ -204,3 +204,13 @@ letter-spacing: -0.028rem;
     font-weight: 500;
     letter-spacing: -0.014rem;
 }
+
+.list-movie-title{
+    color: #000;
+    font-family: clashG;
+    font-size: 1.4rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 2rem; 
+    letter-spacing: -0.024rem;
+}

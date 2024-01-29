@@ -13,28 +13,7 @@ function DashboardLayout({children}) {
         <Sidebar />
 
         <section className="chat">
-            <Header />            
-
-            <section className="chat-body">
-                
-                <div className="chat-body-inner">
-                {!children?
-                  <>
-                  <Link to="/app/memories">
-                  <WelcomeMessage />
-                  </Link>
-                  <UserPrompt />
-                  
-                <GPTResponse />
-                </> : children
-                }
-                
-                </div>
-                
-            </section>
-
-
-            { !children && <ChatInput />}
+            {children}
         </section>
     </main>
   )

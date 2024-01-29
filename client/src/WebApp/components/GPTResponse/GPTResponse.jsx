@@ -49,8 +49,6 @@ function GPTResponse() {
             </div>
         </div>
         </div>
-
-        <RelatedMovies />
         
     </div>
   )

@@ -1,0 +1,27 @@
+.list-layout{
+    width:90%;
+    margin:0 auto;
+    max-width: 70rem;
+}
+
+.list-layout .list-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2rem 0;
+}
+
+.list-movie-container{
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+}
+
+
+
+@media screen and (min-width:1000px) {
+    .list-movie-container{
+        gap:2rem;
+        grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+    }
+}
