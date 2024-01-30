@@ -4,15 +4,17 @@ import rightArrowIcon from "../../../assets/app assets/icons/long-right-arrow-ic
 import plusIcon from "../../../assets/app assets/icons/plus-icon.svg"
 import tvIcon from "../../../assets/app assets/icons/tv-icon.svg"
 import retryIcon from "../../../assets/app assets/icons/retry-icon.svg"
-import RelatedMovies from "../RelatedMovies/RelatedMovies"
 
 
 function GPTResponse() {
   return (
     <div className="gpt-response-container">
-        <h1>Top Result(95%)</h1>
+        <h1>Top Results</h1>
         <div className="movie-image-and-details">
         <div className="movie-image">
+            <div className="accuracy-tooltip">
+               <p>95%</p>
+            </div>
             <img src={testImage} alt="" />
         </div>
 

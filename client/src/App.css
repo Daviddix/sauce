@@ -214,3 +214,21 @@ letter-spacing: -0.028rem;
     line-height: 2rem; 
     letter-spacing: -0.024rem;
 }
+
+.transparent-button{
+    width: 4.3rem;
+    height: 4.2rem;
+    border-radius: 0.8rem;
+    border: 1px solid #B0D9F6;
+    background: rgba(255, 255, 255, 0.46);
+    backdrop-filter: blur(2px);
+}
+
+.tiny-body{
+    color: white;
+    font-family: manrope;
+    font-size: 1.2rem;
+    font-style: normal;
+    font-weight: 500;
+    letter-spacing: -0.036rem;
+}
