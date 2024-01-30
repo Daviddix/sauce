@@ -1,0 +1,14 @@
+.movie-thriller-section .video {
+    width: 100%;
+    aspect-ratio: 16/9;
+    border-radius: 16px;
+    background-image: url("../../../assets/app assets/images/test.jpg");
+    -webkit-border-radius: 16px;
+    -moz-border-radius: 16px;
+    -ms-border-radius: 16px;
+    -o-border-radius: 16px;
+}
+
+@media screen and (min-width:1000px) {
+    
+}

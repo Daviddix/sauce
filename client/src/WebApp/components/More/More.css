@@ -1,0 +1,24 @@
+.movie-more-section .more-button-container {
+    display: grid;
+    gap: 1rem 1rem;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.more-button-container button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: .5rem;
+}
+
+.more-button-container .primary-button {
+    grid-column: 1/4;
+}
+
+.more-button-container button:not(.primary-button) {
+    padding: .8rem;
+}
+
+@media screen and (min-width:1000px) {
+    
+}
