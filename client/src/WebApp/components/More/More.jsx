@@ -1,6 +1,5 @@
 import plusIconButton from "../../../assets/app assets/icons/plus-icon.svg"
 import tvIconButton from "../../../assets/app assets/icons/tv-icon.svg"
-import rankIcon from "../../../assets/app assets/icons/ranking-list-icon.svg"
 import linkArrowIcon from "../../../assets/app assets/icons/link-arrow-icon.svg"
 
 import "./More.css"
