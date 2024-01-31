@@ -1,0 +1,47 @@
+.add-list-modal{
+    background-color: white;
+    border-radius: 1rem;
+    width:90%;
+    max-width: 35rem;
+    margin:auto;
+    -webkit-border-radius: 1rem;
+    -moz-border-radius: 1rem;
+    -ms-border-radius: 1rem;
+    -o-border-radius: 1rem;
+}
+
+.add-list-modal .add-list-modal-header{
+    display: flex;
+    border-bottom: var(--faint-line-style);
+    column-gap: 1rem;
+    align-items: start;
+    justify-content: space-between;
+    padding: 2rem 1.5rem 1rem;
+}
+
+.add-list-modal-header > h2{
+    flex:1;
+    text-align: left;
+}
+
+.add-list-modal-header button{
+    background-color: transparent;
+    border: none;
+}
+
+.add-list-modal .add-list-modal-body{
+    padding: 1rem 1.5rem;
+}
+
+.add-list-modal-body input{
+    width:100%;
+    height: 4rem;
+    margin: 0 0 1rem 0;
+}
+
+.add-list-modal-body button{
+    width: fit-content;
+    box-shadow: none;
+    display: block;
+    margin-left:auto;
+}

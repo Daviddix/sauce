@@ -1,5 +1,5 @@
 import sauceLogo from '../assets/landing page assets/icons/logo.svg'
-import webAppImage from "../assets/landing page assets/images/webapp.png"
+import webAppImage from "../assets/landing page assets/images/new.png"
 import menuIcon from "../assets/landing page assets/icons/hamburger-button.svg"
 import "./LandingPage.css"
 import {Link} from "react-router-dom"
