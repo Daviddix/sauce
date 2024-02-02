@@ -88,7 +88,6 @@ letter-spacing: -0.028rem;
     font-size: 2.4rem;
     font-style: normal;
     font-weight: 600;
-    line-height: 2rem; /* 83.333% */
     letter-spacing: -0.024rem;
 
     @media screen and (min-width:900px) {
@@ -96,7 +95,6 @@ letter-spacing: -0.028rem;
         font-size: 2.6rem;
         font-style: normal;
         font-weight: 600;
-        line-height: 2rem; /* 76.923% */
         letter-spacing: -0.026rem;
     }
 }

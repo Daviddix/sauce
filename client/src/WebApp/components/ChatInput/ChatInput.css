@@ -53,6 +53,11 @@
     font-family: clashG;
 }
 
+.chat-input-inner:has(input:disabled){
+    opacity: .6;
+    pointer-events: none;
+}
+
 .home-input > input::placeholder{
     font-weight: 500;
 }

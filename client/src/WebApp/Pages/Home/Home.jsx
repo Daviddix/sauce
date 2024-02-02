@@ -5,8 +5,24 @@ import UserPrompt from '../../components/UserPrompt/UserPrompt'
 import GPTResponse from '../../components/GPTResponse/GPTResponse'
 import ChatInput from '../../components/ChatInput/ChatInput'
 import { Link } from 'react-router-dom'
+import {useState, useEffect} from "react"
 
 function Home() {
+  const [isFirstTimeUser, setIsFirstTimeUser] = useState(()=> JSON.parse(localStorage.getItem("first-time-user")))
+
+  const [messages, setMessages] = useState([])
+  // const [disableChatInput, setDisableChatInput] = useState
+
+  useEffect(()=>{
+      localStorage.setItem("first-time-user", JSON.stringify(false))
+  }, [isFirstTimeUser])
+
+  const mappedMessages = messages.map(({from, value, inputValue})=>{
+    return (
+      from === "user" ? <UserPrompt prompt={value} /> : <GPTResponse inputValue={inputValue} />
+    )
+  })
+
   return (
     <section className="chat">
      <Header />        
@@ -14,17 +30,19 @@ function Home() {
     <section className="chat-body">
         
         <div className="chat-body-inner">
-          {/* <WelcomeMessage /> */}
-        <UserPrompt />
-          
-        <GPTResponse />
+          {
+            isFirstTimeUser == null && <WelcomeMessage />}
+
+        {mappedMessages}
+        
         
         </div>
         
     </section>
 
 
-    <ChatInput />
+    <ChatInput 
+    setMessages={setMessages} />
     </section>
   )
 }

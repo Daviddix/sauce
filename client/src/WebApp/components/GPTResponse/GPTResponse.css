@@ -1,6 +1,7 @@
 .gpt-response-container{
     max-width: 60rem;
     margin: auto;
+    display: grid;
 }
 
 .gpt-response-container > h1{
@@ -14,109 +15,9 @@
     letter-spacing: -0.02rem;
 }
 
-.movie-image > img{
-    margin: 0 0 1rem 0;
-    width: 100%;
-    aspect-ratio: 9/10;
-    object-fit: cover;
-    border-radius: 12px;
-    -webkit-border-radius: 12px;
-    -moz-border-radius: 12px;
-    -ms-border-radius: 12px;
-    -o-border-radius: 12px;
-}
-
-.movie-image-and-details .movie-image{
-    position: relative;
-}
-
-.movie-image .accuracy-tooltip{
-    position: absolute;
-    right:1rem;
-    top:-1.5rem;
-    width: 4.3rem;
-    height: 2.8rem;
-    border-radius: 0.4rem;
-    border: 1px solid rgba(176, 217, 246, 0.20);
-    background: #E9F6FF;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.57);
-    display:flex;
-    align-items: center;
-    justify-content: center;
-    -webkit-border-radius: 0.4rem;
-    -moz-border-radius: 0.4rem;
-    -ms-border-radius: 0.4rem;
-    -o-border-radius: 0.4rem;
-}
-
-.accuracy-tooltip > p{
-    color: #0C9733;
-    font-family: clashG;
-    font-size: 1.6rem;
-    font-style: normal;
-    font-weight: 500;
-    letter-spacing: -0.042rem;
-}
-
-.movie-details .heading-and-rating{
-    display: flex;
-    margin: 0 0 1rem 0;
-    align-items: center;
-    justify-content: start;
-    flex-wrap: wrap;
-}
-
-.heading-and-rating small{
-    font-size: 1.2rem;
-    font-family: manrope;
-    font-weight: 500;
-}
-
-.movie-details .movie-description{
-    margin: 0 0 1rem 0;
-}
-
-.movie-details .movie-options{
-    display: grid;
-    gap: 1.5rem 1rem;
-    grid-template-columns: repeat(3, 1fr);
-}
-
-.movie-options button{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    column-gap: .5rem;
-}
-
-.movie-options .primary-button{
-    grid-column: 1/4;
-}
-
 
 @media screen and (min-width:1000px) {
     .gpt-response-container{
         max-width: 100%;
-    }
-
-    .gpt-response-container .movie-image-and-details{
-        display:grid;
-        grid-template-columns: 1fr 1fr;
-        column-gap: 2rem;
-    }
-
-    .movie-image-and-details .movie-details{
-        display:flex;
-        flex-direction: column;
-    }
-
-    .movie-image > img{
-        margin: 0 0 0rem 0;
-        width: 100%;
-        aspect-ratio: 8/9;
-}
-
-    .movie-details .movie-description{
-        flex:1;
     }
 }
