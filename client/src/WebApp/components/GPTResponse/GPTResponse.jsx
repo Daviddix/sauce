@@ -20,7 +20,7 @@ function GPTResponse({inputValue}) {
 
     async function makeRequestForMovieData(movieDescription){
         setDisableInput(true)
-        const rawFetch = await fetch("http://localhost:3000",
+        const rawFetch = await fetch("https://sauce-backend.onrender.com",
         {
             method : "POST",
             headers: {
