@@ -43,6 +43,10 @@ button{
     border-radius: 3rem;
     border: 1.7px solid #0C202E;
     background: #F1F8FD;
+    -webkit-border-radius: 3rem;
+    -moz-border-radius: 3rem;
+    -ms-border-radius: 3rem;
+    -o-border-radius: 3rem;
 }
 
 .home-header{

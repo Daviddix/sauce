@@ -6,26 +6,30 @@ import GPTResponse from '../../components/GPTResponse/GPTResponse'
 import ChatInput from '../../components/ChatInput/ChatInput'
 import { Link } from 'react-router-dom'
 import {useState, useEffect} from "react"
+import { useAtom } from 'jotai'
+import { messagesAtom } from '../../globals/atom'
 
 function Home() {
   const [isFirstTimeUser, setIsFirstTimeUser] = useState(()=> JSON.parse(localStorage.getItem("first-time-user")))
 
-  const [messages, setMessages] = useState([])
-  // const [disableChatInput, setDisableChatInput] = useState
+  const [messages, setMessages] = useAtom(messagesAtom)
 
   useEffect(()=>{
       localStorage.setItem("first-time-user", JSON.stringify(false))
   }, [isFirstTimeUser])
 
-  const mappedMessages = messages.map(({from, value, inputValue})=>{
+  const mappedMessages = messages.map(({from, value, inputValue, key})=>{
     return (
-      from === "user" ? <UserPrompt prompt={value} /> : <GPTResponse inputValue={inputValue} />
+      from === "user" ? 
+      <UserPrompt key={key} id={key} prompt={value} /> 
+      : 
+      <GPTResponse key={key} id={key} inputValue={inputValue} />
     )
   })
 
   return (
     <section className="chat">
-     <Header />        
+     <Header /> 
 
     <section className="chat-body">
         
@@ -41,8 +45,7 @@ function Home() {
     </section>
 
 
-    <ChatInput 
-    setMessages={setMessages} />
+    <ChatInput  />
     </section>
   )
 }

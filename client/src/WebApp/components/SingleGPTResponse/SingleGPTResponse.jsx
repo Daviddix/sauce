@@ -4,10 +4,19 @@ import tvIcon from "../../../assets/app assets/icons/tv-icon.svg"
 import retryIcon from "../../../assets/app assets/icons/retry-icon.svg"
 
 import "./SingleGPTResponse.css"
+import AddToListModal from "../../components/AddToListModal/AddToListModal"
 import { useEffect, useState } from "react"
+import {useNavigate} from "react-router-dom"
 
 function SingleGPTResponse({movieName, matchPercent, movieId, movieReleaseDate, movieOverview, movieRating, moviePoster}) {
     const [accuracyClassName, setAccuracyClassName] = useState("")
+    const [showListModal, setShowListModal] = useState(false)
+
+    function showListModalFn(){
+        setShowListModal(true)
+    }
+    const navigate = useNavigate()
+
     useEffect(()=>{
         if (matchPercent <= 49) {
          setAccuracyClassName("low") 
@@ -19,6 +28,7 @@ function SingleGPTResponse({movieName, matchPercent, movieId, movieReleaseDate, 
       }, [matchPercent])
   return (
     <div className="movie-image-and-details">
+        {showListModal && <AddToListModal setShowListModal={setShowListModal} />}
         <div className="movie-image">
             <div className="accuracy-tooltip">
                <p className={accuracyClassName}>{matchPercent}%</p>
@@ -37,12 +47,20 @@ function SingleGPTResponse({movieName, matchPercent, movieId, movieReleaseDate, 
             </p>
 
             <div className="movie-options">
-                <button className="button-text-style primary-button">
+                <button 
+                onClick={()=>{
+                    navigate(`/movie/${movieId}`)
+                }}
+                className="button-text-style primary-button">
                     About this movie
                     <img src={rightArrowIcon} alt="right arrow icon" />
                 </button>
 
-                <button className="button-text-style secondary-button">
+                <button 
+                onClick={()=>{
+                    showListModalFn()
+                }}
+                className="button-text-style secondary-button">
                 <img src={plusIcon} alt="add icon" />
                     Add to List
                 </button>
@@ -52,10 +70,7 @@ function SingleGPTResponse({movieName, matchPercent, movieId, movieReleaseDate, 
                     Watch Now
                 </button>
 
-                <button className="button-text-style secondary-button">
-                <img src={retryIcon} alt="retry icon" />
-                    Retry Search
-                </button>
+                
             </div>
         </div>
         </div>

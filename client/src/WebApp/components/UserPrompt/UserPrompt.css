@@ -25,7 +25,7 @@
 .prompt-text-and-edit button{
     border:none;
     background-color: transparent;
-    margin: .4rem 0 0 0;
+    margin: .4rem .8rem 0 0;
 }
 
 .prompt-text-and-edit button img{

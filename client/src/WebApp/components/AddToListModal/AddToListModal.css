@@ -5,6 +5,10 @@
     align-items: center;
     justify-content: space-between;
     background: rgba(0, 0, 0, 0.72);
+    position: absolute;
+    top:0;
+    left:0;
+    z-index: 5;
 }
 
 .list-modal-overlay .list-modal{
@@ -17,11 +21,18 @@
     -moz-border-radius: 1rem;
     -ms-border-radius: 1rem;
     -o-border-radius: 1rem;
+    opacity: 0;
+    transform: translateY(5rem);
+    -webkit-transform: translateY(5rem);
+    -moz-transform: translateY(5rem);
+    -ms-transform: translateY(5rem);
+    -o-transform: translateY(5rem);
+    animation: slide-up ease-in-out .5s forwards;
+    -webkit-animation: slide-up ease-in-out .5s forwards;
 }
 
 .list-modal .list-modal-header{
-    display: 
-    flex;
+    display: flex;
     border-bottom: var(--faint-line-style);
     column-gap: 1rem;
     align-items: start;
@@ -95,4 +106,15 @@
     box-shadow: none;
     display: block;
     margin-left:auto;
+}
+
+@keyframes slide-up {
+    to{
+        transform: translateY(0);
+        -webkit-transform: translateY(0);
+        -moz-transform: translateY(0);
+        -ms-transform: translateY(0);
+        -o-transform: translateY(0);
+        opacity: 1;
+}
 }

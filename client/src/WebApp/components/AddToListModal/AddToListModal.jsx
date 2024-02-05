@@ -6,10 +6,18 @@ import emptyListState from "../../../assets/app assets/icons/empty-list-state.sv
 import "./AddToListModal.css"
 
 
-function AddToListModal() {
+function AddToListModal({setShowListModal}) {
   return (
-    <div className="list-modal-overlay">
-        <div className="list-modal">
+    <div 
+    onClick={(e)=>{
+        setShowListModal(false)
+    }}
+    className="list-modal-overlay">
+        <div 
+        onClick={(e)=>{
+            e.stopPropagation()
+        }}
+        className="list-modal">
             <div className="list-modal-header">
                 <img src={listIcon} alt="list icon" />
 
@@ -18,7 +26,11 @@ function AddToListModal() {
                     <p className="sub-body-style">Please select a list to add this movie to</p>
                 </div>
 
-                <button>
+                <button
+                onClick={()=>{
+                    setShowListModal(false)
+                }}
+                >
                 <img src={closeIcon} alt="close icon" />
                 </button>
             </div>

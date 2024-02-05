@@ -21,3 +21,27 @@
         max-width: 100%;
     }
 }
+
+.gpt-response-error{
+    border:1.5px solid #d83006;
+    background: hsla(9, 100%, 89%, 0.603);
+    padding: 1rem;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    width: 60%;
+}
+
+.gpt-response-error .other-heading{
+    font-weight: 500;
+    color: hsl(9, 92%, 10%);
+}
+
+.gpt-response-error button{
+    margin: 1rem 0 0 0;
+    background-color: white;
+    color: black;
+    box-shadow: none;
+}

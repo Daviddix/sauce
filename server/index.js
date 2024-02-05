@@ -73,7 +73,7 @@ app.post("/", async (req, res)=>{
       });
   
       const movieInfoArray = await Promise.all(tmdbPromises);
-      res.send(movieInfoArray) 
+      res.send(movieInfoArray)
 })
 
 app.listen(PORT, ()=>{

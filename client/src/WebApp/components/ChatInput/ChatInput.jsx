@@ -3,37 +3,40 @@ import sendIcon from "../../../assets/app assets/icons/airplane-icon.svg";
 
 import "./ChatInput.css";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useAtom } from "jotai";
-import { disableInputAtom } from "../../atoms/atom";
+import { disableInputAtom, inputValueFromEditAtom, messagesAtom } from "../../globals/atom";
+import { randomMovieDescription } from "../../globals/others";
 
-function ChatInput({ setMessages }) {
+function ChatInput() {
   const [typedDescription, setTypedDescription] = useState("")
   const [disableInput, setDisableInput] = useAtom(disableInputAtom)
-  const randomMovieDescription = [
-    "A skilled thief enters the dreams of others to steal their deepest secrets.",
-    "A banker is sentenced to life in Shawshank State Penitentiary for a crime he didn't commit.",
-    "Batman faces the chaotic Joker as he tries to bring justice to Gotham City.",
-    "The life story of a man with a low IQ who inadvertently influences several defining moments in history.",
-    "The intersecting lives of various criminals in the Los Angeles underworld.",
-    "A love story set against the backdrop of the ill-fated maiden voyage of the R.M.S. Titanic.",
-    "A computer hacker discovers the truth about reality and joins a group of rebels against sentient machines.",
-    "A theme park with genetically engineered dinosaurs becomes a terrifying adventure for its visitors.",
-    "The patriarch of a powerful crime family passes control to his reluctant son.",
-    "A young farm boy joins a rebellion against an evil empire in a galaxy far, far away.",
-  ]
+  const [messages, setMessages] = useAtom(messagesAtom)
+  const [inputValueFromEdit, setInputValueFromEdit] = useAtom(inputValueFromEditAtom)
+  
   const randomIndex = Math.ceil(Math.random() * randomMovieDescription.length)
+
+  useEffect(()=>{
+    if(inputValueFromEdit !== ""){
+      setTypedDescription(inputValueFromEdit)
+      inputRef.current.focus()
+    }
+  }, [inputValueFromEdit])
+
+  const inputRef = useRef(null)
 
   function handleMovieDescriptionSubmit(description) {
     setMessages((prev) => {
       const newUserPrompt = {
         from: "user",
+        key : Date.now(),
         value: description,
       };
 
       const loadingGPTResponse = {
         from: "GPT",
         inputValue: description,
+        key : Date.now(),
         value: "",
       };
       return [...prev, newUserPrompt, loadingGPTResponse];
@@ -84,6 +87,7 @@ function ChatInput({ setMessages }) {
             value={typedDescription}
             placeholder="A movie about..."
             disabled={disableInput}
+            ref={inputRef}
             required
             type="text"
           />
