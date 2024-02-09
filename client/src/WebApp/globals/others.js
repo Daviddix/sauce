@@ -10,3 +10,18 @@ export const randomMovieDescription = [
     "The patriarch of a powerful crime family passes control to his reluctant son.",
     "A young farm boy joins a rebellion against an evil empire in a galaxy far, far away.",
   ]
+
+  export function formatTime(minutes) {
+    const hours = Math.floor(minutes / 60);
+    const remainingMinutes = minutes % 60;
+    const hourString = hours > 0 ? `${hours} hr${hours > 1 ? 's' : ''}` : '';
+    const minuteString = remainingMinutes > 0 ? `${remainingMinutes} min${remainingMinutes > 1 ? 's' : ''}` : '';
+    
+    if (hours > 0 && remainingMinutes > 0) {
+      return `${hourString} ${minuteString}`;
+    } else if (hours > 0) {
+      return hourString;
+    } else {
+      return minuteString;
+    }
+  }

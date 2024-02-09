@@ -19,7 +19,7 @@ function App() {
     <Route path='/' element={<LandingPage />} />
     <Route path='/app/login' element={<Login />} />
     <Route path='/app/signup' element={<Signup />} />
-    <Route path='/app/movie' element={<MovieDetails />} />
+    <Route path='/app/movie/:movieId' element={<MovieDetails />} />
     
     <Route path='/app/' element={dashboardTemplate}>
         <Route index element={<Home />} />

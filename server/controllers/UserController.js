@@ -1,0 +1,124 @@
+const bcrypt = require("bcryptjs")
+const cloudinary = require('cloudinary').v2
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key : process.env.CLOUD_API_KEY,
+  api_secret : process.env.CLOUD_API_SECRET
+})
+const userModel = require("../models/user")
+
+
+const { userCreated, loginSuccessful, logoutSuccessful, profilePictureUpdated, usernameUpdated } = require("../actions/successMessages")
+
+const {duplicateUsername, noBodyDataError, unknownError, userNotFoundInDataBase, wrongPassword} = require("../actions/errorMessages")
+const { checkForDuplicateUsername, generateJwtToken } = require("../libs/UserFunctions")
+const timeBeforeItExpires = 90000000 * 300
+
+
+async function signUserUp(req, res) {
+try{
+        if(req.body.username && req.body.profilePicture && req.body.password){ 
+            const {profilePicture, username,password} = req.body
+
+            const isDuplicateUsername = await checkForDuplicateUsername(username)
+
+            if (isDuplicateUsername) {
+                return res.status(400).json(duplicateUsername)
+            }
+
+            const imageBuffer = Buffer.from(profilePicture, "base64")
+
+            cloudinary.uploader.upload_stream(
+                { resource_type: 'auto' },
+              async function (error, result) {
+                if (error) {
+                  return res.status(400).json(imageUploadError);
+                }
+
+                const userMade = await userModel.create({
+                  profilePicture: result.secure_url,
+                  username,
+                  password,
+                });
+
+                const userToken = await generateJwtToken(userMade._id)
+
+                res.cookie("jwt", userToken, {
+                  httpOnly: true,
+                  maxAge: timeBeforeItExpires,
+                  path : "/",
+                  secure: true,
+                  sameSite: 'None'
+                })
+
+                res.status(201).json(userCreated);
+              }
+            ).end(imageBuffer)
+                        
+        }
+        else{
+            res.status(401).json(noBodyDataError)
+        }
+    }
+    catch(err){
+        console.log(err)
+        res.status(400).json(unknownError)
+    }
+}
+
+async function logUserIn(req, res){
+    try{
+        if(req.body.username && req.body.password){
+            const {username, password} = req.body
+            const userInDb = await userModel.findOne({username})
+            if(!userInDb){
+              return res.status(404).json(userNotFoundInDataBase)
+            }
+            
+            const passwordIsCorrect = await bcrypt.compare(password, userInDb.password) 
+            
+            if(!passwordIsCorrect){
+                return res.status(401).json(wrongPassword)
+            }
+
+            const userToken = await generateJwtToken(userInDb._id)
+            res.cookie("jwt", userToken, {
+                httpOnly: true,
+                maxAge: timeBeforeItExpires,
+                path : "/",
+                secure: true,
+                sameSite: 'None'
+              })
+            res.status(201).json(loginSuccessful)
+        }
+        else{
+            res.status(400).json(noBodyDataError)
+        }
+    }
+    catch(e){
+        console.log(e)
+        res.status(400).json(unknownError)
+    }
+}
+
+async function getUserDetails(req, res){
+  try{
+    const id = req.user.userId
+    const userInDb = await userModel.findById(id, ["profilePicture", "username"])
+    console.log(userInDb)
+    if(!userInDb){
+        return res.status(404).json(userNotFoundInDataBase)
+    }
+
+    res.status(200).json(userInDb)
+    }
+    catch(err){
+        res.status(500).json(unknownError)
+    }
+}
+
+module.exports = {
+    signUserUp,
+    logUserIn,
+    getUserDetails
+}

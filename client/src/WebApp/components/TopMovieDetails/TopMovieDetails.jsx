@@ -1,4 +1,4 @@
-import {Link} from "react-router-dom"
+import {Link, useParams} from "react-router-dom"
 import plusIcon from "../../../assets/app assets/icons/headerPlusIcon.svg"
 import tvIcon from "../../../assets/app assets/icons/tv-icon.svg"
 import backIcon from "../../../assets/app assets/icons/left-icon.svg"
@@ -8,12 +8,42 @@ import rankIcon from "../../../assets/app assets/icons/ranking-list-icon.svg"
 import testImage from "../../../assets/app assets/images/test.jpg"
 
 import "./TopMovieDetails.css"
+import { useEffect, useState } from "react"
+import { formatTime } from "../../globals/others"
 
 
 function TopMovieDetails() {
+    const [topMovieInfo, setTopMovieInfo] = useState({})
+    const [movieFetchStatus, setMovieFetchStatus] = useState("loading")
+    const mappedGenres = topMovieInfo.genres?.map((singleGenre)=>{
+        return <div className="button-text-style">{singleGenre.name}</div>
+    })
+    const {movieId} = useParams()
+
+    useEffect(()=>{
+        getMovieDetails()
+    }, [])
+
+    async function getMovieDetails(){
+        try{
+            const rawFetch = await fetch(`http://localhost:3000/app/movie/${movieId}`)
+            const fetchInJson = await rawFetch.json()
+
+            if(!rawFetch.ok){
+                throw new Error("sdf")
+            }
+            setTopMovieInfo(fetchInJson)
+            setMovieFetchStatus("completed")
+        }
+        catch(err){
+            alert("an error")
+        }
+    }
   return (
     <div className="top-movie-details">
-            <div className="top-movie-details-header">
+            {movieFetchStatus == "completed" &&
+                <>
+                <div className="top-movie-details-header">
                 <Link to="/app">
                  <button className="transparent-button">
                     <img src={backIcon} alt="go back" />
@@ -28,23 +58,23 @@ function TopMovieDetails() {
             </div>
 
             <div className="top-movie-image">
-            <img src={testImage} alt="" />
+            <img src={`https://image.tmdb.org/t/p/original${topMovieInfo.poster_path}`} alt="" />
             </div>
             
 
             <div className="top-movie-details-info">
                 <div className="movie-name-and-stats">
-                    <h1 className="tight-heading-style">The Adam Project(2019)</h1>
+                    <h1 className="tight-heading-style">{topMovieInfo.original_title}({topMovieInfo.release_date.slice(0, 4)})</h1>
 
                     <div className="movie-stats">
                         <div className="rating">
                             <img src={starIcon} alt="star" />
-                            <p className="tiny-body">7.8/10</p>
+                            <p className="tiny-body">{topMovieInfo.vote_average.toFixed()}/10</p>
                         </div>
 
                         <div className="length">
                             <img src={timeIcon} alt="clock icon" />
-                            <p className="tiny-body">2hrs 30mins</p>
+                            <p className="tiny-body">{formatTime(topMovieInfo.runtime)}</p>
                         </div>
 
                         <div className="accuracy">
@@ -57,20 +87,21 @@ function TopMovieDetails() {
                 <div className="movie-description">
                     <h1 className="subheading">Overview</h1>
 
-                    <p className="sub-body-style">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, eum iste? Adipisci quis necessitatibus eos libero totam odio tempora, quia commodi voluptates sequi veritatis, excepturi impedit enim quod nobis magni? Maiores nobis commodi voluptatum totam culpa voluptas dicta inventore doloremque aperiam voluptate magnam, illo itaque. Consequatur ad quidem esse, corrupti quis sapiente repellendus at nisi tempore molestias cupiditate ipsam nemo quia dolorem et, enim tenetur natus, deserunt quos aperiam. Error.</p>
+                    <p className="sub-body-style">{topMovieInfo.overview}</p>
                 </div>
 
                 <div className="movie-genre">
                     <h1 className="subheading">Genre</h1>
                     <div className="genre-container">
 
-                    <div className="button-text-style">Sci-fi</div>
-                    <div className="button-text-style">Thriller</div>
-                    <div className="button-text-style">Adventure</div>
+                    
+                    {mappedGenres}
                     </div>
                 </div>
             </div>
-        </div>
+            </>
+            }
+    </div>
   )
 }
 

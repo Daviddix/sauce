@@ -33,7 +33,7 @@ function SingleGPTResponse({movieName, matchPercent, movieId, movieReleaseDate, 
             <div className="accuracy-tooltip">
                <p className={accuracyClassName}>{matchPercent}%</p>
             </div>
-            <img src={`https://image.tmdb.org/t/p/w500/${moviePoster}`} alt={`movie poster from ${movieName}`} />
+            <img src={`https://image.tmdb.org/t/p/w1280/${moviePoster}`} alt={`movie poster from ${movieName}`} />
         </div>
 
         <div className="movie-details">
@@ -49,7 +49,7 @@ function SingleGPTResponse({movieName, matchPercent, movieId, movieReleaseDate, 
             <div className="movie-options">
                 <button 
                 onClick={()=>{
-                    navigate(`/movie/${movieId}`)
+                    navigate(`/app/movie/${movieId}`)
                 }}
                 className="button-text-style primary-button">
                     About this movie

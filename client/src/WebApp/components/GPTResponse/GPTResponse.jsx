@@ -34,7 +34,7 @@ function GPTResponse({inputValue, id}) {
         setMovieFetchStatus("loading")
         setDisableInput(true)
         try{
-            const rawFetch = await fetch("http://localhost:3000",
+            const rawFetch = await fetch("http://localhost:3000/app/movie",
         {
             method : "POST",
             headers: {
