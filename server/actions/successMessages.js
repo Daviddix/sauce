@@ -13,14 +13,14 @@ const logoutSuccessful = {
   message: "User has been logged out successfully",
 };
 
-const recipeCreated = {
+const listCreated = {
   status: "success",
-  message: "Your recipe has successfully been created!",
+  message: "Your list has successfully been created!",
 };
 
-const recipeUpdated = {
+const listUpdated = {
   status: "success",
-  message: "Your recipe has successfully been updated!",
+  message: "Your list has successfully been updated!",
 };
 
 const profilePictureUpdated = {
@@ -42,9 +42,9 @@ module.exports = {
   userCreated,
   loginSuccessful,
   logoutSuccessful,
-  recipeCreated,
+  listCreated,
   profilePictureUpdated,
   usernameUpdated,
-  recipeUpdated,
+  listUpdated,
   recipeDeletedSuccessfully,
 };

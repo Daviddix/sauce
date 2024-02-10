@@ -1,19 +1,6 @@
-:root{
-    --sk : linear-gradient(90deg, #c9c9ca 25%, #c2c2c2 50%, #cacaca 75%);
-}
-
 .response-skeleton{
     margin-bottom: 4rem;
 }
-  
-  @keyframes loading {
-    0% {
-      background-position: 200% 0;
-    }
-    100% {
-      background-position: -200% 0;
-    }
-  }
 
 
 .response-skeleton .response-image-skeleton{

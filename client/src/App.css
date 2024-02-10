@@ -36,7 +36,10 @@ button{
     --primary-800 : #17405D;
     --primary-900 : #0C202E;
 
-    --desktop-breakpoint : 1000px;
+    --sk : linear-gradient(90deg,
+     hsl(240, 1%, 79%) 25%,
+      hsl(0, 0%, 76%) 50%,
+       hsl(0, 0%, 79%) 75%);
 }
 
 .search-input{
@@ -234,3 +237,23 @@ letter-spacing: -0.028rem;
     font-weight: 500;
     letter-spacing: -0.036rem;
 }
+
+@keyframes slide-up {
+    to{
+        transform: translateY(0);
+        -webkit-transform: translateY(0);
+        -moz-transform: translateY(0);
+        -ms-transform: translateY(0);
+        -o-transform: translateY(0);
+        opacity: 1;
+}
+}
+
+@keyframes loading {
+    0% {
+      background-position: 200% 0;
+    }
+    100% {
+      background-position: -200% 0;
+    }
+  }

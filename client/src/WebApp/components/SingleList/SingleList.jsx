@@ -1,23 +1,26 @@
 import rightArrowIcon from "../../../assets/app assets/icons/right-arrow-icon.svg"
-import testListImage from "../../../assets/app assets/images/test.jpg"
 import "./SingleList.css"
 
-function SingleList() {
-  return (
-    <div tabIndex={0} className="single-list">
-              <img src={testListImage} alt="bg" className="bg" />
+function SingleList({listName, listCoverImage,moviesInList, activeListId, setActiveListId, id}) {
+  return ( 
+    <div
+    onClick={()=>{
+      setActiveListId(id)
+    }}
+    tabIndex={0} 
+    className={activeListId == id? "single-list active" : "single-list"}>
+              <img src={`https://image.tmdb.org/t/p/w1280/${listCoverImage}`} alt="list background image" className="bg" />
 
             <div className="list-inner">
               <div className="list-name-number">
-                <h2 className="sub-sub-heading">Memories</h2>
-                <p className="sub-body-style">4 Movies</p>
+                <h2 className="sub-sub-heading">{listName}</h2>
+                <p className="sub-body-style">{moviesInList.length} Movie
+                {moviesInList.length > 1?
+                 "s" : 
+                 ""}</p>
               </div>
-
-              <button className="view-list-button">
-                <img src={rightArrowIcon} alt="view list" />
-              </button>
             </div>
-          </div>
+    </div>
   )
 }
 

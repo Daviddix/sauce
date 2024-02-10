@@ -1,19 +1,25 @@
 import rightArrowIcon from "../../../assets/app assets/icons/long-right-arrow-icon.svg"
 import plusIcon from "../../../assets/app assets/icons/plus-icon.svg"
 import tvIcon from "../../../assets/app assets/icons/tv-icon.svg"
-import retryIcon from "../../../assets/app assets/icons/retry-icon.svg"
 
 import "./SingleGPTResponse.css"
 import AddToListModal from "../../components/AddToListModal/AddToListModal"
 import { useEffect, useState } from "react"
 import {useNavigate} from "react-router-dom"
+import { useAtom } from "jotai";
+import {movieIdToAddToListAtom} from "../../globals/atom"
 
 function SingleGPTResponse({movieName, matchPercent, movieId, movieReleaseDate, movieOverview, movieRating, moviePoster}) {
     const [accuracyClassName, setAccuracyClassName] = useState("")
     const [showListModal, setShowListModal] = useState(false)
+    const [movieIdToAddToList, setMovieIdToAddToList] = useAtom(movieIdToAddToListAtom)
 
     function showListModalFn(){
         setShowListModal(true)
+    }
+
+    function goToMainMoviePage(){
+        navigate(`/app/movie/${movieId}`)
     }
     const navigate = useNavigate()
 
@@ -48,9 +54,7 @@ function SingleGPTResponse({movieName, matchPercent, movieId, movieReleaseDate, 
 
             <div className="movie-options">
                 <button 
-                onClick={()=>{
-                    navigate(`/app/movie/${movieId}`)
-                }}
+                onClick={goToMainMoviePage}
                 className="button-text-style primary-button">
                     About this movie
                     <img src={rightArrowIcon} alt="right arrow icon" />
@@ -59,6 +63,7 @@ function SingleGPTResponse({movieName, matchPercent, movieId, movieReleaseDate, 
                 <button 
                 onClick={()=>{
                     showListModalFn()
+                    setMovieIdToAddToList(movieId)
                 }}
                 className="button-text-style secondary-button">
                 <img src={plusIcon} alt="add icon" />

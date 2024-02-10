@@ -1,16 +1,20 @@
+const movieSchema = require("../models/movie")
+const mongoose = require("mongoose")
+
 const listSchema = new mongoose.Schema({
-    name : {
+    listName : {
         type : String,
         required : true
     },
 
-    coverImage : {
+    listCoverImage : {
         type: String,
         required : true
     },
 
     moviesInList : {
-        type : [{ type: mongoose.Schema.Types.ObjectId, ref: 'Post' }]
+        type : [movieSchema],
+        required : true
     },
 
     listAuthor : {

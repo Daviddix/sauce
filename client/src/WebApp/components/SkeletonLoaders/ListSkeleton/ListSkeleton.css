@@ -1,0 +1,19 @@
+.list-skeleton-loader-container{
+    display: flex;
+    flex-direction: column;
+    row-gap: .5rem;
+}
+
+.list-skeleton-loader{
+    width:100%;
+    background: var(--sk);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+    height:5rem;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+    -webkit-animation: loading 1.5s infinite;
+}

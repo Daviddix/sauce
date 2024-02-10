@@ -18,12 +18,12 @@ function Home() {
       localStorage.setItem("first-time-user", JSON.stringify(false))
   }, [isFirstTimeUser])
 
-  const mappedMessages = messages.map(({from, value, inputValue, key})=>{
+  const mappedMessages = messages.map(({from, value, inputValue, key, id})=>{
     return (
       from === "user" ? 
-      <UserPrompt key={key} id={key} prompt={value} /> 
+      <UserPrompt key={id} id={key} prompt={value} /> 
       : 
-      <GPTResponse key={key} id={key} inputValue={inputValue} />
+      <GPTResponse key={id} id={key} inputValue={inputValue} />
     )
   })
 

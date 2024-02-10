@@ -2,14 +2,15 @@ import { useAtom } from "jotai"
 import SingleGPTResponse from "../SingleGPTResponse/SingleGPTResponse"
 import GPTResponseSkeleton from "../SkeletonLoaders/GPTResponseSkeleton/GPTResponseSkeleton"
 
-
 import "./GPTResponse.css" 
 
 import {useEffect, useState} from "react"
-import { disableInputAtom, gptToRefreshAtom, messagesAtom } from "../../globals/atom"
+import { disableInputAtom, gptToRefreshAtom, messagesAtom,moviesAtom } from "../../globals/atom"
+import GPTResponseError from "../GPTResponseError/GPTResponseError"
 
 function GPTResponse({inputValue, id}) {
     const [movies, setMovies] = useState([])
+    const [allMovies, setAllMovies] = useAtom(moviesAtom)
     const [movieFetchStatus, setMovieFetchStatus] = useState("loading")
     const [messages, setMessages] = useAtom(messagesAtom)
     const [reasonForError, setReasonForError] = useState("unknown")
@@ -47,12 +48,12 @@ function GPTResponse({inputValue, id}) {
             throw new Error({cause : "test"})
         }
         setMovies(jsonFetchData)
+        setAllMovies((prev) => [...prev, ...jsonFetchData])
         setMovieFetchStatus("completed")
         setDisableInput(false)
         }
         catch(err){
-            alert("an error ocurred")
-            console.log(err)
+            setReasonForError(err.cause? err.cause : "Network Error")
             setMovieFetchStatus("error")
             setDisableInput(false)
         }
@@ -77,36 +78,24 @@ function GPTResponse({inputValue, id}) {
     moviePoster={moviePoster} 
     />)
     })
+
+    const skeletons = <>
+    <GPTResponseSkeleton />
+    <GPTResponseSkeleton />
+    <GPTResponseSkeleton />
+    <GPTResponseSkeleton />
+    <GPTResponseSkeleton />
+    <GPTResponseSkeleton />
+    <GPTResponseSkeleton />
+    </>
   return (
     <div className="gpt-response-container">
         <h1>Top Results</h1>
-        {movieFetchStatus === "loading" && 
-        <>
-        <GPTResponseSkeleton />
-        <GPTResponseSkeleton />
-        <GPTResponseSkeleton />
-        <GPTResponseSkeleton />
-        <GPTResponseSkeleton />
-        <GPTResponseSkeleton />
-        <GPTResponseSkeleton />
-        </>
-        }    
+        {movieFetchStatus === "loading" && skeletons}    
         {movieFetchStatus === "completed" && mappedMovies}
-        {movieFetchStatus === "error" && <div className="gpt-response-error">
-            <p className="body-style">
-            Oops, seems like an error ocurred when trying to get your movies. Don't worry, just click the "Retry" button and it will fix it up.
-            </p>
-            <br />
-            <p className="other-heading">
-            Possible Reason for Error: {reasonForError}
-            </p>
-
-            <button
-            onClick={()=>{
-                refreshFromError()
-            }}
-            className="primary-button button-text-style">Retry</button>
-        </div> }        
+        {movieFetchStatus === "error" && <GPTResponseError 
+        reasonForError={reasonForError}
+        refreshFromError={refreshFromError} />}        
     </div>
   )
 }

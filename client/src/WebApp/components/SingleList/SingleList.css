@@ -1,4 +1,4 @@
-.lists-container .single-list{
+.single-list{
     position: relative;
     overflow: hidden;
     color:white;
@@ -10,6 +10,12 @@
     isolation: isolate;
     padding:.5rem 0;
     width:100%;
+    cursor: pointer;
+    transition: .2s ease-in;
+    -webkit-transition: .2s ease-in;
+    -moz-transition: .2s ease-in;
+    -ms-transition: .2s ease-in;
+    -o-transition: .2s ease-in;
 }
 
 .lists-container .single-list::after{
@@ -33,11 +39,13 @@
 
 .single-list .bg{
     display: block;
-    max-width: 100%;
+    width: 100%;
     position: absolute;
     top: 0;
     left:0;
     z-index: -1;
+    height: 100%;
+    object-fit: cover;
 }
 
 .list-inner p,

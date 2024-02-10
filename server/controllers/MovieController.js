@@ -1,4 +1,5 @@
 const  OpenAI = require("openai")
+const { unknownError } = require("../actions/errorMessages")
 const openAiApiKey = process.env.OPENAI
 const tmdbApiKey = process.env.TMDB
 const openai = new OpenAI({
@@ -13,7 +14,7 @@ async function getMoviesThatMatchPrompt(req, res){
       messages: [
         {
           role: "system",
-          content: `you will be given a movie description and your job is to return a JSON object containing the status of the request, the names, percentage match and year of release of 7 movies that match that description starting from the one that matches it the most to the one that matches it the least in this format :
+          content: `you are a bot that takes in descriptions of movies by humans and finds the movies that match those description and you will do this with pinpoint accuracy. you will be given a movie description and your job is to return a JSON object containing the status of the request, the names, percentage match and year of release of 7 movies that match that description starting from the one that matches it the most to the one that matches it the least in this format :
           
           {
               status : //success if any movies were found or failure if no movies were found,
@@ -42,8 +43,6 @@ async function getMoviesThatMatchPrompt(req, res){
       return { movieName, matchPercent: match.matchPercent};
     })
 
-    console.log(movieMatches)
-
     const tmdbPromises = movieMatches.map(async (movieMatch) => {
       const tmdbResponse = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${tmdbApiKey}&query=${encodeURIComponent(movieMatch.movieName)}`);
       const tmdbData = await tmdbResponse.json();
@@ -65,7 +64,7 @@ async function getMoviesThatMatchPrompt(req, res){
     res.send(movieInfoArray)
     }
     catch(err){
-
+        res.status(500).json(unknownError)
     }
 }
 

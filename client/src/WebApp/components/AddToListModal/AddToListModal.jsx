@@ -2,12 +2,120 @@ import listIcon from "../../../assets/app assets/icons/list-icon.svg"
 import closeIcon from "../../../assets/app assets/icons/close-icon.svg"
 import plusIcon from "../../../assets/app assets/icons/plus-icon.svg"
 import SingleList from "../SingleList/SingleList"
-import emptyListState from "../../../assets/app assets/icons/empty-list-state.svg"
 import "./AddToListModal.css"
-
+import { useEffect, useState } from "react"
+import EmptyListState from "../EmptyListState/EmptyListState"
+import NewListModal from "../../components/NewListModal/NewListModal"
+import ListSkeleton from "../SkeletonLoaders/ListSkeleton/ListSkeleton"
+import AddToListModalError from "../AddToListModalError/AddToListModalError"
+import { useAtom } from "jotai"
+import { movieIdToAddToListAtom, moviesAtom } from "../../globals/atom"
+import toast, { Toaster } from 'react-hot-toast'
 
 function AddToListModal({setShowListModal}) {
+    const [lists, setLists] = useState([])
+    const [listFetchStatus, setListFetchStatus] = useState("loading")
+    const [showAddNewListModal, setShowAddNewListModal] = useState(false)
+    const [activeListId, setActiveListId] = useState(0)
+    const [movieIdToAddToList, setMovieIdToAddToList] = useAtom(movieIdToAddToListAtom)
+    const [movies, setMovies] = useAtom(moviesAtom)
+
+    const mappedLists = lists.map(({listName, listCoverImage, moviesInList, _id})=>{
+        return <SingleList 
+        setActiveListId={setActiveListId}
+        activeListId={activeListId}
+        key={_id}
+        id={_id}
+        listName={listName} 
+        listCoverImage={listCoverImage}
+        moviesInList={moviesInList} 
+        />
+    })
+
+    useEffect(()=>{
+        getListsByUser()
+    }, [])
+
+    async function getListsByUser(){
+        setListFetchStatus("loading")
+        try{
+        const rawFetch = await fetch("http://localhost:3000/app/list", {
+            credentials: "include"
+        })
+        const fetchInJson = await rawFetch.json()
+
+        if(!rawFetch.ok){
+            throw new Error("Err", {cause : fetchInJson})
+        }
+        setLists(fetchInJson)
+        setListFetchStatus("completed")
+        }
+        catch(err){
+            setListFetchStatus("error")
+            console.log(err)
+            console.log(err?.cause)
+        }
+        
+    }
+
+    async function addMovieToList(){
+        try {
+          const movieToAddToList = movies.filter(
+            (movie) => movie.movieId == movieIdToAddToList
+          )[0]
+          const rawFetch = await fetch(
+            `http://localhost:3000/app/list/${activeListId}`,
+            {
+              credentials: "include",
+              body: JSON.stringify({movieData : movieToAddToList}),
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+            }
+          )
+          const jsonFetch = await rawFetch.json();
+          if (!rawFetch.ok) {
+            throw new Error({ cause: jsonFetch });
+          }
+          console.log(jsonFetch);
+          notifyForMovieAddedToList()
+        } catch (err) {
+            notifyForAddToListError()
+        }
+        
+    }
+
+    function notifyForMovieAddedToList(){
+        return toast.success('Your movie has been added to a list', {
+            position : "bottom-right",
+            style : {
+                fontFamily : "manrope",
+                fontSize : "14px",
+                backgroundImage : "linear-gradient(to bottom right,rgb(196, 255, 201), transparent)",
+                border : "2px solid white",
+                boxShadow : "0 0 .4rem #00000018"
+            },
+            icon : "📃"
+        })
+    }
+
+    function notifyForAddToListError(){
+        return toast.error('Oops... An error ocurred when trying to add a movie to a list', {
+            position : "bottom-right",
+            style : {
+                fontFamily : "manrope",
+                fontSize : "14px",
+                backgroundImage : "linear-gradient(to bottom right,rgb(255, 210, 196), transparent)",
+                border : "2px solid white",
+                boxShadow : "0 0 .4rem #00000018"
+            },
+            icon : "📃"
+        })
+    }
   return (
+    <>
+    {!showAddNewListModal && 
     <div 
     onClick={(e)=>{
         setShowListModal(false)
@@ -36,21 +144,60 @@ function AddToListModal({setShowListModal}) {
             </div>
 
             <div className="list-modal-body">
-                <>
-                <SingleList />
 
-                <button className="add-new-list">
+            {
+                listFetchStatus == "loading" && 
+                <ListSkeleton />
+            }
+            {
+                listFetchStatus == "error" && 
+                <AddToListModalError refreshFunction={getListsByUser} />
+            }
+            {
+                listFetchStatus == "completed" && 
+                    lists.length == 0?
+                    <EmptyListState 
+                    setShowAddNewListModal={setShowAddNewListModal} />
+                    :
+                    listFetchStatus == "completed" &&
+                    <>
+                    {mappedLists}
+                    <button 
+                    onClick={()=>{
+                        setShowAddNewListModal(true)
+                    }}
+                    className="add-new-list">
                     <img src={plusIcon} alt="plus icon" />
                     New List
-                </button>
-                </>
+                    </button>
+                    </>
+            }
+
+                
             </div>
 
+            {lists.length !== 0 && 
             <div className="list-modal-bottom">
-                    <button className="button-text-style primary-button">Add to this List</button>
-            </div>
+                    <button 
+                    onClick={()=>{
+                        addMovieToList()
+                    }}
+                    disabled={activeListId == 0}
+                    className="button-text-style primary-button">Add to this List</button>
+            </div>}
         </div>
     </div>
+    }
+
+    {showAddNewListModal && 
+    <NewListModal 
+    setShowListModal={setShowListModal}
+    notifyForMovieAddedToList={notifyForMovieAddedToList}
+    notifyForAddToListError={notifyForAddToListError}
+    setShowAddNewListModal={setShowAddNewListModal} />
+    }
+    <Toaster toastOptions={{duration : 6000}} />
+    </>
   )
 }
 

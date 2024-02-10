@@ -1,12 +1,13 @@
 import discoverIcon from "../../../assets/app assets/icons/discover-icon.svg";
 import sendIcon from "../../../assets/app assets/icons/airplane-icon.svg";
 
+
 import "./ChatInput.css";
 
 import { useEffect, useRef, useState } from "react";
 import { useAtom } from "jotai";
 import { disableInputAtom, inputValueFromEditAtom, messagesAtom } from "../../globals/atom";
-import { randomMovieDescription } from "../../globals/others";
+import { generateUniqueId, randomMovieDescription } from "../../globals/others";
 
 function ChatInput() {
   const [typedDescription, setTypedDescription] = useState("")
@@ -14,7 +15,7 @@ function ChatInput() {
   const [messages, setMessages] = useAtom(messagesAtom)
   const [inputValueFromEdit, setInputValueFromEdit] = useAtom(inputValueFromEditAtom)
   
-  const randomIndex = Math.ceil(Math.random() * randomMovieDescription.length)
+  const randomIndex = Math.ceil(Math.random() * randomMovieDescription.length - 1)
 
   useEffect(()=>{
     if(inputValueFromEdit !== ""){
@@ -30,12 +31,14 @@ function ChatInput() {
       const newUserPrompt = {
         from: "user",
         key : Date.now(),
+        id : generateUniqueId(),
         value: description,
       };
 
       const loadingGPTResponse = {
         from: "GPT",
         inputValue: description,
+        id : generateUniqueId(),
         key : Date.now(),
         value: "",
       };
@@ -48,11 +51,15 @@ function ChatInput() {
     setMessages((prev) => {
         const newUserPrompt = {
           from: "user",
+          key : Date.now(),
+          id : generateUniqueId(),
           value: description,
         };
   
         const loadingGPTResponse = {
           from: "GPT",
+          key : Date.now(),
+          id : generateUniqueId(),
           inputValue: description,
           value: "",
         };

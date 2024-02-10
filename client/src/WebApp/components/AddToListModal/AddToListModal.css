@@ -108,13 +108,7 @@
     margin-left:auto;
 }
 
-@keyframes slide-up {
-    to{
-        transform: translateY(0);
-        -webkit-transform: translateY(0);
-        -moz-transform: translateY(0);
-        -ms-transform: translateY(0);
-        -o-transform: translateY(0);
-        opacity: 1;
-}
+.list-modal-bottom button:disabled{
+    pointer-events: none;
+    opacity: .7;
 }

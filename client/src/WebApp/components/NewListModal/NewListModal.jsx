@@ -2,32 +2,100 @@ import addListIcon from "../../../assets/app assets/icons/add-list-icon.svg"
 import closeIcon from "../../../assets/app assets/icons/close-icon.svg"
 
 import "./NewListModal.css"
+import {moviesAtom, movieIdToAddToListAtom, userInfoAtom} from "../../globals/atom"
+import { useEffect, useState } from "react"
+import { useAtom } from "jotai"
+import { Toaster } from "react-hot-toast"
 
-function NewListModal() {
+function NewListModal({setShowAddNewListModal, notifyForMovieAddedToList, notifyForAddToListError, setShowListModal}) {
+    const [movies, setMovies] = useAtom(moviesAtom)
+    const [id, setId] = useAtom(movieIdToAddToListAtom)
+    const [userInfo, setUserInfo] = useAtom(userInfoAtom)
+    const [newListName, setNewListName] = useState("")
+    const [creatingNewList, setCreatingNewList] = useState(false)
+
+
+    async function addMovieToNewList(e, name){
+        console.log(movies)
+        try{
+        e.preventDefault()
+        setCreatingNewList(true)
+        const movieToAddToList = movies.filter((movie)=> movie.movieId == id)[0]
+        const listData = {
+            listName : name,
+            listCoverImage : movieToAddToList.moviePoster,
+            moviesInList : [movieToAddToList],
+            listAuthor : userInfo._id
+        }
+        const rawFetch = await fetch("http://localhost:3000/app/list", {
+            credentials : "include",
+            headers: {
+                "Content-Type": "application/json"
+              },
+            body : JSON.stringify(listData),
+            method : "POST"
+        })
+        const fetchJson = await rawFetch.json()
+        if(!rawFetch.ok){
+            throw new Error("Err", {cause : fetchJson})
+        }
+        setCreatingNewList(false)
+        setShowAddNewListModal(false)
+        setShowListModal(false) 
+        notifyForMovieAddedToList()
+        }
+        catch(err){
+            setCreatingNewList(false)
+            notifyForAddToListError()
+            console.log(err)
+        }
+       
+    }
   return (
-    <div className="add-list-modal">
+    <div className="add-list-modal-overlay">
+        <div className="add-list-modal">
             <div className="add-list-modal-header">
                 <img src={addListIcon} alt="list icon" />
 
                     <h2 className="sub-sub-heading">New List</h2>
 
-                <button>
+                <button onClick={()=>{
+                    setShowAddNewListModal(false)
+                }}>
                 <img src={closeIcon} alt="close icon" />
                 </button>
             </div>
 
             <div className="add-list-modal-body">
-                <form>
+                <form 
+                onSubmit={(e)=>{
+                    addMovieToNewList(e, newListName)
+                }}
+                >
                     <label className="input-label" htmlFor="new-list">List Name</label>
                     <br />
-                    <input className="text-input" type="text" />
+                    <input 
+                    onChange={(e)=>{
+                        setNewListName(e.target.value)
+                    }}
+                    value={newListName}
+                    className="text-input" 
+                    type="text" />
 
                     <button className="primary-button button-text-style">
-                        Add to this List
+                       {
+                        creatingNewList?
+                        <div className="login-loader"></div>
+                        :
+                        "Add to this List"
+                       }
                     </button>
                 </form>
             </div>
         </div>
+
+        <Toaster toastOptions={{duration : 6000}} />
+    </div>
   )
 }
 

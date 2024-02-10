@@ -10,7 +10,7 @@ function Sidebar() {
       <SidebarHeader />
 
         <div className="lists-container">
-          <SingleList />
+          {/* <SingleList /> */}
         </div>
 
         <ProfileContainer />
