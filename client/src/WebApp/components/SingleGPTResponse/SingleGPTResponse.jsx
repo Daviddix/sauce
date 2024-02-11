@@ -8,6 +8,7 @@ import { useEffect, useState } from "react"
 import {useNavigate} from "react-router-dom"
 import { useAtom } from "jotai";
 import {movieIdToAddToListAtom} from "../../globals/atom"
+import { Toaster } from "react-hot-toast"
 
 function SingleGPTResponse({movieName, matchPercent, movieId, movieReleaseDate, movieOverview, movieRating, moviePoster}) {
     const [accuracyClassName, setAccuracyClassName] = useState("")
@@ -41,6 +42,7 @@ function SingleGPTResponse({movieName, matchPercent, movieId, movieReleaseDate, 
             </div>
             <img src={`https://image.tmdb.org/t/p/w1280/${moviePoster}`} alt={`movie poster from ${movieName}`} />
         </div>
+        <Toaster toastOptions={{duration : 4000}} />
 
         <div className="movie-details">
             <div className="heading-and-rating">

@@ -19,6 +19,7 @@ function AddToListModal({setShowListModal}) {
     const [activeListId, setActiveListId] = useState(0)
     const [movieIdToAddToList, setMovieIdToAddToList] = useAtom(movieIdToAddToListAtom)
     const [movies, setMovies] = useAtom(moviesAtom)
+    const [addingToList, setAddingToList] = useState(false)
 
     const mappedLists = lists.map(({listName, listCoverImage, moviesInList, _id})=>{
         return <SingleList 
@@ -59,6 +60,7 @@ function AddToListModal({setShowListModal}) {
     }
 
     async function addMovieToList(){
+        setAddingToList(true)
         try {
           const movieToAddToList = movies.filter(
             (movie) => movie.movieId == movieIdToAddToList
@@ -78,16 +80,20 @@ function AddToListModal({setShowListModal}) {
           if (!rawFetch.ok) {
             throw new Error({ cause: jsonFetch });
           }
-          console.log(jsonFetch);
-          notifyForMovieAddedToList()
+          setAddingToList(false)
+          setShowListModal(false)
+          const {listName} = lists.filter((list) => list._id == activeListId)[0]
+          notifyForMovieAddedToList(listName)
         } catch (err) {
+            console.log(err)
             notifyForAddToListError()
+            setAddingToList(false)
         }
         
     }
 
-    function notifyForMovieAddedToList(){
-        return toast.success('Your movie has been added to a list', {
+    function notifyForMovieAddedToList(name){
+        return toast.success(`Your movie has been added to the list : -${name}`, {
             position : "bottom-right",
             style : {
                 fontFamily : "manrope",
@@ -183,7 +189,14 @@ function AddToListModal({setShowListModal}) {
                         addMovieToList()
                     }}
                     disabled={activeListId == 0}
-                    className="button-text-style primary-button">Add to this List</button>
+                    className="button-text-style primary-button">
+                    {
+                        addingToList?
+                        <div className="login-loader"></div>
+                        :
+                        "Add to this List"
+                       }    
+                    </button>
             </div>}
         </div>
     </div>
@@ -196,7 +209,6 @@ function AddToListModal({setShowListModal}) {
     notifyForAddToListError={notifyForAddToListError}
     setShowAddNewListModal={setShowAddNewListModal} />
     }
-    <Toaster toastOptions={{duration : 6000}} />
     </>
   )
 }

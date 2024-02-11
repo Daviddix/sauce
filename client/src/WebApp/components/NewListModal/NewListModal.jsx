@@ -5,7 +5,6 @@ import "./NewListModal.css"
 import {moviesAtom, movieIdToAddToListAtom, userInfoAtom} from "../../globals/atom"
 import { useEffect, useState } from "react"
 import { useAtom } from "jotai"
-import { Toaster } from "react-hot-toast"
 
 function NewListModal({setShowAddNewListModal, notifyForMovieAddedToList, notifyForAddToListError, setShowListModal}) {
     const [movies, setMovies] = useAtom(moviesAtom)
@@ -16,7 +15,6 @@ function NewListModal({setShowAddNewListModal, notifyForMovieAddedToList, notify
 
 
     async function addMovieToNewList(e, name){
-        console.log(movies)
         try{
         e.preventDefault()
         setCreatingNewList(true)
@@ -42,7 +40,7 @@ function NewListModal({setShowAddNewListModal, notifyForMovieAddedToList, notify
         setCreatingNewList(false)
         setShowAddNewListModal(false)
         setShowListModal(false) 
-        notifyForMovieAddedToList()
+        notifyForMovieAddedToList(newListName)
         }
         catch(err){
             setCreatingNewList(false)
@@ -80,6 +78,7 @@ function NewListModal({setShowAddNewListModal, notifyForMovieAddedToList, notify
                     }}
                     value={newListName}
                     className="text-input" 
+                    required
                     type="text" />
 
                     <button className="primary-button button-text-style">
@@ -93,8 +92,6 @@ function NewListModal({setShowAddNewListModal, notifyForMovieAddedToList, notify
                 </form>
             </div>
         </div>
-
-        <Toaster toastOptions={{duration : 6000}} />
     </div>
   )
 }
