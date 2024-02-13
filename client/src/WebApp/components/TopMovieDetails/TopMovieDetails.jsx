@@ -5,16 +5,23 @@ import backIcon from "../../../assets/app assets/icons/left-icon.svg"
 import starIcon from "../../../assets/app assets/icons/star-icon.svg"
 import timeIcon from "../../../assets/app assets/icons/time-icon.svg"
 import rankIcon from "../../../assets/app assets/icons/ranking-list-icon.svg"
-import testImage from "../../../assets/app assets/images/test.jpg"
 
 import "./TopMovieDetails.css"
 import { useEffect, useState } from "react"
 import { formatTime } from "../../globals/others"
+import MovieDetailsSkeleton from "../SkeletonLoaders/MovieDetailsSkeleton/MovieDetailsSkeleton"
+import AddToListModal from "../../components/AddToListModal/AddToListModal"
+import { movieIdToAddToListAtom } from "../../globals/atom"
+import { useAtom } from "jotai"
+import { Toaster } from "react-hot-toast"
 
 
 function TopMovieDetails() {
     const [topMovieInfo, setTopMovieInfo] = useState({})
     const [movieFetchStatus, setMovieFetchStatus] = useState("loading")
+    const [showListModal, setShowListModal] = useState(false)
+    const [movieIdToAddToList, setMovieIdToAddToList] = useAtom(movieIdToAddToListAtom)
+
     const mappedGenres = topMovieInfo.genres?.map((singleGenre)=>{
         return <div className="button-text-style">{singleGenre.name}</div>
     })
@@ -36,11 +43,18 @@ function TopMovieDetails() {
             setMovieFetchStatus("completed")
         }
         catch(err){
-            alert("an error")
+            setMovieFetchStatus("error")
+            alert("main movie error")
         }
+    }
+
+    function showListModalFn(){
+        setShowListModal(true)
     }
   return (
     <div className="top-movie-details">
+            {showListModal && <AddToListModal setShowListModal={setShowListModal} />}
+
             {movieFetchStatus == "completed" &&
                 <>
                 <div className="top-movie-details-header">
@@ -53,12 +67,18 @@ function TopMovieDetails() {
 
                 <div className="right">
                     <button className="transparent-button"><img src={tvIcon} alt="go back" /></button>
-                    <button className="transparent-button"><img src={plusIcon} alt="go back" /></button>
+
+                    <button 
+                    onClick={()=>{
+                        setMovieIdToAddToList(movieId)
+                        showListModalFn()
+                    }}
+                    className="transparent-button"><img src={plusIcon} alt="add a movie to a list" /></button>
                 </div>
             </div>
 
             <div className="top-movie-image">
-            <img src={`https://image.tmdb.org/t/p/original${topMovieInfo.poster_path}`} alt="" />
+            <img src={`https://image.tmdb.org/t/p/original${topMovieInfo.backdrop_path}`} alt="" />
             </div>
             
 
@@ -101,6 +121,9 @@ function TopMovieDetails() {
             </div>
             </>
             }
+
+            {movieFetchStatus == "loading" && <MovieDetailsSkeleton />   }
+            <Toaster toastOptions={{duration : 4000}} />
     </div>
   )
 }

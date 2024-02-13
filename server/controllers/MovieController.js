@@ -79,6 +79,7 @@ async function getInfoAboutSpecificMovie(req, res){
         res.send(movieData)
       }
       catch(err){
+        console.log(err)
         console.log(`an error ocurred it is :",${err}`)
       }
 }
@@ -105,8 +106,8 @@ async function getImagesForSpecificMovie(req, res){
         
         const response = await fetch(url)
       
-        const movieThrillerData = await response.json()
-        res.send(movieThrillerData)
+        const movieImages = await response.json()
+        res.send(movieImages)
       }
       catch(err){
         console.log(`an error ocurred it is :",${err}`)

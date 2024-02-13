@@ -42,6 +42,10 @@ button{
        hsl(0, 0%, 79%) 75%);
 }
 
+*::selection{
+    background-color:var(--primary-500);
+}
+
 .search-input{
     border-radius: 3rem;
     border: 1.7px solid #0C202E;

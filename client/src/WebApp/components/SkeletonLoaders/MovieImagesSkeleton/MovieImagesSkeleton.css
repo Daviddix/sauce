@@ -1,0 +1,32 @@
+.movie-images-section.skeleton::after{
+    display:none;
+}
+
+.main-image.skeleton{
+    background: var(--sk);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+    width:100%;
+    aspect-ratio: 16/9;
+    border-radius: 16px;
+    -webkit-border-radius: 16px;
+    -moz-border-radius: 16px;
+    -ms-border-radius: 16px;
+    -o-border-radius: 16px;
+}
+
+.other-image.skeleton{
+    width: 4.8rem;
+    height: 4.5rem;
+    background: linear-gradient(90deg,
+    hsl(240, 1%, 74%) 25%,
+     hsl(0, 0%, 65%) 50%,
+      hsl(0, 0%, 74%) 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+}

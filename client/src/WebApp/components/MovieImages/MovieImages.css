@@ -26,6 +26,18 @@
     -moz-border-radius: 8px;
     -ms-border-radius: 8px;
     -o-border-radius: 8px;
+    cursor: pointer;
+    opacity: .7;
+    transition: all ease-in-out .2s;
+    -webkit-transition: all ease-in-out .2s;
+    -moz-transition: all ease-in-out .2s;
+    -ms-transition: all ease-in-out .2s;
+    -o-transition: all ease-in-out .2s;
+}
+
+.other-images-container img.active{
+    border: 2px solid var(--primary-500);
+    opacity: 1;
 }
 
 @media screen and (min-width:1000px) {
