@@ -19,6 +19,10 @@
     padding: .8rem;
 }
 
+.more-button-container a{
+    text-decoration: none;
+}
+
 @media screen and (min-width:1000px) {
     
 }

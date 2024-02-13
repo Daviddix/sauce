@@ -17,14 +17,16 @@ function MovieImages() {
     src={`https://image.tmdb.org/t/p/w1280/${img.file_path}`} 
     alt="" />
   })
-
+  
+  const {movieId} = useParams()
+  
   useEffect(()=>{
     getMovieImages()
-  }, [])
+  }, [movieId])
 
-  const {movieId} = useParams()
 
   async function getMovieImages(){
+    setImagesFetchStatus("loading")
     try{
       const rawFetch = await fetch(`http://localhost:3000/app/movie/${movieId}/images`)
       const jsonFetch = await rawFetch.json()

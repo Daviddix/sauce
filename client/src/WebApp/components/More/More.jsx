@@ -3,19 +3,44 @@ import tvIconButton from "../../../assets/app assets/icons/tv-icon.svg"
 import linkArrowIcon from "../../../assets/app assets/icons/link-arrow-icon.svg"
 
 import "./More.css"
+import { useAtom } from "jotai"
+import { mainLinkForMovieAtom, movieIdToAddToListAtom } from "../../globals/atom"
+import { useState } from "react"
+import { useParams } from "react-router-dom"
+import AddToListModal from "../AddToListModal/AddToListModal"
 
 function More() {
+  const [mainMovieLink] = useAtom(mainLinkForMovieAtom)
+  const [showListModal, setShowListModal] = useState(false)
+    const [movieIdToAddToList, setMovieIdToAddToList] = useAtom(movieIdToAddToListAtom)
+
+    const {movieId} = useParams()
+
+    function showListModalFn(){
+      setShowListModal(true)
+  }
   return (
     <div className="movie-more-section">
+      {showListModal && <AddToListModal setShowListModal={setShowListModal} />}
                 <h1 className="subheading">More</h1>
 
                 <div className="more-button-container">
-                <button className="button-text-style primary-button">More Info About this Movie
+
+                  <a href={mainMovieLink} target="_blank" rel="noopener noreferrer">
+                    <button className="button-text-style primary-button">More Info About this Movie
                 <img src={linkArrowIcon} alt="arrow icon" />
                 </button>
+                  </a>
+                
 
-                <button className="button-text-style secondary-button">
-                <img src={plusIconButton} alt="add icon" />
+                <button 
+                 onClick={()=>{
+                  setMovieIdToAddToList(movieId)
+                  showListModalFn()
+              }}
+                className="button-text-style secondary-button">
+                <img 
+                src={plusIconButton} alt="add icon" />
                     Add to List
                 </button>
 

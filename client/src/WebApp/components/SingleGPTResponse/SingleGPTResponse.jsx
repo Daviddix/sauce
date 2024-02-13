@@ -7,19 +7,21 @@ import AddToListModal from "../../components/AddToListModal/AddToListModal"
 import { useEffect, useState } from "react"
 import {useNavigate} from "react-router-dom"
 import { useAtom } from "jotai";
-import {movieIdToAddToListAtom} from "../../globals/atom"
+import {movieIdToAddToListAtom, movieMatchPercentageAtom} from "../../globals/atom"
 import { Toaster } from "react-hot-toast"
 
 function SingleGPTResponse({movieName, matchPercent, movieId, movieReleaseDate, movieOverview, movieRating, moviePoster}) {
     const [accuracyClassName, setAccuracyClassName] = useState("")
     const [showListModal, setShowListModal] = useState(false)
     const [movieIdToAddToList, setMovieIdToAddToList] = useAtom(movieIdToAddToListAtom)
+    const [movieMatchPercentage, setMovieMatchPercentage] = useAtom(movieMatchPercentageAtom)
 
     function showListModalFn(){
         setShowListModal(true)
     }
 
     function goToMainMoviePage(){
+        setMovieMatchPercentage(matchPercent)
         navigate(`/app/movie/${movieId}`)
     }
     const navigate = useNavigate()

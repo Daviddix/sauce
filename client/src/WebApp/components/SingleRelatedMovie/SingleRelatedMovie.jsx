@@ -1,14 +1,25 @@
-import testImage from "../../../assets/app assets/images/test.jpg"
+import { Link } from "react-router-dom";
 import "./SingleRelatedMovie.css"
+import { useAtom } from "jotai";
+import { movieMatchPercentageAtom } from "../../globals/atom";
 
-function SingleRelatedMovie() {
+function SingleRelatedMovie({movieId, title, image,date}) {
+  const [movieMatchPercentage, setMovieMatchPercentage] = useAtom(movieMatchPercentageAtom)
+
   return (
     <div className="single-related-movie">
-                        <img src={testImage} alt="" />
-                        <h1 className="sub-other-heading">
-                            Interstellar(2014)
-                        </h1>
-                    </div>
+      <img src={`https://image.tmdb.org/t/p/original${image}`} alt="" />
+
+      <Link 
+      onClick={()=>{
+        setMovieMatchPercentage(0)
+      }}
+      to={`/app/movie/${movieId}`}>
+      <h1 className="sub-other-heading">
+        {title}({date.slice(0, 4)})
+      </h1>      
+      </Link>
+    </div>
   )
 }
 

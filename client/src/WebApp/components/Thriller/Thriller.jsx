@@ -6,14 +6,15 @@ function Thriller() {
   const [movieThrillerLink, setMovieThrillerLink] = useState({})
   const [thrillerFetchStatus, setThrillerFetchStatus] = useState("loading")
 
+  const {movieId} = useParams()
 
   useEffect(()=>{
     getMovieThrillerData()
-  }, [])
+  }, [movieId])
 
-  const {movieId} = useParams()
 
   async function getMovieThrillerData(){
+    setThrillerFetchStatus("loading")
     try{
       const rawFetch = await fetch(`http://localhost:3000/app/movie/${movieId}/video`)
       const jsonFetch = await rawFetch.json()

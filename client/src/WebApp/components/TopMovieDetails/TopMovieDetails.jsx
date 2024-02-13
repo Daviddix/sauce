@@ -11,7 +11,7 @@ import { useEffect, useState } from "react"
 import { formatTime } from "../../globals/others"
 import MovieDetailsSkeleton from "../SkeletonLoaders/MovieDetailsSkeleton/MovieDetailsSkeleton"
 import AddToListModal from "../../components/AddToListModal/AddToListModal"
-import { movieIdToAddToListAtom } from "../../globals/atom"
+import { mainLinkForMovieAtom, movieIdToAddToListAtom, movieMatchPercentageAtom } from "../../globals/atom"
 import { useAtom } from "jotai"
 import { Toaster } from "react-hot-toast"
 
@@ -21,6 +21,8 @@ function TopMovieDetails() {
     const [movieFetchStatus, setMovieFetchStatus] = useState("loading")
     const [showListModal, setShowListModal] = useState(false)
     const [movieIdToAddToList, setMovieIdToAddToList] = useAtom(movieIdToAddToListAtom)
+    const [movieMatchPercentage, setMovieMatchPercentage] = useAtom(movieMatchPercentageAtom)
+    const [mainMovieLink, setMainMovieLink] = useAtom(mainLinkForMovieAtom)
 
     const mappedGenres = topMovieInfo.genres?.map((singleGenre)=>{
         return <div className="button-text-style">{singleGenre.name}</div>
@@ -28,10 +30,16 @@ function TopMovieDetails() {
     const {movieId} = useParams()
 
     useEffect(()=>{
+        window.scroll({
+            top:0,
+            left:0,
+            behavior : "smooth"
+        })
         getMovieDetails()
-    }, [])
+    }, [movieId])
 
     async function getMovieDetails(){
+        setMovieFetchStatus("loading")
         try{
             const rawFetch = await fetch(`http://localhost:3000/app/movie/${movieId}`)
             const fetchInJson = await rawFetch.json()
@@ -41,6 +49,7 @@ function TopMovieDetails() {
             }
             setTopMovieInfo(fetchInJson)
             setMovieFetchStatus("completed")
+            setMainMovieLink(fetchInJson.homepage)
         }
         catch(err){
             setMovieFetchStatus("error")
@@ -97,10 +106,12 @@ function TopMovieDetails() {
                             <p className="tiny-body">{formatTime(topMovieInfo.runtime)}</p>
                         </div>
 
-                        <div className="accuracy">
+                        {movieMatchPercentage !== 0 && <div className="accuracy">
                             <img src={rankIcon} alt="ranking" />
-                            <p className="tiny-body">62%</p>
-                        </div>
+                            <p className="tiny-body">
+                                {movieMatchPercentage}
+                            </p>
+                        </div>}
                     </div>
                 </div>
 

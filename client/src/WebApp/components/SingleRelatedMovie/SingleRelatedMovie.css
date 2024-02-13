@@ -1,14 +1,22 @@
-.single-related-movie-container .single-related-movie{
-    aspect-ratio: 9/14;
+.related-movies-container .single-related-movie{
+    /* aspect-ratio: 9/14; */
     max-width:15rem;
     display:flex;
     flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    flex-shrink: 0;
+    height: 30rem;
+}
 
+.single-related-movie a{
+    text-decoration: none;
 }
 
 .single-related-movie img{
     width:100%;
     flex:1;
+    max-height:25rem;
     object-fit: cover;
     border-radius: 8px;
     -webkit-border-radius: 8px;

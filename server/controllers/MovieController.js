@@ -114,4 +114,19 @@ async function getImagesForSpecificMovie(req, res){
       }
 }
 
-module.exports = {getMoviesThatMatchPrompt, getInfoAboutSpecificMovie, getThrillerForSpecificMovie, getImagesForSpecificMovie}
+async function getRelatedMovies(req, res){
+  try{
+      const movieId = Number(req.params.movieId)
+      const url = `https://api.themoviedb.org/3/movie/${movieId}/recommendations?language=en-US&page=1&api_key=${tmdbApiKey}`;
+      
+      const response = await fetch(url)
+    
+      const {results} = await response.json()
+      res.send(results.splice(0, 5))
+    }
+    catch(err){
+      console.log(`an error ocurred it is :",${err}`)
+    }
+}
+
+module.exports = {getMoviesThatMatchPrompt, getInfoAboutSpecificMovie, getThrillerForSpecificMovie, getImagesForSpecificMovie, getRelatedMovies}
