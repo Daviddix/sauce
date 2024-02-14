@@ -1,24 +1,40 @@
 const { unknownError, noBodyDataError } = require("../actions/errorMessages")
 const listModel = require("../models/list")
 const { listCreated, listUpdated } = require("../actions/successMessages")
+const userModel = require("../models/user")
 
 async function getAllListByUser(req, res){
     try{
         const {userId} = req.user
-        const listsByUser = await listModel.find({listAuthor : userId})
-        res.status(200).json(listsByUser)
+        const userThatMadeTheLists = await userModel.findById(userId).populate("savedLists")
+        const savedLists = userThatMadeTheLists.savedLists
+        console.log(savedLists)
+        res.status(200).json(savedLists)
     }
     catch(err){
-        res.status(500).json(unknownError)
+        res.status(500).json(unknownError) 
+        console.log(err)
+    }
+}
+
+async function getInformationAboutParticularList(req, res){
+    try{
+        const {listId} = req.params
+        const particularList = await listModel.findById(listId)
+        //TODO:make sure it's from user
+        res.status(200).json(particularList)
+    }
+    catch(err){
         console.log(err)
     }
 }
 
 async function createNewListAndAddMovieToIt(req, res){
     try{
-        const {listName, listCoverImage, moviesInList, listAuthor} = req.body
+        const {userId} = req.user
+        const {listName, listCoverImage, moviesInList, listAuthor} = req.body 
         if(req.body == {}){
-            return res.status(500).json(noBodyDataError)
+            return res.status(400).json(noBodyDataError)
         }
         const listMade = await listModel.create({
             listName,
@@ -26,9 +42,13 @@ async function createNewListAndAddMovieToIt(req, res){
             moviesInList,
             listAuthor
         })
+        const userThatMadeTheList = await userModel.findById(userId)
+        userThatMadeTheList.savedLists.push(listMade._id)
+        await userThatMadeTheList.save()
         res.status(201).json(listCreated)
     }
     catch(err){
+        console.log(err)
         res.status(500).json(unknownError)
     }
 }
@@ -43,12 +63,14 @@ async function addMovieToExistingList(req, res){
         res.status(200).json(listUpdated)
     }
     catch(err){
-        res.status(500).json(unknownError)
+        console.log(err)
+        res.status(500).json(unknownError) 
     }
 }
 
 module.exports = {
     getAllListByUser,
     createNewListAndAddMovieToIt,
-    addMovieToExistingList
+    addMovieToExistingList,
+    getInformationAboutParticularList
 }

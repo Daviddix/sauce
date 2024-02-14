@@ -49,6 +49,7 @@ function AddToListModal({setShowListModal}) {
             throw new Error("Err", {cause : fetchInJson})
         }
         setLists(fetchInJson)
+        console.log(fetchInJson)
         setListFetchStatus("completed")
         }
         catch(err){
@@ -70,7 +71,7 @@ function AddToListModal({setShowListModal}) {
             {
               credentials: "include",
               body: JSON.stringify({movieData : movieToAddToList}),
-              method: "POST",
+              method: "PATCH",
               headers: {
                 "Content-Type": "application/json",
               },

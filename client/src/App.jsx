@@ -23,7 +23,7 @@ function App() {
     
     <Route path='/app/' element={dashboardTemplate}>
         <Route index element={<Home />} />
-        <Route path='list' element={<Lists />} />
+        <Route path='list/:listId' element={<Lists />} />
       </Route>
 
    </Routes>

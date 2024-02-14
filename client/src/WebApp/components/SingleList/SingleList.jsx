@@ -1,4 +1,3 @@
-import rightArrowIcon from "../../../assets/app assets/icons/right-arrow-icon.svg"
 import "./SingleList.css"
 
 function SingleList({listName, listCoverImage,moviesInList, activeListId, setActiveListId, id}) {

@@ -1,0 +1,22 @@
+.sidebar .lists-container{
+    width:90%;
+    flex-direction: row;
+    align-items: start;
+    overflow-y: auto;
+    flex-wrap: wrap;
+    margin:1rem auto;
+}
+
+.lists-container .single-list.active{
+    opacity: 1;
+    outline:  3px solid #3A9FE8;
+    outline-offset: -3px;
+}
+
+@media screen and (min-width:1000px) {
+    .sidebar .lists-container{
+        flex:1;
+        align-items: start;
+        justify-content: start;
+    }  
+}

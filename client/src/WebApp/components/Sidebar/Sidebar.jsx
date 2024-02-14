@@ -2,6 +2,7 @@ import "./Sidebar.css"
 import SingleList from "../SingleList/SingleList"
 import ProfileContainer from "../ProfileContainer/ProfileContainer"
 import SidebarHeader from "../SidebarHeader/SidebarHeader"
+import SidebarListContainer from "../SidebarListContainer/SidebarListContainer"
 
 function Sidebar() {
   return (
@@ -9,9 +10,7 @@ function Sidebar() {
       <div className="sidebar">
       <SidebarHeader />
 
-        <div className="lists-container">
-          {/* <SingleList /> */}
-        </div>
+        <SidebarListContainer />
 
         <ProfileContainer />
       </div>
