@@ -70,4 +70,16 @@ const notAuthorizedToDelete = {
     message : "you're not authorized to delete this recipe because you didn't create it lol"
 }
 
-module.exports = {noBodyDataError, unknownError, userNotFoundInDataBase, wrongPassword, logoutError, duplicateUsername, duplicateEmail, noJwtToken, jwtTokenError, imageUploadError, notAuthorizedToEdit, notAuthorizedToDelete}
+const noID = {
+    status : "failed",
+    reason : "empty ID's",
+    message : "Please enter an ID"
+}
+
+const listNotFound = {
+    status : "failed",
+    reason: "list not found",
+    message: "The list with that ID was not found, please check the ID and try again"
+}
+
+module.exports = {noBodyDataError, unknownError, userNotFoundInDataBase, wrongPassword, logoutError, duplicateUsername, duplicateEmail, noJwtToken, jwtTokenError, imageUploadError, notAuthorizedToEdit, notAuthorizedToDelete, noID, listNotFound}

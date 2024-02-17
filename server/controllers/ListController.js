@@ -1,6 +1,6 @@
-const { unknownError, noBodyDataError } = require("../actions/errorMessages")
+const { unknownError, noBodyDataError, listNotFound, noID } = require("../actions/errorMessages")
 const listModel = require("../models/list")
-const { listCreated, listUpdated } = require("../actions/successMessages")
+const { listCreated, listUpdated, movieInListDeletedSuccessfully } = require("../actions/successMessages")
 const userModel = require("../models/user")
 
 async function getAllListByUser(req, res){
@@ -68,9 +68,31 @@ async function addMovieToExistingList(req, res){
     } 
 } 
 
+async function deleteMovieFromList(req, res){
+    try{
+        const {listId} = req.params 
+        const {movieId} = req.body
+        if(listId == "" || movieId == ""){
+            return res.status(400).json(noID)
+        }
+        const particularList = await listModel.findById(listId)
+        if(!particularList){
+            return res.status(404).json(listNotFound) 
+        }
+        const newMovies = particularList.moviesInList.filter((movie)=> movie._id !== movieId)
+        particularList.moviesInList = newMovies
+        await particularList.save()
+        res.status(200).json(movieInListDeletedSuccessfully)
+    }
+    catch(err){
+        res.status(500).json(unknownError)
+    }
+}
+
 module.exports = {
     getAllListByUser,
     createNewListAndAddMovieToIt,
     addMovieToExistingList,
-    getInformationAboutParticularList
+    getInformationAboutParticularList,
+    deleteMovieFromList
 }

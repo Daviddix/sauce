@@ -41,7 +41,9 @@ function Lists() {
 
   const mappedMoviesFromList = listInfo.moviesInList?.map(({movieName, moviePoster, movieReleaseDate, movieId})=>{
     return <SingleListMovie 
+    getInformationAboutListFunction={getInformationAboutList}
     movieName={movieName}
+    listId={listId}
     movieId={movieId}
     key={movieId} 
     moviePoster={moviePoster} 

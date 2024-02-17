@@ -33,9 +33,9 @@ const usernameUpdated = {
   message: "Your username has successfully been updated!",
 };
 
-const recipeDeletedSuccessfully = {
+const movieInListDeletedSuccessfully = {
   status: "success",
-  message: "Your recipe has successfully been deleted!",
+  message: "Your movie has successfully been deleted from the list it was in!",
 };
 
 module.exports = {
@@ -46,5 +46,5 @@ module.exports = {
   profilePictureUpdated,
   usernameUpdated,
   listUpdated,
-  recipeDeletedSuccessfully,
+  movieInListDeletedSuccessfully,
 };
