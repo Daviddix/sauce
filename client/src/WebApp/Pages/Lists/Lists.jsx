@@ -4,6 +4,9 @@ import {Link, useParams} from "react-router-dom"
 import "./Lists.css"
 import SingleListMovie from "../../components/SingleListMovie/SingleListMovie"
 import { useEffect, useState } from "react"
+import SingleListMovieSkeleton from "../../components/SkeletonLoaders/SingleListMovieSkeleton/SingleListMovieSkeleton"
+import SingleListMovieError from "../../components/SingleListMovieError/SingleListMovieError"
+
 
 
 function Lists() {
@@ -18,6 +21,7 @@ function Lists() {
   }, [listId])
 
   async function getInformationAboutList(){
+    setListFetchStatus("loading")
     try{
       const rawFetch = await fetch(`http://localhost:3000/app/list/${listId}`, {
             credentials: "include"
@@ -28,19 +32,31 @@ function Lists() {
             throw new Error("Err", {cause : fetchInJson})
         }
         setListInfo(fetchInJson)
-        console.log(fetchInJson)
         setListFetchStatus("completed")
     }
     catch(err){
-      console.log(err)
+      setListFetchStatus("error")
     }
   }
 
-  const mappedMoviesFromList = listInfo.moviesInList?.map(({movieName, moviePoster, movieReleaseDate})=>{
-    return <SingleListMovie movieName={movieName} moviePoster={moviePoster} movieReleaseDate={movieReleaseDate} />  
+  const mappedMoviesFromList = listInfo.moviesInList?.map(({movieName, moviePoster, movieReleaseDate, movieId})=>{
+    return <SingleListMovie 
+    movieName={movieName}
+    movieId={movieId}
+    key={movieId} 
+    moviePoster={moviePoster} 
+    movieReleaseDate={movieReleaseDate} />  
   })
   return (
     <div className='list-layout'>
+      {
+        listFetchStatus == "loading" && <SingleListMovieSkeleton />
+      }
+      {
+        listFetchStatus == "error" &&  <SingleListMovieError refreshFromError={getInformationAboutList} />
+      }
+      { listFetchStatus == "completed" &&
+        <>
         <div className="list-header">
         <button className="back-button-container">
         <Link to="/app">
@@ -57,6 +73,9 @@ function Lists() {
         <div className="list-movie-container">
       {mappedMoviesFromList}                      
         </div>
+        </>
+      }
+        
     </div>
   )
 }

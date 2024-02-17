@@ -25,8 +25,13 @@
     font-weight: 500;
 }
 
-.list-movie-options button:first-of-type{
+.list-movie-options > button {
     color: rgb(223, 8, 8);
+}
+
+.list-movie-options a{
+    color: var(--primary-800);
+    text-decoration: none;
 }
 
 .list-movie-options button > img{

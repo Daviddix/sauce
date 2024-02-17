@@ -27,7 +27,7 @@ function GPTResponseError({refreshFromError, reasonForError}) {
             }}
             className="secondary-button button-text-style">Retry</button>
             </div>
-        </div> 
+      </div> 
   )
 }
 

@@ -13,7 +13,7 @@ async function getAllListByUser(req, res){
     }
     catch(err){
         res.status(500).json(unknownError) 
-        console.log(err)
+        console.log(err) 
     }
 }
 
@@ -25,7 +25,7 @@ async function getInformationAboutParticularList(req, res){
         res.status(200).json(particularList)
     }
     catch(err){
-        console.log(err)
+        console.log(err) 
     }
 }
 
@@ -55,7 +55,7 @@ async function createNewListAndAddMovieToIt(req, res){
 
 async function addMovieToExistingList(req, res){
     try{
-        const {movieData} = req.body
+        const {movieData} = req.body 
         const {listId} = req.params
         const particularList = await listModel.findById(listId)
         particularList.moviesInList.push(movieData)
@@ -65,8 +65,8 @@ async function addMovieToExistingList(req, res){
     catch(err){
         console.log(err)
         res.status(500).json(unknownError) 
-    }
-}
+    } 
+} 
 
 module.exports = {
     getAllListByUser,

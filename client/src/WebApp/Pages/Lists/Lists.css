@@ -17,8 +17,6 @@
     grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
 }
 
-
-
 @media screen and (min-width:1000px) {
     .list-movie-container{
         gap:2rem;

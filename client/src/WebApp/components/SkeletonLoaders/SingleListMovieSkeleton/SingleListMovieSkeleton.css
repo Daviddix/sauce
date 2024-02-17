@@ -1,0 +1,53 @@
+.list-header.skeleton .fake-list-heading{
+    width:15rem;
+    height:3rem;
+    background-color: black;
+    margin: auto;
+    background: var(--sk);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+}
+
+div.fake-single-movie{
+    width:100%;
+    height:18rem;
+    background: var(--sk);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+    border-radius: 12px;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    -ms-border-radius: 12px;
+    -o-border-radius: 12px;
+    -webkit-animation: loading 1.5s infinite;
+    overflow: hidden;
+}
+
+.fake-single-movie .fake-image{
+    background-color: black;
+    height:70%;
+    background: linear-gradient(90deg,    hsl(240, 1%, 70%) 25%,
+         hsl(0, 0%, 60%) 50%,
+               hsl(0, 0%, 70%) 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+.fake-single-movie .fake-single-list-heading{
+    width:10rem;
+    height:2rem;
+    background: linear-gradient(90deg,    hsl(240, 1%, 60%) 25%,     hsl(0, 0%, 50%) 50%,      hsl(0, 0%, 60%) 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+    border-radius: 4px;
+    margin: 1rem 0 0 1rem;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    -o-border-radius: 4px;
+}
