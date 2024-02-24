@@ -1,12 +1,30 @@
 import sauceLogo from '../assets/landing page assets/icons/logo.svg'
 import webAppImage from "../assets/landing page assets/images/new.png"
 import menuIcon from "../assets/landing page assets/icons/hamburger-button.svg"
+import closeIcon from "../assets/landing page assets/icons/close-one.svg"
 import "./LandingPage.css"
 import {Link} from "react-router-dom"
+import { useState } from 'react'
 
 function LandingPage() {
+    const [showMenu, setShowMenu] = useState(false)
   return (
     <main className='landing-page-main'>
+
+        <div className={showMenu? "menu-overlay" : "menu-overlay close"}>
+            <img src={closeIcon} alt="close icon"
+            className="close-icon"
+            onClick={()=>{
+                setShowMenu(false)
+            }}
+            />
+
+            <div className="menu">
+                    <a target='_blank' href="https://nsikandavid.dev">
+                    <button>The Dev ↗</button>                    
+                    </a>
+            </div>
+        </div>
         <header className="landing-page-header">
             <nav>
                 <img src={sauceLogo} alt="logo" className='logo' />
@@ -18,7 +36,11 @@ function LandingPage() {
                     </a>
                 </div>
 
-                <img src={menuIcon} alt="menu icon" className='menu-icon' />
+                <img src={menuIcon} alt="menu icon" 
+                onClick={()=>{
+                    setShowMenu(true)
+                }}
+                className='menu-icon' />
             </nav>
         </header>
         

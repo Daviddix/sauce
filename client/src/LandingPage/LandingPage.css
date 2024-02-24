@@ -121,23 +121,83 @@ header.landing-page-header{
     margin-top: -9vw;
 }
 
+.landing-page-main .menu-overlay.close{
+    display:none;
+}
+
+.landing-page-main .menu-overlay{
+    min-width:100%;
+    min-height:100vh;
+    background-image:linear-gradient(214deg, rgba(142, 202, 245, 0.753) 0.61%, rgba(178, 250, 228, 0.658) 20.07%, #fafafa60 80.02%);
+    backdrop-filter: blur(10px);
+    position: fixed;
+    z-index: 4;
+    top:0;
+    left:0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu-overlay .close-icon{
+    position: absolute;
+    top:24rem;
+    left:65%;
+
+}
+
+.menu-overlay .menu{
+    background-color: white;
+    width:90vw;
+    max-width: 20rem;
+    height:10rem;
+    border-radius: 16px;
+    -webkit-border-radius: 16px;
+    -moz-border-radius: 16px;
+    -ms-border-radius: 16px;
+    -o-border-radius: 16px;
+    animation: slide-up .5s ease-in;
+    -webkit-animation: slide-up .5s ease-in forwards;
+    transform: translateY(10px);
+    -webkit-transform: translateY(10px);
+    -moz-transform: translateY(10px);
+    -ms-transform: translateY(10px);
+    -o-transform: translateY(10px);
+    opacity: 0;
+}
+
+.menu-overlay .menu button{
+    flex:1;
+    border-radius: 0px;
+    width:100%;
+    text-align: left;
+    padding: 1rem;
+    border:none;
+    border-bottom: 1px solid black;
+    font-weight: 500;
+    font-family: manrope;
+    background-color: transparent;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    -ms-border-radius: 0px;
+    -o-border-radius: 0px;
+}
+
+.close-icon, .menu-icon{
+    cursor: pointer;
+}
+
 @media screen and (min-width:500px) {
+    .landing-page-main .menu-overlay{
+        display: none;
+    }
+
     .landing-page-main h1.heading{
         font-size: 4.5rem;
     }
     
     .landing-page-main .sub-heading{
         font-size: 1.6rem;
-    }
-}
-
-@media screen and (min-width:900px) {
-    .landing-page-main h1.heading{
-        font-size: 5rem;
-    }
-    
-    .landing-page-main .sub-heading{
-        font-size: 1.8rem;
     }
 
     .landing-page-header nav .buttons{
@@ -167,6 +227,18 @@ header.landing-page-header{
     .landing-page-header .menu-icon{
         display:none;
     }
+}
+
+@media screen and (min-width:900px) {
+    .landing-page-main h1.heading{
+        font-size: 5rem;
+    }
+    
+    .landing-page-main .sub-heading{
+        font-size: 1.8rem;
+    }
+
+    
 
     
 }
