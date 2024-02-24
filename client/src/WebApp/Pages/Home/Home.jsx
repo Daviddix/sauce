@@ -4,13 +4,14 @@ import WelcomeMessage from '../../components/WelcomeMessage/WelcomeMessage'
 import UserPrompt from '../../components/UserPrompt/UserPrompt'
 import GPTResponse from '../../components/GPTResponse/GPTResponse'
 import ChatInput from '../../components/ChatInput/ChatInput'
-import { Link } from 'react-router-dom'
-import {useState, useEffect} from "react"
+import {useState, useEffect, useRef} from "react"
 import { useAtom } from 'jotai'
 import { messagesAtom } from '../../globals/atom'
+import GoToBottomButton from '../../components/GoToBottomButton/GoToBottomButton'
 
 function Home() {
   const [isFirstTimeUser, setIsFirstTimeUser] = useState(()=> JSON.parse(localStorage.getItem("first-time-user")))
+  const chatSectionRef = useRef()
 
   const [messages, setMessages] = useAtom(messagesAtom)
 
@@ -31,7 +32,9 @@ function Home() {
     <section className="chat">
      <Header /> 
 
-    <section className="chat-body">
+    <section 
+    ref={chatSectionRef}
+    className="chat-body">
         
         <div className="chat-body-inner">
           {
@@ -39,10 +42,11 @@ function Home() {
 
         {mappedMessages}
         
-        
+        <GoToBottomButton refToScroll={chatSectionRef.current} />
         </div>
         
     </section>
+
 
 
     <ChatInput  />

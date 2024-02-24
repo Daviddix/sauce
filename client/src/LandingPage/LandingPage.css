@@ -139,4 +139,34 @@ header.landing-page-header{
     .landing-page-main .sub-heading{
         font-size: 1.8rem;
     }
+
+    .landing-page-header nav .buttons{
+        display:initial;
+        max-width:28rem;
+        margin:0rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        column-gap: 1rem;
+    }
+
+    nav .buttons button{
+        flex:1;
+        border-radius: 100vw;
+        width:100%;
+        border:none;
+        -webkit-border-radius: 100vw;
+        -moz-border-radius: 100vw;
+        -ms-border-radius: 100vw;
+        -o-border-radius: 100vw;
+        font-weight: 500;
+        font-family: manrope;
+        background-color: transparent;
+    }
+
+    .landing-page-header .menu-icon{
+        display:none;
+    }
+
+    
 }

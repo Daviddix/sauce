@@ -25,7 +25,7 @@ async function getInformationAboutParticularList(req, res){
         res.status(200).json(particularList)
     }
     catch(err){
-        console.log(err) 
+        console.log(err)  
     }
 }
 
@@ -63,15 +63,15 @@ async function addMovieToExistingList(req, res){
         res.status(200).json(listUpdated)
     }
     catch(err){
-        console.log(err)
-        res.status(500).json(unknownError) 
+        console.log(err) 
+        res.status(500).json(unknownError)
     } 
 } 
 
 async function deleteMovieFromList(req, res){
     try{
         const {listId} = req.params 
-        const {movieId} = req.body
+        const movieId = req.body.movieId 
         if(listId == "" || movieId == ""){
             return res.status(400).json(noID)
         }
@@ -82,7 +82,7 @@ async function deleteMovieFromList(req, res){
         const newMovies = particularList.moviesInList.filter((movie)=> movie._id !== movieId)
         particularList.moviesInList = newMovies
         await particularList.save()
-        res.status(200).json(movieInListDeletedSuccessfully)
+        res.status(200).json(movieInListDeletedSuccessfully) 
     }
     catch(err){
         res.status(500).json(unknownError)

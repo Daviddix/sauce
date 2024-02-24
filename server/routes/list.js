@@ -5,7 +5,7 @@ const { getAllListByUser, createNewListAndAddMovieToIt, addMovieToExistingList, 
 
 listRouter = express.Router()
 
-listRouter.get("/", useAuth, getAllListByUser)
+listRouter.get("/", useAuth, getAllListByUser) 
 
 listRouter.get("/:listId", useAuth, getInformationAboutParticularList)
 

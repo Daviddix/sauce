@@ -6,7 +6,7 @@ const mongoose = require("mongoose")
 require("dotenv").config()
 const PORT = process.env.PORT || 3000
 const MONGO_URI = process.env.MONGO_URI
-const cookieParser = require("cookie-parser") 
+const cookieParser = require("cookie-parser")
 
 //routers
 const userRouter = require("./routes/user")
@@ -31,7 +31,7 @@ const corsOptions = {
 app.use(cors(corsOptions))
 app.use(express.json({limit: '50mb'}))
 app.use(express.urlencoded({limit: '50mb'}))
-app.use(cookieParser())
+app.use(cookieParser()) 
 
 
 //routes
@@ -41,10 +41,10 @@ app.use("/app/list", listRouter)
 
 
 //MongoDB connection
-mongoose.connect(MONGO_URI)
+mongoose.connect(MONGO_URI) 
 .then(()=>{
     app.listen(PORT, () => {
-    console.log('App listening on port 3000!');
+    console.log('App listening on port 3000!') 
 }) 
 })
 .catch((err)=>{ 

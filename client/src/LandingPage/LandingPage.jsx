@@ -13,13 +13,9 @@ function LandingPage() {
 
                 <div className="buttons">
                     
-                    <Link>
-                    <button>Login</button>                    
-                    </Link>
-
-                    <Link>
-                    <button>Signup</button>
-                    </Link>
+                    <a target='_blank' href="https://nsikandavid.dev">
+                    <button>The Dev ↗</button>                    
+                    </a>
                 </div>
 
                 <img src={menuIcon} alt="menu icon" className='menu-icon' />

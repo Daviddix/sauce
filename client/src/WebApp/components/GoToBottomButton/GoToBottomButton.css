@@ -1,0 +1,20 @@
+.go-to-bottom{
+    position: fixed;
+    left:60%;
+    top:80vh;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    box-shadow: 0 .5rem .2rem rgba(0, 0, 0, 0.212);
+    transition: .4s ease-in linear;
+    -webkit-transition: .4s ease-in linear;
+    -moz-transition: .4s ease-in linear;
+    -ms-transition: .4s ease-in linear;
+    -o-transition: .4s ease-in linear;
+}
+
+.go-to-bottom:active{
+    box-shadow: 0 .2rem .2rem rgba(0, 0, 0, 0.342);
+}

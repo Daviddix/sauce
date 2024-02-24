@@ -1,5 +1,5 @@
 const movieSchema = require("../models/movie")
-const mongoose = require("mongoose")
+const mongoose = require("mongoose") 
 
 const listSchema = new mongoose.Schema({
     listName : {
@@ -20,7 +20,7 @@ const listSchema = new mongoose.Schema({
     listAuthor : {
         type : mongoose.Schema.Types.ObjectId, 
         ref : "Users"
-    }
+    } 
 })
 
 const listModel = mongoose.model("Lists", listSchema)

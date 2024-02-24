@@ -5,7 +5,10 @@ import "./SingleListMovie.css"
 function SingleListMovie({movieName, movieReleaseDate, moviePoster, movieId, listId, getInformationAboutListFunction}) {
     async function deleteMovieFromList(){
         try{
-            const rawFetch = await fetch(`http://localhost:3000/app/list/${listId}`)
+            const rawFetch = await fetch(`http://localhost:3000/app/list/${listId}`,{
+                method : "DELETE",
+                body : JSON.stringify({movieId})
+            })
             const fetchJson = await rawFetch.json()
 
             if(!rawFetch.ok){

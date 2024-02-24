@@ -44,6 +44,7 @@ button{
 
 *::selection{
     background-color:var(--primary-500);
+    color:white;
 }
 
 .search-input{
