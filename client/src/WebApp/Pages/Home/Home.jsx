@@ -14,6 +14,7 @@ function Home() {
   const chatSectionRef = useRef()
 
   const [messages, setMessages] = useAtom(messagesAtom)
+  const [showDownButton, setShowDownButton] = useState(false)
 
   useEffect(()=>{
       localStorage.setItem("first-time-user", JSON.stringify(false))
@@ -28,21 +29,29 @@ function Home() {
     )
   })
 
+  function userHasScrolledToEndOfChat(e){
+    if(e.target.scrollTop != e.target.scrollTopMax){
+      setShowDownButton(true)
+    }else{
+      setShowDownButton(false)
+    }
+  }
+
   return (
     <section className="chat">
      <Header /> 
 
     <section 
     ref={chatSectionRef}
+    onScroll={userHasScrolledToEndOfChat}
     className="chat-body">
         
         <div className="chat-body-inner">
-          {
-            isFirstTimeUser == null && <WelcomeMessage />}
+          {isFirstTimeUser == null && <WelcomeMessage />}
 
         {mappedMessages}
         
-        <GoToBottomButton refToScroll={chatSectionRef.current} />
+        {showDownButton && <GoToBottomButton refToScroll={chatSectionRef.current} />}
         </div>
         
     </section>

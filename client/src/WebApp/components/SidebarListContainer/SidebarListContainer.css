@@ -20,3 +20,9 @@
         justify-content: start;
     }  
 }
+
+.sidebar .login-loader{
+    border: 3px solid var(--primary-700);
+    border-left-color: transparent;
+    margin:auto;
+}

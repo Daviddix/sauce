@@ -1,6 +1,6 @@
 const express = require("express")
 const { useAuth } = require("../middlewares/UserMiddlewares")
-const { getAllListByUser, createNewListAndAddMovieToIt, addMovieToExistingList, getInformationAboutParticularList, deleteMovieFromList} = require("../controllers/ListController")
+const { getAllListByUser, createNewListAndAddMovieToIt, addMovieToExistingList, getInformationAboutParticularList, deleteMovieFromList, deleteList} = require("../controllers/ListController")
 
 
 listRouter = express.Router()
@@ -13,6 +13,8 @@ listRouter.post("/", useAuth, createNewListAndAddMovieToIt)
 
 listRouter.patch("/:listId", useAuth, addMovieToExistingList)
 
-listRouter.delete("/:listId", useAuth, deleteMovieFromList)
+listRouter.delete("/:listId/m", useAuth, deleteMovieFromList)
+
+listRouter.delete("/:listId/l", useAuth, deleteList)
 
 module.exports = listRouter

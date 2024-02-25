@@ -38,6 +38,11 @@ const movieInListDeletedSuccessfully = {
   message: "Your movie has successfully been deleted from the list it was in!",
 };
 
+const ListDeletedSuccessfully = {
+  status: "success",
+  message: "Your list has successfully been deleted!",
+};
+
 module.exports = {
   userCreated,
   loginSuccessful,
@@ -47,4 +52,5 @@ module.exports = {
   usernameUpdated,
   listUpdated,
   movieInListDeletedSuccessfully,
+  ListDeletedSuccessfully
 };

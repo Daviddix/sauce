@@ -13,6 +13,14 @@
     -moz-transition: .4s ease-in linear;
     -ms-transition: .4s ease-in linear;
     -o-transition: .4s ease-in linear;
+    opacity: 0;
+    transform: translateY(5rem);
+    -webkit-transform: translateY(5rem);
+    -moz-transform: translateY(5rem);
+    -ms-transform: translateY(5rem);
+    -o-transform: translateY(5rem);
+    animation: slide-up ease-in-out .5s forwards;
+    -webkit-animation: slide-up ease-in-out .5s forwards;
 }
 
 .go-to-bottom:active{

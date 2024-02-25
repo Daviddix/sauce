@@ -40,6 +40,25 @@ function Lists() {
     }
   }
 
+  async function deleteList(){
+    try{
+    const rawFetch = await fetch(`http://localhost:3000/app/list/${listId}/l`,{
+      method : "DELETE",
+      credentials : "include"
+    })
+    const fetchInJson = await rawFetch.json()
+
+    if(!rawFetch.ok){
+      throw new Error("err", {cause : fetchInJson})
+    }
+
+    alert("done, you should move now")
+    }
+    catch(err){
+      alert("an error ocurred when you tried to delete that list, please try again")
+    }
+  }
+
   const mappedMoviesFromList = listInfo.moviesInList?.map(({movieName, moviePoster, movieReleaseDate, movieId})=>{
     return <SingleListMovie 
     getInformationAboutListFunction={getInformationAboutList}
@@ -70,12 +89,18 @@ function Lists() {
 
       <h1 className="tight-heading-style">{listInfo.listName}({listInfo?.moviesInList?.length})</h1>
 
-      <button className="back-button-container">
-        <img src={deleteIcon} alt="go back" />
+      <button 
+      
+      className="back-button-container">
+        <img 
+        onClick={()=>{
+          deleteList()
+        }}
+        src={deleteIcon} alt="trashcan icon" />
       </button>
         </div>
         <div className="list-movie-container">
-      {mappedMoviesFromList}                      
+        {mappedMoviesFromList}                      
         </div>
         </>
       }

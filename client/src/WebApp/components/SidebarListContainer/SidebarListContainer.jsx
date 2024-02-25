@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import "./SidebarListContainer.css"
 import SingleSidebarList from "../SingleSidebarList/SingleSidebarList"
+import SidebarListError from "../SidebarListError/SidebarListError"
 
 function SidebarListContainer() {
     const [listFetchStatus, setListFetchStatus] = useState("loading")
@@ -19,7 +20,7 @@ function SidebarListContainer() {
             throw new Error("Err", {cause : fetchInJson})
         }
         setLists(fetchInJson)
-        setListFetchStatus("completed")
+        setListFetchStatus("loading")
         }
         catch(err){
             setListFetchStatus("error")
@@ -46,7 +47,15 @@ function SidebarListContainer() {
     }, [])
   return (
     <div className="lists-container">
-        {mappedLists}
+        {
+            listFetchStatus == "loading" && <div className="login-loader"></div>
+        }
+        {
+            listFetchStatus == "completed" && mappedLists
+        }
+        {
+            listFetchStatus == "error" && <SidebarListError refreshFromError={getListsByUser} />
+        }
     </div>
   )
 }

@@ -1,6 +1,6 @@
 const { unknownError, noBodyDataError, listNotFound, noID } = require("../actions/errorMessages")
 const listModel = require("../models/list")
-const { listCreated, listUpdated, movieInListDeletedSuccessfully } = require("../actions/successMessages")
+const { listCreated, listUpdated, movieInListDeletedSuccessfully, ListDeletedSuccessfully } = require("../actions/successMessages")
 const userModel = require("../models/user")
 
 async function getAllListByUser(req, res){
@@ -89,10 +89,25 @@ async function deleteMovieFromList(req, res){
     }
 }
 
+async function deleteList(req, res){
+    try{
+        const {listId} = req.params 
+        if(listId == ""){
+            return res.status(400).json(noID) 
+        }
+        await listModel.findByIdAndDelete(listId)
+        res.status(200).json(ListDeletedSuccessfully) 
+    }
+    catch(err){
+        res.status(500).json(unknownError)
+    }
+}
+
 module.exports = {
     getAllListByUser,
     createNewListAndAddMovieToIt,
     addMovieToExistingList,
     getInformationAboutParticularList,
-    deleteMovieFromList
+    deleteMovieFromList,
+    deleteList
 }

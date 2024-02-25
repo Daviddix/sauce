@@ -5,7 +5,7 @@ import "./GoToBottomButton.css"
 function GoToBottomButton(refToScroll) {
 
     function scrollToBottomOfChatSection(){
-        const bottom = refToScroll.refToScroll.scrollWidth 
+        const bottom = refToScroll.refToScroll.scrollHeight 
 
         refToScroll.refToScroll.scroll({
             top : bottom,
@@ -13,13 +13,13 @@ function GoToBottomButton(refToScroll) {
         })
     }
   return (
-    <button 
-    onClick={scrollToBottomOfChatSection}
-    className="go-to-bottom transparent-button">
-      <img src={downArrowIcon} 
-      alt="dawn arrow" 
-      />
-    </button>
+      <button 
+      onClick={scrollToBottomOfChatSection}
+      className="go-to-bottom transparent-button">
+        <img src={downArrowIcon} 
+        alt="dawn arrow" 
+        />
+      </button>
   )
 }
 
