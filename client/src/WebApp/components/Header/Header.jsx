@@ -1,11 +1,12 @@
 import { useAtom } from "jotai"
 import menuIcon from "../../../assets/app assets/icons/menu-icon.svg"
 import "./Header.css"
-import { openSidebarAtom } from "../../globals/atom"
+import { openSidebarAtom, userInfoAtom } from "../../globals/atom"
 
 
 function Header() {
     const [openSidebar, setOpenSidebar] = useAtom(openSidebarAtom)
+    const [userInfo, setUserInfo] = useAtom(userInfoAtom)
   return (
     <header className="home-header">
                 <div className="header-inner">
@@ -18,7 +19,7 @@ function Header() {
                 </button>
 
                 <button>
-                    <img src="" alt="profile icon" />
+                    <img src={userInfo.profilePicture} alt="profile icon" />
                 </button>
                 </div>
                 
