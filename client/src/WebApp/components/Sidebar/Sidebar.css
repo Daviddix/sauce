@@ -13,6 +13,10 @@
     z-index: 1;
 }
 
+.layout-main .sidebar-and-overlay.open{
+    display: initial;
+}
+
 .layout-main .sidebar{
     background-color: white;
     max-height:100vh;

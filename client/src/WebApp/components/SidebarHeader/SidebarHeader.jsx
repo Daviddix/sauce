@@ -2,7 +2,7 @@ import listIcon from "../../../assets/app assets/icons/list-icon.svg"
 import closeIcon from "../../../assets/app assets/icons/close-icon.svg"
 import "./SidebarHeader.css"
 
-function SidebarHeader() {
+function SidebarHeader({setOpenSidebar}) {
   return (
     <header className="list-header">
             <div className="list-header-inner">
@@ -12,7 +12,11 @@ function SidebarHeader() {
                 <p className="sub-sub-heading">Your Lists</p>
               </div>
 
-              <button className="close-sidebar">
+              <button 
+              onClick={()=>{
+                setOpenSidebar(false) 
+              }}
+              className="close-sidebar">
                 <img src={closeIcon} alt="close sidebar" />
               </button>
                 

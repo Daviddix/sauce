@@ -39,7 +39,7 @@ function Home() {
 
   return (
     <section className="chat">
-     <Header /> 
+     <Header />
 
     <section 
     ref={chatSectionRef}
