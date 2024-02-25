@@ -6,6 +6,7 @@ import SingleListMovie from "../../components/SingleListMovie/SingleListMovie"
 import { useEffect, useState } from "react"
 import SingleListMovieSkeleton from "../../components/SkeletonLoaders/SingleListMovieSkeleton/SingleListMovieSkeleton"
 import SingleListMovieError from "../../components/SingleListMovieError/SingleListMovieError"
+import { Toaster } from "react-hot-toast"
 
 
 
@@ -45,6 +46,7 @@ function Lists() {
     movieName={movieName}
     listId={listId}
     movieId={movieId}
+    listName={listInfo.listName}
     key={movieId} 
     moviePoster={moviePoster} 
     movieReleaseDate={movieReleaseDate} />  
@@ -77,6 +79,8 @@ function Lists() {
         </div>
         </>
       }
+
+<Toaster toastOptions={{duration : 4000}} />
         
     </div>
   )

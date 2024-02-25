@@ -1,13 +1,18 @@
 import { Link } from "react-router-dom"
 import rightArrowIcon from "../../../assets/app assets/icons/right-arrow-icon.svg"
 import "./SingleListMovie.css"
+import toast from "react-hot-toast"
 
-function SingleListMovie({movieName, movieReleaseDate, moviePoster, movieId, listId, getInformationAboutListFunction}) {
+function SingleListMovie({movieName, movieReleaseDate, moviePoster, movieId, listId, getInformationAboutListFunction, listName}) {
     async function deleteMovieFromList(){
         try{
             const rawFetch = await fetch(`http://localhost:3000/app/list/${listId}`,{
                 method : "DELETE",
-                body : JSON.stringify({movieId})
+                body : JSON.stringify({movieId}),
+                credentials : "include",
+                headers: {
+                    "Content-Type": "application/json",
+                  }
             })
             const fetchJson = await rawFetch.json()
 
@@ -15,11 +20,40 @@ function SingleListMovie({movieName, movieReleaseDate, moviePoster, movieId, lis
                 throw new Error("err", {cause : fetchJson})
             }
             getInformationAboutListFunction()
+            notifyForMovieAddedToList(listName)
         }
         catch(err){
             console.log(err)
-            alert("an error ocurred when trying to delete this movie from the list it is in")
+            notifyForDeleteMovieInListListError()
         }
+    }
+
+    function notifyForMovieAddedToList(name){
+        return toast.success(`Your movie has successfully been deleted from the list : -${name}`, {
+            position : "bottom-right",
+            style : {
+                fontFamily : "manrope",
+                fontSize : "14px",
+                backgroundImage : "linear-gradient(to bottom right,rgb(196, 255, 201), transparent)",
+                border : "2px solid white",
+                boxShadow : "0 0 .4rem #00000018"
+            },
+            icon : "📃"
+        })
+    }
+
+    function notifyForDeleteMovieInListListError(){
+        return toast.error('Oops... An error ocurred when trying to delete that movie from your list, please try again', {
+            position : "bottom-right",
+            style : {
+                fontFamily : "manrope",
+                fontSize : "14px",
+                backgroundImage : "linear-gradient(to bottom right,rgb(255, 210, 196), transparent)",
+                border : "2px solid white",
+                boxShadow : "0 0 .4rem #00000018"
+            },
+            icon : "📃"
+        })
     }
   return (
     <div className="single-list-movie">

@@ -70,16 +70,16 @@ async function addMovieToExistingList(req, res){
 
 async function deleteMovieFromList(req, res){
     try{
-        const {listId} = req.params 
+        const {listId} = req.params  
         const movieId = req.body.movieId 
         if(listId == "" || movieId == ""){
-            return res.status(400).json(noID)
+            return res.status(400).json(noID) 
         }
         const particularList = await listModel.findById(listId)
         if(!particularList){
             return res.status(404).json(listNotFound) 
         }
-        const newMovies = particularList.moviesInList.filter((movie)=> movie._id !== movieId)
+        const newMovies = particularList.moviesInList.filter((movie)=> movie.movieId !== movieId) 
         particularList.moviesInList = newMovies
         await particularList.save()
         res.status(200).json(movieInListDeletedSuccessfully) 
