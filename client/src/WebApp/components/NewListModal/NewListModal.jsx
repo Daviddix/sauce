@@ -2,7 +2,7 @@ import addListIcon from "../../../assets/app assets/icons/add-list-icon.svg"
 import closeIcon from "../../../assets/app assets/icons/close-icon.svg"
 
 import "./NewListModal.css"
-import {moviesAtom, movieIdToAddToListAtom, userInfoAtom} from "../../globals/atom"
+import {moviesAtom, movieIdToAddToListAtom, userInfoAtom, refreshListAtom} from "../../globals/atom"
 import { useEffect, useState } from "react"
 import { useAtom } from "jotai"
 
@@ -10,6 +10,7 @@ function NewListModal({setShowAddNewListModal, notifyForMovieAddedToList, notify
     const [movies, setMovies] = useAtom(moviesAtom)
     const [id, setId] = useAtom(movieIdToAddToListAtom)
     const [userInfo, setUserInfo] = useAtom(userInfoAtom)
+    const [refreshList, setRefreshList] = useAtom(refreshListAtom)
     const [newListName, setNewListName] = useState("")
     const [creatingNewList, setCreatingNewList] = useState(false)
 
@@ -41,6 +42,7 @@ function NewListModal({setShowAddNewListModal, notifyForMovieAddedToList, notify
         setShowAddNewListModal(false)
         setShowListModal(false) 
         notifyForMovieAddedToList(newListName)
+        setRefreshList((prev)=> prev+1)
         }
         catch(err){
             setCreatingNewList(false)

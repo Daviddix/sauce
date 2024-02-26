@@ -20,4 +20,4 @@ export const mainLinkForMovieAtom = atom("")
 //list atoms
 export const activeListIdAtom = atom(0)
 export const listIdToDeleteAtom = atom(0)
-export const allListIdsAtom = atom([])
+export const refreshListAtom = atom(0)
