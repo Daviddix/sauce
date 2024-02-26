@@ -9,7 +9,7 @@ import NewListModal from "../../components/NewListModal/NewListModal"
 import ListSkeleton from "../SkeletonLoaders/ListSkeleton/ListSkeleton"
 import AddToListModalError from "../AddToListModalError/AddToListModalError"
 import { useAtom } from "jotai"
-import { movieIdToAddToListAtom, moviesAtom } from "../../globals/atom"
+import { movieIdToAddToListAtom, moviesAtom, refreshListAtom } from "../../globals/atom"
 import toast, { Toaster } from 'react-hot-toast'
 
 function AddToListModal({setShowListModal}) {
@@ -18,6 +18,7 @@ function AddToListModal({setShowListModal}) {
     const [showAddNewListModal, setShowAddNewListModal] = useState(false)
     const [activeListId, setActiveListId] = useState(0)
     const [movieIdToAddToList, setMovieIdToAddToList] = useAtom(movieIdToAddToListAtom)
+    const [refreshList, setRefreshList] = useAtom(refreshListAtom)
     const [movies, setMovies] = useAtom(moviesAtom)
     const [addingToList, setAddingToList] = useState(false)
 
@@ -85,6 +86,7 @@ function AddToListModal({setShowListModal}) {
           setShowListModal(false)
           const {listName} = lists.filter((list) => list._id == activeListId)[0]
           notifyForMovieAddedToList(listName)
+          setRefreshList((prev)=> prev+1)
         } catch (err) {
             console.log(err)
             notifyForAddToListError()
