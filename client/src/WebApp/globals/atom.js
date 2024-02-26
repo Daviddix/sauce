@@ -16,3 +16,8 @@ export const userInfoAtom = atom({})
 //movie details atoms
 export const movieMatchPercentageAtom = atom(0)
 export const mainLinkForMovieAtom = atom("")
+
+//list atoms
+export const activeListIdAtom = atom(0)
+export const listIdToDeleteAtom = atom(0)
+export const allListIdsAtom = atom([])

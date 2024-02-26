@@ -7,18 +7,23 @@ import { useEffect, useState } from "react"
 import SingleListMovieSkeleton from "../../components/SkeletonLoaders/SingleListMovieSkeleton/SingleListMovieSkeleton"
 import SingleListMovieError from "../../components/SingleListMovieError/SingleListMovieError"
 import { Toaster } from "react-hot-toast"
+import { useAtom } from "jotai"
+import { activeListIdAtom, listIdToDeleteAtom } from "../../globals/atom"
 
 
 
 function Lists() {
   const [listFetchStatus, setListFetchStatus] = useState("loading")
   const [listInfo, setListInfo] = useState({})
+  const [activeListId, setActiveListId] = useAtom(activeListIdAtom)
+  const [listIdToDelete, setListIdToDelete] = useAtom(listIdToDeleteAtom)
 
   const {listId} = useParams()
 
 
   useEffect(()=>{
     getInformationAboutList()
+    setActiveListId(listId)
   }, [listId])
 
   async function getInformationAboutList(){
@@ -51,15 +56,14 @@ function Lists() {
     if(!rawFetch.ok){
       throw new Error("err", {cause : fetchInJson})
     }
-
-    alert("done, you should move now")
+    setListIdToDelete(listId)
     }
     catch(err){
       alert("an error ocurred when you tried to delete that list, please try again")
     }
   }
 
-  const mappedMoviesFromList = listInfo.moviesInList?.map(({movieName, moviePoster, movieReleaseDate, movieId})=>{
+  const mappedMoviesFromList = listInfo?.moviesInList?.map(({movieName, moviePoster, movieReleaseDate, movieId})=>{
     return <SingleListMovie 
     getInformationAboutListFunction={getInformationAboutList}
     movieName={movieName}
@@ -87,7 +91,7 @@ function Lists() {
         </Link>
       </button>
 
-      <h1 className="tight-heading-style">{listInfo.listName}({listInfo?.moviesInList?.length})</h1>
+      <h1 className="tight-heading-style">{listInfo?.listName}({listInfo?.moviesInList?.length})</h1>
 
       <button 
       

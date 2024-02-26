@@ -1,4 +1,4 @@
-import {Link, useParams} from "react-router-dom"
+import {Link, useNavigate, useParams} from "react-router-dom"
 import plusIcon from "../../../assets/app assets/icons/headerPlusIcon.svg"
 import tvIcon from "../../../assets/app assets/icons/tv-icon.svg"
 import backIcon from "../../../assets/app assets/icons/left-icon.svg"
@@ -23,6 +23,7 @@ function TopMovieDetails() {
     const [movieIdToAddToList, setMovieIdToAddToList] = useAtom(movieIdToAddToListAtom)
     const [movieMatchPercentage, setMovieMatchPercentage] = useAtom(movieMatchPercentageAtom)
     const [mainMovieLink, setMainMovieLink] = useAtom(mainLinkForMovieAtom)
+    const navigate = useNavigate()
 
     const mappedGenres = topMovieInfo.genres?.map((singleGenre)=>{
         return <div className="button-text-style">{singleGenre.name}</div>
@@ -60,6 +61,10 @@ function TopMovieDetails() {
     function showListModalFn(){
         setShowListModal(true)
     }
+
+    function handleBackButton(){
+        navigate(-1)
+    }
   return (
     <div className="top-movie-details">
             {showListModal && <AddToListModal setShowListModal={setShowListModal} />}
@@ -67,11 +72,11 @@ function TopMovieDetails() {
             {movieFetchStatus == "completed" &&
                 <>
                 <div className="top-movie-details-header">
-                <Link to="/app">
-                 <button className="transparent-button">
+                 <button 
+                 onClick={handleBackButton}
+                 className="transparent-button">
                     <img src={backIcon} alt="go back" />
                 </button>
-                </Link>
                
 
                 <div className="right">

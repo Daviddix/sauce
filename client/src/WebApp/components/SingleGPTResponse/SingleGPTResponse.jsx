@@ -67,6 +67,7 @@ function SingleGPTResponse({movieName, matchPercent, movieId, movieReleaseDate, 
                 <button 
                 onClick={()=>{
                     showListModalFn()
+                    console.log(movieId)
                     setMovieIdToAddToList(movieId)
                 }}
                 className="button-text-style secondary-button">

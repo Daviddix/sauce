@@ -6,7 +6,7 @@ import GPTResponse from '../../components/GPTResponse/GPTResponse'
 import ChatInput from '../../components/ChatInput/ChatInput'
 import {useState, useEffect, useRef} from "react"
 import { useAtom } from 'jotai'
-import { messagesAtom } from '../../globals/atom'
+import { activeListIdAtom, messagesAtom } from '../../globals/atom'
 import GoToBottomButton from '../../components/GoToBottomButton/GoToBottomButton'
 
 function Home() {
@@ -15,9 +15,11 @@ function Home() {
 
   const [messages, setMessages] = useAtom(messagesAtom)
   const [showDownButton, setShowDownButton] = useState(false)
+  const [activeListId, setActiveListId] = useAtom(activeListIdAtom)
 
   useEffect(()=>{
       localStorage.setItem("first-time-user", JSON.stringify(false))
+      setActiveListId(0)
   }, [isFirstTimeUser])
 
   const mappedMessages = messages.map(({from, value, inputValue, key, id})=>{
