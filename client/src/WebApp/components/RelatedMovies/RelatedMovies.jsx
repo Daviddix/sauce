@@ -17,6 +17,7 @@ function RelatedMovies() {
 
   async function getRelatedMovies(id){
     try{
+      setFetchStatus("loading")
       const rawFetch = await fetch(`http://localhost:3000/app/movie/${id}/related`)
   
       const fetchInJson = await rawFetch.json()
