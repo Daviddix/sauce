@@ -6,6 +6,7 @@ import starIcon from "../../../assets/app assets/icons/star-icon.svg"
 import timeIcon from "../../../assets/app assets/icons/time-icon.svg"
 import rankIcon from "../../../assets/app assets/icons/ranking-list-icon.svg"
 
+
 import "./TopMovieDetails.css"
 import { useEffect, useState } from "react"
 import { formatTime } from "../../globals/others"
@@ -14,6 +15,7 @@ import AddToListModal from "../../components/AddToListModal/AddToListModal"
 import { mainLinkForMovieAtom, movieIdToAddToListAtom, movieMatchPercentageAtom } from "../../globals/atom"
 import { useAtom } from "jotai"
 import { Toaster } from "react-hot-toast"
+import TopMovieDetailsError from "../TopMovieDetailsError/TopMovieDetailsError"
 
 
 function TopMovieDetails() {
@@ -46,7 +48,7 @@ function TopMovieDetails() {
             const fetchInJson = await rawFetch.json()
 
             if(!rawFetch.ok){
-                throw new Error("sdf")
+                throw new Error({cause : fetchInJson})
             }
             setTopMovieInfo(fetchInJson)
             setMovieFetchStatus("completed")
@@ -54,7 +56,6 @@ function TopMovieDetails() {
         }
         catch(err){
             setMovieFetchStatus("error")
-            alert("main movie error")
         }
     }
 
@@ -69,9 +70,13 @@ function TopMovieDetails() {
     <div className="top-movie-details">
             {showListModal && <AddToListModal setShowListModal={setShowListModal} />}
 
+            {movieFetchStatus == "loading" && <MovieDetailsSkeleton />   }
+
+            {movieFetchStatus == "error" && <TopMovieDetailsError refreshFromError={getMovieDetails} handleBackButton={handleBackButton} />}
+
             {movieFetchStatus == "completed" &&
                 <>
-                <div className="top-movie-details-header">
+            <div className="top-movie-details-header">
                  <button 
                  onClick={handleBackButton}
                  className="transparent-button">
@@ -138,7 +143,6 @@ function TopMovieDetails() {
             </>
             }
 
-            {movieFetchStatus == "loading" && <MovieDetailsSkeleton />   }
             <Toaster toastOptions={{duration : 4000}} />
     </div>
   )

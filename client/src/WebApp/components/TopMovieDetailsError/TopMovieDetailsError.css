@@ -1,0 +1,88 @@
+.top-movie-details .top-movie-image.error::after{
+    display:none;
+}
+
+.top-movie-details .top-movie-image.error::before{
+    display:none;
+}
+
+.top-movie-image.error{
+    background: linear-gradient(214deg, hsl(17, 79%, 83%) 0.61%, hsl(0, 78%, 91%) 20.07%, hsla(0, 100%, 92%, 0.952) 80.02%);
+    ;
+}
+
+.top-movie-details-error{
+    border:2px solid white;
+    padding: 1rem;
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    column-gap: 2rem;
+    background-image: linear-gradient(to bottom right, rgb(255, 210, 196),transparent);
+    box-shadow: 0 0 .4rem rgba(0, 0, 0, 0.096);
+    border-radius: 12px;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    -ms-border-radius: 12px;
+    -o-border-radius: 12px;
+    margin: 2rem auto;
+    width:90%;
+    max-width: 50rem;
+    position: absolute;
+    top:7rem;
+    left:50%;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+}
+
+.top-movie-details-error .left{
+    width:4rem;
+    height:4rem;
+    background-color: white;
+    box-shadow: 0 0 .4rem rgba(0, 0, 0, 0.233);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.top-movie-details-error .left .left-circle{
+    background-color: rgb(253, 49, 49);
+    width: 2rem;
+    height:2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+
+.left-circle img{
+    width: 2.5rem;
+}
+
+.top-movie-details-error .other-heading{
+    font-weight: 500;
+    color: hsl(9, 92%, 10%);
+}
+
+.top-movie-details-error button{
+    margin: 1rem 0 0 0;
+    background-color: white;
+    color: black;
+    box-shadow: none;
+    border-color: rgba(209, 3, 3, 0.308);
+    width:10rem;
+    font-size: 1.2rem;
+}
