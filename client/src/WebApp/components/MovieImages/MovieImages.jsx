@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react"
 import "./MovieImages.css"
 import { useParams } from "react-router-dom"
 import MovieImagesSkeleton from "../SkeletonLoaders/MovieImagesSkeleton/MovieImagesSkeleton"
+import MovieImagesError from "../MovieImagesError/MovieImagesError"
 
 function MovieImages() {
   const [images, setImages] = useState([])
@@ -36,15 +37,15 @@ function MovieImages() {
       const jsonFetch = await rawFetch.json()
 
       if(!rawFetch.ok){
-         throw new Error()
+         throw new Error({cause : jsonFetch}) 
       }
       setImages(jsonFetch.backdrops)
       setImagesFetchStatus("completed")
       setMainImageSrc(jsonFetch.backdrops[0].file_path)
     }
-    catch{
+    catch(err){
       setImagesFetchStatus("error")
-      alert("an err")
+      console.log(err)
     }
   }
   return (
@@ -54,7 +55,12 @@ function MovieImages() {
     }
 
     {
-      imagesFetchStatus === "completed" && <div className="movie-images-section">
+      imagesFetchStatus == "error" &&  <MovieImagesError refreshFromError={getMovieImages} />
+    }
+
+    {
+      imagesFetchStatus === "completed" && 
+      <div className="movie-images-section">
       <h1 className="subheading">Images</h1>
         <img src={`https://image.tmdb.org/t/p/w1280/${mainImageSrc}`} 
         ref={mainImageRef}

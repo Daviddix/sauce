@@ -7,9 +7,7 @@
     -moz-border-radius: 16px;
     -ms-border-radius: 16px;
     -o-border-radius: 16px;
-    
 }
-
 
 .movie-images-section > img.a{
     animation: show-i 1.5s ease forwards;

@@ -26,7 +26,6 @@ function Thriller() {
       setThrillerFetchStatus("completed")
     }
     catch{
-      alert("an err on thriller")
       setThrillerFetchStatus("error")
     }
   }

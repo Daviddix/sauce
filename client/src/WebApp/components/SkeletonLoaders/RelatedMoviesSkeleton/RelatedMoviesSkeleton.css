@@ -1,0 +1,13 @@
+.single-related-movie.skeleton{
+    background: var(--sk);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+    width: 100%;
+    max-height:22rem;
+    border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    -ms-border-radius: 8px;
+    -o-border-radius: 8px;
+    margin: 1rem 0 0 0;
+}

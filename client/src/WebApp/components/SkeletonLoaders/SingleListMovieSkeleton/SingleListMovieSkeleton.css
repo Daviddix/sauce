@@ -1,7 +1,6 @@
 .list-header.skeleton .fake-list-heading{
     width:15rem;
     height:3rem;
-    background-color: black;
     margin: auto;
     background: var(--sk);
     background-size: 200% 100%;

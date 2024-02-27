@@ -20,7 +20,7 @@ function More() {
       setShowListModal(true)
   }
   return (
-    <div className="movie-more-section">
+    mainMovieLink !== "" && <div className="movie-more-section">
       {showListModal && <AddToListModal setShowListModal={setShowListModal} />}
                 <h1 className="subheading">More</h1>
 
@@ -49,7 +49,7 @@ function More() {
                     Watch Now
                 </button>
                 </div>
-            </div>
+    </div>
   )
 }
 

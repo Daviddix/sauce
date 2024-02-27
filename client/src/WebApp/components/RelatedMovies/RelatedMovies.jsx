@@ -2,6 +2,8 @@ import { useEffect, useState } from "react"
 import SingleRelatedMovie from "../SingleRelatedMovie/SingleRelatedMovie"
 import "./RelatedMovies.css"
 import { useParams } from "react-router-dom"
+import RelatedMoviesSkeleton from "../SkeletonLoaders/RelatedMoviesSkeleton/RelatedMoviesSkeleton"
+import RelatedMoviesError from "../RelatedMoviesError/RelatedMoviesError"
 
 function RelatedMovies() {
   const [relatedMovies, setRelatedMovies] = useState([])
@@ -25,7 +27,7 @@ function RelatedMovies() {
       setFetchStatus("completed")
     }
     catch(err){
-      console.log(err, "in related movies section")
+      setFetchStatus("error")
     }
   }
 
@@ -41,13 +43,20 @@ function RelatedMovies() {
   return (
     <div className="related-movies">
             <h1 className="other-heading">Related Movies</h1>
-                <div className="related-movies-container">
+                { 
+                fetchStatus == "completed" && <div className="related-movies-container">
                   <div className="related-movies-container-inner">
                     {mappedRelatedMovies}
                   </div>
                 </div>
-            
-        </div>
+                }
+                {
+                  fetchStatus == "loading" && <RelatedMoviesSkeleton />
+                }
+                {
+                  fetchStatus == "error" && <RelatedMoviesError refreshFromError={getRelatedMovies} />
+                }
+    </div>
   )
 }
 
