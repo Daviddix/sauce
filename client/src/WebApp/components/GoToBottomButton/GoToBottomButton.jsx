@@ -13,6 +13,7 @@ function GoToBottomButton(refToScroll) {
         })
     }
   return (
+    <div className="main-go-to">
       <button 
       onClick={scrollToBottomOfChatSection}
       className="go-to-bottom transparent-button">
@@ -20,6 +21,7 @@ function GoToBottomButton(refToScroll) {
         alt="dawn arrow" 
         />
       </button>
+    </div>
   )
 }
 

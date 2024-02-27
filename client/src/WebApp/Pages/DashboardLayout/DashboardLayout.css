@@ -20,7 +20,6 @@
 .chat-body .chat-body-inner{
     width:90%;
     margin:auto;
-    position: relative;
 }
 
 @media screen and (min-width: 1000px) {

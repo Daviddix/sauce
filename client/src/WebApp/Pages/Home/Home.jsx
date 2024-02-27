@@ -25,7 +25,7 @@ function Home() {
   const mappedMessages = messages.map(({from, value, inputValue, key, id})=>{
     return (
       from === "user" ? 
-      <UserPrompt key={id} id={key} prompt={value} /> 
+      <UserPrompt key={id} id={key} prompt={value} />  
       : 
       <GPTResponse key={id} id={key} inputValue={inputValue} />
     )
