@@ -10,7 +10,7 @@ import ListSkeleton from "../SkeletonLoaders/ListSkeleton/ListSkeleton"
 import AddToListModalError from "../AddToListModalError/AddToListModalError"
 import { useAtom } from "jotai"
 import { movieIdToAddToListAtom, moviesAtom, refreshListAtom } from "../../globals/atom"
-import toast, { Toaster } from 'react-hot-toast'
+import toast from 'react-hot-toast'
 
 function AddToListModal({setShowListModal}) {
     const [lists, setLists] = useState([])

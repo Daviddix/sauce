@@ -101,11 +101,13 @@ function SidebarListContainer() {
         const n = lists.filter((list) => list._id !== listIdToDelete)
         if (n.length == 0) {
           navigate("/app")
-          getListsByUser()
+          setFilteredList(n);
+          setLists(n)
+          getListsByUserWithoutLoading()
           return
         }
         setFilteredList(n);
-        setLists(n);
+        setLists(n)
         const onlyIds = n.map((list) => list._id)
         setAllListIds(onlyIds);
         if (listIdToDelete == onlyIds[0]) {

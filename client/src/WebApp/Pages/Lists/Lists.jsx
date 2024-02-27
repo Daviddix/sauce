@@ -94,12 +94,11 @@ function Lists() {
       <h1 className="tight-heading-style">{listInfo?.listName}({listInfo?.moviesInList?.length})</h1>
 
       <button 
-      
+      onClick={()=>{
+        deleteList()
+      }}
       className="back-button-container">
         <img 
-        onClick={()=>{
-          deleteList()
-        }}
         src={deleteIcon} alt="trashcan icon" />
       </button>
         </div>
