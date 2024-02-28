@@ -28,6 +28,7 @@ function ChatInput() {
   const inputRef = useRef(null)
 
   function handleMovieDescriptionSubmit(description) {
+    if(description.trim() == "") return
     setMessages((prev) => {
       const newUserPrompt = {
         from: "user",
