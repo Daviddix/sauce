@@ -20,7 +20,8 @@ function UserPrompt({prompt, id}) {
 
   return (
     <div ref={mainDivRef} className="user-prompt">
-      <img src={userInfo.profilePicture} alt="" className="user-profile-picture" />
+      {userInfo.profilePicture && <img src={userInfo.profilePicture} alt="your profile picture" className="user-profile-picture" />}
+      {!userInfo.profilePicture && <div className="fake-img"></div>}
 
       <div className="prompt-text-and-edit">
         <p className="sub-body-style">{prompt}</p>
