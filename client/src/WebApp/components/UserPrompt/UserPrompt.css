@@ -16,11 +16,15 @@
     -moz-border-radius: 50%;
     -ms-border-radius: 50%;
     -o-border-radius: 50%;
+    flex-shrink: 0;
 }
 
 .prompt-text-and-edit p{
     max-width: 80rem;
-    border:solid;
+    word-wrap: break-word;
+    word-break: break-all;
+    white-space-collapse: preserve-breaks;
+    white-space: pre-wrap;
  }
 
 .prompt-text-and-edit button{
