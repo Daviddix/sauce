@@ -2,6 +2,7 @@ import { useAtom } from "jotai"
 import menuIcon from "../../../assets/app assets/icons/menu-icon.svg"
 import "./Header.css"
 import { openSidebarAtom, userInfoAtom } from "../../globals/atom"
+import {Link} from "react-router-dom"
 
 
 function Header() {
@@ -18,9 +19,14 @@ function Header() {
                     <img src={menuIcon} alt="open list" />
                 </button>
 
-                <button>
+                {userInfo.profilePicture?                    
+                    <button>
                     <img src={userInfo.profilePicture} alt="profile icon" />
-                </button>
+                </button> :
+                <Link to={"/app/signup"}>
+                <button className="cta">Signup</button>
+                </Link>
+                }
                 </div>
                 
             </header>

@@ -20,6 +20,7 @@
 
 .prompt-text-and-edit p{
     max-width: 80rem;
+    border:solid;
  }
 
 .prompt-text-and-edit button{

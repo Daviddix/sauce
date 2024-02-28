@@ -37,28 +37,36 @@
     justify-content: space-between;
     padding: 0 .5rem 0 1rem;
     overflow: hidden;
-    height:4.8rem;
-    border-radius: 100vw;
-    -webkit-border-radius: 100vw;
-    -moz-border-radius: 100vw;
-    -ms-border-radius: 100vw;
-    -o-border-radius: 100vw;
+    border-radius: 30px;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    -ms-border-radius: 30px;
+    -o-border-radius: 30px;
 }
 
-.home-input > input{
+.home-input > textarea{
     flex:1;
-    height:100%;
-    background-color: transparent;
+    height:80%;
     border:none;
+    background-color: transparent;
+    padding: .5rem .5rem 0 1rem;
     font-family: clashG;
+    resize: none;
+    border-radius: 30px;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    -ms-border-radius: 30px;
+    -o-border-radius: 30px;
+    outline: none;
+    scrollbar-width: thin;
 }
 
-.chat-input-inner:has(input:disabled){
+.chat-input-inner:has(textarea:disabled){
     opacity: .6;
     pointer-events: none;
 }
 
-.home-input > input::placeholder{
+.home-input > textarea::placeholder{
     font-weight: 500;
 }
 

@@ -14,6 +14,7 @@ function ChatInput() {
   const [disableInput, setDisableInput] = useAtom(disableInputAtom)
   const [messages, setMessages] = useAtom(messagesAtom)
   const [inputValueFromEdit, setInputValueFromEdit] = useAtom(inputValueFromEditAtom)
+  const [h, setH] = useState(48)
   
   const randomIndex = Math.ceil(Math.random() * randomMovieDescription.length - 1)
 
@@ -67,6 +68,24 @@ function ChatInput() {
       });
       setTypedDescription("");
   }
+  
+  function handleInputHeightChange(e){
+    console.log(e.target.scrollHeight)
+    if(e.target.scrollHeight >= 100){
+      return
+    }else if(e.target.scrollHeight <= 45){
+      return
+    }
+    else {
+      setH(e.target.scrollHeight)
+    }
+  }
+
+  useEffect(()=>{
+    if (typedDescription == "") {
+      setH(48)
+    }
+  }, [typedDescription])
   return (
     <div className="chat-input">
       <div className="chat-input-inner">
@@ -86,10 +105,18 @@ function ChatInput() {
             handleMovieDescriptionSubmit(typedDescription)
           }}
           className="home-input search-input"
+          style={{
+            height : `${h}px`
+          }}
         >
-          <input
+          <textarea
+          style={{
+            height : `${h}px`
+          }}
+          row="1"
             onChange={(e) => {
               setTypedDescription(e.target.value)
+              handleInputHeightChange(e)
             }}
             value={typedDescription}
             placeholder="A movie about..."

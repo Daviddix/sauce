@@ -8,7 +8,7 @@ cloudinary.config({
 const userModel = require("../models/user")
 
 
-const { userCreated, loginSuccessful, logoutSuccessful, profilePictureUpdated, usernameUpdated } = require("../actions/successMessages")
+const { userCreated, loginSuccessful,} = require("../actions/successMessages")
 
 const {duplicateUsername, noBodyDataError, unknownError, userNotFoundInDataBase, wrongPassword} = require("../actions/errorMessages")
 const { checkForDuplicateUsername, generateJwtToken } = require("../libs/UserFunctions")

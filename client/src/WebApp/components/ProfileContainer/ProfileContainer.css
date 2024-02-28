@@ -34,3 +34,19 @@
         object-fit: cover;
     }
 }
+
+.profile-view-list-inner .cta{
+    background-color: var(--primary-500);
+    padding: 1rem 2rem;
+    color: white;
+    font-size: 1.3rem;
+    box-shadow: 0px 2px 8px 0px #89C5F1;
+    font-weight: 500;
+    font-family: manrope;
+    border:none;
+    border-radius: 18px;
+    -webkit-border-radius: 18px;
+    -moz-border-radius: 18px;
+    -ms-border-radius: 18px;
+    -o-border-radius: 18px;
+}
