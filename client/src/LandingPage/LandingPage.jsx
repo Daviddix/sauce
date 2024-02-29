@@ -21,7 +21,7 @@ function LandingPage() {
 
             <div className="menu">
                     <a target='_blank' href="https://nsikandavid.dev">
-                    <button>The Dev ↗</button>                    
+                    <button>About the Dev ↗</button>                    
                     </a>
             </div>
         </div>
@@ -46,7 +46,7 @@ function LandingPage() {
         
         <h1 className="heading">Find Movies You've Forgotten <span className='gradient'>Using AI</span></h1>
 
-        <p className="sub-heading">Sauce uses advanced AI to dig up your fuzzy movie memories. No more forgetting! Rediscover your favorite films with a touch of AI magic. Movie time, reinvented just for you</p>
+        <p className="sub-heading">Sauce uses AI to dig up your fuzzy movie memories. No more forgetting! Rediscover your favorite films with a touch of AI magic. Movie time reinvented, just for you</p>
 
         <div className="body-buttons">
             <Link to="/app/login">

@@ -20,7 +20,7 @@ function MovieDetails() {
             
             <More />
 
-        <RelatedMovies />
+            <RelatedMovies />
         </div>
     </main>
   )

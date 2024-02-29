@@ -70,12 +70,12 @@ function TopMovieDetails() {
     <div className="top-movie-details">
             {showListModal && <AddToListModal setShowListModal={setShowListModal} />}
 
-            {movieFetchStatus == "loading" && <MovieDetailsSkeleton />   }
+            {movieFetchStatus == "loading" && <MovieDetailsSkeleton /> }
 
             {movieFetchStatus == "error" && <TopMovieDetailsError refreshFromError={getMovieDetails} handleBackButton={handleBackButton} />}
 
             {movieFetchStatus == "completed" &&
-                <>
+            <>
             <div className="top-movie-details-header">
                  <button 
                  onClick={handleBackButton}

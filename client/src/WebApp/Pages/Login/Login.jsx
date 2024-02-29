@@ -52,16 +52,22 @@ function Login() {
     }
   }
 
+  function goBack() {
+    navigate(-1)
+  }
+
   useEffect(()=>{
     document.title = "Sauce | Login"
   }, [])
 
   return (
     <main className="login-main">
-      <button className="login-back-container back-button-container">
-        <Link to="/">
+      <button 
+      onClick={()=>{
+        goBack()
+      }}
+      className="login-back-container back-button-container">
         <img src={backIcon} alt="go back" />
-        </Link>
       </button>
 
       <div className="login-details-container">

@@ -20,6 +20,10 @@ function Signup() {
 
   const navigate = useNavigate()
 
+  useEffect(()=>{
+    document.title = "Sauce | Signup"
+  }, [])
+
   function triggerFileInput() {
     inputRef.current.click();
   }
@@ -92,10 +96,12 @@ function Signup() {
   }, [])
   return (
     <main className="signup-main">
-      <button className="signup-back-container back-button-container">
-        <Link to="/">
+      <button 
+      onClick={()=>{
+        goBack()
+      }}
+      className="signup-back-container back-button-container">
         <img src={backIcon} alt="go back" />
-        </Link>
       </button>
 
       <div className="signup-details-container">

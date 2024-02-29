@@ -6,8 +6,12 @@ import Sidebar from "../../components/Sidebar/Sidebar"
 import UserPrompt from "../../components/UserPrompt/UserPrompt"
 import GPTResponse from "../../components/GPTResponse/GPTResponse"
 import { Link } from "react-router-dom"
+import { useEffect } from "react"
 
 function DashboardLayout({children}) {
+  useEffect(()=>{
+    document.title = "Sauce | Find Movies You've Forgotten Using AI"
+  }, [])
   return (
     <main className="layout-main">
         <Sidebar />

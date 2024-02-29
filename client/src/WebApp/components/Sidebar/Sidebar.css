@@ -22,8 +22,16 @@
     max-height:100vh;
     min-height: 100vh;
     background-color: #fafafa;
-    overflow: scroll;
+    overflow: auto;
     width: 80vw;
+    animation: slide-in-left .5s forwards ease;
+    -webkit-animation: slide-in-left .5s forwards ease;
+    opacity:0;
+    transform: translateX(-100vw);
+    -webkit-transform: translateX(-100vw);
+    -moz-transform: translateX(-100vw);
+    -ms-transform: translateX(-100vw);
+    -o-transform: translateX(-100vw);
 }
 
 .sidebar .list-header{
@@ -46,5 +54,24 @@
         border-right: 1px solid var(--primary-100);
         display: flex;
         flex-direction: column;
-    }
+        opacity: 1;
+        transform: none;
+        animation: none;
+        -webkit-animation: none;
+        -webkit-transform: none;
+        -moz-transform: none;
+        -ms-transform: none;
+        -o-transform: none;
+}
+}
+
+@keyframes slide-in-left {
+    to{
+        opacity: 1;
+        transform: translateX(0);
+        -webkit-transform: translateX(0);
+        -moz-transform: translateX(0);
+        -ms-transform: translateX(0);
+        -o-transform: translateX(0);
+}
 }
