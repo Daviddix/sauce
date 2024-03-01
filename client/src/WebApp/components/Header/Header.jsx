@@ -21,7 +21,7 @@ function Header() {
 
                 {userInfo.profilePicture?                    
                     <button>
-                    <img src={userInfo.profilePicture} alt="profile icon" />
+                    <img src={userInfo.profilePicture} alt="profile icon" className="user-profile-pic" />
                 </button> :
                 <Link to={"/app/signup"}>
                 <button className="cta">Signup</button>

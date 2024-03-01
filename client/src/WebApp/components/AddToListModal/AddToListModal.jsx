@@ -50,7 +50,6 @@ function AddToListModal({setShowListModal}) {
             throw new Error("Err", {cause : fetchInJson})
         }
         setLists(fetchInJson)
-        console.log(fetchInJson)
         setListFetchStatus("completed")
         }
         catch(err){

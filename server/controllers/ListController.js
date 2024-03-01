@@ -8,12 +8,10 @@ async function getAllListByUser(req, res){
         const {userId} = req.user
         const userThatMadeTheLists = await userModel.findById(userId).populate("savedLists")
         const savedLists = userThatMadeTheLists.savedLists
-        console.log(savedLists)
         res.status(200).json(savedLists)
     }
     catch(err){
-        res.status(500).json(unknownError) 
-        console.log(err) 
+        res.status(500).json(unknownError)
     }
 }
 

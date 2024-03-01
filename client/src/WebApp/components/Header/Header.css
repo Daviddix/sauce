@@ -15,6 +15,22 @@
     border:none;
 }
 
+.header-inner button:nth-child(2){
+    background-color: transparent;
+    border:none;
+}
+
+.header-inner .user-profile-pic{
+    width:3rem;
+    border-radius: 50%;
+    aspect-ratio: 1/1;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    object-fit: cover;
+}
+
 .header-inner .cta{
     background-color: var(--primary-500);
     padding: 1rem 2rem;

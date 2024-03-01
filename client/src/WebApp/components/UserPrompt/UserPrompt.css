@@ -17,6 +17,7 @@
     -ms-border-radius: 50%;
     -o-border-radius: 50%;
     flex-shrink: 0;
+    object-fit: cover;
 }
 
 .user-prompt .fake-img{
