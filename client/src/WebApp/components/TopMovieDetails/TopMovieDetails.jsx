@@ -12,7 +12,7 @@ import { useEffect, useState } from "react"
 import { formatTime } from "../../globals/others"
 import MovieDetailsSkeleton from "../SkeletonLoaders/MovieDetailsSkeleton/MovieDetailsSkeleton"
 import AddToListModal from "../../components/AddToListModal/AddToListModal"
-import { mainLinkForMovieAtom, movieIdToAddToListAtom, movieMatchPercentageAtom } from "../../globals/atom"
+import { mainLinkForMovieAtom, movieIdToAddToListAtom, movieMatchPercentageAtom, moviesAtom } from "../../globals/atom"
 import { useAtom } from "jotai"
 import { Toaster } from "react-hot-toast"
 import TopMovieDetailsError from "../TopMovieDetailsError/TopMovieDetailsError"
@@ -25,6 +25,7 @@ function TopMovieDetails() {
     const [movieIdToAddToList, setMovieIdToAddToList] = useAtom(movieIdToAddToListAtom)
     const [movieMatchPercentage, setMovieMatchPercentage] = useAtom(movieMatchPercentageAtom)
     const [mainMovieLink, setMainMovieLink] = useAtom(mainLinkForMovieAtom)
+    const [allMovies, setAllMovies] = useAtom(moviesAtom)
     const navigate = useNavigate()
 
     const mappedGenres = topMovieInfo.genres?.map((singleGenre)=>{
@@ -51,6 +52,7 @@ function TopMovieDetails() {
                 throw new Error({cause : fetchInJson})
             }
             setTopMovieInfo(fetchInJson)
+            setAllMovies((prev)=> [...prev, fetchInJson])
             setMovieFetchStatus("completed")
             setMainMovieLink(fetchInJson.homepage)
         }
@@ -119,7 +121,7 @@ function TopMovieDetails() {
                         {movieMatchPercentage !== 0 && <div className="accuracy">
                             <img src={rankIcon} alt="ranking" />
                             <p className="tiny-body">
-                                {movieMatchPercentage}
+                                {movieMatchPercentage}%
                             </p>
                         </div>}
                     </div>
