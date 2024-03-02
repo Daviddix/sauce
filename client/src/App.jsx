@@ -9,7 +9,7 @@ import Lists from "./WebApp/Pages/Lists/Lists"
 import Home from "./WebApp/Pages/Home/Home"
 import MovieDetails from "./WebApp/Pages/MovieDetails/MovieDetails"
 import { useAtom } from "jotai"
-import { isSignedInAtom, userInfoAtom } from "./WebApp/globals/atom"
+import { isSignedInAtom, userInfoAtom, userInfoStatusAtom } from "./WebApp/globals/atom"
 
 function App() {
   const dashboardTemplate = 
@@ -20,9 +20,11 @@ function App() {
   const [profileFetchStatus, setProfileFetchStatus] = useState("loading")
   const [isSignedIn, setIsSignedIn] = useAtom(isSignedInAtom)
   const [userInfo, setUserInfo] = useAtom(userInfoAtom)
+  const [userInfoStatus, setUserInfoStatus] = useAtom(userInfoStatusAtom)
 
 async function getUserInfo(){
   setProfileFetchStatus("loading")
+  setUserInfoStatus("loading")
   try{
     const rawFetch = await fetch("http://localhost:3000/app/user/info",{
       credentials: "include"
@@ -35,6 +37,7 @@ async function getUserInfo(){
     setUserInfo(fetchJson)
     setIsSignedIn(true)
     setProfileFetchStatus("completed")
+    setUserInfoStatus("completed")
   }
   catch(err){
     setIsSignedIn(false)

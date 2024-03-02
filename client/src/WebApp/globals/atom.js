@@ -12,6 +12,7 @@ export const moviesAtom = atom([])
 //auth atoms
 export const isSignedInAtom = atom(false)
 export const userInfoAtom = atom({})
+export const userInfoStatusAtom = atom("loading")
 
 //movie details atoms
 export const movieMatchPercentageAtom = atom(0)

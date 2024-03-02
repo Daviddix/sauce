@@ -1,16 +1,18 @@
 import "./ProfileContainer.css"
 import { useAtom } from "jotai"
-import {userInfoAtom} from "../../globals/atom"
+import {userInfoAtom, userInfoStatusAtom} from "../../globals/atom"
 import { Link } from "react-router-dom"
 
 function ProfileContainer() {
   const [userInfo, setUserInfo] = useAtom(userInfoAtom)
+  const [userInfoStatus, setUserInfoStatus] = useAtom(userInfoStatusAtom)
 
   
   return (
       <div className="profile-view-list">
           <div className="profile-view-list-inner">
-          {userInfo.profilePicture?
+          {userInfoStatus == "completed" ?
+          userInfo.profilePicture?
           <>
           <img src={userInfo.profilePicture} alt="your profile picture" className="profile-icon" />
             <p className="sub-sub-heading">{userInfo.username}</p>
@@ -18,7 +20,7 @@ function ProfileContainer() {
           :
           <Link to={"/app/signup"}>
                       <button className="cta">Signup</button>
-          </Link>
+          </Link> : ""
           }
           </div>
     </div>
