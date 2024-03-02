@@ -64,10 +64,10 @@ const notAuthorizedToEdit = {
     message : "you're not authorized to edit this recipe because you didn't create it lol"
 }
 
-const notAuthorizedToDelete = {
+const notAuthorizedToView = {
     status : "failed",
-    reason : "recipe delete",
-    message : "you're not authorized to delete this recipe because you didn't create it lol"
+    reason: "Not Authorized",
+    message: "you're not authorized to view this list because you didn't create it lol"
 }
 
 const noID = {
@@ -82,4 +82,4 @@ const listNotFound = {
     message: "The list with that ID was not found, please check the ID and try again"
 }
 
-module.exports = {noBodyDataError, unknownError, userNotFoundInDataBase, wrongPassword, logoutError, duplicateUsername, duplicateEmail, noJwtToken, jwtTokenError, imageUploadError, notAuthorizedToEdit, notAuthorizedToDelete, noID, listNotFound}
+module.exports = {noBodyDataError, unknownError, userNotFoundInDataBase, wrongPassword, logoutError, duplicateUsername, duplicateEmail, noJwtToken, jwtTokenError, imageUploadError, notAuthorizedToEdit, notAuthorizedToView, noID, listNotFound}

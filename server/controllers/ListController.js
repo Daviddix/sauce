@@ -1,4 +1,4 @@
-const { unknownError, noBodyDataError, listNotFound, noID } = require("../actions/errorMessages")
+const { unknownError, noBodyDataError, listNotFound, noID, notAuthorizedToView } = require("../actions/errorMessages")
 const listModel = require("../models/list")
 const { listCreated, listUpdated, movieInListDeletedSuccessfully, ListDeletedSuccessfully } = require("../actions/successMessages")
 const userModel = require("../models/user")
@@ -18,12 +18,15 @@ async function getAllListByUser(req, res){
 async function getInformationAboutParticularList(req, res){
     try{
         const {listId} = req.params
+        const {userId} = req.user
         const particularList = await listModel.findById(listId)
-        //TODO:make sure it's from user
+        if(!particularList.listAuthor == userId){
+            return res.status(404).json(notAuthorizedToView)
+        }
         res.status(200).json(particularList)
     }
     catch(err){
-        console.log(err)  
+        res.status(500).json(unknownError)
     }
 }
 
@@ -46,7 +49,6 @@ async function createNewListAndAddMovieToIt(req, res){
         res.status(201).json(listCreated)
     }
     catch(err){
-        console.log(err)
         res.status(500).json(unknownError)
     }
 }
@@ -60,8 +62,7 @@ async function addMovieToExistingList(req, res){
         await particularList.save()
         res.status(200).json(listUpdated)
     }
-    catch(err){
-        console.log(err) 
+    catch(err){ 
         res.status(500).json(unknownError)
     } 
 } 
