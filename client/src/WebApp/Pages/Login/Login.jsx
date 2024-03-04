@@ -7,7 +7,6 @@ import eyeIcon from "../../../assets/app assets/icons/eye-icon.svg"
 function Login() {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
-
   const [showPassword, setShowPassword] = useState(false)
   const [creatingUser, setCreatingUser] = useState(false)
   const [usernameError, setUsernameError] = useState("")
