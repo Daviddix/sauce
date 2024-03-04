@@ -68,8 +68,8 @@ try{
 
 async function logUserIn(req, res){
     try{
-        if(req.body.username && req.body.password){
-            const {username, password} = req.body
+      const {username, password} = req.body
+        if(username && password){
             const userInDb = await userModel.findOne({username})
             if(!userInDb){
               return res.status(404).json(userNotFoundInDataBase)
@@ -96,7 +96,6 @@ async function logUserIn(req, res){
         }
     }
     catch(e){
-        console.log(e)
         res.status(400).json(unknownError)
     }
 }
@@ -105,11 +104,9 @@ async function getUserDetails(req, res){
   try{
     const id = req.user.userId
     const userInDb = await userModel.findById(id, ["profilePicture", "username"])
-    console.log(userInDb)
     if(!userInDb){
         return res.status(404).json(userNotFoundInDataBase)
     }
-
     res.status(200).json(userInDb)
     }
     catch(err){

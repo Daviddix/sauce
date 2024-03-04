@@ -79,8 +79,7 @@ async function getInfoAboutSpecificMovie(req, res){
         res.send(movieData)
       }
       catch(err){
-        console.log(err)
-        console.log(`an error ocurred it is :",${err}`)
+        res.status(500).json(unknownError)
       }
 }
 
@@ -90,12 +89,11 @@ async function getThrillerForSpecificMovie(req, res){
         const url = `https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${tmdbApiKey}`;
         
         const response = await fetch(url)
-      
         const movieThrillerData = await response.json()
         res.send(movieThrillerData)
       }
       catch(err){
-        console.log(`an error ocurred it is :",${err}`)
+        res.status(500).json(unknownError)
       }
 }
 
@@ -110,7 +108,7 @@ async function getImagesForSpecificMovie(req, res){
         res.send(movieImages)
       }
       catch(err){
-        console.log(`an error ocurred it is :",${err}`)
+        res.status(500).json(unknownError)
       }
 }
 
@@ -125,7 +123,7 @@ async function getRelatedMovies(req, res){
       res.send(results.splice(0, 5))
     }
     catch(err){
-      console.log(`an error ocurred it is :",${err}`)
+      res.status(500).json(unknownError)
     }
 }
 

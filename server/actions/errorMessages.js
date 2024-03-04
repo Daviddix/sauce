@@ -58,12 +58,6 @@ const imageUploadError = {
     message : "an error ocurred while trying to upload your image, please try a different one"
 }
 
-const notAuthorizedToEdit = {
-    status : "failed",
-    reason : "recipe edit",
-    message : "you're not authorized to edit this recipe because you didn't create it lol"
-}
-
 const notAuthorizedToView = {
     status : "failed",
     reason: "Not Authorized",
@@ -82,4 +76,4 @@ const listNotFound = {
     message: "The list with that ID was not found, please check the ID and try again"
 }
 
-module.exports = {noBodyDataError, unknownError, userNotFoundInDataBase, wrongPassword, logoutError, duplicateUsername, duplicateEmail, noJwtToken, jwtTokenError, imageUploadError, notAuthorizedToEdit, notAuthorizedToView, noID, listNotFound}
+module.exports = {noBodyDataError, unknownError, userNotFoundInDataBase, wrongPassword, logoutError, duplicateUsername, duplicateEmail, noJwtToken, jwtTokenError, imageUploadError, notAuthorizedToView, noID, listNotFound}
