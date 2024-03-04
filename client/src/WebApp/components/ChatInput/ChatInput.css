@@ -46,10 +46,9 @@
 
 .home-input > textarea{
     flex:1;
-    height:50%;
     border:none;
     background-color: transparent;
-    padding: .5rem .5rem 0 1rem;
+    padding: 1.5rem .5rem 1rem 1rem;
     font-family: clashG;
     resize: none;
     border-radius: 30px;
@@ -61,6 +60,10 @@
     scrollbar-width: thin;
 }
 
+.home-input > textarea:focus::placeholder{
+    opacity: 0;
+}
+
 .chat-input-inner:has(textarea:disabled){
     opacity: .6;
     pointer-events: none;
@@ -68,6 +71,7 @@
 
 .home-input > textarea::placeholder{
     font-weight: 500;
+    /* line-height: 40px; */
 }
 
 .home-input > button{
