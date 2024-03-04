@@ -76,4 +76,18 @@ const listNotFound = {
     message: "The list with that ID was not found, please check the ID and try again"
 }
 
-module.exports = {noBodyDataError, unknownError, userNotFoundInDataBase, wrongPassword, logoutError, duplicateUsername, duplicateEmail, noJwtToken, jwtTokenError, imageUploadError, notAuthorizedToView, noID, listNotFound}
+module.exports = {
+    noBodyDataError, 
+    unknownError, 
+    userNotFoundInDataBase, 
+    wrongPassword, 
+    logoutError, 
+    duplicateUsername, 
+    duplicateEmail, 
+    noJwtToken, 
+    jwtTokenError, 
+    imageUploadError, 
+    notAuthorizedToView, 
+    noID, 
+    listNotFound
+}
