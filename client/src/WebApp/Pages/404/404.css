@@ -1,0 +1,40 @@
+.not-found-layout{
+    background: 
+    #fafafa
+    var(--bg-gradient)
+    ;
+    min-height: 100vh;
+}
+
+.not-found-layout h1{
+    text-align: center;
+    padding: 20rem 0 0 0;
+}
+
+.not-found-layout button{
+    width:90vw;
+    max-width: 20rem;
+    display: block;
+    margin: auto;
+    margin: 5rem auto;
+    padding-block:1rem ;
+    background-color: transparent;
+    background-image: linear-gradient(to right, white, hsl(118, 82%, 54%) , #3A9FE8);
+    background-repeat: no-repeat;
+    background-size: 2000%;
+    transition: .4s ease;
+    -webkit-transition: .4s ease;
+    -moz-transition: .4s ease;
+    -ms-transition: .4s ease;
+    -o-transition: .4s ease;
+}
+
+.not-found-layout button:hover{
+    background-size: 100%;
+    color:white;
+    
+}
+
+.not-found-layout a{
+    text-decoration: none;
+}

@@ -10,6 +10,7 @@ import Home from "./WebApp/Pages/Home/Home"
 import MovieDetails from "./WebApp/Pages/MovieDetails/MovieDetails"
 import { useAtom } from "jotai"
 import { isSignedInAtom, userInfoAtom, userInfoStatusAtom } from "./WebApp/globals/atom"
+import NotFound from "./WebApp/Pages/404/404"
 
 function App() {
   const dashboardTemplate = 
@@ -60,7 +61,9 @@ async function getUserInfo(){
     <Route path='/app/' element={dashboardTemplate}>
         <Route index element={<Home />} />
         <Route path='list/:listId' element={<Lists />} />
-      </Route>
+    </Route>
+
+    <Route path='*' element={<NotFound />} />
 
    </Routes>
   )

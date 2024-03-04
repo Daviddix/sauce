@@ -193,6 +193,7 @@ function Signup() {
       </div>
 
       <input 
+      accept="image/*"
       style={{display: "none"}}
       onChange={(e)=>{
         addProfileImage(e)
