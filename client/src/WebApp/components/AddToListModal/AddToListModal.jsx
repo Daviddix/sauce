@@ -66,6 +66,7 @@ function AddToListModal({setShowListModal}) {
           const movieToAddToList = movies.filter(
             (movie) => movie.movieId == movieIdToAddToList
           )[0]
+          console.log(movies, movieIdToAddToList, movieToAddToList)
           const rawFetch = await fetch(
             `http://localhost:3000/app/list/${activeListId}`,
             {
@@ -190,7 +191,7 @@ function AddToListModal({setShowListModal}) {
                     onClick={()=>{
                         addMovieToList()
                     }}
-                    disabled={activeListId == 0}
+                    disabled={activeListId == 0 || addingToList}
                     className="button-text-style primary-button">
                     {
                         addingToList?

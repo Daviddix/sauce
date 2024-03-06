@@ -118,11 +118,12 @@ function Login() {
             className="eye" />
 
           </div>
-{passwordError !== "" && <p className="error">{passwordError}</p>}
+          {passwordError !== "" && <p className="error">{passwordError}</p>}
 
           <button 
-          disabled={creatingUser? true : false}
-          type="submit" className="primary-button button-text-style">
+          disabled={creatingUser}
+          type="submit" 
+          className="primary-button button-text-style">
             {!creatingUser && "Login"}
             {creatingUser && <div className="login-loader"></div>}
           </button>

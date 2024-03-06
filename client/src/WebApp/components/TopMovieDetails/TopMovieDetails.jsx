@@ -34,11 +34,6 @@ function TopMovieDetails() {
     const {movieId} = useParams()
 
     useEffect(()=>{
-        window.scroll({
-            top:0,
-            left:0,
-            behavior : "smooth"
-        })
         getMovieDetails()
     }, [movieId])
 
@@ -52,7 +47,17 @@ function TopMovieDetails() {
                 throw new Error({cause : fetchInJson})
             }
             setTopMovieInfo(fetchInJson)
-            setAllMovies((prev)=> [...prev, fetchInJson])
+            if(movies.length == 0){
+                setAllMovies([{
+                    movieName: fetchInJson.title,
+                    movieId: fetchInJson.id,
+                    matchPercent : 0,
+                    movieReleaseDate: fetchInJson.release_date,
+                    movieOverview: fetchInJson.overview,
+                    movieRating : fetchInJson.vote_average,
+                    moviePoster : fetchInJson.poster_path
+                  }])
+                }
             setMovieFetchStatus("completed")
             setMainMovieLink(fetchInJson.homepage)
         }

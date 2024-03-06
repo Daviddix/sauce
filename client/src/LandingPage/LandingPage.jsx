@@ -1,5 +1,5 @@
 import sauceLogo from '../assets/landing page assets/icons/logo.svg'
-import webAppImage from "../assets/landing page assets/images/new.png"
+import webAppImage from "../assets/landing page assets/images/new-2.png"
 import menuIcon from "../assets/landing page assets/icons/hamburger-button.svg"
 import closeIcon from "../assets/landing page assets/icons/close-one.svg"
 import "./LandingPage.css"

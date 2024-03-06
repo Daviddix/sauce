@@ -118,7 +118,7 @@ header.landing-page-header{
     display:block;
     width: 90vw;
     margin: auto;
-    margin-top: -9vw;
+    margin-top: 2rem;
 }
 
 .landing-page-main .menu-overlay.close{
