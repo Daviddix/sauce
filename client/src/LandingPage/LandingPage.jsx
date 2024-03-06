@@ -32,7 +32,7 @@ function LandingPage() {
                 <div className="buttons">
                     
                     <a target='_blank' href="https://nsikandavid.dev">
-                    <button>The Dev ↗</button>                    
+                    <button>About The Dev ↗</button>                    
                     </a>
                 </div>
 

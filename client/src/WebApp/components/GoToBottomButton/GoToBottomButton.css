@@ -3,12 +3,13 @@
     padding: .5rem 0;
     position: fixed;
     bottom:8rem;
-    z-index: 99;
+    z-index: 4;
     left:0;
     display: flex;
     justify-content: center;
     align-items:center;
     overflow: hidden;
+    pointer-events: none;
 
     @media screen and (min-width: 900px) {
         width:calc(100% - 30rem);
@@ -37,6 +38,7 @@
     -moz-transform: translateY(20rem);
     -ms-transform: translateY(20rem);
     -o-transform: translateY(20rem);
+    pointer-events: auto;
 }
 
 .go-to-bottom:active{
