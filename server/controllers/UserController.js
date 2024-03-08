@@ -18,7 +18,7 @@ const timeBeforeItExpires = 90000000 * 300
 async function signUserUp(req, res) {
 try{
   const {profilePicture, username,password} = req.body
-        if(username && profilePicture && password){ 
+        if(username && profilePicture && password){
 
             const isDuplicateUsername = await checkForDuplicateUsername(username)
 
