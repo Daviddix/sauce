@@ -47,7 +47,7 @@ function TopMovieDetails() {
                 throw new Error({cause : fetchInJson})
             }
             setTopMovieInfo(fetchInJson)
-            if(movies.length == 0){
+            if(allMovies.length == 0){
                 setAllMovies([{
                     movieName: fetchInJson.title,
                     movieId: fetchInJson.id,
@@ -62,6 +62,7 @@ function TopMovieDetails() {
             setMainMovieLink(fetchInJson.homepage)
         }
         catch(err){
+            console.log(err)
             setMovieFetchStatus("error")
         }
     }

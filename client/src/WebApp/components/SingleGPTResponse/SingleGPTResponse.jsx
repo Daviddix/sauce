@@ -8,7 +8,7 @@ import { useEffect, useState } from "react"
 import {useNavigate} from "react-router-dom"
 import { useAtom } from "jotai";
 import {movieIdToAddToListAtom, movieMatchPercentageAtom} from "../../globals/atom"
-import { Toaster } from "react-hot-toast"
+import toast, { Toaster } from "react-hot-toast"
 
 function SingleGPTResponse({movieName, matchPercent, movieId, movieReleaseDate, movieOverview, movieRating, moviePoster}) {
     const [accuracyClassName, setAccuracyClassName] = useState("")
@@ -23,6 +23,20 @@ function SingleGPTResponse({movieName, matchPercent, movieId, movieReleaseDate, 
     function goToMainMoviePage(){
         setMovieMatchPercentage(matchPercent)
         navigate(`/app/movie/${movieId}`)
+    }
+
+    function featureComingSoon(name){
+        return toast.success(`This feature isn't available at the moment. Don't worry, David is working on it:),`, {
+            position : "bottom-right",
+            style : {
+                fontFamily : "manrope",
+                fontSize : "14px",
+                backgroundImage : "linear-gradient(to bottom right,rgb(196, 255, 201), transparent)",
+                border : "2px solid white",
+                boxShadow : "0 0 .4rem #00000018"
+            },
+            icon : "📃"
+        })
     }
     const navigate = useNavigate()
 
@@ -82,6 +96,7 @@ function SingleGPTResponse({movieName, matchPercent, movieId, movieReleaseDate, 
                 
             </div>
         </div>
+        
         </div>
   )
 }
