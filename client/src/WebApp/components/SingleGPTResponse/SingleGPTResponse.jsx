@@ -4,10 +4,11 @@ import tvIcon from "../../../assets/app assets/icons/tv-icon.svg"
 
 import "./SingleGPTResponse.css"
 import AddToListModal from "../../components/AddToListModal/AddToListModal"
+import NotAuthenticatedModal from '../../components/NotAuthenticatedModal/NotAuthenticatedModal'
 import { useEffect, useState } from "react"
 import {useNavigate} from "react-router-dom"
 import { useAtom } from "jotai";
-import {movieIdToAddToListAtom, movieMatchPercentageAtom} from "../../globals/atom"
+import {isSignedInAtom, movieIdToAddToListAtom, movieMatchPercentageAtom} from "../../globals/atom"
 import toast, { Toaster } from "react-hot-toast"
 
 function SingleGPTResponse({movieName, matchPercent, movieId, movieReleaseDate, movieOverview, movieRating, moviePoster}) {
@@ -15,9 +16,15 @@ function SingleGPTResponse({movieName, matchPercent, movieId, movieReleaseDate, 
     const [showListModal, setShowListModal] = useState(false)
     const [movieIdToAddToList, setMovieIdToAddToList] = useAtom(movieIdToAddToListAtom)
     const [movieMatchPercentage, setMovieMatchPercentage] = useAtom(movieMatchPercentageAtom)
+    const [isSignedIn, setIsSignedIn] = useAtom(isSignedInAtom)
+    const [showNotAuthenticatedModal, setShowNotAuthenticatedModal] = useState(false)
 
     function showListModalFn(){
         setShowListModal(true)
+    }
+
+    function showNotAuthenticatedModalFn(){
+        setShowNotAuthenticatedModal(true)
     }
 
     function goToMainMoviePage(){
@@ -26,18 +33,19 @@ function SingleGPTResponse({movieName, matchPercent, movieId, movieReleaseDate, 
     }
 
     function featureComingSoon(name){
-        return toast.success(`This feature isn't available at the moment. Don't worry, David is working on it:),`, {
+        return toast.success(`The ${name} feature isn't available at the moment. Don't worry, David is working on it:)`, {
             position : "bottom-right",
             style : {
                 fontFamily : "manrope",
                 fontSize : "14px",
-                backgroundImage : "linear-gradient(to bottom right,rgb(196, 255, 201), transparent)",
+                backgroundImage : "linear-gradient(to bottom right,rgb(266, 255, 201), transparent)",
                 border : "2px solid white",
                 boxShadow : "0 0 .4rem #00000018"
             },
-            icon : "📃"
+            icon : "📣"
         })
     }
+    
     const navigate = useNavigate()
 
     useEffect(()=>{
@@ -52,6 +60,7 @@ function SingleGPTResponse({movieName, matchPercent, movieId, movieReleaseDate, 
   return (
     <div className="movie-image-and-details">
         {showListModal && <AddToListModal setShowListModal={setShowListModal} />}
+        {showNotAuthenticatedModal && <NotAuthenticatedModal setShowNotAuthenticatedModal={setShowNotAuthenticatedModal} />}
         <div className="movie-image">
             <div className="accuracy-tooltip">
                <p className={accuracyClassName}>{matchPercent}%</p>
@@ -80,15 +89,23 @@ function SingleGPTResponse({movieName, matchPercent, movieId, movieReleaseDate, 
 
                 <button 
                 onClick={()=>{
-                    showListModalFn()
-                    setMovieIdToAddToList(movieId)
+                    if(isSignedIn){
+                        showListModalFn()
+                        setMovieIdToAddToList(movieId)
+                    }else{
+                        showNotAuthenticatedModalFn()
+                    }
                 }}
                 className="button-text-style secondary-button">
                 <img src={plusIcon} alt="add icon" />
                     Add to List
                 </button>
 
-                <button className="button-text-style secondary-button">
+                <button 
+                onClick={()=>{
+                    featureComingSoon("Watch Now")
+                }}
+                className="button-text-style secondary-button">
                 <img src={tvIcon} alt="tv icon" />
                     Watch Now
                 </button>

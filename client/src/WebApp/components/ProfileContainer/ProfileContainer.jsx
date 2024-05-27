@@ -21,7 +21,7 @@ function ProfileContainer() {
           {
             userInfoStatus == "error" && <Link to={"/app/signup"}>
             <button className="cta">Signup</button>
-</Link>
+            </Link>
           }
           </div>
     </div>

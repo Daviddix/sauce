@@ -1,0 +1,107 @@
+.not-authenticated-modal-overlay{
+    width:100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(0, 0, 0, 0.72);
+    position: fixed;
+    top:0;
+    left:0;
+    z-index: 6;
+}
+
+.not-authenticated-modal{
+    background-color: white;
+    border-radius: 1rem;
+    width:90%;
+    max-width: 35rem;
+    margin:auto;
+    -webkit-border-radius: 1rem;
+    -moz-border-radius: 1rem;
+    -ms-border-radius: 1rem;
+    -o-border-radius: 1rem;
+    opacity: 0;
+    transform: translateY(5rem);
+    -webkit-transform: translateY(5rem);
+    -moz-transform: translateY(5rem);
+    -ms-transform: translateY(5rem);
+    -o-transform: translateY(5rem);
+    animation: slide-up ease-in-out .5s forwards;
+    -webkit-animation: slide-up ease-in-out .5s forwards;
+}
+
+.not-authenticated-modal .not-authenticated-modal-header{
+    display: flex;
+    border-bottom: var(--faint-line-style);
+    column-gap: 1rem;
+    align-items: start;
+    justify-content: space-between;
+    padding: 2rem 1.5rem 1rem;
+}
+
+.not-authenticated-modal-header > h2{
+    flex:1;
+    text-align: left;
+}
+
+.not-authenticated-modal-header button{
+    background-color: transparent;
+    border: none;
+}
+
+.not-authenticated-modal .not-authenticated-modal-body{
+    padding: 1rem 1.5rem;
+}
+
+.not-authenticated-modal-body input{
+    width:100%;
+    height: 4rem;
+    margin: 0 0 1rem 0;
+}
+
+.not-authenticated-modal-body button{
+    /* width: fit-content; */
+    box-shadow: none;
+    display: block;
+    width:100%;
+    /* margin-left:auto; */
+}
+
+.not-authenticated-modal-body h2{
+    margin: .5rem auto;
+    width: fit-content;
+    opacity: .8;
+    /* position: relative; */
+}
+
+.not-authenticated-modal-body h2:after{
+    content: "";
+    width:40%;
+    margin-left: 1rem;
+    height:1px;
+    position: absolute;
+    background-image: linear-gradient(to right, var(--primary-400), transparent);
+    top:69%;
+}
+
+.not-authenticated-modal-body h2:before{
+    content: "";
+    width:40%;
+    margin-left: 1.5rem;
+    height:1px;
+    position: absolute;
+    background-image: linear-gradient(to left, var(--primary-400), transparent);
+    top:69%;
+    left:0%;
+}
+
+.not-authenticated-modal a{
+    text-decoration: none;
+}
+
+@media screen and (min-width:365px) {
+    .not-authenticated-modal-body h2:before, .not-authenticated-modal-body h2:after{
+        top:66%;
+    }
+}

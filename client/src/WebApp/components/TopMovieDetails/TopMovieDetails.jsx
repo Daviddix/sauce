@@ -12,10 +12,11 @@ import { useEffect, useState } from "react"
 import { formatTime } from "../../globals/others"
 import MovieDetailsSkeleton from "../SkeletonLoaders/MovieDetailsSkeleton/MovieDetailsSkeleton"
 import AddToListModal from "../../components/AddToListModal/AddToListModal"
-import { mainLinkForMovieAtom, movieIdToAddToListAtom, movieMatchPercentageAtom, moviesAtom } from "../../globals/atom"
+import { isSignedInAtom, mainLinkForMovieAtom, movieIdToAddToListAtom, movieMatchPercentageAtom, moviesAtom } from "../../globals/atom"
 import { useAtom } from "jotai"
-import { Toaster } from "react-hot-toast"
+import toast, { Toaster } from "react-hot-toast"
 import TopMovieDetailsError from "../TopMovieDetailsError/TopMovieDetailsError"
+import NotAuthenticatedModal from "../NotAuthenticatedModal/NotAuthenticatedModal"
 
 
 function TopMovieDetails() {
@@ -26,6 +27,8 @@ function TopMovieDetails() {
     const [movieMatchPercentage, setMovieMatchPercentage] = useAtom(movieMatchPercentageAtom)
     const [mainMovieLink, setMainMovieLink] = useAtom(mainLinkForMovieAtom)
     const [allMovies, setAllMovies] = useAtom(moviesAtom)
+    const [isSignedIn, setIsSignedIn] = useAtom(isSignedInAtom)
+    const [showNotAuthenticatedModal, setShowNotAuthenticatedModal] = useState(false)
     const navigate = useNavigate()
 
     const mappedGenres = topMovieInfo.genres?.map((singleGenre)=>{
@@ -71,6 +74,20 @@ function TopMovieDetails() {
         setShowListModal(true)
     }
 
+    function featureComingSoon(name){
+        return toast.success(`The ${name} feature isn't available at the moment. Don't worry, David is working on it:)`, {
+            position : "bottom-right",
+            style : {
+                fontFamily : "manrope",
+                fontSize : "14px",
+                backgroundImage : "linear-gradient(to bottom right,rgb(266, 255, 201), transparent)",
+                border : "2px solid white",
+                boxShadow : "0 0 .4rem #00000018"
+            },
+            icon : "📣"
+        })
+    }
+
     function handleBackButton(){
         navigate(-1)
     }
@@ -84,6 +101,7 @@ function TopMovieDetails() {
 
             {movieFetchStatus == "completed" &&
             <>
+            {showNotAuthenticatedModal && <NotAuthenticatedModal setShowNotAuthenticatedModal={setShowNotAuthenticatedModal} />}
             <div className="top-movie-details-header">
                  <button 
                  onClick={handleBackButton}
@@ -93,12 +111,22 @@ function TopMovieDetails() {
                
 
                 <div className="right">
-                    <button className="transparent-button"><img src={tvIcon} alt="go back" /></button>
+                    <button 
+                    onClick={()=>{
+                        featureComingSoon("Watch Now")
+                    }}
+                    className="transparent-button">
+                        <img src={tvIcon} alt="watch now" />
+                    </button>
 
                     <button 
                     onClick={()=>{
-                        setMovieIdToAddToList(movieId)
-                        showListModalFn()
+                        if(isSignedIn){
+                            showListModalFn()
+                            setMovieIdToAddToList(movieId)
+                        }else{
+                            setShowNotAuthenticatedModal(true)
+                        }
                     }}
                     className="transparent-button"><img src={plusIcon} alt="add a movie to a list" /></button>
                 </div>
