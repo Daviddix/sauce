@@ -1,7 +1,7 @@
 import { useAtom } from "jotai"
 import SingleGPTResponse from "../SingleGPTResponse/SingleGPTResponse"
 import GPTResponseSkeleton from "../SkeletonLoaders/GPTResponseSkeleton/GPTResponseSkeleton"
-
+import { set,get } from 'idb-keyval'
 import "./GPTResponse.css" 
 
 import {useEffect, useState} from "react"
@@ -17,25 +17,58 @@ function GPTResponse({inputValue, id}) {
     const [disableInput, setDisableInput] = useAtom(disableInputAtom)
     const [gptToRefresh, setGptToRefresh] = useAtom(gptToRefreshAtom)
 
-
     useEffect(()=>{
-        makeRequestForMovieData(inputValue)
+        makeRequestForMovieData(inputValue, id)
     }, [])
 
     useEffect(()=>{
         if(gptToRefresh == 0){
             
         }else if(gptToRefresh == id){
-            makeRequestForMovieData(inputValue)
+            makeRequestWithoutIndexedDb(inputValue, id)
             setGptToRefresh(0)
         }
     }, [gptToRefresh])
 
-    async function makeRequestForMovieData(movieDescription){
+    async function makeRequestForMovieData(movieDescription, idOfResponse) {
+      setMovieFetchStatus("loading")
+      setDisableInput(true)
+      try {
+        const moviesFromIndexedDb = await get(idOfResponse)
+        if (typeof moviesFromIndexedDb == "object" && moviesFromIndexedDb.length > 0) {
+            setMovies(moviesFromIndexedDb)
+            setMovieFetchStatus("completed")
+            setDisableInput(false)
+        } else {
+          const rawFetch = await fetch("http://localhost:3000/app/movie", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ movieDescription }),
+          })
+          const jsonFetchData = await rawFetch.json()
+          if (!rawFetch.ok) {
+            throw new Error({ cause: "test" })
+          }
+          setMovies(jsonFetchData)
+          setAllMovies((prev) => [...prev, ...jsonFetchData])
+          set(idOfResponse, jsonFetchData)
+          setMovieFetchStatus("completed")
+          setDisableInput(false)
+        }
+      } catch (err) {
+        setReasonForError(err.cause ? err.cause : "Network Error")
+        setMovieFetchStatus("error")
+        setDisableInput(false)
+      }
+    }
+
+    async function makeRequestWithoutIndexedDb(movieDescription, idOfResponse){
         setMovieFetchStatus("loading")
         setDisableInput(true)
         try{
-            const rawFetch = await fetch("http://localhost:3000/app/movie",
+        const rawFetch = await fetch("http://localhost:3000/app/movie",
         {
             method : "POST",
             headers: {
@@ -49,15 +82,15 @@ function GPTResponse({inputValue, id}) {
         }
         setMovies(jsonFetchData)
         setAllMovies((prev) => [...prev, ...jsonFetchData])
+        set(idOfResponse, jsonFetchData)
         setMovieFetchStatus("completed")
         setDisableInput(false)
-        }
-        catch(err){
+    }
+         catch(err){
             setReasonForError(err.cause? err.cause : "Network Error")
             setMovieFetchStatus("error")
             setDisableInput(false)
         }
-        
     }
 
     function refreshFromError(){

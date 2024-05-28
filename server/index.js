@@ -6,7 +6,7 @@ const mongoose = require("mongoose")
 require("dotenv").config()
 const PORT = process.env.PORT || 3000
 const MONGO_URI = process.env.MONGO_URI
-const cookieParser = require("cookie-parser")
+const cookieParser = require("cookie-parser") 
 
 //routers
 const userRouter = require("./routes/user")

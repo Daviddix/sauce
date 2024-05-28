@@ -1,6 +1,6 @@
 import discoverIcon from "../../../assets/app assets/icons/discover-icon.svg";
 import sendIcon from "../../../assets/app assets/icons/airplane-icon.svg";
-
+import { set } from 'idb-keyval'
 
 import "./ChatInput.css";
 
@@ -44,6 +44,7 @@ function ChatInput() {
         key : Date.now(),
         value: "",
       };
+      set('mess', [...prev, newUserPrompt, loadingGPTResponse])
       return [...prev, newUserPrompt, loadingGPTResponse];
     });
     setTypedDescription("");
@@ -65,6 +66,7 @@ function ChatInput() {
           inputValue: description,
           value: "",
         };
+        set('mess', [...prev, newUserPrompt, loadingGPTResponse])
         return [...prev, newUserPrompt, loadingGPTResponse];
       });
       setTypedDescription("");

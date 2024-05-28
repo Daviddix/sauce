@@ -76,9 +76,9 @@ async function getMoviesThatMatchPrompt(req, res){
         movieOverview: movieInfo.overview,
         movieRating : movieInfo.vote_average,
         moviePoster : movieInfo.poster_path
-      };
+      } 
 
-    });
+    })
 
     const movieInfoArray = await Promise.all(tmdbPromises);
     res.send(movieInfoArray)

@@ -8,6 +8,7 @@ import {useState, useEffect, useRef} from "react"
 import { useAtom } from 'jotai'
 import { activeListIdAtom, messagesAtom } from '../../globals/atom'
 import GoToBottomButton from '../../components/GoToBottomButton/GoToBottomButton'
+import { get } from 'idb-keyval'
 
 function Home() {
   const [isFirstTimeUser, setIsFirstTimeUser] = useState(()=> JSON.parse(localStorage.getItem("first-time-user")))
@@ -18,6 +19,7 @@ function Home() {
   const [activeListId, setActiveListId] = useAtom(activeListIdAtom)
 
   useEffect(()=>{
+    getMessagesFromIndexedDb()
       localStorage.setItem("first-time-user", JSON.stringify(false))
       setActiveListId(0)
   }, [isFirstTimeUser])
@@ -36,6 +38,15 @@ function Home() {
       setShowDownButton(true)
     }else{
       setShowDownButton(false)
+    }
+  }
+
+  async function getMessagesFromIndexedDb(){
+    const messagesFromIndexedDb = await get("mess")
+    if(typeof messagesFromIndexedDb == "object" && messagesFromIndexedDb.length > 0){
+      setMessages(messagesFromIndexedDb)
+    }else{
+      return 
     }
   }
 

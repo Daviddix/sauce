@@ -12,6 +12,9 @@ import { useAtom } from "jotai"
 import { isSignedInAtom, userInfoAtom, userInfoStatusAtom } from "./WebApp/globals/atom"
 import NotFound from "./WebApp/Pages/404/404"
 
+
+import { clear } from 'idb-keyval'
+
 function App() {
   const dashboardTemplate = 
   <DashboardLayout>
@@ -49,7 +52,13 @@ async function getUserInfo(){
 
   useLayoutEffect(() => {
     getUserInfo() 
+
+    return ()=>{
+      console.log("leaving")
+      clear()
+    }
   },[])
+  
 
   return (
    <Routes >
