@@ -61,7 +61,7 @@ function ChatInput() {
   
         const loadingGPTResponse = {
           from: "GPT",
-          key : Date.now(),
+          key : newUserPrompt.key,
           id : generateUniqueId(),
           inputValue: description,
           value: "",

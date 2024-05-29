@@ -3,6 +3,8 @@ import { Link, useNavigate } from 'react-router-dom'
 import "./Login.css"
 import backIcon from "../../../assets/app assets/icons/left-icon.svg"
 import eyeIcon from "../../../assets/app assets/icons/eye-icon.svg"
+import { useAtom } from 'jotai'
+import { refreshUserDetailsAtom } from '../../globals/atom'
 
 function Login() {
   const [username, setUsername] = useState("")
@@ -11,6 +13,7 @@ function Login() {
   const [creatingUser, setCreatingUser] = useState(false)
   const [usernameError, setUsernameError] = useState("")
   const [passwordError, setPasswordError] = useState("")
+  const [refreshUserDetails, setRefreshUserDetails] = useAtom(refreshUserDetailsAtom)
 
   const navigate = useNavigate()
 
@@ -35,6 +38,7 @@ function Login() {
         throw Error("err", { cause: jsonResponse })
       }
       setCreatingUser(false)
+      setRefreshUserDetails(true)
       navigate("/app")
     }
     catch (err) {

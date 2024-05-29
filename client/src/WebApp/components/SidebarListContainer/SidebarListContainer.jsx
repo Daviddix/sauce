@@ -31,9 +31,11 @@ function SidebarListContainer() {
         setListFetchStatus("completed")
         }
         catch(err){
+          if(err.cause.reason == "missing token"){
+            setListFetchStatus("completed")
+          }else{
             setListFetchStatus("error")
-            console.log(err)
-            console.log(err?.cause)
+          }
         }
         
     }

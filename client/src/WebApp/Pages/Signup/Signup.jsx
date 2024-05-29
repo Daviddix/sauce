@@ -5,6 +5,8 @@ import userIcon from "../../../assets/app assets/icons/user-icon.svg"
 import {Link, useNavigate} from "react-router-dom"
 import "./Signup.css"
 import { useEffect, useRef, useState } from "react"
+import { useAtom } from "jotai"
+import { refreshUserDetailsAtom } from "../../globals/atom"
 
 function Signup() {
   const inputRef = useRef(null);
@@ -17,6 +19,7 @@ function Signup() {
   const [creatingUser, setCreatingUser] = useState(false)
   const [usernameError, setUsernameError] = useState("")
   const [imageError, setImageError] = useState("")
+  const [refreshUserDetails, setRefreshUserDetails] = useAtom(refreshUserDetailsAtom)
 
   const navigate = useNavigate()
 
@@ -71,6 +74,7 @@ function Signup() {
         throw Error("err", { cause: jsonResponse })
       }
       setCreatingUser(false)
+      setRefreshUserDetails(true)
       navigate("/app")
     }
     catch (err) {

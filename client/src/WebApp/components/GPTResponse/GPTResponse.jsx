@@ -18,6 +18,7 @@ function GPTResponse({inputValue, id}) {
     const [gptToRefresh, setGptToRefresh] = useAtom(gptToRefreshAtom)
 
     useEffect(()=>{
+      console.log("here")
         makeRequestForMovieData(inputValue, id)
     }, [])
 

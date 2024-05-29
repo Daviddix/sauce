@@ -6,7 +6,6 @@ import { Link } from "react-router-dom"
 function ProfileContainer() {
   const [userInfo, setUserInfo] = useAtom(userInfoAtom)
   const [userInfoStatus, setUserInfoStatus] = useAtom(userInfoStatusAtom)
-
   
   return (
       <div className="profile-view-list">

@@ -1,5 +1,5 @@
 import {Outlet, Route, Routes} from "react-router-dom"
-import { useLayoutEffect, useState } from "react"
+import { useEffect, useLayoutEffect, useState } from "react"
 import './App.css'
 import LandingPage from './LandingPage/LandingPage'
 import Login from "./WebApp/Pages/Login/Login"
@@ -9,7 +9,7 @@ import Lists from "./WebApp/Pages/Lists/Lists"
 import Home from "./WebApp/Pages/Home/Home"
 import MovieDetails from "./WebApp/Pages/MovieDetails/MovieDetails"
 import { useAtom } from "jotai"
-import { isSignedInAtom, userInfoAtom, userInfoStatusAtom } from "./WebApp/globals/atom"
+import { isSignedInAtom, refreshListAtom, refreshUserDetailsAtom, userInfoAtom, userInfoStatusAtom } from "./WebApp/globals/atom"
 import NotFound from "./WebApp/Pages/404/404"
 
 
@@ -24,6 +24,7 @@ function App() {
   const [profileFetchStatus, setProfileFetchStatus] = useState("loading")
   const [isSignedIn, setIsSignedIn] = useAtom(isSignedInAtom)
   const [userInfo, setUserInfo] = useAtom(userInfoAtom)
+  const [refreshUserDetails, setRefreshUserDetails] = useAtom(refreshUserDetailsAtom)
   const [userInfoStatus, setUserInfoStatus] = useAtom(userInfoStatusAtom)
 
 async function getUserInfo(){
@@ -54,10 +55,18 @@ async function getUserInfo(){
     getUserInfo() 
 
     return ()=>{
-      console.log("leaving")
       clear()
     }
   },[])
+
+  useEffect(()=>{
+      if(refreshUserDetails == false){
+        return
+      }else{
+        getUserInfo()
+        setRefreshUserDetails(false)
+      }
+  }, [refreshUserDetails])
   
 
   return (

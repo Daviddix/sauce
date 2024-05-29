@@ -13,6 +13,7 @@ export const moviesAtom = atom([])
 export const isSignedInAtom = atom(false)
 export const userInfoAtom = atom({})
 export const userInfoStatusAtom = atom("loading")
+export const refreshUserDetailsAtom = atom(false)
 
 //movie details atoms
 export const movieMatchPercentageAtom = atom(0)
