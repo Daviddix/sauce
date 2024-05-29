@@ -1,5 +1,7 @@
 .layout-main .chat-input{
     background-color: #fafafa;
+    position: sticky;
+    bottom:0;
 }
 
 .layout-main .chat-input-inner{
