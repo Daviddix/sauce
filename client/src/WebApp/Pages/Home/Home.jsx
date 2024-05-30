@@ -34,7 +34,7 @@ function Home() {
   })
 
   function userHasScrolledToEndOfChat(e){
-    if(e.target.scrollTop != e.target.scrollTopMax){
+    if(e.target.scrollTop !== e.target.scrollHeight - e.target.clientHeight){
       setShowDownButton(true)
     }else{
       setShowDownButton(false)
@@ -64,7 +64,7 @@ function Home() {
 
         {mappedMessages}
         
-        {showDownButton && <GoToBottomButton refToScroll={chatSectionRef.current} />}
+        {showDownButton && <GoToBottomButton refToScroll={chatSectionRef} />}
         </div>
         
     </section>

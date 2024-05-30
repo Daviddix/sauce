@@ -2,12 +2,12 @@ import downArrowIcon from "../../../assets/app assets/icons/down-arrow-icon.svg"
 
 import "./GoToBottomButton.css"
 
-function GoToBottomButton(refToScroll) {
+function GoToBottomButton({refToScroll}) {
 
     function scrollToBottomOfChatSection(){
-        const bottom = refToScroll.refToScroll.scrollHeight 
+        const bottom = refToScroll.current.scrollHeight 
 
-        refToScroll.refToScroll.scroll({
+        refToScroll.current.scroll({
             top : bottom,
             behavior : "smooth"
         })

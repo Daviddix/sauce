@@ -1,5 +1,8 @@
 .chat header{
     padding: 1rem 0;
+    border:solid;
+    position: sticky;
+    top:0;
 }
 
 .chat .header-inner{
