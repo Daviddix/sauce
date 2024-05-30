@@ -13,7 +13,7 @@ const unknownError = {
 const userNotFoundInDataBase = {
     status : "failed",
     reason : "user not found",
-    message : "user not found in database, check your email and try again"
+    message : "user not found in database, check your username and try again"
 }
 
 const wrongPassword = {

@@ -8,11 +8,12 @@ cloudinary.config({
 const userModel = require("../models/user") 
 
 
-const { userCreated, loginSuccessful,} = require("../actions/successMessages")
+const { userCreated, loginSuccessful, logoutSuccessful,} = require("../actions/successMessages")
 
-const {duplicateUsername, noBodyDataError, unknownError, userNotFoundInDataBase, wrongPassword} = require("../actions/errorMessages")
+const {duplicateUsername, noBodyDataError, unknownError, userNotFoundInDataBase, wrongPassword, logoutError} = require("../actions/errorMessages")
 const { checkForDuplicateUsername, generateJwtToken } = require("../libs/UserFunctions")
 const timeBeforeItExpires = 90000000 * 300
+const saltRounds = 10
 
 
 async function signUserUp(req, res) {
@@ -33,13 +34,13 @@ try{
               async function (error, result) {
                 if (error) {
                   return res.status(400).json(imageUploadError);
-                }
-
+                }               
+            
                 const userMade = await userModel.create({
                   profilePicture: result.secure_url,
                   username,
                   password,
-                });
+                })
 
                 const userToken = await generateJwtToken(userMade._id)
 
@@ -75,7 +76,7 @@ async function logUserIn(req, res){
               return res.status(404).json(userNotFoundInDataBase)
             }
             
-            const passwordIsCorrect = await bcrypt.compare(password, userInDb.password) 
+            const passwordIsCorrect = await bcrypt.compare(password, userInDb.password)
             
             if(!passwordIsCorrect){
                 return res.status(401).json(wrongPassword)
@@ -87,7 +88,7 @@ async function logUserIn(req, res){
                 maxAge: timeBeforeItExpires,
                 path : "/",
                 secure: true,
-                sameSite: 'None'
+                sameSite: 'None' 
               })
             res.status(201).json(loginSuccessful)
         }
@@ -96,6 +97,7 @@ async function logUserIn(req, res){
         }
     }
     catch(e){
+      console.log(e)
         res.status(400).json(unknownError)
     }
 }
@@ -114,8 +116,24 @@ async function getUserDetails(req, res){
     }
 }
 
+async function logUserOut(req, res){
+    try{
+      res.cookie("jwt", "",{
+        httpOnly: true,
+        expires : new Date(0),
+        path : "/",
+        secure : true,
+        sameSite : "None"
+      }).json(logoutSuccessful)
+    }
+    catch(err){
+      res.status(400).json(logoutError)
+    }
+}
+
 module.exports = {
     signUserUp,
     logUserIn,
-    getUserDetails
+    getUserDetails,
+    logUserOut
 }
