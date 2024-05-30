@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import "./Login.css"
 import backIcon from "../../../assets/app assets/icons/left-icon.svg"
 import eyeIcon from "../../../assets/app assets/icons/eye-icon.svg"
+import eyeOffIcon from "../../../assets/app assets/icons/eye-off.svg"
 import { useAtom } from 'jotai'
 import { refreshUserDetailsAtom } from '../../globals/atom'
 
@@ -117,7 +118,7 @@ function Login() {
             onClick={()=>{
               setShowPassword((prev) => !prev)
             }}
-            src={eyeIcon} 
+            src={showPassword ? eyeOffIcon : eyeIcon} 
             alt="reveal password" 
             className="eye" />
 

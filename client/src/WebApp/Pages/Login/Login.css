@@ -48,6 +48,7 @@
     position:absolute;
     right:1.2rem;
     top:50%;
+    cursor: pointer;
 }
 
 .login-form .primary-button{
