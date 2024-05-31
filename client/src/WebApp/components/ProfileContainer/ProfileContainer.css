@@ -15,12 +15,13 @@
     }
     
     .profile-view-list .profile-view-list-inner{
-        display: flex;
+        display: grid;
         align-items: center;
         justify-content: start;
         width:90%;
         margin:auto;
         column-gap: .5rem;
+        grid-template-columns: auto auto 1fr;
     }
 
     .profile-view-list-inner > img{
@@ -32,6 +33,10 @@
         -ms-border-radius: 50%;
         -o-border-radius: 50%;
         object-fit: cover;
+    }
+
+    .logout-button img{
+        max-width: 2rem;
     }
 }
 

@@ -7,6 +7,7 @@ import "./Signup.css"
 import { useEffect, useRef, useState } from "react"
 import { useAtom } from "jotai"
 import { refreshUserDetailsAtom } from "../../globals/atom"
+import eyeOffIcon from "../../../assets/app assets/icons/eye-off.svg"
 
 function Signup() {
   const inputRef = useRef(null);
@@ -178,7 +179,7 @@ function Signup() {
             onClick={()=>{
               setShowPassword((prev) => !prev)
             }}
-            src={eyeIcon} 
+            src={showPassword ? eyeOffIcon : eyeIcon} 
             alt="reveal password" 
             className="eye" />
           </div>

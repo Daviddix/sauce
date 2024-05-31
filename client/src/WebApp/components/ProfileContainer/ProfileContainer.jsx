@@ -1,11 +1,14 @@
 import "./ProfileContainer.css"
 import { useAtom } from "jotai"
-import {userInfoAtom, userInfoStatusAtom} from "../../globals/atom"
+import {showLogoutModalAtom, userInfoAtom, userInfoStatusAtom} from "../../globals/atom"
 import { Link } from "react-router-dom"
+import logoutIcon from "../../../assets/app assets/icons/log-out-icon.svg"
 
 function ProfileContainer() {
   const [userInfo, setUserInfo] = useAtom(userInfoAtom)
   const [userInfoStatus, setUserInfoStatus] = useAtom(userInfoStatusAtom)
+  const [showLogoutModal, setShowLogoutModal] = useAtom(showLogoutModalAtom)
+  
   
   return (
       <div className="profile-view-list">
@@ -14,6 +17,12 @@ function ProfileContainer() {
           <>
           <img src={userInfo.profilePicture} alt="your profile picture" className="profile-icon" />
             <p className="sub-sub-heading">{userInfo.username}</p>
+
+            <button 
+            onClick={()=>{
+              setShowLogoutModal(true)
+            }}
+            className="logout-button"><img src={logoutIcon} alt="logout" /></button>
           </>
           }
 

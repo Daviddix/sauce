@@ -6,9 +6,10 @@ import GPTResponse from '../../components/GPTResponse/GPTResponse'
 import ChatInput from '../../components/ChatInput/ChatInput'
 import {useState, useEffect, useRef} from "react"
 import { useAtom } from 'jotai'
-import { activeListIdAtom, messagesAtom } from '../../globals/atom'
+import { activeListIdAtom, messagesAtom, showLogoutModalAtom } from '../../globals/atom'
 import GoToBottomButton from '../../components/GoToBottomButton/GoToBottomButton'
 import { get } from 'idb-keyval'
+import LogoutModal from "../../components/LogoutModal/LogoutModal"
 
 function Home() {
   const [isFirstTimeUser, setIsFirstTimeUser] = useState(()=> JSON.parse(localStorage.getItem("first-time-user")))
@@ -17,6 +18,7 @@ function Home() {
   const [messages, setMessages] = useAtom(messagesAtom)
   const [showDownButton, setShowDownButton] = useState(false)
   const [activeListId, setActiveListId] = useAtom(activeListIdAtom)
+  const [showLogoutModal, setShowLogoutModal] = useAtom(showLogoutModalAtom)
 
   useEffect(()=>{
     getMessagesFromIndexedDb()
@@ -63,6 +65,8 @@ function Home() {
           {isFirstTimeUser == null && <WelcomeMessage />}
 
         {mappedMessages}
+
+        {showLogoutModal && <LogoutModal setShowLogoutModal={setShowLogoutModal} />}
         
         {showDownButton && <GoToBottomButton refToScroll={chatSectionRef} />}
         </div>

@@ -12,6 +12,7 @@ function MovieImages() {
 
   const mappedOtherImages = images.slice(0, 6).map((img)=>{
     return <img 
+    key={img.file_path}
     onClick={()=>{
       mainImageRef.current.classList.remove("a")
       void mainImageRef.current.offsetWidth

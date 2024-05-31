@@ -1,6 +1,5 @@
 .chat header{
     padding: 1rem 0;
-    border:solid;
     position: sticky;
     top:0;
 }
@@ -18,7 +17,7 @@
     border:none;
 }
 
-.header-inner button:nth-child(2){
+.header-inner .profile-button{
     background-color: transparent;
     border:none;
 }
@@ -48,4 +47,15 @@
     -moz-border-radius: 18px;
     -ms-border-radius: 18px;
     -o-border-radius: 18px;
+}
+
+.header-inner .right{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    column-gap: .5rem;
+}
+
+.right .logout-button img{
+    width: 1.8rem;
 }

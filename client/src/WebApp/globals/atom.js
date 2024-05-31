@@ -8,6 +8,7 @@ export const gptToRefreshAtom = atom(0)
 export const messagesAtom = atom([])
 export const movieIdToAddToListAtom = atom(0)
 export const moviesAtom = atom([])
+export const showLogoutModalAtom = atom(false)
 
 //auth atoms
 export const isSignedInAtom = atom(false)

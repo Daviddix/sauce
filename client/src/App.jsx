@@ -45,6 +45,7 @@ async function getUserInfo(){
     setUserInfoStatus("completed")
   }
   catch(err){
+    setUserInfo({})
     setIsSignedIn(false)
     setProfileFetchStatus("error")
     setUserInfoStatus("error")

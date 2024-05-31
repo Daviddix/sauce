@@ -1,7 +1,6 @@
 const express = require("express")
-const { signUserUp, logUserIn, getUserDetails } = require("../controllers/UserController")
+const { signUserUp, logUserIn, getUserDetails, logUserOut } = require("../controllers/UserController")
 const { useAuth } = require("../middlewares/UserMiddlewares")
-const userModel = require("../models/user")
 
 userRouter = express.Router()
 
@@ -11,19 +10,6 @@ userRouter.post("/login", logUserIn)
 
 userRouter.get("/info", useAuth , getUserDetails)
 
-// userRouter.get("/logout", async(req,res)=>{
-//     try{
-//         res.cookie("jwt", "", {
-//             httpOnly: true,
-//             expires: new Date(0),
-//             path : "/",
-//             secure: true,
-//             sameSite: 'None'
-//           }).json(logoutSuccessful)
-//     }
-//     catch(err){
-//         res.status(400).json(logoutError)
-//     }
-// })
+userRouter.get("/logout", logUserOut)
 
 module.exports = userRouter

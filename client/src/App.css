@@ -52,11 +52,6 @@ input{
        hsl(0, 0%, 79%) 75%);
 }
 
-*::selection{
-    background-color:var(--primary-500);
-    color:white;
-}
-
 .search-input{
     border-radius: 3rem;
     border: 1.7px solid #0C202E;
@@ -251,6 +246,19 @@ letter-spacing: -0.028rem;
     font-style: normal;
     font-weight: 500;
     letter-spacing: -0.036rem;
+}
+
+.logout-button{
+    justify-self: flex-end;
+    background-color: hsl(0, 100%, 96%);
+    border:none;
+    padding:.4rem;
+    border: 1px solid  rgb(255, 158, 158);
+    border-radius: .6rem;
+    -webkit-border-radius: .6rem;
+    -moz-border-radius: .6rem;
+    -ms-border-radius: .6rem;
+    -o-border-radius: .6rem;
 }
 
 @keyframes slide-up {

@@ -32,7 +32,7 @@ function TopMovieDetails() {
     const navigate = useNavigate()
 
     const mappedGenres = topMovieInfo.genres?.map((singleGenre)=>{
-        return <div className="button-text-style">{singleGenre.name}</div>
+        return <div key={singleGenre.name} className="button-text-style">{singleGenre.name}</div>
     })
     const {movieId} = useParams()
 
@@ -65,7 +65,7 @@ function TopMovieDetails() {
             setMainMovieLink(fetchInJson.homepage)
         }
         catch(err){
-            console.log(err)
+            console.log(err.cause)
             setMovieFetchStatus("error")
         }
     }
