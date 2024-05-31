@@ -3,7 +3,8 @@ import rightArrowIcon from "../../../assets/app assets/icons/right-arrow-icon.sv
 import "./SingleListMovie.css"
 import toast from "react-hot-toast"
 
-function SingleListMovie({movieName, movieReleaseDate, moviePoster, movieId, listId, getInformationAboutListFunction, listName}) {
+function SingleListMovie({movieName, movieReleaseDate, moviePoster, movieId, listId, getInformationAboutListFunction, listName, deleteList, listInfo}) {
+    console.log(listInfo.moviesInList.length)
     async function deleteMovieFromList(){
         try{
             const rawFetch = await fetch(`http://localhost:3000/app/list/${listId}/m`,{
@@ -19,8 +20,14 @@ function SingleListMovie({movieName, movieReleaseDate, moviePoster, movieId, lis
             if(!rawFetch.ok){
                 throw new Error("err", {cause : fetchJson})
             }
+
+            if(listInfo.moviesInList.length == 1){
+                notifyForMovieDeletedFromList(listName)
+                deleteList(listId)
+                return
+            }
             getInformationAboutListFunction()
-            notifyForMovieAddedToList(listName)
+            notifyForMovieDeletedFromList(listName)
         }
         catch(err){
             console.log(err)
@@ -28,7 +35,7 @@ function SingleListMovie({movieName, movieReleaseDate, moviePoster, movieId, lis
         }
     }
 
-    function notifyForMovieAddedToList(name){
+    function notifyForMovieDeletedFromList(name){
         return toast.success(`Your movie has successfully been deleted from the list : -${name}`, {
             position : "bottom-right",
             style : {
@@ -57,7 +64,7 @@ function SingleListMovie({movieName, movieReleaseDate, moviePoster, movieId, lis
     }
   return (
     <div className="single-list-movie">
-                <img src={`https://image.tmdb.org/t/p/w1280/${moviePoster}`}  alt="" />
+                <img src={`https://image.tmdb.org/t/p/w1280/${moviePoster}`}  alt={`movie poster for ${movieName}`} />
                 <div className="single-list-movie-details">
                     <h1 className="list-movie-title">{movieName}({movieReleaseDate.slice(0, 4)})</h1>
 

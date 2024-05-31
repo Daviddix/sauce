@@ -45,7 +45,7 @@ function Lists() {
     }
   }
 
-  async function deleteList(){
+  async function deleteList(id){
     try{
     const rawFetch = await fetch(`http://localhost:3000/app/list/${listId}/l`,{
       method : "DELETE",
@@ -56,7 +56,7 @@ function Lists() {
     if(!rawFetch.ok){
       throw new Error("err", {cause : fetchInJson})
     }
-    setListIdToDelete(listId)
+    setListIdToDelete(id)
     }
     catch(err){
       alert("an error ocurred when you tried to delete that list, please try again")
@@ -68,6 +68,8 @@ function Lists() {
     getInformationAboutListFunction={getInformationAboutList}
     movieName={movieName}
     listId={listId}
+    deleteList={deleteList}
+    listInfo={listInfo}
     movieId={movieId}
     listName={listInfo.listName}
     key={movieId} 
@@ -95,7 +97,7 @@ function Lists() {
 
       <button 
       onClick={()=>{
-        deleteList()
+        deleteList(listId)
       }}
       className="back-button-container">
         <img 
