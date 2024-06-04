@@ -4,7 +4,6 @@ import "./SingleListMovie.css"
 import toast from "react-hot-toast"
 
 function SingleListMovie({movieName, movieReleaseDate, moviePoster, movieId, listId, getInformationAboutListFunction, listName, deleteList, listInfo}) {
-    console.log(listInfo.moviesInList.length)
     async function deleteMovieFromList(){
         try{
             const rawFetch = await fetch(`http://localhost:3000/app/list/${listId}/m`,{

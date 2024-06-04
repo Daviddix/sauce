@@ -1,5 +1,6 @@
 import sauceLogo from '../assets/landing page assets/icons/logo.svg'
-import webAppImage from "../assets/landing page assets/images/new-2.png"
+import webAppImage from "../assets/landing page assets/images/sauce-desktop-mockup.png"
+import webAppImageMobile from "../assets/landing page assets/images/sauce-mobile-mockup.png"
 import menuIcon from "../assets/landing page assets/icons/hamburger-button.svg"
 import closeIcon from "../assets/landing page assets/icons/close-one.svg"
 import "./LandingPage.css"
@@ -58,7 +59,9 @@ function LandingPage() {
             </Link>                    
         </div>
 
-        <img src={webAppImage} alt="image of the sauce webapp" className="webapp-image" />
+        <img src={webAppImage} alt="image of the sauce webapp" className="webapp-image pc" />
+
+        <img src={webAppImageMobile} alt="image of the sauce webapp" className="webapp-image mobile" />
     </main>
   )
 }

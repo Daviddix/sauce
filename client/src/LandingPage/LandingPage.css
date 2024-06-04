@@ -1,18 +1,20 @@
 .landing-page-main{
-    /* background-color: black; */
     background: 
     linear-gradient(214deg, rgba(176, 217, 246, 0.63) 0.61%, rgba(216, 250, 240, 0.479) 20.07%, #fafafa60 80.02%),
     url("../assets/landing page assets/images/Dots.svg")
     ;
     min-width: 100%;
     min-height:100vh;
+    padding-bottom: 2rem;
 }
 
 header.landing-page-header{
     background-color: white;
     width:90vw;
+    max-width:150rem;
     position: relative;
-    left:5vw;
+    left:50%;
+    transform: translateX(50%);
     padding:1rem 1.5rem;
     border-radius: 100vw;
     top:1rem;
@@ -21,6 +23,10 @@ header.landing-page-header{
     -moz-border-radius: 100vw;
     -ms-border-radius: 100vw;
     -o-border-radius: 100vw;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
 }
 
 .landing-page-header nav{
@@ -117,8 +123,13 @@ header.landing-page-header{
 .webapp-image{
     display:block;
     width: 90vw;
+    max-width: 150rem;
     margin: auto;
     margin-top: 2rem;
+}
+
+.webapp-image.pc{
+    display:none;
 }
 
 .landing-page-main .menu-overlay.close{
@@ -238,7 +249,19 @@ header.landing-page-header{
         font-size: 1.8rem;
     }
 
-    
+    .webapp-image.pc{
+        display:block;
+        margin: 5rem auto 2rem auto;
+        border:12px solid rgba(255, 255, 255, 0.473);
+        border-radius: 30px;
+        -webkit-border-radius: 30px;
+        -moz-border-radius: 30px;
+        -ms-border-radius: 30px;
+        -o-border-radius: 30px;
+        box-shadow: 0px 10px 8px .1px rgba(0, 0, 0, 0.041) ;
+}
 
-    
+    .webapp-image.mobile{
+        display:none;
+    }
 }
