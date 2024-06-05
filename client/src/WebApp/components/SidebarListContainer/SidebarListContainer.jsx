@@ -3,7 +3,7 @@ import "./SidebarListContainer.css"
 import SingleSidebarList from "../SingleSidebarList/SingleSidebarList"
 import SidebarListError from "../SidebarListError/SidebarListError"
 import { useAtom } from "jotai"
-import { activeListIdAtom, listIdToDeleteAtom, refreshListAtom } from "../../globals/atom"
+import { activeListIdAtom, isSignedInAtom, listIdToDeleteAtom, refreshListAtom } from "../../globals/atom"
 import { useNavigate } from "react-router-dom"
 
 function SidebarListContainer() {
@@ -14,6 +14,7 @@ function SidebarListContainer() {
     const [listIdToDelete, setListIdToDelete] = useAtom(listIdToDeleteAtom)
     const [refreshList, setRefreshList] = useAtom(refreshListAtom)
     const [allListIds, setAllListIds] = useState([])
+    const [isSignedIn, setIsSignedIn] = useAtom(isSignedInAtom)
     const navigate = useNavigate()
 
     async function getListsByUser(){
@@ -86,6 +87,9 @@ function SidebarListContainer() {
     })
 
     useEffect(()=>{
+      if(!isSignedIn){
+        return
+      }
         getListsByUser()
     }, [])
 

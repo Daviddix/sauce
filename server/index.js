@@ -15,7 +15,7 @@ const listRouter = require("./routes/list")
 
 
 //server configs
-const whitelist = ["http://localhost:5173", "https://sauce-beta.vercel.app/"]
+const whitelist = ["https://use-sauce.vercel.app", "https://sauce-beta.vercel.app/"]
 const corsOptions = {
   origin: function (origin, callback) {
     if (whitelist.indexOf(origin) !== -1) {
