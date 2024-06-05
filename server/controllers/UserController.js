@@ -122,7 +122,7 @@ async function logUserOut(req, res){
         httpOnly: true,
         expires: new Date(0),
         path : "/",
-        // secure: true,
+        secure: true,
         sameSite: 'None'
       }).json(logoutSuccessful)
     }

@@ -11,7 +11,7 @@ function AddToListModal({setShowLogoutModal}) {
 
     async function logUserOut(){
         try{
-            const logoutResponse = await fetch("http://localhost:3000/app/user/logout", {
+            const logoutResponse = await fetch("https://sauce-backend.onrender.com/app/user/logout", {
                 credentials : "include" 
             })
 

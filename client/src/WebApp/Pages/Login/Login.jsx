@@ -26,7 +26,7 @@ function Login() {
     }
     try {
       setCreatingUser(true)
-      const signUpResponse = await fetch("http://localhost:3000/app/user/login", {
+      const signUpResponse = await fetch("https://sauce-backend.onrender.com/app/user/login", {
         method: "POST",
         body: JSON.stringify(data),
         headers: {
