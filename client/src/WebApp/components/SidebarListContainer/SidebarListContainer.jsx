@@ -88,6 +88,7 @@ function SidebarListContainer() {
 
     useEffect(()=>{
       if(!isSignedIn){
+        setListFetchStatus("completed")
         return
       }
         getListsByUser()
