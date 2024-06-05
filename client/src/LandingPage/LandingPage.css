@@ -54,7 +54,7 @@ header.landing-page-header{
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    margin: 6rem auto 1rem;
+    margin: 4rem auto 1rem;
     max-width: 90vw;
 }
 
@@ -70,9 +70,9 @@ header.landing-page-header{
     width:90vw;
     max-width: 65rem;
     margin:0 auto 2rem;
-    color: #000;
+    color: #000000c5;
     text-align: center;
-    font-family: manrope;
+    font-family: manrope; 
     font-size: 1.4rem;
     font-style: normal;
     font-weight: 500;
