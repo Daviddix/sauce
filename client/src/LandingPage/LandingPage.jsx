@@ -47,7 +47,7 @@ function LandingPage() {
         
         <h1 className="heading">Find Movies You've Forgotten <span className='gradient'>Using AI</span></h1>
 
-        <p className="sub-heading">Sauce uses AI to dig up your fuzzy movie memories. No more forgetting! Rediscover your favorite films with a touch of AI magic. Movie time reinvented, just for you</p>
+        <p className="sub-heading">Introducing Sauce, an AI-powered web app, to find movies you've forgotten with just a brief, imperfect description. Reconnect with lost memories effortlessly</p>
 
         <div className="body-buttons">
             <Link to="/app/login">
