@@ -10,7 +10,7 @@ const userModel = require("../models/user")
 
 const { userCreated, loginSuccessful, logoutSuccessful,} = require("../actions/successMessages")
 
-const {duplicateUsername, noBodyDataError, unknownError, userNotFoundInDataBase, wrongPassword, logoutError} = require("../actions/errorMessages")
+const {duplicateUsername, noBodyDataError, unknownError, userNotFoundInDataBase, wrongPassword, logoutError, imageUploadError} = require("../actions/errorMessages")
 const { checkForDuplicateUsername, generateJwtToken } = require("../libs/UserFunctions")
 const timeBeforeItExpires = 90000000 * 300
 const saltRounds = 10
@@ -76,6 +76,7 @@ async function logUserIn(req, res){
               return res.status(404).json(userNotFoundInDataBase)
             }
             
+            console.log(password, typeof password)
             const passwordIsCorrect = await bcrypt.compare(password, userInDb.password)
             
             if(!passwordIsCorrect){
@@ -90,7 +91,7 @@ async function logUserIn(req, res){
                 secure: true,
                 sameSite: 'None' 
               })
-            res.status(201).json(loginSuccessful)
+            res.status(200).json(loginSuccessful)
         }
         else{
             res.status(400).json(noBodyDataError)

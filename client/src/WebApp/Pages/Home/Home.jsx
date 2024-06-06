@@ -1,4 +1,3 @@
-import React from 'react'
 import Header from '../../components/Header/Header'
 import WelcomeMessage from '../../components/WelcomeMessage/WelcomeMessage'
 import UserPrompt from '../../components/UserPrompt/UserPrompt'
@@ -36,7 +35,7 @@ function Home() {
   })
 
   function userHasScrolledToEndOfChat(e){
-    if(e.target.scrollTop !== e.target.scrollHeight - e.target.clientHeight){
+    if(e.target.scrollTop !== e.target.scrollHeight - e.target.offsetHeight){
       setShowDownButton(true)
     }else{
       setShowDownButton(false)
@@ -53,7 +52,7 @@ function Home() {
   }
 
   return (
-    <section className="chat">
+    <>
      <Header />
 
     <section 
@@ -76,7 +75,7 @@ function Home() {
 
 
     <ChatInput  />
-    </section>
+    </>
   )
 }
 

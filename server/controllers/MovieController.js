@@ -69,7 +69,7 @@ async function getMoviesThatMatchPrompt(req, res){
 
       const movieInfo = tmdbData.results[0];
       return {
-        movieName: movieInfo.title? movieInfo.title : movieInfo.original_title,
+        movieName: movieInfo?.title? movieInfo.title : movieInfo.original_title,
         matchPercent: movieMatch.matchPercent,
         movieId: movieInfo.id,
         movieReleaseDate: movieInfo.release_date,

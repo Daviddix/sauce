@@ -9,7 +9,7 @@ import { useEffect, useState } from "react"
 import {useNavigate} from "react-router-dom"
 import { useAtom } from "jotai";
 import {isSignedInAtom, movieIdToAddToListAtom, movieMatchPercentageAtom} from "../../globals/atom"
-import toast, { Toaster } from "react-hot-toast"
+import toast from "react-hot-toast"
 
 function SingleGPTResponse({movieName, matchPercent, movieId, movieReleaseDate, movieOverview, movieRating, moviePoster}) {
     const [accuracyClassName, setAccuracyClassName] = useState("")
@@ -33,6 +33,7 @@ function SingleGPTResponse({movieName, matchPercent, movieId, movieReleaseDate, 
     }
 
     function featureComingSoon(name){
+        console.log("heyy")
         return toast.success(`The ${name} feature isn't available at the moment. Don't worry, David is working on it:)`, {
             position : "bottom-right",
             style : {
@@ -40,7 +41,15 @@ function SingleGPTResponse({movieName, matchPercent, movieId, movieReleaseDate, 
                 fontSize : "14px",
                 backgroundImage : "linear-gradient(to bottom right,rgb(266, 255, 201), transparent)",
                 border : "2px solid white",
-                boxShadow : "0 0 .4rem #00000018"
+                boxShadow:
+      `2.6px 4.3px 2.2px rgba(0, 0, 0, 0.045),
+      6.2px 10.2px 5.3px rgba(0, 0, 0, 0.065),
+      11.6px 19.3px 10px rgba(0, 0, 0, 0.08),
+      20.8px 34.4px 17.9px rgba(0, 0, 0, 0.095),
+      38.9px 64.3px 33.4px rgba(0, 0, 0, 0.115),
+      93px 154px 80px rgba(0, 0, 0, 0.16)`
+    
+    
             },
             icon : "📣"
         })
@@ -67,7 +76,6 @@ function SingleGPTResponse({movieName, matchPercent, movieId, movieReleaseDate, 
             </div>
             <img src={`https://image.tmdb.org/t/p/w1280/${moviePoster}`} alt={`movie poster from ${movieName}`} />
         </div>
-        <Toaster toastOptions={{duration : 4000}} />
 
         <div className="movie-details">
             <div className="heading-and-rating">

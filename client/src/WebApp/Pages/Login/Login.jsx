@@ -26,7 +26,7 @@ function Login() {
     }
     try {
       setCreatingUser(true)
-      const signUpResponse = await fetch("https://sauce-backend.onrender.com/app/user/login", {
+      const loginResponse = await fetch("https://sauce-backend.onrender.com/app/user/login", {
         method: "POST",
         body: JSON.stringify(data),
         headers: {
@@ -34,8 +34,8 @@ function Login() {
         },
         credentials: "include"
       })
-      const jsonResponse = await signUpResponse.json()
-      if (!signUpResponse.ok) {
+      const jsonResponse = await loginResponse.json()
+      if (!loginResponse.ok) {
         throw Error("err", { cause: jsonResponse })
       }
       setCreatingUser(false)

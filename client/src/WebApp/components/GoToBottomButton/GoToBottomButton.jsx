@@ -5,7 +5,7 @@ import "./GoToBottomButton.css"
 function GoToBottomButton({refToScroll}) {
 
     function scrollToBottomOfChatSection(){
-        const bottom = refToScroll.current.scrollHeight 
+        const bottom = refToScroll.current.scrollHeight
 
         refToScroll.current.scroll({
             top : bottom,

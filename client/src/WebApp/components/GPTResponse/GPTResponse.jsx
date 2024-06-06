@@ -7,6 +7,7 @@ import "./GPTResponse.css"
 import {useEffect, useState} from "react"
 import { disableInputAtom, gptToRefreshAtom, messagesAtom,moviesAtom } from "../../globals/atom"
 import GPTResponseError from "../GPTResponseError/GPTResponseError"
+import { Toaster } from "react-hot-toast"
 
 function GPTResponse({inputValue, id}) {
     const [movies, setMovies] = useState([])
@@ -123,6 +124,8 @@ function GPTResponse({inputValue, id}) {
     </>
   return (
     <div className="gpt-response-container">
+        <Toaster toastOptions={{duration : 4000}} />
+
         <h1>Top Results</h1>
         {movieFetchStatus === "loading" && skeletons}    
         {movieFetchStatus === "completed" && mappedMovies}
