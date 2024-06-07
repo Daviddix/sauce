@@ -1,7 +1,7 @@
 .movie-more-section .more-button-container {
     display: grid;
     gap: 1rem 1rem;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(4, 1fr);
 }
 
 .more-button-container button {
@@ -11,12 +11,13 @@
     column-gap: .5rem;
 }
 
-.more-button-container .primary-button {
-    grid-column: 1/4;
+.more-button-container a {
+    grid-column: 1/5;
 }
 
 .more-button-container button:not(.primary-button) {
     padding: .8rem;
+    grid-column: span 2;
 }
 
 .more-button-container a{

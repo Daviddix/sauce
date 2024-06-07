@@ -17,7 +17,8 @@
 
 .movie-images-section .other-images-container {
     display: flex;
-    column-gap: .8rem;
+    gap: .8rem;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
     max-width: 100%;
