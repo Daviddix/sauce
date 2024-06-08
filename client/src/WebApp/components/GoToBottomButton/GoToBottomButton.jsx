@@ -2,7 +2,7 @@ import downArrowIcon from "../../../assets/app assets/icons/down-arrow-icon.svg"
 
 import "./GoToBottomButton.css"
 
-function GoToBottomButton({refToScroll}) {
+function GoToBottomButton({refToScroll, setShowDownButton}) {
 
     function scrollToBottomOfChatSection(){
         const bottom = refToScroll.current.scrollHeight
@@ -15,7 +15,10 @@ function GoToBottomButton({refToScroll}) {
   return (
     <div className="main-go-to">
       <button 
-      onClick={scrollToBottomOfChatSection}
+      onClick={()=>{
+        scrollToBottomOfChatSection()
+        setShowDownButton(false)
+      }}
       className="go-to-bottom transparent-button">
         <img src={downArrowIcon} 
         alt="dawn arrow" 

@@ -67,7 +67,7 @@ function Home() {
 
         {showLogoutModal && <LogoutModal setShowLogoutModal={setShowLogoutModal} />}
         
-        {showDownButton && <GoToBottomButton refToScroll={chatSectionRef} />}
+        {showDownButton && <GoToBottomButton refToScroll={chatSectionRef} setShowDownButton={setShowDownButton} />}
         </div>
         
     </section>
