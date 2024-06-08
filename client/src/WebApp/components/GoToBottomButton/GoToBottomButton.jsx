@@ -17,7 +17,6 @@ function GoToBottomButton({refToScroll, setShowDownButton}) {
       <button 
       onClick={()=>{
         scrollToBottomOfChatSection()
-        setShowDownButton(false)
       }}
       className="go-to-bottom transparent-button">
         <img src={downArrowIcon} 

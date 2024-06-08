@@ -58,7 +58,7 @@ function Home() {
     <section 
     ref={chatSectionRef}
     onScroll={userHasScrolledToEndOfChat}
-    className="chat-body">
+    className="chat-body"> 
         
         <div className="chat-body-inner">
           {isFirstTimeUser == null && <WelcomeMessage />}
