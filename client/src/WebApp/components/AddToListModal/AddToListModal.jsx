@@ -66,6 +66,7 @@ function AddToListModal({setShowListModal}) {
           const movieToAddToList = movies.filter(
             (movie) => movie.movieId == movieIdToAddToList
           )[0]
+          console.log(movieToAddToList)
           const rawFetch = await fetch(
             `https://sauce-backend.onrender.com/app/list/${activeListId}`,
             {
