@@ -35,11 +35,13 @@ try{
                 if (error) {
                   return res.status(400).json(imageUploadError);
                 }               
+
+                const hashedPassword = await bcrypt.hash(password, saltRounds)
             
                 const userMade = await userModel.create({
                   profilePicture: result.secure_url,
                   username,
-                  password,
+                  hashedPassword,
                 })
 
                 const userToken = await generateJwtToken(userMade._id)
@@ -76,7 +78,7 @@ async function logUserIn(req, res){
               return res.status(404).json(userNotFoundInDataBase)
             }
             
-            console.log(password, typeof password)
+            
             const passwordIsCorrect = await bcrypt.compare(password, userInDb.password)
             
             if(!passwordIsCorrect){
