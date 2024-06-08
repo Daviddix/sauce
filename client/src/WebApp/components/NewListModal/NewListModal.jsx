@@ -16,7 +16,7 @@ function NewListModal({setShowAddNewListModal, notifyForMovieAddedToList, notify
 
 
     async function addMovieToNewList(e, name){
-        try{
+        try{ 
         e.preventDefault()
         setCreatingNewList(true)
         const movieToAddToList = movies.filter((movie)=> movie.movieId == id)[0]
