@@ -19,6 +19,7 @@ function SidebarListContainer() {
 
     async function getListsByUser(){
         setListFetchStatus("loading")
+        console.log("here")
         try{
         const rawFetch = await fetch("https://sauce-backend.onrender.com/app/list", {
             credentials: "include"
@@ -90,7 +91,7 @@ function SidebarListContainer() {
       if(!isSignedIn){
         setListFetchStatus("completed")
         return
-      }
+      }  
         getListsByUser()
     }, [])
 
