@@ -41,7 +41,7 @@ try{
                 const userMade = await userModel.create({
                   profilePicture: result.secure_url,
                   username,
-                  hashedPassword,
+                  password : hashedPassword,
                 })
 
                 const userToken = await generateJwtToken(userMade._id)
