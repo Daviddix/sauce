@@ -89,11 +89,12 @@ function SidebarListContainer() {
 
     useEffect(()=>{
       if(!isSignedIn){
+        console.log("not fetching")
         setListFetchStatus("completed")
         return
       }  
         getListsByUser()
-    }, [])
+    }, [isSignedIn])
 
     useEffect(()=>{
       if(refreshList == 0){
