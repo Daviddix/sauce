@@ -131,7 +131,7 @@ function SidebarListContainer() {
     <div className="lists-container">
         {
             listFetchStatus == "loading" && <div className="login-loader"></div>
-        }
+        } 
         {
             listFetchStatus == "completed" && filteredList.length == 0? mappedLists : mappedFilteredList
         }
