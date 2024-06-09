@@ -91,6 +91,7 @@ function SidebarListContainer() {
       if(!isSignedIn){
         console.log("not fetching")
         setListFetchStatus("completed")
+        setLists([])
         return
       }  
         getListsByUser()

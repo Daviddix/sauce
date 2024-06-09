@@ -19,9 +19,9 @@ function AddToListModal({setShowLogoutModal}) {
             if(!logoutResponse.ok){
                 throw new Error("err", {cause : jsonResponse})
             }
+            setRefreshList(0)
             setRefreshUserDetails(true)
             setLoggingUserOut(true)
-            setRefreshList(2)
             setShowLogoutModal(false)
         }
         catch(err){
