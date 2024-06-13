@@ -3,6 +3,8 @@ import webAppImage from "../assets/landing page assets/images/sauce-desktop-mock
 import webAppImageMobile from "../assets/landing page assets/images/sauce-mobile-mockup.png"
 import menuIcon from "../assets/landing page assets/icons/hamburger-button.svg"
 import closeIcon from "../assets/landing page assets/icons/close-one.svg"
+import buyMeCoffeeImage from "../assets/landing page assets/icons/bmc-button.svg"
+import rightArrowIcon from "../assets/landing page assets/icons/arrow-right-icon.svg"
 import "./LandingPage.css"
 import {Link} from "react-router-dom"
 import { useState } from 'react'
@@ -24,6 +26,10 @@ function LandingPage() {
                     <a target='_blank' href="https://nsikandavid.dev">
                     <button>About the Dev ↗</button>                    
                     </a>
+
+                    <a target='_blank' href="https://buymeacoffee.com/david05">
+                    <img src={buyMeCoffeeImage} alt="donate to dev" className='bmc-logo'/>                   
+                    </a>
             </div>
         </div>
         <header className="landing-page-header">
@@ -34,6 +40,10 @@ function LandingPage() {
                     
                     <a target='_blank' href="https://nsikandavid.dev">
                     <button>About The Dev ↗</button>                    
+                    </a>
+
+                    <a target='_blank' href="https://buymeacoffee.com/david05">
+                    <img src={buyMeCoffeeImage} alt="donate to dev" className='bmc-logo'/>                   
                     </a>
                 </div>
 
@@ -54,8 +64,11 @@ function LandingPage() {
             <button className='button-secondary'>Login</button>
             </Link>
 
-            <Link to="/app/signup">
-            <button className='button-primary'>Signup</button>
+            <Link to="/app">
+            <button className='button-primary'>
+                Get Started
+                <img src={rightArrowIcon} alt="right arrow" />
+                </button>
             </Link>                    
         </div>
 
