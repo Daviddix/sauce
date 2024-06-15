@@ -29,7 +29,12 @@
     font-size: 1.4rem;
     background-color: transparent;
     opacity: .7;
-    }
+    transition: ease-in .2s all;
+    -webkit-transition: ease-in .2s all;
+    -moz-transition: ease-in .2s all;
+    -ms-transition: ease-in .2s all;
+    -o-transition: ease-in .2s all;
+}
     
 .list-tab-container button.active{
     background-color: white;
