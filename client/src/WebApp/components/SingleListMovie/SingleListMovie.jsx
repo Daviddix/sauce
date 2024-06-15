@@ -6,7 +6,7 @@ import toast from "react-hot-toast"
 function SingleListMovie({movieName, movieReleaseDate, moviePoster, movieId, listId, getInformationAboutListFunction, listName, deleteList, listInfo}) {
     async function deleteMovieFromList(){
         try{
-            const rawFetch = await fetch(`https://sauce-backend.onrender.com/app/list/${listId}/m`,{
+            const rawFetch = await fetch(`http://localhost:3000/app/list/${listId}/m`,{
                 method : "DELETE",
                 body : JSON.stringify({movieId}),
                 credentials : "include",

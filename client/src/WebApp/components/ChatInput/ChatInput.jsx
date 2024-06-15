@@ -1,5 +1,6 @@
 import discoverIcon from "../../../assets/app assets/icons/discover-icon.svg";
 import sendIcon from "../../../assets/app assets/icons/airplane-icon.svg";
+import downIcon from "../../../assets/app assets/icons/down-icon.svg";
 import { set } from 'idb-keyval'
 
 import "./ChatInput.css";
@@ -92,6 +93,7 @@ function ChatInput() {
   return (
     <div className="chat-input">
       <div className="chat-input-inner">
+        <div className="top-buttons">
         <button
         onClick={()=>{
             setDisableInput(true)
@@ -101,6 +103,24 @@ function ChatInput() {
           Discover
           <img src={discoverIcon} alt="discover icon" />
         </button>
+
+        <div className="category-selector-container">
+          <div className="all-categories-container">
+            <h1 className="sub-sub-heading">Find</h1>
+
+            <hr />
+
+            <div className="categories">
+              <button className="active">Movies</button>
+              <button>TV Shows</button>
+              <button>Anime</button>
+            </div>
+          </div>
+
+          <button className="categories-button">Anime <img src={downIcon} alt="" /></button>
+        </div>
+
+        </div>
 
         <form
           onSubmit={(e) => {

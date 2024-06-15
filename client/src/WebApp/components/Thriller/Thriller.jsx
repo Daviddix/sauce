@@ -16,7 +16,7 @@ function Thriller() {
   async function getMovieThrillerData(){
     setThrillerFetchStatus("loading")
     try{
-      const rawFetch = await fetch(`https://sauce-backend.onrender.com/app/movie/${movieId}/video`)
+      const rawFetch = await fetch(`http://localhost:3000/app/movie/${movieId}/video`)
       const jsonFetch = await rawFetch.json()
 
       if(!rawFetch.ok){

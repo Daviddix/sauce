@@ -34,7 +34,7 @@ function MovieImages() {
   async function getMovieImages(){
     setImagesFetchStatus("loading")
     try{
-      const rawFetch = await fetch(`https://sauce-backend.onrender.com/app/movie/${movieId}/images`)
+      const rawFetch = await fetch(`http://localhost:3000/app/movie/${movieId}/images`)
       const jsonFetch = await rawFetch.json()
 
       if(!rawFetch.ok){

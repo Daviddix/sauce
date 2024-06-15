@@ -1,7 +1,7 @@
 import "./Sidebar.css"
 import ProfileContainer from "../ProfileContainer/ProfileContainer"
 import SidebarHeader from "../SidebarHeader/SidebarHeader"
-import SidebarListContainer from "../SidebarListContainer/SidebarListContainer"
+import MovieListContainer from "../MovieListContainer/MovieListContainer"
 import { useAtom } from "jotai"
 import { openSidebarAtom } from "../../globals/atom"
 import ListTab from "../ListTab/ListTab"
@@ -18,7 +18,7 @@ function Sidebar() {
 
         <ListTab listCategoryToShow={listCategoryToShow} setListCategoryToShow={setListCategoryToShow} />
 
-        <SidebarListContainer />
+        <MovieListContainer />
 
         <ProfileContainer />
       </div>

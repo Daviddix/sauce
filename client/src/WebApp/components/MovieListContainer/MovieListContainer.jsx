@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react"
-import "./SidebarListContainer.css"
+import "./MovieListContainer.css"
 import SingleSidebarList from "../SingleSidebarList/SingleSidebarList"
 import SidebarListError from "../SidebarListError/SidebarListError"
 import { useAtom } from "jotai"
 import { activeListIdAtom, isSignedInAtom, listIdToDeleteAtom, refreshListAtom } from "../../globals/atom"
 import { useNavigate } from "react-router-dom"
 
-function SidebarListContainer() {
+function MovieListContainer() {
     const [listFetchStatus, setListFetchStatus] = useState("loading")
     const [lists, setLists] = useState([])
     const [filteredList, setFilteredList] = useState([])
@@ -21,7 +21,7 @@ function SidebarListContainer() {
         setListFetchStatus("loading")
         console.log("here")
         try{
-        const rawFetch = await fetch("https://sauce-backend.onrender.com/app/list", {
+        const rawFetch = await fetch("http://localhost:3000/app/list", {
             credentials: "include"
         })
         const fetchInJson = await rawFetch.json()
@@ -44,7 +44,7 @@ function SidebarListContainer() {
 
     async function getListsByUserWithoutLoading(){
       try{
-      const rawFetch = await fetch("https://sauce-backend.onrender.com/app/list", {
+      const rawFetch = await fetch("http://localhost:3000/app/list", {
           credentials: "include"
       })
       const fetchInJson = await rawFetch.json()
@@ -89,7 +89,6 @@ function SidebarListContainer() {
 
     useEffect(()=>{
       if(!isSignedIn){
-        console.log("not fetching")
         setListFetchStatus("completed")
         setLists([])
         return
@@ -143,4 +142,4 @@ function SidebarListContainer() {
   )
 }
 
-export default SidebarListContainer
+export default MovieListContainer

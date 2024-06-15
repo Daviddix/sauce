@@ -41,7 +41,7 @@ function AddToListModal({setShowListModal}) {
     async function getListsByUser(){
         setListFetchStatus("loading")
         try{
-        const rawFetch = await fetch("https://sauce-backend.onrender.com/app/list", {
+        const rawFetch = await fetch("http://localhost:3000/app/list", {
             credentials: "include"
         })
         const fetchInJson = await rawFetch.json()
@@ -68,7 +68,7 @@ function AddToListModal({setShowListModal}) {
           )[0]
           console.log(movieToAddToList)
           const rawFetch = await fetch(
-            `https://sauce-backend.onrender.com/app/list/${activeListId}`,
+            `http://localhost:3000/app/list/${activeListId}`,
             {
               credentials: "include",
               body: JSON.stringify({movieData : movieToAddToList}),

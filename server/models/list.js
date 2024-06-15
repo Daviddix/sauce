@@ -20,7 +20,11 @@ const listSchema = new mongoose.Schema({
     listAuthor : {
         type : mongoose.Schema.Types.ObjectId, 
         ref : "Users"
-    } 
+    },
+    
+    category : {
+        type : String
+    }
 })
 
 const listModel = mongoose.model("Lists", listSchema)
