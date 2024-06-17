@@ -12,7 +12,7 @@ import { useEffect, useState } from "react"
 import { formatTime } from "../../globals/others"
 import MovieDetailsSkeleton from "../SkeletonLoaders/MovieDetailsSkeleton/MovieDetailsSkeleton"
 import AddToListModal from "../../components/AddToListModal/AddToListModal"
-import { isSignedInAtom, mainLinkForMovieAtom, movieIdToAddToListAtom, movieMatchPercentageAtom, moviesAtom } from "../../globals/atom"
+import { isSignedInAtom, mainLinkForMovieAtom, movieIdToAddToListAtom, movieMatchPercentageAtom, allMoviesAtom } from "../../globals/atom"
 import { useAtom } from "jotai"
 import toast, { Toaster } from "react-hot-toast"
 import TopMovieDetailsError from "../TopMovieDetailsError/TopMovieDetailsError"
@@ -26,7 +26,7 @@ function TopMovieDetails() {
     const [movieIdToAddToList, setMovieIdToAddToList] = useAtom(movieIdToAddToListAtom)
     const [movieMatchPercentage, setMovieMatchPercentage] = useAtom(movieMatchPercentageAtom)
     const [mainMovieLink, setMainMovieLink] = useAtom(mainLinkForMovieAtom)
-    const [allMovies, setAllMovies] = useAtom(moviesAtom)
+    const [allMovies, setAllMovies] = useAtom(allMoviesAtom)
     const [isSignedIn, setIsSignedIn] = useAtom(isSignedInAtom)
     const [showNotAuthenticatedModal, setShowNotAuthenticatedModal] = useState(false)
     const navigate = useNavigate()

@@ -7,7 +7,8 @@ export const inputValueFromEditAtom = atom("")
 export const gptToRefreshAtom = atom(0)
 export const messagesAtom = atom([])
 export const movieIdToAddToListAtom = atom(0)
-export const moviesAtom = atom([])
+export const allMoviesAtom = atom([])
+export const allTvShowsAtom = atom([])
 export const showLogoutModalAtom = atom(false)
 
 //auth atoms
@@ -19,6 +20,11 @@ export const refreshUserDetailsAtom = atom(false)
 //movie details atoms
 export const movieMatchPercentageAtom = atom(0)
 export const mainLinkForMovieAtom = atom("")
+
+//anime details atom
+export const animeMatchPercentageAtom = atom(0)
+export const animeIdToAddToListAtom = atom(0)
+export const allAnimeAtom = atom([])
 
 //list atoms
 export const activeListIdAtom = atom(0)

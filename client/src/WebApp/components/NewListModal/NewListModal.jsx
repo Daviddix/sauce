@@ -2,12 +2,12 @@ import addListIcon from "../../../assets/app assets/icons/add-list-icon.svg"
 import closeIcon from "../../../assets/app assets/icons/close-icon.svg"
 
 import "./NewListModal.css"
-import {moviesAtom, movieIdToAddToListAtom, userInfoAtom, refreshListAtom} from "../../globals/atom"
+import {allMoviesAtom, movieIdToAddToListAtom, userInfoAtom, refreshListAtom} from "../../globals/atom"
 import { useEffect, useState } from "react"
 import { useAtom } from "jotai"
 
 function NewListModal({setShowAddNewListModal, notifyForMovieAddedToList, notifyForAddToListError, setShowListModal}) {
-    const [movies, setMovies] = useAtom(moviesAtom)
+    const [movies, setMovies] = useAtom(allMoviesAtom)
     const [id, setId] = useAtom(movieIdToAddToListAtom)
     const [userInfo, setUserInfo] = useAtom(userInfoAtom)
     const [refreshList, setRefreshList] = useAtom(refreshListAtom)

@@ -1,96 +1,96 @@
 import { useAtom } from "jotai"
-import SingleGPTResponse from "../SingleGPTResponse/SingleGPTResponse"
 import GPTResponseSkeleton from "../SkeletonLoaders/GPTResponseSkeleton/GPTResponseSkeleton"
 import { set,get } from 'idb-keyval'
-import "./GPTResponse.css" 
 
 import {useEffect, useState} from "react"
-import { disableInputAtom, gptToRefreshAtom, messagesAtom,allMoviesAtom } from "../../globals/atom"
+import { disableInputAtom, gptToRefreshAtom, messagesAtom,  allAnimeAtom } from "../../globals/atom"
 import GPTResponseError from "../GPTResponseError/GPTResponseError"
 import { Toaster } from "react-hot-toast"
+import SingleGPTResponseAnime from "../SingleGPTResponseAnime/SingleGPTResponseAnime"
 
-function GPTResponse({inputValue, id}) {
-    const [movies, setMovies] = useState([])
-    const [allMovies, setAllMovies] = useAtom(allMoviesAtom)
-    const [movieFetchStatus, setMovieFetchStatus] = useState("loading")
-    const [messages, setMessages] = useAtom(messagesAtom)
+function GPTResponseAnime({inputValue, id}) {
+    const [anime, setAnime] = useState([])
+    const [animeFetchStatus, setAnimeFetchStatus] = useState("loading")
     const [reasonForError, setReasonForError] = useState("unknown")
+    const [allAnime, setAllAnime] = useAtom(allAnimeAtom)
+    const [messages, setMessages] = useAtom(messagesAtom)
     const [disableInput, setDisableInput] = useAtom(disableInputAtom)
-    const [gptToRefresh, setGptToRefresh] = useAtom(gptToRefreshAtom)
+    const [gptToRefresh, setGptToRefresh] = useAtom(gptToRefreshAtom) 
 
     useEffect(()=>{
-        makeRequestForMovieData(inputValue, id)
+        makeRequestForAnimeData(inputValue, id)
     }, [])
 
     useEffect(()=>{
         if(gptToRefresh == 0){
             
         }else if(gptToRefresh == id){
-            makeRequestWithoutIndexedDb(inputValue, id)
+            makeRequestForAnimeDataWithoutIndexedDb(inputValue, id)
             setGptToRefresh(0)
         }
     }, [gptToRefresh])
 
-    async function makeRequestForMovieData(movieDescription, idOfResponse) {
-      setMovieFetchStatus("loading")
+
+    async function makeRequestForAnimeData(animeDescription, idOfResponse) {
+      setAnimeFetchStatus("loading")
       setDisableInput(true)
       try {
-        const moviesFromIndexedDb = await get(idOfResponse)
-        if (typeof moviesFromIndexedDb == "object" && moviesFromIndexedDb.length > 0) {
-            setMovies(moviesFromIndexedDb)
-            setAllMovies((prev) => [...prev, ...moviesFromIndexedDb])
-            setMovieFetchStatus("completed")
+        const animeFromIndexedDb = await get(idOfResponse)
+        if (typeof animeFromIndexedDb == "object" && animeFromIndexedDb.length > 0) {
+            setAnime(animeFromIndexedDb)
+            setAllAnime((prev) => [...prev, ...animeFromIndexedDb])
+            setAnimeFetchStatus("completed")
             setDisableInput(false)
         } else {
-          const rawFetch = await fetch("https://localhost:3000/app/movie", {
+          const rawFetch = await fetch("http://localhost:3000/app/anime", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify({ movieDescription }),
+            body: JSON.stringify({ animeDescription }),
           })
           const jsonFetchData = await rawFetch.json()
           if (!rawFetch.ok) {
             throw new Error({ cause: "test" })
           }
-          setMovies(jsonFetchData)
-          setAllMovies((prev) => [...prev, ...jsonFetchData])
+          setAnime(jsonFetchData)
+          setAllAnime((prev) => [...prev, ...jsonFetchData])
           set(idOfResponse, jsonFetchData)
-          setMovieFetchStatus("completed")
+          setAnimeFetchStatus("completed")
           setDisableInput(false)
         }
       } catch (err) {
         setReasonForError(err.cause ? err.cause : "Network Error")
-        setMovieFetchStatus("error")
+        setAnimeFetchStatus("error")
         setDisableInput(false)
       }
     }
 
-    async function makeRequestWithoutIndexedDb(movieDescription, idOfResponse){
-        setMovieFetchStatus("loading")
+    async function makeRequestForAnimeDataWithoutIndexedDb(animeDescription, idOfResponse){
+        setAnimeFetchStatus("loading")
         setDisableInput(true)
         try{
-        const rawFetch = await fetch("https://localhost:3000/app/movie",
+        const rawFetch = await fetch("http://localhost:3000/app/anime",
         {
             method : "POST",
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({movieDescription}),
+            body: JSON.stringify({animeDescription}),
         })
         const jsonFetchData = await rawFetch.json()
         if(!rawFetch.ok){
             throw new Error({cause : "test"})
         }
-        setMovies(jsonFetchData)
-        setAllMovies((prev) => [...prev, ...jsonFetchData])
+        setAnime(jsonFetchData)
+        setAllAnime((prev) => [...prev, ...jsonFetchData])
         set(idOfResponse, jsonFetchData)
-        setMovieFetchStatus("completed")
+        setAnimeFetchStatus("completed")
         setDisableInput(false)
     }
          catch(err){
             setReasonForError(err.cause? err.cause : "Network Error")
-            setMovieFetchStatus("error")
+            setAnimeFetchStatus("error")
             setDisableInput(false)
         }
     }
@@ -99,18 +99,18 @@ function GPTResponse({inputValue, id}) {
         const {key} = messages.filter((message)=> message.key == id && message.from == "GPT")[0]
        setGptToRefresh(key)
     }
-
-    const mappedMovies = movies.map(({movieName, matchPercent, movieId, movieReleaseDate, movieOverview, movieRating, moviePoster})=>{
+    
+    const mappedAnime = anime.map(({animeName, matchPercent, animeId, animeReleaseDate, animeOverview, animeRating, animePoster})=>{
     return (
-    <SingleGPTResponse 
-    key={movieId}
-    movieName={movieName} 
+    <SingleGPTResponseAnime
+    key={animeId}
+    animeName={animeName} 
     matchPercent={matchPercent} 
-    movieId={movieId} 
-    movieReleaseDate={movieReleaseDate} 
-    movieOverview={movieOverview} 
-    movieRating={movieRating} 
-    moviePoster={moviePoster} 
+    animeId={animeId} 
+    animeReleaseDate={animeReleaseDate} 
+    animeOverview={animeOverview} 
+    animeRating={animeRating} 
+    animePoster={animePoster} 
     />)
     })
 
@@ -128,13 +128,13 @@ function GPTResponse({inputValue, id}) {
         <Toaster toastOptions={{duration : 4000}} />
 
         <h1>Top Results</h1>
-        {movieFetchStatus === "loading" && skeletons}    
-        {movieFetchStatus === "completed" && mappedMovies}
-        {movieFetchStatus === "error" && <GPTResponseError 
+        {animeFetchStatus === "loading" && skeletons}    
+        {animeFetchStatus === "completed" && mappedAnime}
+        {animeFetchStatus === "error" && <GPTResponseError 
         reasonForError={reasonForError}
         refreshFromError={refreshFromError} />}        
     </div>
   )
 }
 
-export default GPTResponse
+export default GPTResponseAnime

@@ -9,7 +9,7 @@ import NewListModal from "../../components/NewListModal/NewListModal"
 import ListSkeleton from "../SkeletonLoaders/ListSkeleton/ListSkeleton"
 import AddToListModalError from "../AddToListModalError/AddToListModalError"
 import { useAtom } from "jotai"
-import { movieIdToAddToListAtom, moviesAtom, refreshListAtom } from "../../globals/atom"
+import { movieIdToAddToListAtom, allMoviesAtom, refreshListAtom } from "../../globals/atom"
 import toast from 'react-hot-toast'
 
 function AddToListModal({setShowListModal}) {
@@ -19,7 +19,7 @@ function AddToListModal({setShowListModal}) {
     const [activeListId, setActiveListId] = useState(0)
     const [movieIdToAddToList, setMovieIdToAddToList] = useAtom(movieIdToAddToListAtom)
     const [refreshList, setRefreshList] = useAtom(refreshListAtom)
-    const [movies, setMovies] = useAtom(moviesAtom)
+    const [movies, setMovies] = useAtom(allMoviesAtom)
     const [addingToList, setAddingToList] = useState(false)
 
     const mappedLists = lists.map(({listName, listCoverImage, moviesInList, _id})=>{

@@ -1,16 +1,17 @@
 const express = require("express")
+const { getAnimeThatMatchPrompt, getInfoAboutSpecificAnime, getThrillerForSpecificAnime, getImagesForSpecificAnime, getRelatedAnime } = require("../controllers/AnimeController")
 
 
 animeRouter = express.Router()
 
-// animeRouter.post("/", getMoviesThatMatchPrompt)
+animeRouter.post("/", getAnimeThatMatchPrompt)
 
-// animeRouter.get("/:animeId", getInfoAboutSpecificMovie)
+animeRouter.get("/:animeId", getInfoAboutSpecificAnime)
 
-// animeRouter.get("/:animeId/video", getThrillerForSpecificMovie)
+animeRouter.get("/:animeId/video", getThrillerForSpecificAnime)
 
-// animeRouter.get("/:animeId/images", getImagesForSpecificMovie)
+animeRouter.get("/:animeId/images", getImagesForSpecificAnime)
 
-// animeRouter.get("/:animeId/related", getRelatedMovies)
+animeRouter.get("/:animeId/related", getRelatedAnime)
 
 module.exports = animeRouter
