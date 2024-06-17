@@ -1,0 +1,116 @@
+.gpt-response-container > div{
+    margin: 0 0 3rem 0;
+}
+
+.tv-show-image > img{
+    margin: 0 0 1rem 0;
+    width: 100%;
+    aspect-ratio: 9/10;
+    object-fit: cover;
+    border-radius: 12px;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    -ms-border-radius: 12px;
+    -o-border-radius: 12px;
+}
+
+.tv-show-image-and-details .tv-show-image{
+    position: relative;
+}
+
+.tv-show-image .accuracy-tooltip{
+    position: absolute;
+    right:1rem;
+    top:-1.5rem;
+    width: 4.3rem;
+    height: 2.8rem;
+    border-radius: 0.4rem;
+    border: 1px solid rgba(176, 217, 246, 0.20);
+    background: #E9F6FF;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.57);
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-border-radius: 0.4rem;
+    -moz-border-radius: 0.4rem;
+    -ms-border-radius: 0.4rem;
+    -o-border-radius: 0.4rem;
+}
+
+.accuracy-tooltip > p{
+    font-family: clashG;
+    font-size: 1.6rem;
+    font-style: normal;
+    font-weight: 500;
+    letter-spacing: -0.042rem;
+}
+
+.accuracy-tooltip .high{
+    color: #0C9733;
+}
+
+.accuracy-tooltip .med{
+    color: #97820c;
+}
+
+.accuracy-tooltip .low{
+    color: #971c0c;
+}
+
+.tv-show-details .heading-and-rating{
+    display: flex;
+    margin: 0 0 1rem 0;
+    align-items: center;
+    justify-content: start;
+    flex-wrap: wrap;
+}
+
+.heading-and-rating small{
+    font-size: 1.2rem;
+    font-family: manrope;
+    font-weight: 500;
+}
+
+.tv-show-details .tv-show-description{
+    margin: 0 0 1rem 0;
+}
+
+.tv-show-details .tv-show-options{
+    display: grid;
+    gap: 1.5rem 1rem;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.tv-show-options button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: .5rem;
+}
+
+.tv-show-options .primary-button{
+    grid-column: 1/4;
+}
+
+@media screen and (min-width:1000px) {
+    .gpt-response-container .tv-show-image-and-details{
+        display:grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 2rem;
+    }
+
+    .tv-show-image-and-details .tv-show-details{
+        display:flex;
+        flex-direction: column;
+    }
+
+    .tv-show-image > img{
+        margin: 0 0 0rem 0;
+        width: 100%;
+        aspect-ratio: 8/9;
+    }
+
+    .tv-show-details .tv-show-description{
+        flex:1;
+    }
+}

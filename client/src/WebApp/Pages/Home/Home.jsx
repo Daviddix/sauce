@@ -10,6 +10,7 @@ import GoToBottomButton from '../../components/GoToBottomButton/GoToBottomButton
 import { get } from 'idb-keyval'
 import LogoutModal from "../../components/LogoutModal/LogoutModal"
 import GPTResponseAnime from '../../components/GPTResponseAnime/GPTResponseAnime'
+import GPTResponseTvShows from '../../components/GPTResponseTVShows/GPTResponseTVShows'
 
 function Home() {
   const [isFirstTimeUser, setIsFirstTimeUser] = useState(()=> JSON.parse(localStorage.getItem("first-time-user")))
@@ -38,7 +39,7 @@ function Home() {
             <GPTResponseAnime key={id} id={key} inputValue={inputValue} searchCategory={searchCategory} />
             :
             searchCategory == "TV Shows"?
-            <GPTResponseAnime key={id} id={key} inputValue={inputValue} searchCategory={searchCategory} />
+            <GPTResponseTvShows key={id} id={key} inputValue={inputValue} searchCategory={searchCategory} />
               : null
     )
   })

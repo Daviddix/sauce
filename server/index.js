@@ -13,6 +13,7 @@ const userRouter = require("./routes/user")
 const movieRouter = require("./routes/movies")
 const listRouter = require("./routes/list")
 const animeRouter = require("./routes/anime")
+const tvRouter = require("./routes/tv")
 
 //server configs
 const whitelist = ["https://use-sauce.vercel.app", "https://sauce-beta.vercel.app/", "http://localhost:5173"]
@@ -33,11 +34,11 @@ app.use(express.json({limit: '50mb'}))
 app.use(express.urlencoded({limit: '50mb'}))
 app.use(cookieParser())
 
-
 //routes
 app.use("/app/user", userRouter)
 app.use("/app/movie", movieRouter)
 app.use("/app/anime", animeRouter)
+app.use("/app/tv", tvRouter)
 app.use("/app/list", listRouter) 
 
 
