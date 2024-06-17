@@ -6,7 +6,7 @@ import "./ChatInput.css";
 
 import { useEffect, useRef, useState } from "react";
 import { useAtom } from "jotai";
-import { disableInputAtom, inputValueFromEditAtom, messagesAtom } from "../../globals/atom";
+import { disableInputAtom, inputValueFromEditAtom, messagesAtom, searchCategoryAtom } from "../../globals/atom";
 import { generateUniqueId, randomMovieDescription } from "../../globals/others";
 import Categories from "../Categories/Categories";
 
@@ -16,6 +16,7 @@ function ChatInput() {
   const [messages, setMessages] = useAtom(messagesAtom)
   const [inputValueFromEdit, setInputValueFromEdit] = useAtom(inputValueFromEditAtom)
   const [h, setH] = useState(48)
+  const [searchCategory, setSearchCategory] = useAtom(searchCategoryAtom)
   
   const randomIndex = Math.ceil(Math.random() * randomMovieDescription.length - 1)
 
@@ -28,7 +29,7 @@ function ChatInput() {
 
   const inputRef = useRef(null)
 
-  function handleMovieDescriptionSubmit(description) {
+  function handleMovieDescriptionSubmit(description, category) {
     if(description.trim() == "") return
     setMessages((prev) => {
       const newUserPrompt = {
@@ -36,6 +37,7 @@ function ChatInput() {
         key : Date.now(),
         id : generateUniqueId(),
         value: description,
+        searchCategory: category
       };
 
       const loadingGPTResponse = {
@@ -44,6 +46,7 @@ function ChatInput() {
         id : generateUniqueId(),
         key : Date.now(),
         value: "",
+        searchCategory: category
       };
       set('mess', [...prev, newUserPrompt, loadingGPTResponse])
       return [...prev, newUserPrompt, loadingGPTResponse];
@@ -51,13 +54,14 @@ function ChatInput() {
     setTypedDescription("");
   }
 
-  function handleDiscover(description){
+  function handleDiscover(description, category){
     setMessages((prev) => {
         const newUserPrompt = {
           from: "user",
           key : Date.now(),
           id : generateUniqueId(),
           value: description,
+          searchCategory: category
         };
   
         const loadingGPTResponse = {
@@ -66,6 +70,7 @@ function ChatInput() {
           id : generateUniqueId(),
           inputValue: description,
           value: "",
+          searchCategory: category
         };
         set('mess', [...prev, newUserPrompt, loadingGPTResponse])
         return [...prev, newUserPrompt, loadingGPTResponse];
@@ -97,7 +102,7 @@ function ChatInput() {
         <button
         onClick={()=>{
             setDisableInput(true)
-            handleDiscover(randomMovieDescription[randomIndex])
+            handleDiscover(randomMovieDescription[randomIndex], searchCategory)
         }}
         className="discover">
           Discover
@@ -111,7 +116,7 @@ function ChatInput() {
         <form
           onSubmit={(e) => {
             e.preventDefault();
-            handleMovieDescriptionSubmit(typedDescription)
+            handleMovieDescriptionSubmit(typedDescription, searchCategory)
           }}
           className="home-input search-input"
           style={{

@@ -9,14 +9,14 @@ import { disableInputAtom, gptToRefreshAtom, messagesAtom,moviesAtom } from "../
 import GPTResponseError from "../GPTResponseError/GPTResponseError"
 import { Toaster } from "react-hot-toast"
 
-function GPTResponse({inputValue, id}) {
-    const [movies, setMovies] = useState([])
-    const [allMovies, setAllMovies] = useAtom(moviesAtom)
-    const [movieFetchStatus, setMovieFetchStatus] = useState("loading")
-    const [messages, setMessages] = useAtom(messagesAtom)
+function GPTResponse({inputValue, id, searchCategory}) {
+    const [data, setData] = useState([])
+    const [dataFetchStatus, setDataFetchStatus] = useState("loading")
     const [reasonForError, setReasonForError] = useState("unknown")
+    const [allMovies, setAllMovies] = useAtom(moviesAtom)
+    const [messages, setMessages] = useAtom(messagesAtom)
     const [disableInput, setDisableInput] = useAtom(disableInputAtom)
-    const [gptToRefresh, setGptToRefresh] = useAtom(gptToRefreshAtom)
+    const [gptToRefresh, setGptToRefresh] = useAtom(gptToRefreshAtom) 
 
     useEffect(()=>{
         makeRequestForMovieData(inputValue, id)
@@ -32,14 +32,14 @@ function GPTResponse({inputValue, id}) {
     }, [gptToRefresh])
 
     async function makeRequestForMovieData(movieDescription, idOfResponse) {
-      setMovieFetchStatus("loading")
+      setDataFetchStatus("loading")
       setDisableInput(true)
       try {
         const moviesFromIndexedDb = await get(idOfResponse)
         if (typeof moviesFromIndexedDb == "object" && moviesFromIndexedDb.length > 0) {
-            setMovies(moviesFromIndexedDb)
-            setAllMovies(moviesFromIndexedDb)
-            setMovieFetchStatus("completed")
+            setData(moviesFromIndexedDb)
+            setAllMovies((prev) => [...prev, ...moviesFromIndexedDb])
+            setDataFetchStatus("completed")
             setDisableInput(false)
         } else {
           const rawFetch = await fetch("http://localhost:3000/app/movie", {
@@ -53,21 +53,21 @@ function GPTResponse({inputValue, id}) {
           if (!rawFetch.ok) {
             throw new Error({ cause: "test" })
           }
-          setMovies(jsonFetchData)
+          setData(jsonFetchData)
           setAllMovies((prev) => [...prev, ...jsonFetchData])
           set(idOfResponse, jsonFetchData)
-          setMovieFetchStatus("completed")
+          setDataFetchStatus("completed")
           setDisableInput(false)
         }
       } catch (err) {
         setReasonForError(err.cause ? err.cause : "Network Error")
-        setMovieFetchStatus("error")
+        setDataFetchStatus("error")
         setDisableInput(false)
       }
     }
 
     async function makeRequestWithoutIndexedDb(movieDescription, idOfResponse){
-        setMovieFetchStatus("loading")
+        setDataFetchStatus("loading")
         setDisableInput(true)
         try{
         const rawFetch = await fetch("http://localhost:3000/app/movie",
@@ -82,15 +82,15 @@ function GPTResponse({inputValue, id}) {
         if(!rawFetch.ok){
             throw new Error({cause : "test"})
         }
-        setMovies(jsonFetchData)
+        setData(jsonFetchData)
         setAllMovies((prev) => [...prev, ...jsonFetchData])
         set(idOfResponse, jsonFetchData)
-        setMovieFetchStatus("completed")
+        setDataFetchStatus("completed")
         setDisableInput(false)
     }
          catch(err){
             setReasonForError(err.cause? err.cause : "Network Error")
-            setMovieFetchStatus("error")
+            setDataFetchStatus("error")
             setDisableInput(false)
         }
     }
@@ -100,7 +100,7 @@ function GPTResponse({inputValue, id}) {
        setGptToRefresh(key)
     }
 
-    const mappedMovies = movies.map(({movieName, matchPercent, movieId, movieReleaseDate, movieOverview, movieRating, moviePoster})=>{
+    const mappedMovies = data.map(({movieName, matchPercent, movieId, movieReleaseDate, movieOverview, movieRating, moviePoster})=>{
     return (
     <SingleGPTResponse 
     key={movieId}
@@ -128,9 +128,9 @@ function GPTResponse({inputValue, id}) {
         <Toaster toastOptions={{duration : 4000}} />
 
         <h1>Top Results</h1>
-        {movieFetchStatus === "loading" && skeletons}    
-        {movieFetchStatus === "completed" && mappedMovies}
-        {movieFetchStatus === "error" && <GPTResponseError 
+        {dataFetchStatus === "loading" && skeletons}    
+        {dataFetchStatus === "completed" && mappedMovies}
+        {dataFetchStatus === "error" && <GPTResponseError 
         reasonForError={reasonForError}
         refreshFromError={refreshFromError} />}        
     </div>

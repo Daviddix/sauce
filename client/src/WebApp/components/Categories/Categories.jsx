@@ -18,18 +18,21 @@ function Categories() {
               <button 
               onClick={()=>{
                 setSearchCategory("Movies")
+                setShowCategoryPopup(false)
               }}
               className={searchCategory == "Movies"? "active" : ""}>Movies</button>
 
               <button 
               onClick={()=>{
                 setSearchCategory("TV Shows")
+                setShowCategoryPopup(false)
               }}
               className={searchCategory == "TV Shows"? "active" : ""}>TV Shows</button>
 
               <button 
               onClick={()=>{
                 setSearchCategory("Anime")
+                setShowCategoryPopup(false)
               }}
               className={searchCategory == "Anime"? "active" : ""}>Anime</button>
             </div>
@@ -39,7 +42,7 @@ function Categories() {
           onClick={()=>{
             setShowCategoryPopup((prev)=> !prev)
           }}
-          className={showCategoryPopup?"categories-button rotate" : "categories-button"}>Anime <img src={downIcon} alt="" /></button>
+          className={showCategoryPopup?"categories-button rotate" : "categories-button"}>{searchCategory} <img src={downIcon} alt="" /></button>
         </div>
   )
 }

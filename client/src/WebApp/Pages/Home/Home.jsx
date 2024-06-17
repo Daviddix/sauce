@@ -25,12 +25,12 @@ function Home() {
       setActiveListId(0)
   }, [isFirstTimeUser])
 
-  const mappedMessages = messages.map(({from, value, inputValue, key, id})=>{
+  const mappedMessages = messages.map(({from, value, inputValue, key, id, searchCategory})=>{
     return (
       from === "user" ? 
-      <UserPrompt key={id} id={key} prompt={value} />  
+      <UserPrompt key={id} id={key} prompt={value} searchCategory={searchCategory} />  
       : 
-      <GPTResponse key={id} id={key} inputValue={inputValue} />
+      <GPTResponse key={id} id={key} inputValue={inputValue} searchCategory={searchCategory} />
     )
   })
 
