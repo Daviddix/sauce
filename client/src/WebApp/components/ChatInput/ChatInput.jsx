@@ -1,6 +1,5 @@
 import discoverIcon from "../../../assets/app assets/icons/discover-icon.svg";
 import sendIcon from "../../../assets/app assets/icons/airplane-icon.svg";
-import downIcon from "../../../assets/app assets/icons/down-icon.svg";
 import { set } from 'idb-keyval'
 
 import "./ChatInput.css";
@@ -9,6 +8,7 @@ import { useEffect, useRef, useState } from "react";
 import { useAtom } from "jotai";
 import { disableInputAtom, inputValueFromEditAtom, messagesAtom } from "../../globals/atom";
 import { generateUniqueId, randomMovieDescription } from "../../globals/others";
+import Categories from "../Categories/Categories";
 
 function ChatInput() {
   const [typedDescription, setTypedDescription] = useState("")
@@ -104,21 +104,7 @@ function ChatInput() {
           <img src={discoverIcon} alt="discover icon" />
         </button>
 
-        <div className="category-selector-container">
-          <div className="all-categories-container">
-            <h1 className="sub-sub-heading">Find</h1>
-
-            <hr />
-
-            <div className="categories">
-              <button className="active">Movies</button>
-              <button>TV Shows</button>
-              <button>Anime</button>
-            </div>
-          </div>
-
-          <button className="categories-button">Anime <img src={downIcon} alt="" /></button>
-        </div>
+        <Categories />
 
         </div>
 
