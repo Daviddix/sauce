@@ -38,7 +38,7 @@ function GPTResponse({inputValue, id}) {
         const moviesFromIndexedDb = await get(idOfResponse)
         if (typeof moviesFromIndexedDb == "object" && moviesFromIndexedDb.length > 0) {
             setMovies(moviesFromIndexedDb)
-            setAllMovies(moviesFromIndexedDb)
+            setAllMovies((prev) => [...prev, ...moviesFromIndexedDb])
             setMovieFetchStatus("completed")
             setDisableInput(false)
         } else {
