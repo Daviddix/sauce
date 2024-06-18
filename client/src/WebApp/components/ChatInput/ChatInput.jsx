@@ -7,7 +7,7 @@ import "./ChatInput.css";
 import { useEffect, useRef, useState } from "react";
 import { useAtom } from "jotai";
 import { disableInputAtom, inputValueFromEditAtom, messagesAtom, searchCategoryAtom } from "../../globals/atom";
-import { generateUniqueId, randomMovieDescription } from "../../globals/others";
+import { generateUniqueId, randomMovieDescription, randomAnimeDescription, randomTvShowDescription } from "../../globals/others";
 import Categories from "../Categories/Categories";
 
 function ChatInput() {
@@ -76,7 +76,7 @@ function ChatInput() {
         return [...prev, newUserPrompt, loadingGPTResponse];
       });
       setTypedDescription("");
-  }
+  } 
   
   function handleInputHeightChange(e){
     console.log(e.target.scrollHeight)
@@ -102,8 +102,17 @@ function ChatInput() {
         <button
         onClick={()=>{
             setDisableInput(true)
-            handleDiscover(randomMovieDescription[randomIndex], searchCategory)
-        }}
+            if(searchCategory == "Anime"){
+              return handleDiscover(randomAnimeDescription[randomIndex], searchCategory)
+            }else if(searchCategory == "TV Shows"){
+              return handleDiscover(randomTvShowDescription[randomIndex], searchCategory)
+            }else if(searchCategory == "Movies"){
+              return handleDiscover(randomMovieDescription[randomIndex], searchCategory)
+            }else{
+              alert("check your category setter")
+              setDisableInput(false)
+            }
+                    }}
         className="discover">
           Discover
           <img src={discoverIcon} alt="discover icon" />

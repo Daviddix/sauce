@@ -36,6 +36,7 @@ function GPTResponseAnime({inputValue, id}) {
       setDisableInput(true)
       try {
         const animeFromIndexedDb = await get(idOfResponse)
+        console.log(animeFromIndexedDb)
         if (typeof animeFromIndexedDb == "object" && animeFromIndexedDb.length > 0) {
             setAnime(animeFromIndexedDb)
             setAllAnime((prev) => [...prev, ...animeFromIndexedDb])
@@ -60,6 +61,7 @@ function GPTResponseAnime({inputValue, id}) {
           setDisableInput(false)
         }
       } catch (err) {
+        console.log(err)
         setReasonForError(err.cause ? err.cause : "Network Error")
         setAnimeFetchStatus("error")
         setDisableInput(false)

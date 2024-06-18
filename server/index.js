@@ -26,7 +26,7 @@ const corsOptions = {
     }
   },
   credentials : true 
-}
+} 
 
 //middlewares
 app.use(cors(corsOptions))

@@ -4,7 +4,7 @@ const { getTvShowsThatMatchPrompt, getInfoAboutSpecificTvShow, getThrillerForSpe
 
 tvRouter = express.Router()
 
-tvRouter.post("/", getTvShowsThatMatchPrompt)
+tvRouter.post("/", getTvShowsThatMatchPrompt) 
 
 tvRouter.get("/:tvShowId", getInfoAboutSpecificTvShow)
 

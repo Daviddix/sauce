@@ -6,7 +6,7 @@ import { useAtom } from "jotai"
 import { inputValueFromEditAtom, messagesAtom, gptToRefreshAtom, userInfoAtom, disableInputAtom } from "../../globals/atom"
 
 
-function UserPrompt({prompt, id}) {
+function UserPrompt({prompt, id, searchCategory}) {
   const mainDivRef = useRef(null)
   const [inputValueFromEdit, setInputValueFromEdit] = useAtom(inputValueFromEditAtom)
   const [messages, setMessages] = useAtom(messagesAtom)
@@ -24,7 +24,7 @@ function UserPrompt({prompt, id}) {
       {!userInfo.profilePicture && <div className="fake-img"></div>}
 
       <div className="prompt-text-and-edit">
-        <p className="sub-body-style">{prompt}</p>
+        <p className="sub-body-style">{prompt}<small>{searchCategory}</small></p>
 
         
         <button

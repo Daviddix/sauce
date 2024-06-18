@@ -65,6 +65,7 @@ async function getTvShowsThatMatchPrompt(req, res){
       const tmdbData = await tmdbResponse.json();
 
       const tvShowInfo = tmdbData.results[0];
+       
       return {
         tvShowName: tvShowInfo.name,
         matchPercent: tvShowMatch.matchPercent,
