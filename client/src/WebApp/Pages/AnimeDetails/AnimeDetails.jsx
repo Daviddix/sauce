@@ -2,6 +2,7 @@ import "./AnimeDetails.css"
 import TopAnimeDetails from "../../components/TopAnimeDetails/TopAnimeDetails"
 import { useEffect } from "react"
 import { useParams } from "react-router-dom"
+import Thriller from "../../components/Thriller/Thriller"
 
 function AnimeDetails() {
   const {animeId} = useParams()
@@ -17,16 +18,16 @@ function AnimeDetails() {
     <main className="anime-details-layout">
         <TopAnimeDetails />
 
-        {/* <div className="other-anime-details">
-            <Thriller />
+        <div className="other-anime-details">
+            <Thriller page="Anime" />
 
-            <MovieImages />
+            {/* <MovieImages />
 
             
             <More />
 
-            <RelatedMovies />
-        </div> */}
+            <RelatedMovies /> */}
+        </div>
     </main>
   )
 }

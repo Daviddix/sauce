@@ -105,7 +105,7 @@ async function getInfoAboutSpecificAnime(req, res){
 async function getThrillerForSpecificAnime(req, res){
     try{
         const animeId = Number(req.params.animeId)
-        const url = `https://api.themoviedb.org/3/movie/${animeId}/videos?api_key=${tmdbApiKey}`;
+        const url = `https://api.themoviedb.org/3/tv/${animeId}/videos?api_key=${tmdbApiKey}`;
         
         const response = await fetch(url)
         const animeThrillerData = await response.json()
@@ -119,7 +119,7 @@ async function getThrillerForSpecificAnime(req, res){
 async function getImagesForSpecificAnime(req, res){
     try{
         const animeId = Number(req.params.animeId)
-        const url = `https://api.themoviedb.org/3/movie/${animeId}/images?api_key=${tmdbApiKey}`;
+        const url = `https://api.themoviedb.org/3/tv/${animeId}/images?api_key=${tmdbApiKey}`;
         
         const response = await fetch(url)
       
@@ -134,7 +134,7 @@ async function getImagesForSpecificAnime(req, res){
 async function getRelatedAnime(req, res){
   try{
       const animeId = Number(req.params.animeId)
-      const url = `https://api.themoviedb.org/3/movie/${animeId}/recommendations?language=en-US&page=1&api_key=${tmdbApiKey}`;
+      const url = `https://api.themoviedb.org/3/tv/${animeId}/recommendations?language=en-US&page=1&api_key=${tmdbApiKey}`;
       
       const response = await fetch(url)
     

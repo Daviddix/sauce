@@ -2,27 +2,38 @@ import { useEffect, useState } from "react"
 import "./Thriller.css"
 import { useParams } from "react-router-dom"
 
-function Thriller() {
-  const [movieThrillerLink, setMovieThrillerLink] = useState({})
+function Thriller({page}) {
+  const [thrillerLink, setTrillerLink] = useState("")
   const [thrillerFetchStatus, setThrillerFetchStatus] = useState("loading")
 
+  const {animeId} = useParams()
   const {movieId} = useParams()
+  const {tvId} = useParams()
 
   useEffect(()=>{
-    getMovieThrillerData()
-  }, [movieId])
+    getThrillerData()
+  }, [animeId, movieId])
 
 
-  async function getMovieThrillerData(){
+  async function getThrillerData(){
+    let url;
     setThrillerFetchStatus("loading")
     try{
-      const rawFetch = await fetch(`http://localhost:3000/app/movie/${movieId}/video`)
+      if(page == "Movies"){
+      url = `http://localhost:3000/app/movie/${movieId}/video`
+      }else if(page == "TV Shows"){
+      url = `http://localhost:3000/app/tv/${tvId}/video`
+      }else if(page == "Anime"){
+      url = `http://localhost:3000/app/anime/${animeId}/video`
+      }
+      const rawFetch = await fetch(url)
+
       const jsonFetch = await rawFetch.json()
 
       if(!rawFetch.ok){
          throw new Error()
       }
-      setMovieThrillerLink(jsonFetch.results[0].key)
+      setTrillerLink(jsonFetch.results[0].key)
       setThrillerFetchStatus("completed")
     }
     catch{
@@ -39,8 +50,8 @@ function Thriller() {
             <iframe 
             frameBorder="0"
             id="inlineFrameExample"
-            title={movieThrillerLink}
-            src={"https://www.youtube.com/embed/" + movieThrillerLink}
+            title={thrillerLink}
+            src={"https://www.youtube.com/embed/" + thrillerLink}
             className="video"
           />
           }
