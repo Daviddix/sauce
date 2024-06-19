@@ -3,8 +3,10 @@ import plusIcon from "../../../assets/app assets/icons/headerPlusIcon.svg"
 import tvIcon from "../../../assets/app assets/icons/tv-icon.svg"
 import backIcon from "../../../assets/app assets/icons/left-icon.svg"
 import starIcon from "../../../assets/app assets/icons/star-icon.svg"
-import timeIcon from "../../../assets/app assets/icons/time-icon.svg"
+import activeStatusIcon from "../../../assets/app assets/icons/active-status-icon.svg"
+import endedStatusIcon from "../../../assets/app assets/icons/ended-status-icon.svg"
 import rankIcon from "../../../assets/app assets/icons/ranking-list-icon.svg"
+import videoIcon from "../../../assets/app assets/icons/video-icon.svg"
 
 import "./TopAnimeDetails.css"
 
@@ -41,7 +43,7 @@ function TopAnimeDetails() {
     async function getAnimeDetails(){
         setAnimeFetchStatus("loading")
         try{
-            const rawFetch = await fetch(`http://localhost:3000/app/movie/${animeId}`)
+            const rawFetch = await fetch(`http://localhost:3000/app/anime/${animeId}`)
             const fetchInJson = await rawFetch.json()
 
             if(!rawFetch.ok){
@@ -56,15 +58,17 @@ function TopAnimeDetails() {
                     animeReleaseDate: fetchInJson.first_air_date,
                     animeOverview: fetchInJson.overview,
                     animeRating : fetchInJson.vote_average,
-                    animePoster : fetchInJson.poster_path
+                    animePoster : fetchInJson.poster_path,
+                    animeSeasons : fetchInJson.number_of_seasons,
+                    animeEpisodes : fetchInJson.number_of_episodes
                   }])
                 }
             setAnimeFetchStatus("completed")
             setMainAnimeLink(fetchInJson.homepage)
         }
         catch(err){
-            console.log(err.cause)
-            setAnimeFetchStatus("loading")
+            console.log(err)
+            setAnimeFetchStatus("error")
         }
     }
 
@@ -122,12 +126,12 @@ function TopAnimeDetails() {
                     onClick={()=>{
                         if(isSignedIn){
                             showListModalFn()
-                            setAnimeIdToAddToList(movieId)
+                            setAnimeIdToAddToList(animeId)
                         }else{
                             setShowNotAuthenticatedModal(true)
                         }
                     }}
-                    className="transparent-button"><img src={plusIcon} alt="add a movie to a list" /></button>
+                    className="transparent-button"><img src={plusIcon} alt="add a anime to a list" /></button>
                 </div>
             </div>
 
@@ -147,8 +151,15 @@ function TopAnimeDetails() {
                         </div>
 
                         <div className="length">
-                            <img src={timeIcon} alt="clock icon" />
-                            <p className="tiny-body">{formatTime(topAnimeInfo.runtime)}</p>
+                            <img src={videoIcon} alt="video icon" />
+                            <p className="tiny-body">{topAnimeInfo.number_of_seasons} Seasons - {topAnimeInfo.number_of_episodes} Episodes</p>
+                        </div>
+
+                        <div className="status">
+                            <img src={topAnimeInfo.in_production ? activeStatusIcon : endedStatusIcon} alt="status indicator" />
+                            <p className="tiny-body">
+                            {topAnimeInfo.in_production ? "Ongoing": "Ended"}
+                            </p>
                         </div>
 
                         {animeMatchPercentage !== 0 && <div className="accuracy">

@@ -1,5 +1,5 @@
 const { unknownError } = require("../actions/errorMessages")
-const tmdbApiKey = process.env.TMDB
+const tmdbApiKey = process.env.TMDB 
 const {
   GoogleGenerativeAI,
   HarmCategory,
@@ -96,7 +96,8 @@ async function getInfoAboutSpecificAnime(req, res){
         const animeData = await response.json()
         res.send(animeData)
       }
-      catch(err){
+      catch(err){ 
+        console.log(err)
         res.status(500).json(unknownError)
       }
 }

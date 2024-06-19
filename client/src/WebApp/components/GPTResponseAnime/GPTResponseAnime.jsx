@@ -36,7 +36,6 @@ function GPTResponseAnime({inputValue, id}) {
       setDisableInput(true)
       try {
         const animeFromIndexedDb = await get(idOfResponse)
-        console.log(animeFromIndexedDb)
         if (typeof animeFromIndexedDb == "object" && animeFromIndexedDb.length > 0) {
             setAnime(animeFromIndexedDb)
             setAllAnime((prev) => [...prev, ...animeFromIndexedDb])
