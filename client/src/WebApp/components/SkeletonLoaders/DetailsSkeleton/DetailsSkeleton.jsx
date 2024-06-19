@@ -1,19 +1,19 @@
-import "./MovieDetailsSkeleton.css"
+import "./DetailsSkeleton.css"
 
 function MovieDetailsSkeleton() {
   return (
     <>
 
-    <div className="top-movie-image skeleton">
+    <div className="top-image-skeleton">
 
     </div>
     
 
-    <div className="top-movie-details-info skeleton">
-        <div className="movie-name-and-stats">
-            <div className="movie-name"></div>
+    <div className="top-details-info-skeleton">
+        <div className="name-and-stats-skeleton">
+            <div className="name"></div>
 
-            <div className="movie-stats skeleton">
+            <div className="stats skeleton">
                 <div className="rating">
                     
                 </div>
@@ -28,7 +28,7 @@ function MovieDetailsSkeleton() {
             </div>
         </div>
 
-        <div className="movie-description skeleton">
+        <div className="description-skeleton">
             <div className="overview"></div>
 
             <div className="overview-text"></div>
@@ -38,7 +38,7 @@ function MovieDetailsSkeleton() {
             <div className="overview-text"></div>
         </div>
 
-        <div className="movie-genre skeleton">
+        <div className="genre-skeleton">
 
             <div className="genre-heading"></div>
             

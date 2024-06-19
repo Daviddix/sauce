@@ -6,67 +6,65 @@ import starIcon from "../../../assets/app assets/icons/star-icon.svg"
 import timeIcon from "../../../assets/app assets/icons/time-icon.svg"
 import rankIcon from "../../../assets/app assets/icons/ranking-list-icon.svg"
 
+import "./TopAnimeDetails.css"
 
-import "./TopMovieDetails.css"
 import { useEffect, useState } from "react"
-import { formatTime } from "../../globals/others"
 import DetailsSkeleton from "../SkeletonLoaders/DetailsSkeleton/DetailsSkeleton"
 import AddToListModal from "../../components/AddToListModal/AddToListModal"
-import { isSignedInAtom, mainLinkForMovieAtom, movieIdToAddToListAtom, movieMatchPercentageAtom, allMoviesAtom } from "../../globals/atom"
+import { isSignedInAtom,animeIdToAddToListAtom, animeMatchPercentageAtom, mainLinkForAnimeAtom, allAnimeAtom } from "../../globals/atom"
 import { useAtom } from "jotai"
 import toast, { Toaster } from "react-hot-toast"
 import TopMovieDetailsError from "../TopMovieDetailsError/TopMovieDetailsError"
 import NotAuthenticatedModal from "../NotAuthenticatedModal/NotAuthenticatedModal"
 
-
-function TopMovieDetails() {
-    const [topMovieInfo, setTopMovieInfo] = useState({})
-    const [movieFetchStatus, setMovieFetchStatus] = useState("loading")
+function TopAnimeDetails() {
+    const [topAnimeInfo, setTopAnimeInfo] = useState({})
+    const [animeFetchStatus, setAnimeFetchStatus] = useState("loading")
     const [showListModal, setShowListModal] = useState(false)
-    const [movieIdToAddToList, setMovieIdToAddToList] = useAtom(movieIdToAddToListAtom)
-    const [movieMatchPercentage, setMovieMatchPercentage] = useAtom(movieMatchPercentageAtom)
-    const [mainMovieLink, setMainMovieLink] = useAtom(mainLinkForMovieAtom)
-    const [allMovies, setAllMovies] = useAtom(allMoviesAtom)
+    const [animeIdToAddToList, setAnimeIdToAddToList] = useAtom(animeIdToAddToListAtom)
+    const [animeMatchPercentage, setAnimeMatchPercentage] = useAtom(animeMatchPercentageAtom)
+    const [mainAnimeLink, setMainAnimeLink] = useAtom(mainLinkForAnimeAtom)
+    const [allAnime, setAllAnime] = useAtom(allAnimeAtom)
     const [isSignedIn, setIsSignedIn] = useAtom(isSignedInAtom)
     const [showNotAuthenticatedModal, setShowNotAuthenticatedModal] = useState(false)
     const navigate = useNavigate()
 
-    const mappedGenres = topMovieInfo.genres?.map((singleGenre)=>{
+    const mappedGenres = topAnimeInfo.genres?.map((singleGenre)=>{
         return <div key={singleGenre.name} className="button-text-style">{singleGenre.name}</div>
     })
-    const {movieId} = useParams()
+    const {animeId} = useParams()
 
     useEffect(()=>{
-        getMovieDetails()
-    }, [movieId])
+        getAnimeDetails()
+    }, [animeId])
 
-async function getMovieDetails(){
-        setMovieFetchStatus("loading")
+    async function getAnimeDetails(){
+        setAnimeFetchStatus("loading")
         try{
-            const rawFetch = await fetch(`http://localhost:3000/app/movie/${movieId}`)
+            const rawFetch = await fetch(`http://localhost:3000/app/movie/${animeId}`)
             const fetchInJson = await rawFetch.json()
 
             if(!rawFetch.ok){
                 throw new Error({cause : fetchInJson})
             }
-            setTopMovieInfo(fetchInJson)
-            if(allMovies.length == 0){
-                setAllMovies([{
-                    movieName: fetchInJson.title,
-                    movieId: fetchInJson.id,
+            setTopAnimeInfo(fetchInJson)
+            if(allAnime.length == 0){
+                setAllAnime([{
+                    animeName: fetchInJson.title,
+                    animeId: fetchInJson.id,
                     matchPercent : 0,
-                    movieReleaseDate: fetchInJson.release_date,
-                    movieOverview: fetchInJson.overview,
-                    movieRating : fetchInJson.vote_average,
-                    moviePoster : fetchInJson.poster_path
+                    animeReleaseDate: fetchInJson.first_air_date,
+                    animeOverview: fetchInJson.overview,
+                    animeRating : fetchInJson.vote_average,
+                    animePoster : fetchInJson.poster_path
                   }])
                 }
-            setMovieFetchStatus("completed")
-            setMainMovieLink(fetchInJson.homepage)
+            setAnimeFetchStatus("completed")
+            setMainAnimeLink(fetchInJson.homepage)
         }
         catch(err){
             console.log(err.cause)
-            setMovieFetchStatus("error")
+            setAnimeFetchStatus("loading")
         }
     }
 
@@ -91,18 +89,19 @@ async function getMovieDetails(){
     function handleBackButton(){
         navigate(-1)
     }
+
   return (
-    <div className="top-movie-details">
+    <div className="top-anime-details">
             {showListModal && <AddToListModal setShowListModal={setShowListModal} />}
 
-            {movieFetchStatus == "loading" && <DetailsSkeleton /> }
+            {animeFetchStatus == "loading" && <DetailsSkeleton /> }
 
-            {movieFetchStatus == "error" && <TopMovieDetailsError refreshFromError={getMovieDetails} handleBackButton={handleBackButton} />}
+            {animeFetchStatus == "error" && <TopMovieDetailsError refreshFromError={getAnimeDetails} handleBackButton={handleBackButton} />}
 
-            {movieFetchStatus == "completed" &&
+            {animeFetchStatus == "completed" &&
             <>
             {showNotAuthenticatedModal && <NotAuthenticatedModal setShowNotAuthenticatedModal={setShowNotAuthenticatedModal} />}
-            <div className="top-movie-details-header">
+            <div className="top-anime-details-header">
                  <button 
                  onClick={handleBackButton}
                  className="transparent-button">
@@ -123,7 +122,7 @@ async function getMovieDetails(){
                     onClick={()=>{
                         if(isSignedIn){
                             showListModalFn()
-                            setMovieIdToAddToList(movieId)
+                            setAnimeIdToAddToList(movieId)
                         }else{
                             setShowNotAuthenticatedModal(true)
                         }
@@ -132,42 +131,42 @@ async function getMovieDetails(){
                 </div>
             </div>
 
-            <div className="top-movie-image">
-            <img src={`https://image.tmdb.org/t/p/original${topMovieInfo.backdrop_path}`} alt="" />
+            <div className="top-anime-image">
+            <img src={`https://image.tmdb.org/t/p/original${topAnimeInfo.backdrop_path}`} alt="" />
             </div>
             
 
-            <div className="top-movie-details-info">
-                <div className="movie-name-and-stats">
-                    <h1 className="tight-heading-style">{topMovieInfo.original_title}({topMovieInfo.release_date.slice(0, 4)})</h1>
+            <div className="top-anime-details-info">
+                <div className="anime-name-and-stats">
+                    <h1 className="tight-heading-style">{topAnimeInfo.name}({topAnimeInfo.first_air_date.slice(0, 4)})</h1>
 
-                    <div className="movie-stats">
+                    <div className="anime-stats">
                         <div className="rating">
                             <img src={starIcon} alt="star" />
-                            <p className="tiny-body">{topMovieInfo.vote_average.toFixed()}/10</p>
+                            <p className="tiny-body">{topAnimeInfo.vote_average.toFixed()}/10</p>
                         </div>
 
                         <div className="length">
                             <img src={timeIcon} alt="clock icon" />
-                            <p className="tiny-body">{formatTime(topMovieInfo.runtime)}</p>
+                            <p className="tiny-body">{formatTime(topAnimeInfo.runtime)}</p>
                         </div>
 
-                        {movieMatchPercentage !== 0 && <div className="accuracy">
+                        {animeMatchPercentage !== 0 && <div className="accuracy">
                             <img src={rankIcon} alt="ranking" />
                             <p className="tiny-body">
-                                {movieMatchPercentage}%
+                                {animeMatchPercentage}%
                             </p>
                         </div>}
                     </div>
                 </div>
 
-                <div className="movie-description">
+                <div className="anime-description">
                     <h1 className="subheading">Overview</h1>
 
-                    <p className="sub-body-style">{topMovieInfo.overview}</p>
+                    <p className="sub-body-style">{topAnimeInfo.overview}</p>
                 </div>
 
-                <div className="movie-genre">
+                <div className="anime-genre">
                     <h1 className="subheading">Genre</h1>
                     <div className="genre-container">
 
@@ -184,4 +183,4 @@ async function getMovieDetails(){
   )
 }
 
-export default TopMovieDetails
+export default TopAnimeDetails

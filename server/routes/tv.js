@@ -6,7 +6,7 @@ tvRouter = express.Router()
 
 tvRouter.post("/", getTvShowsThatMatchPrompt) 
 
-tvRouter.get("/:tvShowId", getInfoAboutSpecificTvShow)
+tvRouter.get("/:tvShowId", getInfoAboutSpecificTvShow) 
 
 tvRouter.get("/:tvShowId/video", getThrillerForSpecificTvShow)
 

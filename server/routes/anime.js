@@ -8,7 +8,7 @@ animeRouter.post("/", getAnimeThatMatchPrompt)
 
 animeRouter.get("/:animeId", getInfoAboutSpecificAnime)
 
-animeRouter.get("/:animeId/video", getThrillerForSpecificAnime)
+animeRouter.get("/:animeId/video", getThrillerForSpecificAnime) 
 
 animeRouter.get("/:animeId/images", getImagesForSpecificAnime)
 

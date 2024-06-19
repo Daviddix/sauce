@@ -8,6 +8,7 @@ import DashboardLayout from "./WebApp/Pages/DashboardLayout/DashboardLayout"
 import Lists from "./WebApp/Pages/Lists/Lists"
 import Home from "./WebApp/Pages/Home/Home"
 import MovieDetails from "./WebApp/Pages/MovieDetails/MovieDetails"
+import AnimeDetails from "./WebApp/Pages/AnimeDetails/AnimeDetails"
 import { useAtom } from "jotai"
 import { isSignedInAtom, refreshListAtom, refreshUserDetailsAtom, userInfoAtom, userInfoStatusAtom } from "./WebApp/globals/atom"
 import NotFound from "./WebApp/Pages/404/404"
@@ -76,6 +77,7 @@ async function getUserInfo(){
     <Route path='/app/login' element={<Login />} />
     <Route path='/app/signup' element={<Signup />} />
     <Route path='/app/movie/:movieId' element={<MovieDetails />} />
+    <Route path='/app/anime/:animeId' element={<AnimeDetails />} />
     
     <Route path='/app/' element={dashboardTemplate}>
         <Route index element={<Home />} />

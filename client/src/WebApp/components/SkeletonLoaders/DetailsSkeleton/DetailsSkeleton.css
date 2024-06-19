@@ -1,22 +1,37 @@
-
-.top-movie-details .top-movie-image.skeleton{
+.top-image-skeleton{
     background: linear-gradient(90deg,
     hsl(240, 1%, 74%) 25%,
      hsl(0, 0%, 65%) 50%,
       hsl(0, 0%, 74%) 75%);
     background-size: 200% 100%;
     animation: loading 1.5s infinite;
+    min-width: 100%;
+  height: 43rem;
+  overflow: hidden;
+  position: relative;
 }
 
-.top-movie-details .top-movie-image.skeleton::after{
+.top-movie-details .top-image-skeleton::after{
     display: none;
 }
 
-.top-movie-details .top-movie-image.skeleton::before{
+.top-movie-details .top-image-skeleton::before{
     display: none;
 }
 
-.top-movie-details-info.skeleton .movie-name{
+.top-details-info-skeleton{
+    position: static;
+    bottom: 0;
+    left: 5vw;
+}
+
+.top-details-info-skeleton > div {
+  width: 90vw;
+  max-width: 60rem;
+  margin: 1.5rem auto;
+}
+
+.top-details-info-skeleton .name{
     width:20rem;
     height:4rem;
     background: linear-gradient(90deg,
@@ -33,7 +48,15 @@
     margin: 0 0 1rem 0;
 }
 
-.movie-stats.skeleton > div{
+.name-and-stats-skeleton .stats {
+  max-width: fit-content;
+  gap: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.stats.skeleton > div{
     width:8rem;
     height:2rem;
     background: linear-gradient(90deg,    hsl(240, 1%, 60%) 25%,     hsl(0, 0%, 50%) 50%,      hsl(0, 0%, 60%) 75%);
@@ -46,7 +69,7 @@
     -o-border-radius: 4px;
 }
 
-.movie-description.skeleton .overview{
+.description-skeleton .overview{
     width:12rem;
     height:2.5rem;
     background: linear-gradient(90deg,    hsl(240, 1%, 60%) 25%,     hsl(0, 0%, 50%) 50%,      hsl(0, 0%, 60%) 75%);
@@ -59,7 +82,7 @@
     -o-border-radius: 4px;
 }
 
-.movie-description.skeleton .overview-text{
+.description-skeleton .overview-text{
     width:100%;
     height:1rem;
     border-radius: 5px;
@@ -73,23 +96,33 @@
     -o-border-radius: 5px;
 }
 
-.movie-description.skeleton .overview-text:last-child{
+.description-skeleton .overview-text:last-child{
     width:60%;
 }
 
-.movie-description.skeleton .overview-text:nth-last-child(2){
+.description-skeleton .overview-text:nth-last-child(2){
     width:70%;
 }
 
-.movie-description.skeleton .overview-text:nth-last-child(3){
+.description-skeleton .overview-text:nth-last-child(3){
     width:80%;
 }
 
-.movie-description.skeleton .overview-text:nth-last-child(2){
+.description-skeleton .overview-text:nth-last-child(2){
     width:70%;
 }
 
-.movie-genre.skeleton .genre-heading{
+.genre-skeleton .genre-container{
+    display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  max-width: fit-content;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin: .5rem 0 0;
+}
+
+.genre-skeleton .genre-heading{
     width:12rem;
     height:2.5rem;
     background: linear-gradient(90deg,    hsl(240, 1%, 60%) 25%,     hsl(0, 0%, 50%) 50%,      hsl(0, 0%, 60%) 75%);
@@ -103,7 +136,7 @@
     margin: 0 0 1rem 0;
 }
 
-.movie-genre.skeleton .single-genre{
+.genre-skeleton .single-genre{
     width:9rem;
     height:3.5rem;
     background: linear-gradient(90deg,    hsl(240, 1%, 60%) 25%,     hsl(0, 0%, 50%) 50%,      hsl(0, 0%, 60%) 75%);
@@ -117,6 +150,16 @@
     border:none;
 }
 
-.top-movie-details-info.skeleton .movie-name-and-stats{
+.top-movie-details-info.skeleton .name-and-stats-skeleton{
     position: static;
+}
+
+@media screen and (min-width:1000px) {
+    .top-image-skeleton{
+    height: 61rem;
+    }
+
+    .top-details-info-skeleton{
+    position: absolute;
+    }
 }
