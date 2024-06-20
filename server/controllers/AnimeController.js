@@ -91,7 +91,7 @@ async function getInfoAboutSpecificAnime(req, res){
         const animeId = Number(req.params.animeId)
         const url = `https://api.themoviedb.org/3/tv/${animeId}?api_key=${tmdbApiKey}`;
         
-        const response = await fetch(url)
+        const response = await fetch(url) 
       
         const animeData = await response.json()
         res.send(animeData)

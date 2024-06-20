@@ -1,4 +1,4 @@
-.movie-images-section>img {
+.images-section>img {
     max-width: 100%;
     margin: 0 0 .5rem 0;
     aspect-ratio: 16/9;
@@ -9,13 +9,13 @@
     -o-border-radius: 16px;
 }
 
-.movie-images-section > img.a{
+.images-section > img.a{
     animation: show-i 1.5s ease forwards;
     -webkit-animation: show-i 1.5s ease forwards;
     opacity: 0;
 }
 
-.movie-images-section .other-images-container {
+.images-section .other-images-container {
     display: flex;
     gap: .8rem;
     flex-wrap: wrap;
@@ -48,12 +48,12 @@
 }
 
 @media screen and (min-width:1000px) {
-    .other-movie-details .movie-images-section {
+    .images-section {
         position: relative;
         isolation: isolate;
     }
 
-    .movie-images-section::after {
+    .images-section::after {
         content: "";
         position: absolute;
         bottom: .5rem;
@@ -65,7 +65,7 @@
         border-bottom-right-radius: 16px;
     }
 
-    .movie-images-section .other-images-container {
+    .images-section .other-images-container {
         max-width: 65%;
         position: absolute;
         bottom: 1rem;

@@ -2,7 +2,7 @@ import "./MovieImagesSkeleton.css"
 
 function MovieImagesSkeleton() {
   return (
-    <div className="movie-images-section skeleton">
+    <div className="images-section skeleton">
       <h1 className="subheading">Images</h1>
         <div className="main-image skeleton">
         </div>

@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from "react"
-import "./MovieImages.css"
+import "./Images.css"
 import { useParams } from "react-router-dom"
 import MovieImagesSkeleton from "../SkeletonLoaders/MovieImagesSkeleton/MovieImagesSkeleton"
 import MovieImagesError from "../MovieImagesError/MovieImagesError"
 
-function MovieImages() {
+function Images() {
   const [images, setImages] = useState([])
   const [mainImageSrc, setMainImageSrc] = useState("")
   const [imagesFetchStatus, setImagesFetchStatus] = useState("loading")
@@ -25,16 +25,26 @@ function MovieImages() {
   })
   
   const {movieId} = useParams()
+  const {animeId} = useParams()
+  const {tvId} = useParams()
   
   useEffect(()=>{
-    getMovieImages()
+    getImages()
   }, [movieId])
 
 
-  async function getMovieImages(){
+  async function getImages(){
     setImagesFetchStatus("loading")
+    let url
+    if(movieId){
+      url = `http://localhost:3000/app/movie/${movieId}/images`
+      }else if(tvId){
+      url = `http://localhost:3000/app/tv/${tvId}/images`
+      }else if(animeId){
+      url = `http://localhost:3000/app/anime/${animeId}/images`
+      }
     try{
-      const rawFetch = await fetch(`http://localhost:3000/app/movie/${movieId}/images`)
+      const rawFetch = await fetch(url)
       const jsonFetch = await rawFetch.json()
 
       if(!rawFetch.ok){
@@ -56,12 +66,12 @@ function MovieImages() {
     }
 
     {
-      imagesFetchStatus == "error" &&  <MovieImagesError refreshFromError={getMovieImages} />
+      imagesFetchStatus == "error" &&  <MovieImagesError refreshFromError={getImages} />
     }
 
     {
       imagesFetchStatus === "completed" && 
-      <div className="movie-images-section">
+      <div className="images-section">
       <h1 className="subheading">Images</h1>
         <img src={`https://image.tmdb.org/t/p/w1280/${mainImageSrc}`} 
         ref={mainImageRef}
@@ -79,4 +89,4 @@ function MovieImages() {
   )
 }
 
-export default MovieImages
+export default Images

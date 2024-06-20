@@ -3,6 +3,7 @@ import TopAnimeDetails from "../../components/TopAnimeDetails/TopAnimeDetails"
 import { useEffect } from "react"
 import { useParams } from "react-router-dom"
 import Thriller from "../../components/Thriller/Thriller"
+import Images from "../../components/Images/Images"
 
 function AnimeDetails() {
   const {animeId} = useParams()
@@ -19,12 +20,12 @@ function AnimeDetails() {
         <TopAnimeDetails />
 
         <div className="other-anime-details">
-            <Thriller page="Anime" />
+            <Thriller />
 
-            {/* <MovieImages />
+            <Images />
 
             
-            <More />
+            {/* <More />
 
             <RelatedMovies /> */}
         </div>

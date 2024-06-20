@@ -19,11 +19,11 @@ function Thriller({page}) {
     let url;
     setThrillerFetchStatus("loading")
     try{
-      if(page == "Movies"){
+      if(movieId){
       url = `http://localhost:3000/app/movie/${movieId}/video`
-      }else if(page == "TV Shows"){
+      }else if(tvId){
       url = `http://localhost:3000/app/tv/${tvId}/video`
-      }else if(page == "Anime"){
+      }else if(animeId){
       url = `http://localhost:3000/app/anime/${animeId}/video`
       }
       const rawFetch = await fetch(url)
