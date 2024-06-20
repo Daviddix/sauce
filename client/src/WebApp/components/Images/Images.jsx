@@ -30,7 +30,7 @@ function Images() {
   
   useEffect(()=>{
     getImages()
-  }, [movieId])
+  }, [movieId, animeId, tvId])
 
 
   async function getImages(){
