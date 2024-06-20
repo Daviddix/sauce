@@ -4,6 +4,7 @@ import { useEffect } from "react"
 import { useParams } from "react-router-dom"
 import Thriller from "../../components/Thriller/Thriller"
 import Images from "../../components/Images/Images"
+import MoreAnime from "../../components/MoreAnime/MoreAnime"
 
 function AnimeDetails() {
   const {animeId} = useParams()
@@ -25,9 +26,9 @@ function AnimeDetails() {
             <Images />
 
             
-            {/* <More />
+            <MoreAnime />
 
-            <RelatedMovies /> */}
+            {/* <RelatedMovies /> */}
         </div>
     </main>
   )

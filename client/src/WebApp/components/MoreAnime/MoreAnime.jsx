@@ -2,23 +2,23 @@ import plusIconButton from "../../../assets/app assets/icons/plus-icon.svg"
 import tvIconButton from "../../../assets/app assets/icons/tv-icon.svg"
 import linkArrowIcon from "../../../assets/app assets/icons/link-arrow-icon.svg"
 
-import "./More.css"
+import "./MoreAnime.css"
 import { useAtom } from "jotai"
-import { isSignedInAtom, mainLinkForMovieAtom, movieIdToAddToListAtom } from "../../globals/atom"
+import { animeIdToAddToListAtom, isSignedInAtom, mainLinkForAnimeAtom} from "../../globals/atom"
 import { useState } from "react"
 import { useParams } from "react-router-dom"
 import AddToListModal from "../AddToListModal/AddToListModal"
 import toast, { Toaster } from "react-hot-toast"
 import NotAuthenticatedModal from "../NotAuthenticatedModal/NotAuthenticatedModal"
 
-function More() {
-  const [mainMovieLink] = useAtom(mainLinkForMovieAtom)
+function MoreAnime() {
+  const [mainAnimeLink] = useAtom(mainLinkForAnimeAtom)
   const [showListModal, setShowListModal] = useState(false)
-  const [movieIdToAddToList, setMovieIdToAddToList] = useAtom(movieIdToAddToListAtom)
+  const [animeIdToAddToList, setAnimeIdToAddToList] = useAtom(animeIdToAddToListAtom)
   const [isSignedIn, setIsSignedIn] = useAtom(isSignedInAtom)
   const [showNotAuthenticatedModal, setShowNotAuthenticatedModal] = useState(false)
 
-    const {movieId} = useParams()
+    const {animeId} = useParams()
 
     function showListModalFn(){
       setShowListModal(true)
@@ -46,15 +46,15 @@ function More() {
     })
 }
   return (
-    mainMovieLink !== "" && <div className="movie-more-section">
+    mainAnimeLink !== "" && <div className="anime-more-section">
       {showListModal && <AddToListModal setShowListModal={setShowListModal} />}
       {showNotAuthenticatedModal && <NotAuthenticatedModal setShowNotAuthenticatedModal={setShowNotAuthenticatedModal} />}
                 <h1 className="subheading">More</h1>
 
                 <div className="more-button-container">
 
-                  <a href={mainMovieLink} target="_blank" rel="noopener noreferrer">
-                    <button className="button-text-style primary-button">More Info About this Movie
+                  <a href={mainAnimeLink} target="_blank" rel="noopener noreferrer">
+                    <button className="button-text-style primary-button">More Info About this Anime
                 <img src={linkArrowIcon} alt="arrow icon" />
                 </button>
                   </a>
@@ -63,7 +63,7 @@ function More() {
                 <button 
                  onClick={()=>{
                   if(isSignedIn){
-                  setMovieIdToAddToList(movieId)
+                  setAnimeIdToAddToList(animeId)
                   showListModalFn()
                   }else{
                     setShowNotAuthenticatedModal(true)
@@ -88,4 +88,4 @@ function More() {
   )
 }
 
-export default More
+export default MoreAnime
