@@ -5,7 +5,7 @@ import backIcon from "../../../assets/app assets/icons/left-icon.svg"
 function TopMovieDetailsError({handleBackButton, refreshFromError}) {
   return (
     <>
-    <div className="top-movie-details-header">
+    <div className="top-details-header-error">
                  <button 
                  onClick={handleBackButton}
                  className="transparent-button">
@@ -13,11 +13,11 @@ function TopMovieDetailsError({handleBackButton, refreshFromError}) {
                 </button>
             </div>
 
-            <div className="top-movie-image error">
+            <div className="top-image-error">
             </div>
             
               
-    <div className="top-movie-details-error">
+    <div className="top-details-error">
       <div className="left">
         <div className="left-circle">
           <img src={alertIcon} alt="alert icon" />

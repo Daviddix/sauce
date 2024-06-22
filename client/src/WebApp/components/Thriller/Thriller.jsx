@@ -41,7 +41,7 @@ function Thriller({page}) {
     }
   }
   return (
-        <div className="movie-thriller-section">
+        <div className="thriller-section">
           <h1 className="subheading">Thriller</h1>
           {
             thrillerFetchStatus === "loading" ? 

@@ -3,7 +3,7 @@ import "./MovieImagesError.css"
 
 function MovieImagesError({refreshFromError}) {
   return (
-    <div className="movie-images-section error">
+    <div className="images-section error">
       <h1 className="subheading">Images</h1>
         <div
         className="main-image" />
