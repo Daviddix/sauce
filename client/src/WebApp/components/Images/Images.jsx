@@ -26,11 +26,11 @@ function Images() {
   
   const {movieId} = useParams()
   const {animeId} = useParams()
-  const {tvId} = useParams()
+  const {tvShowId} = useParams()
   
   useEffect(()=>{
     getImages()
-  }, [movieId, animeId, tvId])
+  }, [movieId, animeId, tvShowId])
 
 
   async function getImages(){
@@ -38,8 +38,8 @@ function Images() {
     let url
     if(movieId){
       url = `http://localhost:3000/app/movie/${movieId}/images`
-      }else if(tvId){
-      url = `http://localhost:3000/app/tv/${tvId}/images`
+      }else if(tvShowId){
+      url = `http://localhost:3000/app/tv/${tvShowId}/images`
       }else if(animeId){
       url = `http://localhost:3000/app/anime/${animeId}/images`
       }

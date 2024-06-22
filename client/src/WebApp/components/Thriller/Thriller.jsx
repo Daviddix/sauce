@@ -8,11 +8,11 @@ function Thriller({page}) {
 
   const {animeId} = useParams()
   const {movieId} = useParams()
-  const {tvId} = useParams()
+  const {tvShowId} = useParams()
 
   useEffect(()=>{
     getThrillerData()
-  }, [animeId, movieId])
+  }, [animeId, movieId, tvShowId])
 
 
   async function getThrillerData(){
@@ -21,8 +21,8 @@ function Thriller({page}) {
     try{
       if(movieId){
       url = `http://localhost:3000/app/movie/${movieId}/video`
-      }else if(tvId){
-      url = `http://localhost:3000/app/tv/${tvId}/video`
+      }else if(tvShowId){
+      url = `http://localhost:3000/app/tv/${tvShowId}/video`
       }else if(animeId){
       url = `http://localhost:3000/app/anime/${animeId}/video`
       }

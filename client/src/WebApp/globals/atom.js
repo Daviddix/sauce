@@ -30,6 +30,7 @@ export const mainLinkForAnimeAtom = atom("")
 export const tvShowsMatchPercentageAtom = atom(0)
 export const tvShowIdToAddToListAtom = atom(0)
 export const allTvShowsAtom = atom([])
+export const mainLinkForTvShowAtom = atom("")
 
 //list atoms
 export const activeListIdAtom = atom(0)

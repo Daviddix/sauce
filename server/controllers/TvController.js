@@ -105,7 +105,7 @@ async function getInfoAboutSpecificTvShow(req, res){
 async function getThrillerForSpecificTvShow(req, res){
     try{
         const tvShowId = Number(req.params.tvShowId)
-        const url = `https://api.themoviedb.org/3/movie/${tvShowId}/videos?api_key=${tmdbApiKey}`;
+        const url = `https://api.themoviedb.org/3/tv/${tvShowId}/videos?api_key=${tmdbApiKey}`;
         
         const response = await fetch(url)
         const tvShowThrillerData = await response.json()
@@ -119,7 +119,7 @@ async function getThrillerForSpecificTvShow(req, res){
 async function getImagesForSpecificTvShow(req, res){
     try{
         const tvShowId = Number(req.params.tvShowId)
-        const url = `https://api.themoviedb.org/3/movie/${tvShowId}/images?api_key=${tmdbApiKey}`;
+        const url = `https://api.themoviedb.org/3/tv/${tvShowId}/images?api_key=${tmdbApiKey}`;
         
         const response = await fetch(url)
       
@@ -134,7 +134,7 @@ async function getImagesForSpecificTvShow(req, res){
 async function getRelatedTvShows(req, res){
   try{
       const tvShowId = Number(req.params.tvShowId)
-      const url = `https://api.themoviedb.org/3/movie/${tvShowId}/recommendations?language=en-US&page=1&api_key=${tmdbApiKey}`;
+      const url = `https://api.themoviedb.org/3/tv/${tvShowId}/recommendations?language=en-US&page=1&api_key=${tmdbApiKey}`;
       
       const response = await fetch(url)
     
@@ -142,8 +142,8 @@ async function getRelatedTvShows(req, res){
       res.send(results.splice(0, 5))
     }
     catch(err){
-      res.status(500).json(unknownError)
+      res.status(500).json(unknownError) 
     }
 }
 
-module.exports = {getTvShowsThatMatchPrompt, getInfoAboutSpecificTvShow, getThrillerForSpecificTvShow, getImagesForSpecificTvShow, getRelatedTvShows}
+module.exports = {getTvShowsThatMatchPrompt, getInfoAboutSpecificTvShow, getThrillerForSpecificTvShow, getImagesForSpecificTvShow, getRelatedTvShows} 
