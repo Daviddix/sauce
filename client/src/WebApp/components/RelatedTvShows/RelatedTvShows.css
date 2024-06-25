@@ -1,0 +1,9 @@
+.related-tv-shows .related-tv-shows-container{
+    max-width:100%;
+}
+
+.related-tv-shows-container .related-tv-shows-container-inner{
+    display:flex;
+    overflow-y: auto;
+    column-gap: 1rem;
+}
