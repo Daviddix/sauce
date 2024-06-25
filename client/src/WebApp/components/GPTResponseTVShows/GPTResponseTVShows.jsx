@@ -3,12 +3,12 @@ import GPTResponseSkeleton from "../SkeletonLoaders/GPTResponseSkeleton/GPTRespo
 import { set,get } from 'idb-keyval'
 
 import {useEffect, useState} from "react"
-import { disableInputAtom, gptToRefreshAtom, messagesAtom,  allAnimeAtom, allTvShowsAtom } from "../../globals/atom"
+import { disableInputAtom, gptToRefreshAtom, messagesAtom, allTvShowsAtom } from "../../globals/atom"
 import GPTResponseError from "../GPTResponseError/GPTResponseError"
 import { Toaster } from "react-hot-toast"
 import SingleGPTResponseTvShow from "../SingleGPTResponseTvShow/SingleGPTResponseTvShow"
 
-function GPTResponseTVShows({inputValue, id}) {
+function GPTResponseTVShows({inputValue, id, searchCategory}) {
     const [tvShows, setTvShows] = useState([])
     const [tvShowFetchStatus, setTvShowFetchStatus] = useState("loading")
     const [reasonForError, setReasonForError] = useState("unknown")
@@ -127,7 +127,7 @@ function GPTResponseTVShows({inputValue, id}) {
     <div className="gpt-response-container">
         <Toaster toastOptions={{duration : 4000}} />
 
-        <h1>Top Results</h1>
+        <h1>Top Results <small>{searchCategory}</small></h1>
         {tvShowFetchStatus === "loading" && skeletons}    
         {tvShowFetchStatus === "completed" && mappedTvShows}
         {tvShowFetchStatus === "error" && <GPTResponseError 

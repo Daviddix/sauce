@@ -9,7 +9,7 @@ import { disableInputAtom, gptToRefreshAtom, messagesAtom,allMoviesAtom } from "
 import GPTResponseError from "../GPTResponseError/GPTResponseError"
 import { Toaster } from "react-hot-toast"
 
-function GPTResponse({inputValue, id}) {
+function GPTResponse({inputValue, id, searchCategory}) {
     const [movies, setMovies] = useState([])
     const [allMovies, setAllMovies] = useAtom(allMoviesAtom)
     const [movieFetchStatus, setMovieFetchStatus] = useState("loading")
@@ -127,7 +127,7 @@ function GPTResponse({inputValue, id}) {
     <div className="gpt-response-container">
         <Toaster toastOptions={{duration : 4000}} />
 
-        <h1>Top Results</h1>
+        <h1>Top Results <small>{searchCategory}</small></h1>
         {movieFetchStatus === "loading" && skeletons}    
         {movieFetchStatus === "completed" && mappedMovies}
         {movieFetchStatus === "error" && <GPTResponseError 

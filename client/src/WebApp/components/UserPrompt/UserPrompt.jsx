@@ -24,7 +24,7 @@ function UserPrompt({prompt, id, searchCategory}) {
       {!userInfo.profilePicture && <div className="fake-img"></div>}
 
       <div className="prompt-text-and-edit">
-        <p className="sub-body-style">{prompt}<small>{searchCategory}</small></p>
+        <p className="sub-body-style">{prompt}</p>
 
         
         <button

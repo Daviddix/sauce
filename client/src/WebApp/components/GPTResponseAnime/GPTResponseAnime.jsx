@@ -8,7 +8,7 @@ import GPTResponseError from "../GPTResponseError/GPTResponseError"
 import { Toaster } from "react-hot-toast"
 import SingleGPTResponseAnime from "../SingleGPTResponseAnime/SingleGPTResponseAnime"
 
-function GPTResponseAnime({inputValue, id}) {
+function GPTResponseAnime({inputValue, id, searchCategory}) {
     const [anime, setAnime] = useState([])
     const [animeFetchStatus, setAnimeFetchStatus] = useState("loading")
     const [reasonForError, setReasonForError] = useState("unknown")
@@ -128,7 +128,7 @@ function GPTResponseAnime({inputValue, id}) {
     <div className="gpt-response-container">
         <Toaster toastOptions={{duration : 4000}} />
 
-        <h1>Top Results</h1>
+        <h1>Top Results <small>{searchCategory}</small></h1>
         {animeFetchStatus === "loading" && skeletons}    
         {animeFetchStatus === "completed" && mappedAnime}
         {animeFetchStatus === "error" && <GPTResponseError 
