@@ -21,7 +21,7 @@ function MovieListContainer() {
         setListFetchStatus("loading")
         console.log("here")
         try{
-        const rawFetch = await fetch("http://localhost:3000/app/list", {
+        const rawFetch = await fetch("http://localhost:3000/app/list/movies", {
             credentials: "include"
         })
         const fetchInJson = await rawFetch.json()
@@ -44,7 +44,7 @@ function MovieListContainer() {
 
     async function getListsByUserWithoutLoading(){
       try{
-      const rawFetch = await fetch("http://localhost:3000/app/list", {
+      const rawFetch = await fetch("http://localhost:3000/app/list/movies", {
           credentials: "include"
       })
       const fetchInJson = await rawFetch.json()

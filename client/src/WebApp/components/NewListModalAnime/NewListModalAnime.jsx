@@ -1,33 +1,32 @@
 import addListIcon from "../../../assets/app assets/icons/add-list-icon.svg"
 import closeIcon from "../../../assets/app assets/icons/close-icon.svg"
 
-import "./NewListModal.css"
-import {allMoviesAtom, movieIdToAddToListAtom, userInfoAtom, refreshListAtom} from "../../globals/atom"
+import {allAnimeAtom, animeIdToAddToListAtom, userInfoAtom, refreshListAtom} from "../../globals/atom"
 import { useEffect, useState } from "react"
 import { useAtom } from "jotai"
 
-function NewListModal({setShowAddNewListModal, notifyForMovieAddedToList, notifyForAddToListError, setShowListModal}) {
-    const [allMovies, setAllMovies] = useAtom(allMoviesAtom)
-    const [id, setId] = useAtom(movieIdToAddToListAtom)
+function NewListModalAnime({setShowAddNewListModal, notifyForAnimeAddedToList, notifyForAddToListError, setShowListModal}) {
+    const [allAnime, setAllAnime] = useAtom(allAnimeAtom)
+    const [id, setId] = useAtom(animeIdToAddToListAtom)
     const [userInfo, setUserInfo] = useAtom(userInfoAtom)
     const [refreshList, setRefreshList] = useAtom(refreshListAtom)
     const [newListName, setNewListName] = useState("")
     const [creatingNewList, setCreatingNewList] = useState(false)
 
 
-    async function addMovieToNewList(e, name){
+    async function addAnimeToNewList(e, name){
         try{ 
         e.preventDefault()
         setCreatingNewList(true)
-        const movieToAddToList = allMovies.filter((movie)=> movie.movieId == id)[0]
+        const animeToAddToList = allAnime.filter((anime)=> anime.animeId == id)[0]
         const listData = {
             listName : name,
-            listCoverImage : movieToAddToList.moviePoster,
-            moviesInList : [movieToAddToList],
+            listCoverImage : animeToAddToList.animePoster,
+            animeInList : [animeToAddToList],
             listAuthor : userInfo._id,
-            listCategory : "Movies"
+            listCategory : "Anime"
         }
-        const rawFetch = await fetch("http://localhost:3000/app/list/movies", {
+        const rawFetch = await fetch("http://localhost:3000/app/list/anime", {
             credentials : "include",
             headers: {
                 "Content-Type": "application/json"
@@ -42,7 +41,7 @@ function NewListModal({setShowAddNewListModal, notifyForMovieAddedToList, notify
         setCreatingNewList(false)
         setShowAddNewListModal(false)
         setShowListModal(false) 
-        notifyForMovieAddedToList(newListName)
+        notifyForAnimeAddedToList(newListName)
         setRefreshList((prev)=> prev+1)
         }
         catch(err){
@@ -70,7 +69,7 @@ function NewListModal({setShowAddNewListModal, notifyForMovieAddedToList, notify
             <div className="add-list-modal-body">
                 <form 
                 onSubmit={(e)=>{
-                    addMovieToNewList(e, newListName)
+                    addAnimeToNewList(e, newListName)
                 }}
                 >
                     <label className="input-label" htmlFor="new-list">List Name</label>
@@ -99,4 +98,4 @@ function NewListModal({setShowAddNewListModal, notifyForMovieAddedToList, notify
   )
 }
 
-export default NewListModal
+export default NewListModalAnime

@@ -11,9 +11,13 @@ const cookieParser = require("cookie-parser")
 //routers
 const userRouter = require("./routes/user")
 const movieRouter = require("./routes/movies")
-const listRouter = require("./routes/list")
 const animeRouter = require("./routes/anime")
 const tvRouter = require("./routes/tv")
+
+//list routers
+const movieListRouter = require("./routes/list/movies")
+const animeListRouter = require("./routes/list/anime")
+const tvShowListRouter = require("./routes/list/tv")
 
 //server configs
 const whitelist = ["https://use-sauce.vercel.app", "https://sauce-beta.vercel.app/", "http://localhost:5173"]
@@ -39,7 +43,10 @@ app.use("/app/user", userRouter)
 app.use("/app/movie", movieRouter)
 app.use("/app/anime", animeRouter)
 app.use("/app/tv", tvRouter)
-app.use("/app/list", listRouter) 
+
+app.use("/app/list/movies", movieListRouter) 
+app.use("/app/list/anime", animeListRouter) 
+// app.use("/app/list/tv", tvRouter) 
 
 
 //MongoDB connection

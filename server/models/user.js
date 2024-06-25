@@ -20,6 +20,11 @@ const userSchema = new mongoose.Schema({
     savedLists : [{
         type : mongoose.Schema.Types.ObjectId, 
         ref : "Lists"
+    }],
+
+    savedAnimeLists : [{
+        type : mongoose.Schema.Types.ObjectId, 
+        ref : "AnimeLists"
     }]
 })
 

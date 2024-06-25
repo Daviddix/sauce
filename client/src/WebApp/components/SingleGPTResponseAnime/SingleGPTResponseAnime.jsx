@@ -10,11 +10,12 @@ import {useNavigate} from "react-router-dom"
 import { useAtom } from "jotai";
 import {animeIdToAddToListAtom, animeMatchPercentageAtom, isSignedInAtom} from "../../globals/atom"
 import toast from "react-hot-toast"
+import AddToListModalAnime from "../AddToListModalAnime/AddToListModalAnime"
 
 function SingleGPTResponseAnime({animeName, matchPercent, animeId, animeReleaseDate, animeOverview, animeRating, animePoster}) {
     const [accuracyClassName, setAccuracyClassName] = useState("")
     const [showListModal, setShowListModal] = useState(false)
-    const [animeIdToAddToList, setAnimeToAddToList] = useAtom(animeIdToAddToListAtom)
+    const [animeIdToAddToList, setAnimeIdToAddToList] = useAtom(animeIdToAddToListAtom)
     const [animeMatchPercentage, setAnimeMatchPercentage] = useAtom(animeMatchPercentageAtom)
     const [isSignedIn, setIsSignedIn] = useAtom(isSignedInAtom)
     const [showNotAuthenticatedModal, setShowNotAuthenticatedModal] = useState(false)
@@ -67,7 +68,7 @@ function SingleGPTResponseAnime({animeName, matchPercent, animeId, animeReleaseD
       }, [matchPercent])
   return (
     <div className="anime-image-and-details">
-        {showListModal && <AddToListModal setShowListModal={setShowListModal} />}
+        {showListModal && <AddToListModalAnime setShowListModal={setShowListModal} />}
         {showNotAuthenticatedModal && <NotAuthenticatedModal setShowNotAuthenticatedModal={setShowNotAuthenticatedModal} />}
         <div className="anime-image">
             <div className="accuracy-tooltip">

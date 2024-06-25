@@ -1,4 +1,4 @@
-const movieSchema = require("../models/movie")
+const movieSchema = require("../movie")
 const mongoose = require("mongoose") 
 
 const listSchema = new mongoose.Schema({
@@ -22,7 +22,7 @@ const listSchema = new mongoose.Schema({
         ref : "Users"
     },
     
-    category : {
+    listCategory : {
         type : String
     }
 })
