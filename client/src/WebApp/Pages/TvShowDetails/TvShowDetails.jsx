@@ -5,6 +5,7 @@ import TopTvShowDetails from '../../components/TopTvShowDetails/TopTvShowDetails
 import Thriller from '../../components/Thriller/Thriller'
 import "./TvShowDetails.css"
 import Images from '../../components/Images/Images'
+import MoreTvShows from "../../components/MoreTvShows/MoreTvShows"
 
 function TvShowDetails() {
     const {tvShowId} = useParams()
@@ -26,9 +27,9 @@ function TvShowDetails() {
             <Images />
 
             
-            {/*<MoreAnime />
+            <MoreTvShows />
 
-            <RelatedAnime /> */}
+            {/*<RelatedAnime /> */}
         </div>
     </main>
   )
