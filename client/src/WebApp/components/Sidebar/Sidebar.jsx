@@ -6,6 +6,7 @@ import { useAtom } from "jotai"
 import { openSidebarAtom } from "../../globals/atom"
 import ListTab from "../ListTab/ListTab"
 import { useState } from "react"
+import AnimeListContainer from "../AnimeListContainer/AnimeListContainer"
 
 function Sidebar() {
   const [openSidebar, setOpenSidebar] = useAtom(openSidebarAtom)
@@ -18,7 +19,10 @@ function Sidebar() {
 
         <ListTab listCategoryToShow={listCategoryToShow} setListCategoryToShow={setListCategoryToShow} />
 
-        <MovieListContainer />
+        {listCategoryToShow == "Movies" && <MovieListContainer />}
+        {listCategoryToShow == "Anime" && <AnimeListContainer />}
+
+        
 
         <ProfileContainer />
       </div>

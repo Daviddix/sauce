@@ -16,7 +16,7 @@ const tvRouter = require("./routes/tv")
 
 //list routers
 const movieListRouter = require("./routes/list/movies")
-const animeListRouter = require("./routes/list/anime")
+const animeListRouter = require("./routes/list/anime") 
 const tvShowListRouter = require("./routes/list/tv")
 
 //server configs
