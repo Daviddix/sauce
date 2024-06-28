@@ -46,7 +46,7 @@ app.use("/app/tv", tvRouter)
 
 app.use("/app/list/movies", movieListRouter) 
 app.use("/app/list/anime", animeListRouter) 
-// app.use("/app/list/tv", tvRouter) 
+app.use("/app/list/tv", tvShowListRouter) 
 
 
 //MongoDB connection

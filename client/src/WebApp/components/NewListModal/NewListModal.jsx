@@ -24,8 +24,7 @@ function NewListModal({setShowAddNewListModal, notifyForMovieAddedToList, notify
             listName : name,
             listCoverImage : movieToAddToList.moviePoster,
             moviesInList : [movieToAddToList],
-            listAuthor : userInfo._id,
-            listCategory : "Movies"
+            listAuthor : userInfo._id
         }
         const rawFetch = await fetch("http://localhost:3000/app/list/movies", {
             credentials : "include",

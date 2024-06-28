@@ -1,7 +1,7 @@
-const movieSchema = require("../movie")
+const tvShowSchema = require("../tv")
 const mongoose = require("mongoose") 
 
-const listSchema = new mongoose.Schema({
+const tvShowsListSchema = new mongoose.Schema({
     listName : {
         type : String,
         required : true
@@ -12,8 +12,8 @@ const listSchema = new mongoose.Schema({
         required : true
     },
 
-    moviesInList : {
-        type : [movieSchema],
+    tvShowsInList : {
+        type : [tvShowSchema],
         required : true
     },
 
@@ -23,6 +23,6 @@ const listSchema = new mongoose.Schema({
     }
 })
 
-const listModel = mongoose.model("Lists", listSchema)
+const animeListModel = mongoose.model("TvShowsLists", tvShowsListSchema)
 
-module.exports = listModel
+module.exports = animeListModel

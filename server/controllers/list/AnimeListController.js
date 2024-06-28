@@ -33,7 +33,7 @@ async function getInformationAboutParticularList(req, res){
 async function createNewListAndAddAnimeToIt(req, res){
     try{
         const {userId} = req.user
-        const {listName, listCoverImage, animeInList, listAuthor, listCategory} = req.body 
+        const {listName, listCoverImage, animeInList, listAuthor} = req.body 
         if(req.body == {}){
             return res.status(400).json(noBodyDataError)
         }
@@ -41,8 +41,7 @@ async function createNewListAndAddAnimeToIt(req, res){
             listName,
             listCoverImage,
             animeInList,
-            listAuthor,
-            listCategory
+            listAuthor
         })
         const userThatMadeTheList = await userModel.findById(userId)
         userThatMadeTheList.savedAnimeLists.push(listMade._id)

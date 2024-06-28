@@ -1,31 +1,33 @@
 import addListIcon from "../../../assets/app assets/icons/add-list-icon.svg"
 import closeIcon from "../../../assets/app assets/icons/close-icon.svg"
 
-import {allAnimeAtom, animeIdToAddToListAtom, userInfoAtom, refreshListAtom} from "../../globals/atom"
-import { useEffect, useState } from "react"
+import {allTvShowsAtom, tvShowIdToAddToListAtom, userInfoAtom, refreshListAtom} from "../../globals/atom"
+import {useState } from "react"
 import { useAtom } from "jotai"
 
-function NewListModalAnime({setShowAddNewListModal, notifyForAnimeAddedToList, notifyForAddToListError, setShowListModal}) {
-    const [allAnime, setAllAnime] = useAtom(allAnimeAtom)
-    const [id, setId] = useAtom(animeIdToAddToListAtom)
+function NewListModalTvShows({setShowAddNewListModal, notifyForTvShowAddedToList, notifyForAddToListError, setShowListModal}) {
+    const [allTvShows, setAllTvShows] = useAtom(allTvShowsAtom)
+    const [id, setId] = useAtom(tvShowIdToAddToListAtom)
     const [userInfo, setUserInfo] = useAtom(userInfoAtom)
     const [refreshList, setRefreshList] = useAtom(refreshListAtom)
     const [newListName, setNewListName] = useState("")
     const [creatingNewList, setCreatingNewList] = useState(false)
 
 
-    async function addAnimeToNewList(e, name){
+
+
+    async function addTvShowToNewList(e, name){
         try{ 
         e.preventDefault()
         setCreatingNewList(true)
-        const animeToAddToList = allAnime.filter((anime)=> anime.animeId == id)[0]
+        const tvShowToAddToList = allTvShows.filter((tvShow)=> tvShow.tvShowId == id)[0]
         const listData = {
             listName : name,
-            listCoverImage : animeToAddToList.animePoster,
-            animeInList : [animeToAddToList],
+            listCoverImage : tvShowToAddToList.tvShowPoster,
+            tvShowsInList : [tvShowToAddToList],
             listAuthor : userInfo._id,
         }
-        const rawFetch = await fetch("http://localhost:3000/app/list/anime", {
+        const rawFetch = await fetch("http://localhost:3000/app/list/tv", {
             credentials : "include",
             headers: {
                 "Content-Type": "application/json"
@@ -40,7 +42,7 @@ function NewListModalAnime({setShowAddNewListModal, notifyForAnimeAddedToList, n
         setCreatingNewList(false)
         setShowAddNewListModal(false)
         setShowListModal(false) 
-        notifyForAnimeAddedToList(newListName)
+        notifyForTvShowAddedToList(newListName)
         setRefreshList((prev)=> prev+1)
         }
         catch(err){
@@ -68,7 +70,7 @@ function NewListModalAnime({setShowAddNewListModal, notifyForAnimeAddedToList, n
             <div className="add-list-modal-body">
                 <form 
                 onSubmit={(e)=>{
-                    addAnimeToNewList(e, newListName)
+                    addTvShowToNewList(e, newListName)
                 }}
                 >
                     <label className="input-label" htmlFor="new-list">List Name</label>
@@ -97,4 +99,4 @@ function NewListModalAnime({setShowAddNewListModal, notifyForAnimeAddedToList, n
   )
 }
 
-export default NewListModalAnime
+export default NewListModalTvShows

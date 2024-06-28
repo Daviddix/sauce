@@ -1,16 +1,17 @@
 const { unknownError, noBodyDataError, listNotFound, noID, notAuthorizedToView } = require("../../actions/errorMessages")
-const listModel = require("../../models/list/movieList") 
+const tvShowsListModel = require("../../models/list/tvList") 
 const { listCreated, listUpdated, movieInListDeletedSuccessfully, ListDeletedSuccessfully } = require("../../actions/successMessages")
 const userModel = require("../../models/user")
 
 async function getAllListByUser(req, res){
     try{
         const {userId} = req.user
-        const userThatMadeTheLists = await userModel.findById(userId).populate("savedLists")
-        const savedLists = userThatMadeTheLists.savedLists
-        res.status(200).json(savedLists)
+        const userThatMadeTheList = await userModel.findById(userId).populate("savedTvShowsLists")
+        const user = await userModel.findById(userId)
+        const savedTvShowsList = userThatMadeTheList.savedTvShowsLists
+        res.status(200).json(savedTvShowsList)
     }
-    catch(err){ 
+    catch(err){
         res.status(500).json(unknownError)
     }
 }
@@ -19,7 +20,7 @@ async function getInformationAboutParticularList(req, res){
     try{
         const {listId} = req.params
         const {userId} = req.user
-        const particularList = await listModel.findById(listId)
+        const particularList = await tvShowsListModel.findById(listId)
         if(!particularList.listAuthor == userId){
             return res.status(404).json(notAuthorizedToView)
         }
@@ -30,21 +31,21 @@ async function getInformationAboutParticularList(req, res){
     }
 }
 
-async function createNewListAndAddMovieToIt(req, res){
+async function createNewListAndAddTvShowToIt(req, res){
     try{
         const {userId} = req.user
-        const {listName, listCoverImage, moviesInList, listAuthor} = req.body 
+        const {listName, listCoverImage, tvShowsInList, listAuthor} = req.body 
         if(req.body == {}){
             return res.status(400).json(noBodyDataError)
         }
-        const listMade = await listModel.create({
+        const listMade = await tvShowsListModel.create({
             listName,
             listCoverImage,
-            moviesInList,
+            tvShowsInList,
             listAuthor
         })
         const userThatMadeTheList = await userModel.findById(userId)
-        userThatMadeTheList.savedLists.push(listMade._id)
+        userThatMadeTheList.savedTvShowsLists.push(listMade._id)
         await userThatMadeTheList.save()
         res.status(201).json(listCreated)
     }
@@ -53,12 +54,12 @@ async function createNewListAndAddMovieToIt(req, res){
     }
 }
 
-async function addMovieToExistingList(req, res){
+async function addTvShowToExistingList(req, res){
     try{
-        const {movieData} = req.body 
+        const {tvShowData} = req.body 
         const {listId} = req.params
-        const particularList = await listModel.findById(listId)
-        particularList.moviesInList.push(movieData)
+        const particularList = await tvShowsListModel.findById(listId)
+        particularList.tvShowsInList.push(tvShowData)
         await particularList.save()
         res.status(200).json(listUpdated)
     }
@@ -68,19 +69,19 @@ async function addMovieToExistingList(req, res){
     } 
 } 
 
-async function deleteMovieFromList(req, res){
+async function deleteTvShowFromList(req, res){
     try{
         const {listId} = req.params  
-        const movieId = req.body.movieId 
-        if(listId == "" || movieId == ""){
+        const {tvShowId} = req.body 
+        if(listId == "" || tvShowId == ""){
             return res.status(400).json(noID) 
         }
-        const particularList = await listModel.findById(listId)
+        const particularList = await tvShowsListModel.findById(listId)
         if(!particularList){
             return res.status(404).json(listNotFound) 
         }
-        const newMovies = particularList.moviesInList.filter((movie)=> movie.movieId !== movieId) 
-        particularList.moviesInList = newMovies
+        const newTvShows = particularList.tvShowsInList.filter((tvShow)=> tvShow.tvShowId !== tvShowId) 
+        particularList.tvShowsInList = newTvShows
         await particularList.save()
         res.status(200).json(movieInListDeletedSuccessfully) 
     }
@@ -95,7 +96,7 @@ async function deleteList(req, res){
         if(listId == ""){
             return res.status(400).json(noID) 
         }
-        await listModel.findByIdAndDelete(listId)
+        await tvShowsListModel.findByIdAndDelete(listId)
         res.status(200).json(ListDeletedSuccessfully) 
     }
     catch(err){
@@ -105,9 +106,9 @@ async function deleteList(req, res){
 
 module.exports = {
     getAllListByUser,
-    createNewListAndAddMovieToIt,
-    addMovieToExistingList,
+    createNewListAndAddTvShowToIt,
+    addTvShowToExistingList,
     getInformationAboutParticularList,
-    deleteMovieFromList,
+    deleteTvShowFromList,
     deleteList
 }

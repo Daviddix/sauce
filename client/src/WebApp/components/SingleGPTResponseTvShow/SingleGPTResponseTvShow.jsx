@@ -3,13 +3,13 @@ import plusIcon from "../../../assets/app assets/icons/plus-icon.svg"
 import tvIcon from "../../../assets/app assets/icons/tv-icon.svg"
 
 import "./SingleGPTResponseTvShow.css"
-import AddToListModal from "../../components/AddToListModal/AddToListModal"
 import NotAuthenticatedModal from '../../components/NotAuthenticatedModal/NotAuthenticatedModal'
 import { useEffect, useState } from "react"
 import {useNavigate} from "react-router-dom"
 import { useAtom } from "jotai";
 import {isSignedInAtom, tvShowIdToAddToListAtom, tvShowsMatchPercentageAtom} from "../../globals/atom"
 import toast from "react-hot-toast"
+import AddToListModalTvShows from "../AddToListModalTvShows/AddToListModalTvShows"
 
 function SingleGPTResponseTvShow({tvShowName, matchPercent, tvShowId, tvShowReleaseDate, tvShowOverview, tvShowRating, tvShowPoster}) {
     const [accuracyClassName, setAccuracyClassName] = useState("")
@@ -67,7 +67,7 @@ function SingleGPTResponseTvShow({tvShowName, matchPercent, tvShowId, tvShowRele
       }, [matchPercent])
   return (
     <div className="tv-show-image-and-details">
-        {showListModal && <AddToListModal setShowListModal={setShowListModal} />}
+        {showListModal && <AddToListModalTvShows setShowListModal={setShowListModal} />}
         {showNotAuthenticatedModal && <NotAuthenticatedModal setShowNotAuthenticatedModal={setShowNotAuthenticatedModal} />}
         <div className="tv-show-image">
             <div className="accuracy-tooltip">

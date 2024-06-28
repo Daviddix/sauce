@@ -20,10 +20,6 @@ const animeListSchema = new mongoose.Schema({
     listAuthor : {
         type : mongoose.Schema.Types.ObjectId, 
         ref : "Users"
-    },
-    
-    listCategory : {
-        type : String
     }
 })
 
