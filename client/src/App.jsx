@@ -16,7 +16,7 @@ import NotFound from "./WebApp/Pages/404/404"
 
 
 import { clear } from 'idb-keyval'
-
+ 
 function App() {
   const dashboardTemplate = 
   <DashboardLayout>
