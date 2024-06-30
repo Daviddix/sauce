@@ -18,18 +18,18 @@ function Lists() {
   const [activeListId, setActiveListId] = useAtom(activeListIdAtom)
   const [listIdToDelete, setListIdToDelete] = useAtom(listIdToDeleteAtom)
 
-  const {listId} = useParams()
+  const {movieListId} = useParams()
 
 
   useEffect(()=>{
     getInformationAboutList()
-    setActiveListId(listId)
-  }, [listId])
+    setActiveListId(movieListId)
+  }, [movieListId])
 
   async function getInformationAboutList(){
     setListFetchStatus("loading")
     try{
-      const rawFetch = await fetch(`http://localhost:3000/app/list/movies/${listId}`, {
+      const rawFetch = await fetch(`http://localhost:3000/app/list/movies/${movieListId}`, {
             credentials: "include"
         })
         const fetchInJson = await rawFetch.json()
@@ -47,7 +47,7 @@ function Lists() {
 
   async function deleteList(id){
     try{
-    const rawFetch = await fetch(`http://localhost:3000/app/list/movies/${listId}/l`,{
+    const rawFetch = await fetch(`http://localhost:3000/app/list/movies/${movieListId}/l`,{
       method : "DELETE",
       credentials : "include"
     })
@@ -67,7 +67,7 @@ function Lists() {
     return <SingleListMovie 
     getInformationAboutListFunction={getInformationAboutList}
     movieName={movieName}
-    listId={listId}
+    listId={movieListId}
     deleteList={deleteList}
     listInfo={listInfo}
     movieId={movieId}
@@ -97,7 +97,7 @@ function Lists() {
 
       <button 
       onClick={()=>{
-        deleteList(listId)
+        deleteList(movieListId)
       }}
       className="back-button-container">
         <img 

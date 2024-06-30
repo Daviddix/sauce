@@ -66,15 +66,17 @@ async function getTvShowsThatMatchPrompt(req, res){
 
       const tvShowInfo = tmdbData.results[0];
        
-      return {
-        tvShowName: tvShowInfo.name,
-        matchPercent: tvShowMatch.matchPercent,
-        tvShowId: tvShowInfo.id,
-        tvShowReleaseDate: tvShowInfo.first_air_date,
-        tvShowOverview: tvShowInfo.overview,
-        tvShowRating : tvShowInfo.vote_average,
-        tvShowPoster : tvShowInfo.poster_path
-      }
+       if(tvShowInfo.name){
+        return {
+          tvShowName: tvShowInfo.name,
+          matchPercent: tvShowMatch.matchPercent,
+          tvShowId: tvShowInfo.id,
+          tvShowReleaseDate: tvShowInfo.first_air_date,
+          tvShowOverview: tvShowInfo.overview,
+          tvShowRating : tvShowInfo.vote_average, 
+          tvShowPoster : tvShowInfo.poster_path
+        }
+       } 
 
     })
 

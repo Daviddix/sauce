@@ -16,6 +16,7 @@ import NotFound from "./WebApp/Pages/404/404"
 
 
 import { clear } from 'idb-keyval'
+import AnimeLists from "./WebApp/Pages/AnimeLists/AnimeLists"
  
 function App() {
   const dashboardTemplate = 
@@ -83,7 +84,9 @@ async function getUserInfo(){
     
     <Route path='/app/' element={dashboardTemplate}>
         <Route index element={<Home />} />
-        <Route path='list/:listId' element={<Lists />} />
+        <Route path='list/movie/:movieListId' element={<Lists />} />
+        <Route path='list/anime/:animeListId' element={<AnimeLists />} />
+        <Route path='list/tvShow/:listId' element={<Lists />} />
     </Route>
 
     <Route path='*' element={<NotFound />} />

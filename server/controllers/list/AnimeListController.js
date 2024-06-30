@@ -23,10 +23,11 @@ async function getInformationAboutParticularList(req, res){
         if(!particularList.listAuthor == userId){
             return res.status(404).json(notAuthorizedToView)
         }
+        console.log(listId, particularList)
         res.status(200).json(particularList)
     }
     catch(err){
-        res.status(500).json(unknownError)
+        res.status(500).json(unknownError) 
     }
 }
 
