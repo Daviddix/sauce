@@ -1,0 +1,56 @@
+.list-movie-container .single-list-tv-show{
+    max-width:100%;
+    border-radius: 0.8rem;
+    background-color: white;
+    box-shadow: 0px 1px 8px 0px rgba(0, 0, 0, 0.089);
+    overflow: hidden;
+}
+
+.single-list-tv-show > img{
+    width: 100%;
+    height:15rem;
+    object-fit: cover;
+}
+
+.single-list-tv-show .single-list-tv-show-details{
+    padding: 0 1rem 1rem 1rem;
+}
+
+.list-tv-show-options button{
+    background-color: transparent;
+    border:none;
+    font-family: clashG;
+    font-size: 1.4rem;
+    font-style: normal;
+    font-weight: 500;
+}
+
+.list-tv-show-options > button {
+    color: rgb(223, 8, 8);
+}
+
+.list-tv-show-options a{
+    color: var(--primary-800);
+    text-decoration: none;
+}
+
+.list-tv-show-options button > img{
+    max-width: 1.8rem;
+        mix-blend-mode: difference;
+}
+
+.list-tv-show-options button.c{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.single-list-tv-show-details .list-tv-show-options{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    flex-wrap: wrap;
+    max-width: 15rem;
+    margin: .6rem 0 0 auto;
+}
