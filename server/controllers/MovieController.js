@@ -68,8 +68,9 @@ async function getMoviesThatMatchPrompt(req, res){
       const tmdbData = await tmdbResponse.json();
 
       const movieInfo = tmdbData.results[0];
-      return {
-        movieName: movieInfo?.title? movieInfo.title : movieInfo.original_title,
+      if(movieInfo){
+        return {
+        movieName: movieInfo.title,
         matchPercent: movieMatch.matchPercent,
         movieId: movieInfo.id,
         movieReleaseDate: movieInfo.release_date,
@@ -77,6 +78,8 @@ async function getMoviesThatMatchPrompt(req, res){
         movieRating : movieInfo.vote_average,
         moviePoster : movieInfo.poster_path
       } 
+      }
+      
 
     })
 
