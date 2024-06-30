@@ -12,6 +12,11 @@ import { useAtom } from "jotai"
 import { isSignedInAtom, refreshListAtom, refreshUserDetailsAtom, userInfoAtom, userInfoStatusAtom } from "./WebApp/globals/atom"
 import NotFound from "./WebApp/Pages/404/404"
 
+//analytics
+import ReactGA from "react-ga4";
+
+ReactGA.initialize("G-BHR152TJYH");
+
 
 import { clear } from 'idb-keyval'
 
