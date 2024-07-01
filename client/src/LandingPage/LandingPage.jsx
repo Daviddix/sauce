@@ -6,20 +6,9 @@ import closeIcon from "../assets/landing page assets/icons/close-one.svg"
 import "./LandingPage.css"
 import {Link} from "react-router-dom"
 import { useEffect, useState } from 'react'
-import ReactGA from "react-ga4";
-
-ReactGA.initialize("G-X9PPL1JZBF");
 
 function LandingPage() {
     const [showMenu, setShowMenu] = useState(false)
-
-    useEffect(()=>{
-        ReactGA.send({
-          hitType: "pageview",
-          page: "/home",
-          title : "landing page"
-        })
-      }, [])
   return (
     <main className='landing-page-main'>
 
