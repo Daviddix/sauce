@@ -8,7 +8,7 @@ import {Link} from "react-router-dom"
 import { useEffect, useState } from 'react'
 import ReactGA from "react-ga4";
 
-ReactGA.initialize("G-BHR152TJYH");
+ReactGA.initialize("G-X9PPL1JZBF");
 
 function LandingPage() {
     const [showMenu, setShowMenu] = useState(false)
