@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import SidebarListError from "../SidebarListError/SidebarListError"
 import { useAtom } from "jotai"
-import { activeListIdAtom, isSignedInAtom, listIdToDeleteAtom, refreshListAtom } from "../../globals/atom"
+import { activeListIdAtom, allAnimeListIdAtom, isSignedInAtom, listIdToDeleteAtom, refreshListAtom } from "../../globals/atom"
 import { useNavigate } from "react-router-dom"
 import SingleSidebarListAnime from "../SingleSidebarListAnime/SingleSidebarListAnime"
 
@@ -14,6 +14,7 @@ function AnimeListContainer() {
     const [refreshList, setRefreshList] = useAtom(refreshListAtom)
     const [allListIds, setAllListIds] = useState([])
     const [isSignedIn, setIsSignedIn] = useAtom(isSignedInAtom)
+    const [allAnimeListId, setAllAnimeListId] = useAtom(allAnimeListIdAtom)
     const navigate = useNavigate()
 
     async function getListsByUser(){
@@ -28,6 +29,8 @@ function AnimeListContainer() {
             throw new Error("Err", {cause : fetchInJson})
         }
         setLists(fetchInJson)
+        const ids = fetchInJson.map((list)=> {return list._id})
+        setAllAnimeListId(ids)
         setListFetchStatus("completed")
         }
         catch(err){
@@ -102,28 +105,28 @@ function AnimeListContainer() {
       }
   }, [refreshList])
 
-    useEffect(() => {
-      if (listIdToDelete == 0) return
-      else {
-        const n = lists.filter((list) => list._id !== listIdToDelete)
-        if (n.length == 0) {
-          navigate("/app")
-          setFilteredList(n);
-          setLists(n)
-          getListsByUserWithoutLoading()
-          return
-        }
-        setFilteredList(n);
-        setLists(n)
-        const onlyIds = n.map((list) => list._id)
-        setAllListIds(onlyIds);
-        if (listIdToDelete == onlyIds[0]) {
-          navigate(`/app/list/${onlyIds[1]}`)
-        } else {
-          navigate(`/app/list/${onlyIds[0]}`)
-        }
-      }
-    }, [listIdToDelete])
+    // useEffect(() => {
+    //   if (listIdToDelete == 0) return
+    //   else {
+    //     const n = lists.filter((list) => list._id !== listIdToDelete)
+    //     if (n.length == 0) {
+    //       navigate("/app")
+    //       setFilteredList(n);
+    //       setLists(n)
+    //       getListsByUserWithoutLoading()
+    //       return
+    //     }
+    //     setFilteredList(n);
+    //     setLists(n)
+    //     const onlyIds = n.map((list) => list._id)
+    //     setAllListIds(onlyIds);
+    //     if (listIdToDelete == onlyIds[0]) {
+    //       navigate(`/app/list/${onlyIds[1]}`)
+    //     } else {
+    //       navigate(`/app/list/${onlyIds[0]}`)
+    //     }
+    //   }
+    // }, [listIdToDelete])
 
   return (
     <div className="lists-container">

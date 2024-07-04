@@ -2,8 +2,12 @@ import { Link } from "react-router-dom"
 import rightArrowIcon from "../../../assets/app assets/icons/right-arrow-icon.svg"
 import "./SingleListAnimep.css"
 import toast from "react-hot-toast"
+import { useAtom } from "jotai"
+import { refreshListAtom } from "../../globals/atom"
 
 function SingleListAnimep({animeName, animeReleaseDate, animePoster, animeId, listId, getInformationAboutListFunction, listName, deleteList, listInfo}) {
+    const [refreshList, setRefreshList] = useAtom(refreshListAtom)
+
     async function deleteAnimeFromList(){
         try{
             const rawFetch = await fetch(`http://localhost:3000/app/list/anime/${listId}/m`,{
@@ -23,6 +27,7 @@ function SingleListAnimep({animeName, animeReleaseDate, animePoster, animeId, li
             if(listInfo.animeInList.length == 1){
                 notifyForAnimeDeletedFromList(listName)
                 deleteList(listId)
+                setRefreshList((prev)=> prev + 1)
                 return
             }
             getInformationAboutListFunction()

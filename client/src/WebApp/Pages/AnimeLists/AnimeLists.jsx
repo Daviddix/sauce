@@ -1,13 +1,13 @@
 import backIcon from "../../../assets/app assets/icons/left-icon.svg"
 import deleteIcon from "../../../assets/app assets/icons/delete-icon.svg"
-import {Link, useParams} from "react-router-dom"
+import {Link, useNavigate, useParams} from "react-router-dom"
 
 import { useEffect, useState } from "react"
 import SingleListMovieSkeleton from "../../components/SkeletonLoaders/SingleListMovieSkeleton/SingleListMovieSkeleton"
 import SingleListMovieError from "../../components/SingleListMovieError/SingleListMovieError"
 import { Toaster } from "react-hot-toast"
 import { useAtom } from "jotai"
-import { activeListIdAtom, listIdToDeleteAtom } from "../../globals/atom"
+import { activeListIdAtom, allAnimeListIdAtom, listIdToDeleteAtom, refreshListAtom } from "../../globals/atom"
 import SingleListAnimep from "../../components/SingleListAnimep/SingleListAnimep"
 
 function AnimeLists(){
@@ -15,8 +15,11 @@ function AnimeLists(){
     const [listInfo, setListInfo] = useState({})
     const [activeListId, setActiveListId] = useAtom(activeListIdAtom)
     const [listIdToDelete, setListIdToDelete] = useAtom(listIdToDeleteAtom)
+    const [allAnimeListId, setAllAnimeListId] = useAtom(allAnimeListIdAtom)
+    const [refreshList, setRefreshList] = useAtom(refreshListAtom)
 
     const {animeListId} = useParams()
+    const navigate = useNavigate()
 
     useEffect(()=>{
         getInformationAboutList()
@@ -43,7 +46,7 @@ function AnimeLists(){
 
     async function deleteList(id){
         try{
-            const rawFetch = await fetch(`http://localhost:3000/app/list/anime/${movieListId}/l`,{
+            const rawFetch = await fetch(`http://localhost:3000/app/list/anime/${animeListId}/l`,{
                 method : "DELETE",
                 credentials : "include"
               }) 
@@ -52,10 +55,18 @@ function AnimeLists(){
             if(!rawFetch.ok){
                 throw new Error("err", {cause : fetchInJson})
             }
-            setListIdToDelete(id)
+            // setListIdToDelete(id)
+            const filteredAnimeListIds = allAnimeListId.filter((id)=> id !== animeListId)
+            if(filteredAnimeListIds.length == 0){
+                navigate("/app")
+            }else{
+                navigate(`/app/list/anime/${filteredAnimeListIds[0]}`)
+                setRefreshList(3)
+            }
 
         }catch(err){
             alert("an error ocurred when you tried to delete that list, please try again")
+            console.log(err)
         }
     }
 
