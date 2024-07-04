@@ -58,6 +58,7 @@ function AnimeLists(){
             const filteredAnimeListIds = allAnimeListId.filter((id)=> id !== animeListId)
             if(filteredAnimeListIds.length == 0){
                 navigate("/app")
+                setRefreshList((prev)=> prev + 1)
             }else{
                 navigate(`/app/list/anime/${filteredAnimeListIds[0]}`)
                 setRefreshList((prev)=> prev + 1)

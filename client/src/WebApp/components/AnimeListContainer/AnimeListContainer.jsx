@@ -54,6 +54,8 @@ function AnimeListContainer() {
           throw new Error("Err", {cause : fetchInJson})
       }
       setLists(fetchInJson)
+      const ids = fetchInJson.map((list)=> {return list._id})
+      setAllAnimeListId(ids)
       setListFetchStatus("completed")
       }
       catch(err){

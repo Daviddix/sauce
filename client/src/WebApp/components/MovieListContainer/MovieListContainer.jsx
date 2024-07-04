@@ -56,6 +56,8 @@ function MovieListContainer() {
           throw new Error("Err", {cause : fetchInJson})
       }
       setLists(fetchInJson)
+      const ids = fetchInJson.map((list)=> {return list._id})
+      setAllMoviesListId(ids)
       setListFetchStatus("completed")
       }
       catch(err){

@@ -1,13 +1,13 @@
 import backIcon from "../../../assets/app assets/icons/left-icon.svg"
 import deleteIcon from "../../../assets/app assets/icons/delete-icon.svg"
-import {Link, useParams} from "react-router-dom"
+import {Link, useNavigate, useParams} from "react-router-dom"
 
 import { useEffect, useState } from "react"
 import SingleListMovieSkeleton from "../../components/SkeletonLoaders/SingleListMovieSkeleton/SingleListMovieSkeleton"
 import SingleListMovieError from "../../components/SingleListMovieError/SingleListMovieError"
 import { Toaster } from "react-hot-toast"
 import { useAtom } from "jotai"
-import { activeListIdAtom, listIdToDeleteAtom } from "../../globals/atom"
+import { activeListIdAtom, allTvShowsListIdAtom, listIdToDeleteAtom, refreshListAtom } from "../../globals/atom"
 import SingleListTvShowp from "../../components/SingleListTvShowp/SingleListTvShowp"
 
 function TvShowLists(){
@@ -15,8 +15,11 @@ function TvShowLists(){
     const [listInfo, setListInfo] = useState({})
     const [activeListId, setActiveListId] = useAtom(activeListIdAtom)
     const [listIdToDelete, setListIdToDelete] = useAtom(listIdToDeleteAtom)
+    const [allTvShowsListId, setAllTvShowsListId] = useAtom(allTvShowsListIdAtom)
+    const [refreshList, setRefreshList] = useAtom(refreshListAtom)
 
     const {tvShowListId} = useParams()
+    const navigate = useNavigate()
 
     useEffect(()=>{
         getInformationAboutList()
@@ -52,10 +55,19 @@ function TvShowLists(){
             if(!rawFetch.ok){
                 throw new Error("err", {cause : fetchInJson})
             }
-            setListIdToDelete(id)
+            const filteredTvShowList = allTvShowsListId.filter((id)=> id !== tvShowListId)
+            console.log(filteredTvShowList)
+            if(filteredTvShowList.length == 0){
+                navigate("/app")
+                setRefreshList((prev)=> prev + 1)
+            }else{
+                navigate(`/app/list/tv/${filteredTvShowList[0]}`)
+                setRefreshList((prev)=> prev + 1)
+            }
 
         }catch(err){
             alert("an error ocurred when you tried to delete that list, please try again")
+            console.log(err)
         }
     }
 

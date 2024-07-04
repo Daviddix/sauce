@@ -62,6 +62,7 @@ function Lists() {
     const filteredMoviesListIds = allMoviesListId.filter((id)=> id !== movieListId)
             if(filteredMoviesListIds.length == 0){
                 navigate("/app")
+                setRefreshList((prev)=> prev + 1)
             }else{
                 navigate(`/app/list/movie/${filteredMoviesListIds[0]}`)
                 setRefreshList((prev)=> prev+1)

@@ -39,6 +39,7 @@ export const listIdToDeleteAtom = atom(0)
 export const refreshListAtom = atom(0)
 export const allAnimeListIdAtom = atom([])
 export const allMoviesListIdAtom = atom([])
+export const allTvShowsListIdAtom = atom([])
 
 //category atoms
 export const searchCategoryAtom = atom("Movies")
