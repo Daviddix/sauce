@@ -3,7 +3,7 @@ import "./MovieListContainer.css"
 import SingleSidebarList from "../SingleSidebarList/SingleSidebarList"
 import SidebarListError from "../SidebarListError/SidebarListError"
 import { useAtom } from "jotai"
-import { activeListIdAtom, isSignedInAtom, listIdToDeleteAtom, refreshListAtom } from "../../globals/atom"
+import { activeListIdAtom, allMoviesListIdAtom, isSignedInAtom, listIdToDeleteAtom, refreshListAtom } from "../../globals/atom"
 import { useNavigate } from "react-router-dom"
 
 function MovieListContainer() {
@@ -15,6 +15,7 @@ function MovieListContainer() {
     const [refreshList, setRefreshList] = useAtom(refreshListAtom)
     const [allListIds, setAllListIds] = useState([])
     const [isSignedIn, setIsSignedIn] = useAtom(isSignedInAtom)
+    const [allMoviesListId, setAllMoviesListId] = useAtom(allMoviesListIdAtom)
     const navigate = useNavigate()
 
     async function getListsByUser(){
@@ -30,6 +31,8 @@ function MovieListContainer() {
             throw new Error("Err", {cause : fetchInJson})
         }
         setLists(fetchInJson)
+        const ids = fetchInJson.map((list)=> {return list._id})
+        setAllMoviesListId(ids)
         setListFetchStatus("completed")
         }
         catch(err){

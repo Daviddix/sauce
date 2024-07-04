@@ -1,6 +1,6 @@
 import backIcon from "../../../assets/app assets/icons/left-icon.svg"
 import deleteIcon from "../../../assets/app assets/icons/delete-icon.svg"
-import {Link, useParams} from "react-router-dom"
+import {Link, useNavigate, useParams} from "react-router-dom"
 import "./Lists.css"
 import SingleListMovie from "../../components/SingleListMovie/SingleListMovie"
 import { useEffect, useState } from "react"
@@ -8,7 +8,7 @@ import SingleListMovieSkeleton from "../../components/SkeletonLoaders/SingleList
 import SingleListMovieError from "../../components/SingleListMovieError/SingleListMovieError"
 import { Toaster } from "react-hot-toast"
 import { useAtom } from "jotai"
-import { activeListIdAtom, listIdToDeleteAtom } from "../../globals/atom"
+import { activeListIdAtom, allMoviesListIdAtom, listIdToDeleteAtom, refreshListAtom } from "../../globals/atom"
 
 
 
@@ -17,8 +17,11 @@ function Lists() {
   const [listInfo, setListInfo] = useState({})
   const [activeListId, setActiveListId] = useAtom(activeListIdAtom)
   const [listIdToDelete, setListIdToDelete] = useAtom(listIdToDeleteAtom)
+  const [allMoviesListId, setAllMoviesListId] = useAtom(allMoviesListIdAtom)
+  const [refreshList, setRefreshList] = useAtom(refreshListAtom)
 
   const {movieListId} = useParams()
+  const navigate = useNavigate()
 
 
   useEffect(()=>{
@@ -56,10 +59,18 @@ function Lists() {
     if(!rawFetch.ok){
       throw new Error("err", {cause : fetchInJson})
     }
-    setListIdToDelete(id)
+    const filteredMoviesListIds = allMoviesListId.filter((id)=> id !== movieListId)
+            if(filteredMoviesListIds.length == 0){
+                navigate("/app")
+            }else{
+                navigate(`/app/list/movie/${filteredMoviesListIds[0]}`)
+                setRefreshList((prev)=> prev+1)
+            }
+
     }
     catch(err){
       alert("an error ocurred when you tried to delete that list, please try again")
+      console.log(err)
     }
   }
 

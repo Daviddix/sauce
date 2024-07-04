@@ -25,7 +25,7 @@ export const animeMatchPercentageAtom = atom(0)
 export const animeIdToAddToListAtom = atom(0)
 export const allAnimeAtom = atom([])
 export const mainLinkForAnimeAtom = atom("")
-export const allAnimeListIdAtom = atom([])
+
 
 //tv show details atom
 export const tvShowsMatchPercentageAtom = atom(0)
@@ -37,6 +37,8 @@ export const mainLinkForTvShowAtom = atom("")
 export const activeListIdAtom = atom(0)
 export const listIdToDeleteAtom = atom(0)
 export const refreshListAtom = atom(0)
+export const allAnimeListIdAtom = atom([])
+export const allMoviesListIdAtom = atom([])
 
 //category atoms
 export const searchCategoryAtom = atom("Movies")

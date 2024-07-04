@@ -55,13 +55,12 @@ function AnimeLists(){
             if(!rawFetch.ok){
                 throw new Error("err", {cause : fetchInJson})
             }
-            // setListIdToDelete(id)
             const filteredAnimeListIds = allAnimeListId.filter((id)=> id !== animeListId)
             if(filteredAnimeListIds.length == 0){
                 navigate("/app")
             }else{
                 navigate(`/app/list/anime/${filteredAnimeListIds[0]}`)
-                setRefreshList(3)
+                setRefreshList((prev)=> prev + 1)
             }
 
         }catch(err){
