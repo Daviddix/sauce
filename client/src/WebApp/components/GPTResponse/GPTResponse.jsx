@@ -67,6 +67,7 @@ function GPTResponse({inputValue, id, searchCategory}) {
     }
 
     async function makeRequestWithoutIndexedDb(movieDescription, idOfResponse){
+      console.log("raw, raw")
         setMovieFetchStatus("loading")
         setDisableInput(true)
         try{
