@@ -134,12 +134,13 @@ async function getImagesForSpecificAnime(req, res){
 async function getRelatedAnime(req, res){
   try{
       const animeId = Number(req.params.animeId)
-      const url = `https://api.themoviedb.org/3/tv/${animeId}/recommendations?language=en-US&page=1&api_key=${tmdbApiKey}`;
+      const url = `https://api.themoviedb.org/3/tv/${animeId}/similar?language=en-US&page=1&api_key=${tmdbApiKey}`;
       
       const response = await fetch(url)
     
       const {results} = await response.json()
-      res.send(results.splice(0, 5))
+      const filteredResults = results.filter((obj)=> obj.origin_country[0]== "JP" && obj.genre_ids.includes(16))
+      res.send(filteredResults.splice(0, 5))
     }
     catch(err){
       res.status(500).json(unknownError)
