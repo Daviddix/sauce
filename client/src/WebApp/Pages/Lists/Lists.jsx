@@ -5,10 +5,11 @@ import "./Lists.css"
 import SingleListMovie from "../../components/SingleListMovie/SingleListMovie"
 import { useEffect, useState } from "react"
 import SingleListMovieSkeleton from "../../components/SkeletonLoaders/SingleListMovieSkeleton/SingleListMovieSkeleton"
+import menuIcon from "../../../assets/app assets/icons/menu-icon.svg"
 import SingleListMovieError from "../../components/SingleListMovieError/SingleListMovieError"
 import { Toaster } from "react-hot-toast"
 import { useAtom } from "jotai"
-import { activeListIdAtom, allMoviesListIdAtom, listIdToDeleteAtom, refreshListAtom } from "../../globals/atom"
+import { activeListIdAtom, allMoviesListIdAtom, listIdToDeleteAtom, openSidebarAtom, refreshListAtom } from "../../globals/atom"
 
 
 
@@ -19,6 +20,7 @@ function Lists() {
   const [listIdToDelete, setListIdToDelete] = useAtom(listIdToDeleteAtom)
   const [allMoviesListId, setAllMoviesListId] = useAtom(allMoviesListIdAtom)
   const [refreshList, setRefreshList] = useAtom(refreshListAtom)
+  const [openSidebar, setOpenSidebar] = useAtom(openSidebarAtom)
 
   const {movieListId} = useParams()
   const navigate = useNavigate()
@@ -75,6 +77,10 @@ function Lists() {
     }
   }
 
+  function openSidebarFn(){
+    setOpenSidebar(true)
+  }
+
   const mappedMoviesFromList = listInfo?.moviesInList?.map(({movieName, moviePoster, movieReleaseDate, movieId})=>{
     return <SingleListMovie 
     getInformationAboutListFunction={getInformationAboutList}
@@ -89,43 +95,46 @@ function Lists() {
     movieReleaseDate={movieReleaseDate} />  
   })
   return (
-    <div className='list-layout'>
-      {
-        listFetchStatus == "loading" && <SingleListMovieSkeleton />
-      }
-      {
-        listFetchStatus == "error" &&  <SingleListMovieError refreshFromError={getInformationAboutList} />
-      }
-      { listFetchStatus == "completed" &&
+    <div className="list-layout">
+      {listFetchStatus == "loading" && <SingleListMovieSkeleton />}
+      {listFetchStatus == "error" && (
+        <SingleListMovieError refreshFromError={getInformationAboutList} />
+      )}
+      {listFetchStatus == "completed" && (
         <>
-        <div className="list-header">
-        <button className="back-button-container">
-        <Link to="/app">
-        <img src={backIcon} alt="go back" />
-        </Link>
-      </button>
+          <div className="list-header">
+            <div className="left-buttons">
+              <button onClick={openSidebarFn} className="back-button-container">
+                <img src={menuIcon} alt="show menu" />
+              </button>
 
-      <h1 className="tight-heading-style">{listInfo?.listName}({listInfo?.moviesInList?.length})</h1>
+              <button className="back-button-container">
+                <Link to="/app">
+                  <img src={backIcon} alt="go back" />
+                </Link>
+              </button>
+            </div>
 
-      <button 
-      onClick={()=>{
-        deleteList(movieListId)
-      }}
-      className="back-button-container">
-        <img 
-        src={deleteIcon} alt="trashcan icon" />
-      </button>
-        </div>
-        <div className="list-movie-container">
-        {mappedMoviesFromList}                      
-        </div>
+            <h1 className="tight-heading-style">
+              {listInfo?.listName}({listInfo?.moviesInList?.length})
+            </h1>
+
+            <button
+              onClick={() => {
+                deleteList(movieListId);
+              }}
+              className="back-button-container"
+            >
+              <img src={deleteIcon} alt="trashcan icon" />
+            </button>
+          </div>
+          <div className="list-movie-container">{mappedMoviesFromList}</div>
         </>
-      }
+      )}
 
-<Toaster toastOptions={{duration : 4000}} />
-        
+      <Toaster toastOptions={{ duration: 4000 }} />
     </div>
-  )
+  );
 }
 
 export default Lists
