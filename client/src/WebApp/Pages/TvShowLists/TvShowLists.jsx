@@ -1,5 +1,6 @@
 import backIcon from "../../../assets/app assets/icons/left-icon.svg"
 import deleteIcon from "../../../assets/app assets/icons/delete-icon.svg"
+import menuIcon from "../../../assets/app assets/icons/menu-icon.svg"
 import {Link, useNavigate, useParams} from "react-router-dom"
 
 import { useEffect, useState } from "react"
@@ -7,7 +8,7 @@ import SingleListMovieSkeleton from "../../components/SkeletonLoaders/SingleList
 import SingleListMovieError from "../../components/SingleListMovieError/SingleListMovieError"
 import { Toaster } from "react-hot-toast"
 import { useAtom } from "jotai"
-import { activeListIdAtom, allTvShowsListIdAtom, listIdToDeleteAtom, refreshListAtom } from "../../globals/atom"
+import { activeListIdAtom, allTvShowsListIdAtom, listIdToDeleteAtom, openSidebarAtom, refreshListAtom } from "../../globals/atom"
 import SingleListTvShowp from "../../components/SingleListTvShowp/SingleListTvShowp"
 
 function TvShowLists(){
@@ -17,6 +18,7 @@ function TvShowLists(){
     const [listIdToDelete, setListIdToDelete] = useAtom(listIdToDeleteAtom)
     const [allTvShowsListId, setAllTvShowsListId] = useAtom(allTvShowsListIdAtom)
     const [refreshList, setRefreshList] = useAtom(refreshListAtom)
+    const [openSidebar, setOpenSidebar] = useAtom(openSidebarAtom)
 
     const {tvShowListId} = useParams()
     const navigate = useNavigate()
@@ -71,6 +73,10 @@ function TvShowLists(){
         }
     }
 
+    function openSidebarFn(){
+        setOpenSidebar(true)
+    }
+
     const mappedTvShowsFromList = listInfo.tvShowsInList?.map(({tvShowName, tvShowPoster, tvShowReleaseDate, tvShowId})=>{
         return <SingleListTvShowp 
         getInformationAboutListFunction={getInformationAboutList}
@@ -96,11 +102,17 @@ function TvShowLists(){
         listFetchStatus == "completed" && 
         <>
         <div className="list-header">
-        <button className="back-button-container">
-        <Link to="/app">
-        <img src={backIcon} alt="go back" />
-        </Link>
-      </button>
+        <div className="left-buttons">
+              <button onClick={openSidebarFn} className="back-button-container">
+                <img src={menuIcon} alt="show menu" />
+              </button>
+
+              <button className="back-button-container">
+                <Link to="/app">
+                  <img src={backIcon} alt="go back" />
+                </Link>
+              </button>
+        </div>
 
       <h1 className="tight-heading-style">{listInfo?.listName}({listInfo?.tvShowsInList?.length})</h1>
 

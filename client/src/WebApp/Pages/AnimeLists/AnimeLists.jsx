@@ -5,9 +5,10 @@ import {Link, useNavigate, useParams} from "react-router-dom"
 import { useEffect, useState } from "react"
 import SingleListMovieSkeleton from "../../components/SkeletonLoaders/SingleListMovieSkeleton/SingleListMovieSkeleton"
 import SingleListMovieError from "../../components/SingleListMovieError/SingleListMovieError"
+import menuIcon from "../../../assets/app assets/icons/menu-icon.svg"
 import { Toaster } from "react-hot-toast"
 import { useAtom } from "jotai"
-import { activeListIdAtom, allAnimeListIdAtom, listIdToDeleteAtom, refreshListAtom } from "../../globals/atom"
+import { activeListIdAtom, allAnimeListIdAtom, listIdToDeleteAtom, openSidebarAtom, refreshListAtom } from "../../globals/atom"
 import SingleListAnimep from "../../components/SingleListAnimep/SingleListAnimep"
 
 function AnimeLists(){
@@ -17,6 +18,7 @@ function AnimeLists(){
     const [listIdToDelete, setListIdToDelete] = useAtom(listIdToDeleteAtom)
     const [allAnimeListId, setAllAnimeListId] = useAtom(allAnimeListIdAtom)
     const [refreshList, setRefreshList] = useAtom(refreshListAtom)
+    const [openSidebar, setOpenSidebar] = useAtom(openSidebarAtom)
 
     const {animeListId} = useParams()
     const navigate = useNavigate()
@@ -70,6 +72,10 @@ function AnimeLists(){
         }
     }
 
+    function openSidebarFn(){
+        setOpenSidebar(true)
+    }
+
     const mappedAnimeFromList = listInfo.animeInList?.map(({animeName, animePoster, animeReleaseDate, animeId})=>{
         return <SingleListAnimep 
         getInformationAboutListFunction={getInformationAboutList}
@@ -95,11 +101,17 @@ function AnimeLists(){
         listFetchStatus == "completed" && 
         <>
         <div className="list-header">
-        <button className="back-button-container">
-        <Link to="/app">
-        <img src={backIcon} alt="go back" />
-        </Link>
-      </button>
+        <div className="left-buttons">
+              <button onClick={openSidebarFn} className="back-button-container">
+                <img src={menuIcon} alt="show menu" />
+              </button>
+
+              <button className="back-button-container">
+                <Link to="/app">
+                  <img src={backIcon} alt="go back" />
+                </Link>
+              </button>
+        </div>
 
       <h1 className="tight-heading-style">{listInfo?.listName}({listInfo?.animeInList?.length})</h1>
 
