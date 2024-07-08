@@ -65,7 +65,8 @@ async function getAnimeThatMatchPrompt(req, res){
       const tmdbData = await tmdbResponse.json();
 
       const animeInfo = tmdbData.results[0];
-      return {
+      if (animeInfo) {
+        return {
         animeName: animeInfo.name,
         matchPercent: animeMatch.matchPercent,
         animeId: animeInfo.id,
@@ -74,7 +75,7 @@ async function getAnimeThatMatchPrompt(req, res){
         animeRating : animeInfo.vote_average,
         animePoster : animeInfo.poster_path
       }
-
+    }
     })
 
     const animeInfoArray = await Promise.all(tmdbPromises);

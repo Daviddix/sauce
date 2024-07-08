@@ -12,7 +12,7 @@ import "./TopAnimeDetails.css"
 
 import { useEffect, useState } from "react"
 import DetailsSkeleton from "../SkeletonLoaders/DetailsSkeleton/DetailsSkeleton"
-import AddToListModal from "../../components/AddToListModal/AddToListModal"
+import AddToListModalAnime from "../../components/AddToListModalAnime/AddToListModalAnime"
 import { isSignedInAtom,animeIdToAddToListAtom, animeMatchPercentageAtom, mainLinkForAnimeAtom, allAnimeAtom } from "../../globals/atom"
 import { useAtom } from "jotai"
 import toast, { Toaster } from "react-hot-toast"
@@ -96,7 +96,7 @@ function TopAnimeDetails() {
 
   return (
     <div className="top-anime-details">
-            {showListModal && <AddToListModal setShowListModal={setShowListModal} />}
+            {showListModal && <AddToListModalAnime setShowListModal={setShowListModal} />}
 
             {animeFetchStatus == "loading" && <DetailsSkeleton /> }
 

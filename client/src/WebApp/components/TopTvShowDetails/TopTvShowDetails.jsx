@@ -12,7 +12,7 @@ import "./TopTvShowDetails.css"
 
 import { useEffect, useState } from "react"
 import DetailsSkeleton from "../SkeletonLoaders/DetailsSkeleton/DetailsSkeleton"
-import AddToListModal from "../../components/AddToListModal/AddToListModal"
+import AddToListModalTvShows from "../../components/AddToListModalTvShows/AddToListModalTvShows"
 import { isSignedInAtom,tvShowIdToAddToListAtom, allTvShowsAtom, tvShowsMatchPercentageAtom, mainLinkForTvShowAtom } from "../../globals/atom"
 import { useAtom } from "jotai"
 import toast, { Toaster } from "react-hot-toast"
@@ -96,7 +96,7 @@ function TopTvShowDetails() {
 
   return (
     <div className="top-tv-show-details">
-            {showListModal && <AddToListModal setShowListModal={setShowListModal} />}
+            {showListModal && <AddToListModalTvShows setShowListModal={setShowListModal} />}
 
             {tvShowFetchStatus == "loading" && <DetailsSkeleton /> }
 

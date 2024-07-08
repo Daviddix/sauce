@@ -66,7 +66,7 @@ async function getTvShowsThatMatchPrompt(req, res){
 
       const tvShowInfo = tmdbData.results[0];
        
-       if(tvShowInfo.name){
+       if(tvShowInfo){
         return {
           tvShowName: tvShowInfo.name,
           matchPercent: tvShowMatch.matchPercent,

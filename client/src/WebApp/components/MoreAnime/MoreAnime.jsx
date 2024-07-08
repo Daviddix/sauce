@@ -7,7 +7,7 @@ import { useAtom } from "jotai"
 import { animeIdToAddToListAtom, isSignedInAtom, mainLinkForAnimeAtom} from "../../globals/atom"
 import { useState } from "react"
 import { useParams } from "react-router-dom"
-import AddToListModal from "../AddToListModal/AddToListModal"
+import AddToListModalAnime from "../AddToListModalAnime/AddToListModalAnime"
 import toast, { Toaster } from "react-hot-toast"
 import NotAuthenticatedModal from "../NotAuthenticatedModal/NotAuthenticatedModal"
 
@@ -47,7 +47,7 @@ function MoreAnime() {
 }
   return (
     mainAnimeLink !== "" && <div className="anime-more-section">
-      {showListModal && <AddToListModal setShowListModal={setShowListModal} />}
+      {showListModal && <AddToListModalAnime setShowListModal={setShowListModal} />}
       {showNotAuthenticatedModal && <NotAuthenticatedModal setShowNotAuthenticatedModal={setShowNotAuthenticatedModal} />}
                 <h1 className="subheading">More</h1>
 

@@ -7,7 +7,7 @@ import { useAtom } from "jotai"
 import { tvShowIdToAddToListAtom, isSignedInAtom, mainLinkForTvShowAtom} from "../../globals/atom"
 import { useState } from "react"
 import { useParams } from "react-router-dom"
-import AddToListModal from "../AddToListModal/AddToListModal"
+import AddToListModalTvShows from "../AddToListModalTvShows/AddToListModalTvShows"
 import toast, { Toaster } from "react-hot-toast"
 import NotAuthenticatedModal from "../NotAuthenticatedModal/NotAuthenticatedModal"
 
@@ -47,7 +47,7 @@ function MoreTvShows() {
 }
   return (
     mainTvShowLink !== "" && <div className="tv-show-more-section">
-      {showListModal && <AddToListModal setShowListModal={setShowListModal} />}
+      {showListModal && <AddToListModalTvShows setShowListModal={setShowListModal} />}
       {showNotAuthenticatedModal && <NotAuthenticatedModal setShowNotAuthenticatedModal={setShowNotAuthenticatedModal} />}
                 <h1 className="subheading">More</h1>
 
