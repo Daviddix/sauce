@@ -32,8 +32,10 @@ function SingleGPTResponse({movieName, matchPercent, movieId, movieReleaseDate, 
         navigate(`/app/movie/${movieId}`)
     }
 
-    function featureComingSoon(name){
-        console.log("heyy")
+    async function featureComingSoon(name){
+        const raw = await fetch(`http://localhost:3000/app/movie/${movieId}/watch-providers`)
+        const rawInJson = await raw.json()
+        console.log(rawInJson) 
         return toast.success(`The ${name} feature isn't available at the moment. Don't worry, David is working on it:)`, {
             position : "bottom-right",
             style : {

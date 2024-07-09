@@ -151,4 +151,26 @@ async function getRelatedMovies(req, res){
     }
 }
 
-module.exports = {getMoviesThatMatchPrompt, getInfoAboutSpecificMovie, getThrillerForSpecificMovie, getImagesForSpecificMovie, getRelatedMovies}
+async function getWatchProvidersForSpecificMovie(req, res){
+  try{
+    const movieId = Number(req.params.movieId)
+    const options = {
+      method: 'GET',
+      headers: {
+        accept: 'application/json',
+        Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzODM1YjZiZmFiNzkwMmYzYzlmYzNkODYzODNkNDMyZiIsIm5iZiI6MTcyMDQ0NzY1Ny4xNzI1OTEsInN1YiI6IjY1OWMwOGM1MWQxYmY0MGEzMjI5OGUyZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.V2UB75NmZ0zBnwNHEjOJRZpFl2a1guuRXQBI8uBnUsg'
+      }
+    }
+    const url = `https://api.themoviedb.org/3/movie/${movieId}/watch/providers`
+
+    const response = await fetch(url, options)
+    const {results} = await response.json()
+
+    res.send(results)
+  }
+  catch(err){
+    res.status(500).json(unknownError)
+  }
+}
+
+module.exports = {getMoviesThatMatchPrompt, getInfoAboutSpecificMovie, getThrillerForSpecificMovie, getImagesForSpecificMovie, getRelatedMovies, getWatchProvidersForSpecificMovie}

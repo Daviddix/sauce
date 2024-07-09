@@ -115,6 +115,8 @@ function GPTResponseAnime({inputValue, id, searchCategory}) {
     />)
     })
 
+    
+
     const skeletons = <>
     <GPTResponseSkeleton />
     <GPTResponseSkeleton />

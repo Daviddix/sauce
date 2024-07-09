@@ -1,5 +1,5 @@
 const express = require("express")
-const { getMoviesThatMatchPrompt, getInfoAboutSpecificMovie, getThrillerForSpecificMovie, getImagesForSpecificMovie, getRelatedMovies } = require("../controllers/MovieController")
+const { getMoviesThatMatchPrompt, getInfoAboutSpecificMovie, getThrillerForSpecificMovie, getImagesForSpecificMovie, getRelatedMovies, getWatchProvidersForSpecificMovie } = require("../controllers/MovieController")
 
 
 movieRouter = express.Router()
@@ -13,5 +13,7 @@ movieRouter.get("/:movieId/video", getThrillerForSpecificMovie)
 movieRouter.get("/:movieId/images", getImagesForSpecificMovie)
 
 movieRouter.get("/:movieId/related", getRelatedMovies)
+
+movieRouter.get("/:movieId/watch-providers", getWatchProvidersForSpecificMovie)
 
 module.exports = movieRouter

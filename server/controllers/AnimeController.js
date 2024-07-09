@@ -75,7 +75,7 @@ async function getAnimeThatMatchPrompt(req, res){
         animeRating : animeInfo.vote_average,
         animePoster : animeInfo.poster_path
       }
-    }
+      }
     })
 
     const animeInfoArray = await Promise.all(tmdbPromises);
