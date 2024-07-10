@@ -154,21 +154,25 @@ async function getRelatedMovies(req, res){
 async function getWatchProvidersForSpecificMovie(req, res){
   try{
     const movieId = Number(req.params.movieId)
+    const url = `https://streaming-availability.p.rapidapi.com/shows/movie/${movieId}?series_granularity=show&output_language=en`;
+
     const options = {
       method: 'GET',
       headers: {
-        accept: 'application/json',
-        Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzODM1YjZiZmFiNzkwMmYzYzlmYzNkODYzODNkNDMyZiIsIm5iZiI6MTcyMDQ0NzY1Ny4xNzI1OTEsInN1YiI6IjY1OWMwOGM1MWQxYmY0MGEzMjI5OGUyZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.V2UB75NmZ0zBnwNHEjOJRZpFl2a1guuRXQBI8uBnUsg'
+        'x-rapidapi-key': '49e392e49dmsh7349412d909e6b5p1df9dcjsn3bc19068971a',
+        'x-rapidapi-host': 'streaming-availability.p.rapidapi.com'
       }
-    }
-    const url = `https://api.themoviedb.org/3/movie/${movieId}/watch/providers`
+    };
 
     const response = await fetch(url, options)
-    const {results} = await response.json()
+    const result = await response.text()
+    const {streamingOptions} = await JSON.parse(result)
+    console.log(streamingOptions) 
 
-    res.send(results)
+    res.send(streamingOptions)
   }
   catch(err){
+    console.log(err)
     res.status(500).json(unknownError)
   }
 }
