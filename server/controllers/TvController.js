@@ -148,4 +148,30 @@ async function getRelatedTvShows(req, res){
     }
 }
 
-module.exports = {getTvShowsThatMatchPrompt, getInfoAboutSpecificTvShow, getThrillerForSpecificTvShow, getImagesForSpecificTvShow, getRelatedTvShows} 
+async function getWatchProvidersForSpecificTvShow(req, res){
+  try{
+    const tvShowId = Number(req.params.tvShowId)
+    const url = `https://streaming-availability.p.rapidapi.com/shows/tv/${tvShowId}?series_granularity=show&output_language=en`;
+
+    const options = {
+      method: 'GET',
+      headers: {
+        'x-rapidapi-key': '49e392e49dmsh7349412d909e6b5p1df9dcjsn3bc19068971a',
+        'x-rapidapi-host': 'streaming-availability.p.rapidapi.com'
+      }
+    };
+
+    const response = await fetch(url, options)
+    const result = await response.text()
+    const {streamingOptions} = await JSON.parse(result)
+    console.log(streamingOptions) 
+
+    res.send(streamingOptions)
+  }
+  catch(err){
+    console.log(err)
+    res.status(500).json(unknownError)
+  }
+}
+
+module.exports = {getTvShowsThatMatchPrompt, getInfoAboutSpecificTvShow, getThrillerForSpecificTvShow, getImagesForSpecificTvShow, getRelatedTvShows, getWatchProvidersForSpecificTvShow} 

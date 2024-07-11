@@ -18,6 +18,7 @@ import { useAtom } from "jotai"
 import toast, { Toaster } from "react-hot-toast"
 import TopMovieDetailsError from "../TopMovieDetailsError/TopMovieDetailsError"
 import NotAuthenticatedModal from "../NotAuthenticatedModal/NotAuthenticatedModal" 
+import WatchNowModalTvShows from "../WatchNowModalTvShows/WatchNowModalTvShows"
 
 function TopTvShowDetails() {
     const [topTvShowInfo, setTopTvShowInfo] = useState({})
@@ -29,6 +30,7 @@ function TopTvShowDetails() {
     const [allTvShows, setAllTvShows] = useAtom(allTvShowsAtom)
     const [isSignedIn, setIsSignedIn] = useAtom(isSignedInAtom)
     const [showNotAuthenticatedModal, setShowNotAuthenticatedModal] = useState(false)
+    const [showWatchModal, setShowWatchModal] = useState(false)
     const navigate = useNavigate()
 
     const mappedGenres = topTvShowInfo.genres?.map((singleGenre)=>{
@@ -98,6 +100,8 @@ function TopTvShowDetails() {
     <div className="top-tv-show-details">
             {showListModal && <AddToListModalTvShows setShowListModal={setShowListModal} />}
 
+            {showWatchModal && <WatchNowModalTvShows setShowWatchModal={setShowWatchModal} tvShowId={tvShowId} />}
+
             {tvShowFetchStatus == "loading" && <DetailsSkeleton /> }
 
             {tvShowFetchStatus == "error" && <TopMovieDetailsError refreshFromError={getTvShowDetails} handleBackButton={handleBackButton} />}
@@ -116,6 +120,7 @@ function TopTvShowDetails() {
                 <div className="right">
                     <button 
                     onClick={()=>{
+                        setShowWatchModal(true)
                         featureComingSoon("Watch Now")
                     }}
                     className="transparent-button">

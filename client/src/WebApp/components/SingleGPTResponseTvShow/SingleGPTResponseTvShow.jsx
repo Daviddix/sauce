@@ -10,6 +10,7 @@ import { useAtom } from "jotai";
 import {isSignedInAtom, tvShowIdToAddToListAtom, tvShowsMatchPercentageAtom} from "../../globals/atom"
 import toast from "react-hot-toast"
 import AddToListModalTvShows from "../AddToListModalTvShows/AddToListModalTvShows"
+import WatchNowModalTvShows from "../WatchNowModalTvShows/WatchNowModalTvShows"
 
 function SingleGPTResponseTvShow({tvShowName, matchPercent, tvShowId, tvShowReleaseDate, tvShowOverview, tvShowRating, tvShowPoster}) {
     const [accuracyClassName, setAccuracyClassName] = useState("")
@@ -18,6 +19,7 @@ function SingleGPTResponseTvShow({tvShowName, matchPercent, tvShowId, tvShowRele
     const [tvShowMatchPercentage, setTvShowMatchPercentage] = useAtom(tvShowsMatchPercentageAtom)
     const [isSignedIn, setIsSignedIn] = useAtom(isSignedInAtom)
     const [showNotAuthenticatedModal, setShowNotAuthenticatedModal] = useState(false)
+    const [showWatchModal, setShowWatchModal] = useState(false)
 
     function showListModalFn(){
         setShowListModal(true)
@@ -68,6 +70,9 @@ function SingleGPTResponseTvShow({tvShowName, matchPercent, tvShowId, tvShowRele
   return (
     <div className="tv-show-image-and-details">
         {showListModal && <AddToListModalTvShows setShowListModal={setShowListModal} />}
+
+        {showWatchModal && <WatchNowModalTvShows setShowWatchModal={setShowWatchModal} tvShowId={tvShowId} />}
+
         {showNotAuthenticatedModal && <NotAuthenticatedModal setShowNotAuthenticatedModal={setShowNotAuthenticatedModal} />}
         <div className="tv-show-image">
             <div className="accuracy-tooltip">
@@ -110,6 +115,7 @@ function SingleGPTResponseTvShow({tvShowName, matchPercent, tvShowId, tvShowRele
 
                 <button 
                 onClick={()=>{
+                    setShowWatchModal(true)
                     featureComingSoon("Watch Now")
                 }}
                 className="button-text-style secondary-button">

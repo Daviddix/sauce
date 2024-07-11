@@ -10,6 +10,7 @@ import { useParams } from "react-router-dom"
 import AddToListModalTvShows from "../AddToListModalTvShows/AddToListModalTvShows"
 import toast, { Toaster } from "react-hot-toast"
 import NotAuthenticatedModal from "../NotAuthenticatedModal/NotAuthenticatedModal"
+import WatchNowModalTvShows from "../WatchNowModalTvShows/WatchNowModalTvShows"
 
 function MoreTvShows() {
   const [mainTvShowLink] = useAtom(mainLinkForTvShowAtom)
@@ -17,6 +18,7 @@ function MoreTvShows() {
   const [tvShowIdToAddToList, setTvShowIdToAddToList] = useAtom(tvShowIdToAddToListAtom)
   const [isSignedIn, setIsSignedIn] = useAtom(isSignedInAtom)
   const [showNotAuthenticatedModal, setShowNotAuthenticatedModal] = useState(false)
+  const [showWatchModal, setShowWatchModal] = useState(false)
 
     const {tvShowId} = useParams()
 
@@ -48,6 +50,9 @@ function MoreTvShows() {
   return (
     mainTvShowLink !== "" && <div className="tv-show-more-section">
       {showListModal && <AddToListModalTvShows setShowListModal={setShowListModal} />}
+
+      {showWatchModal && <WatchNowModalTvShows setShowWatchModal={setShowWatchModal} tvShowId={tvShowId} />}
+
       {showNotAuthenticatedModal && <NotAuthenticatedModal setShowNotAuthenticatedModal={setShowNotAuthenticatedModal} />}
                 <h1 className="subheading">More</h1>
 
@@ -77,6 +82,7 @@ function MoreTvShows() {
 
                 <button
                 onClick={()=>{
+                setShowWatchModal(true)
                   featureComingSoon("Watch Now")
                 }}
                 className="button-text-style secondary-button">
