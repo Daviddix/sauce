@@ -11,7 +11,7 @@ import { get } from 'idb-keyval'
 import LogoutModal from "../../components/LogoutModal/LogoutModal"
 import GPTResponseAnime from '../../components/GPTResponseAnime/GPTResponseAnime'
 import GPTResponseTvShows from '../../components/GPTResponseTVShows/GPTResponseTVShows'
-import WatchNowModal from '../../components/WatchNowModal/WatchNowModal'
+
 
 function Home() {
   const [isFirstTimeUser, setIsFirstTimeUser] = useState(()=> JSON.parse(localStorage.getItem("first-time-user")))
@@ -84,8 +84,6 @@ function Home() {
         <p>
           paste in input and search in anime category, fix undefined error from backend : Five years after the defeat of the Black Ghost organization and returning to their average lives, the 00 Cyborgs are called back into action to fight off cyborgs based off the Norse Gods, followed by a new enemy organization known as the Neo Black Ghost.
         </p>
-
-        <WatchNowModal />
         
     </section>
 

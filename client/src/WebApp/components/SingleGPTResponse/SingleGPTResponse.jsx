@@ -10,6 +10,7 @@ import {useNavigate} from "react-router-dom"
 import { useAtom } from "jotai";
 import {isSignedInAtom, movieIdToAddToListAtom, movieMatchPercentageAtom} from "../../globals/atom"
 import toast from "react-hot-toast"
+import WatchNowModal from '../../components/WatchNowModal/WatchNowModal'
 
 function SingleGPTResponse({movieName, matchPercent, movieId, movieReleaseDate, movieOverview, movieRating, moviePoster}) {
     const [accuracyClassName, setAccuracyClassName] = useState("")
@@ -18,6 +19,7 @@ function SingleGPTResponse({movieName, matchPercent, movieId, movieReleaseDate, 
     const [movieMatchPercentage, setMovieMatchPercentage] = useAtom(movieMatchPercentageAtom)
     const [isSignedIn, setIsSignedIn] = useAtom(isSignedInAtom)
     const [showNotAuthenticatedModal, setShowNotAuthenticatedModal] = useState(false)
+    const [showWatchModal, setShowWatchModal] = useState(false)
 
     function showListModalFn(){
         setShowListModal(true)
@@ -33,9 +35,6 @@ function SingleGPTResponse({movieName, matchPercent, movieId, movieReleaseDate, 
     }
 
     async function featureComingSoon(name){
-        const raw = await fetch(`http://localhost:3000/app/movie/${movieId}/watch-providers`)
-        const rawInJson = await raw.json()
-        console.log(rawInJson) 
         return toast.success(`The ${name} feature isn't available at the moment. Don't worry, David is working on it:)`, {
             position : "bottom-right",
             style : {
@@ -70,6 +69,7 @@ function SingleGPTResponse({movieName, matchPercent, movieId, movieReleaseDate, 
       }, [matchPercent])
   return (
     <div className="movie-image-and-details">
+        {showWatchModal && <WatchNowModal setShowWatchModal={setShowWatchModal} movieId={movieId} />}
         {showListModal && <AddToListModal setShowListModal={setShowListModal} />}
         {showNotAuthenticatedModal && <NotAuthenticatedModal setShowNotAuthenticatedModal={setShowNotAuthenticatedModal} />}
         <div className="movie-image">
@@ -113,6 +113,7 @@ function SingleGPTResponse({movieName, matchPercent, movieId, movieReleaseDate, 
 
                 <button 
                 onClick={()=>{
+                    setShowWatchModal(true)
                     featureComingSoon("Watch Now")
                 }}
                 className="button-text-style secondary-button">

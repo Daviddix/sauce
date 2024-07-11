@@ -2,8 +2,25 @@ import closeIcon from "../../../assets/app assets/icons/close-icon.svg"
 import watchIcon from "../../../assets/app assets/icons/watch-icon.svg"
 import rightUpIcon from "../../../assets/app assets/icons/right-up-icon-ticket.svg"
 import "./WatchNowModal.css"
+import { useState } from "react"
 
-function WatchNowModal() {
+function WatchNowModal({setShowWatchModal, movieId}) {
+    const [fetchStatus, setFetchStatus] = useState("loading")
+    async function getWatchProvidersDetails(){
+        try{
+            setFetchStatus("loading")
+            const raw = await fetch(`http://localhost:3000/app/movie/${movieId}/watch-providers`)
+            const rawInJson = await raw.json()
+            console.log(rawInJson) 
+        }
+        catch(err){
+            setFetchStatus("error")
+        }
+    }
+
+    function closeModal(){
+        setShowWatchModal(false)
+    }
   return (
     <div className="watch-now-overlay">
         <div className="watch-now-modal">
@@ -15,11 +32,17 @@ function WatchNowModal() {
                     <p className="sub-body-style">Services to watch this movie</p>
                 </div>
 
-                <button>
+                <button
+                onClick={()=>{
+                    closeModal()
+                }}
+                >
                     <img src={closeIcon} alt="close icon" />
                 </button>
             </div>
 
+            {fetchStatus == "completed" &&
+            <>
             <div className="watch-now-region">
                 <h2>Region</h2>
                 <select name="region" id="region">
@@ -46,6 +69,51 @@ function WatchNowModal() {
                     </div>
                 </div>
             </div>
+
+            </>
+            }
+
+            {
+                fetchStatus == "loading" && 
+                <>
+                <div className="region-skeleton">
+                    <div className="region-heading-skeleton"></div>
+
+                    <div className="region-select-skeleton"></div>
+                </div>
+
+                <div className="tickets-container">
+                <div className="tickets-container-inner">
+                    <div className="ticket-skeleton">
+                        <div className="ticket-provider-image"></div>
+
+                        <div className="other-ticket-info">
+                            <div className="heading-arrow">
+                            </div>
+
+                            <div className="ticket-chips">
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="ticket-skeleton">
+                        <div className="ticket-provider-image"></div>
+
+                        <div className="other-ticket-info">
+                            <div className="heading-arrow">
+                            </div>
+
+                            <div className="ticket-chips">
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                </>
+            }
 
         </div>
     </div>
