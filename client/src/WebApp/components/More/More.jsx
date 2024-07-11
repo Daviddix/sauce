@@ -10,6 +10,7 @@ import { useParams } from "react-router-dom"
 import AddToListModal from "../AddToListModal/AddToListModal"
 import toast, { Toaster } from "react-hot-toast"
 import NotAuthenticatedModal from "../NotAuthenticatedModal/NotAuthenticatedModal"
+import WatchNowModal from '../../components/WatchNowModal/WatchNowModal'
 
 function More() {
   const [mainMovieLink] = useAtom(mainLinkForMovieAtom)
@@ -17,6 +18,7 @@ function More() {
   const [movieIdToAddToList, setMovieIdToAddToList] = useAtom(movieIdToAddToListAtom)
   const [isSignedIn, setIsSignedIn] = useAtom(isSignedInAtom)
   const [showNotAuthenticatedModal, setShowNotAuthenticatedModal] = useState(false)
+  const [showWatchModal, setShowWatchModal] = useState(false)
 
     const {movieId} = useParams()
 
@@ -48,6 +50,9 @@ function More() {
   return (
     mainMovieLink !== "" && <div className="movie-more-section">
       {showListModal && <AddToListModal setShowListModal={setShowListModal} />}
+
+      {showWatchModal && <WatchNowModal setShowWatchModal={setShowWatchModal} movieId={movieIdToAddToList}/> }
+
       {showNotAuthenticatedModal && <NotAuthenticatedModal setShowNotAuthenticatedModal={setShowNotAuthenticatedModal} />}
                 <h1 className="subheading">More</h1>
 
@@ -77,6 +82,7 @@ function More() {
 
                 <button
                 onClick={()=>{
+                  setShowWatchModal(true)
                   featureComingSoon("Watch Now")
                 }}
                 className="button-text-style secondary-button">

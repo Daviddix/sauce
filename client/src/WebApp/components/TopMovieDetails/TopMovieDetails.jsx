@@ -17,6 +17,7 @@ import { useAtom } from "jotai"
 import toast, { Toaster } from "react-hot-toast"
 import TopMovieDetailsError from "../TopMovieDetailsError/TopMovieDetailsError"
 import NotAuthenticatedModal from "../NotAuthenticatedModal/NotAuthenticatedModal"
+import WatchNowModal from '../../components/WatchNowModal/WatchNowModal'
 
 
 function TopMovieDetails() {
@@ -29,7 +30,9 @@ function TopMovieDetails() {
     const [allMovies, setAllMovies] = useAtom(allMoviesAtom)
     const [isSignedIn, setIsSignedIn] = useAtom(isSignedInAtom)
     const [showNotAuthenticatedModal, setShowNotAuthenticatedModal] = useState(false)
+    const [showWatchModal, setShowWatchModal] = useState(false)
     const navigate = useNavigate()
+
 
     const mappedGenres = topMovieInfo.genres?.map((singleGenre)=>{
         return <div key={singleGenre.name} className="button-text-style">{singleGenre.name}</div>
@@ -95,6 +98,8 @@ async function getMovieDetails(){
     <div className="top-movie-details">
             {showListModal && <AddToListModal setShowListModal={setShowListModal} />}
 
+            {showWatchModal && <WatchNowModal setShowWatchModal={setShowWatchModal} movieId={movieId}/> }
+
             {movieFetchStatus == "loading" && <DetailsSkeleton /> }
 
             {movieFetchStatus == "error" && <TopMovieDetailsError refreshFromError={getMovieDetails} handleBackButton={handleBackButton} />}
@@ -113,6 +118,7 @@ async function getMovieDetails(){
                 <div className="right">
                     <button 
                     onClick={()=>{
+                        setShowWatchModal(true)
                         featureComingSoon("Watch Now")
                     }}
                     className="transparent-button">
