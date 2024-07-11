@@ -6,7 +6,7 @@ import TicketSkeleton from "../TicketSkeleton/TicketSkeleton"
 import WatchNowModalError from "../WatchNowModalError/WatchNowModalError"
 import EmptyServices from "../EmptyServices/EmptyServices"
 
-function WatchNowModalTvShows({setShowWatchModal, tvShowId}) {
+function WatchNowModalAnime({setShowWatchModal, animeId}) {
     const [fetchStatus, setFetchStatus] = useState("loading")
     const [countries, setCountries] = useState([])
     const [mainCountry, setMainCountry] = useState("")
@@ -20,7 +20,7 @@ function WatchNowModalTvShows({setShowWatchModal, tvShowId}) {
     async function getWatchProvidersDetails(){
         try{
             setFetchStatus("loading")
-            const raw = await fetch(`http://localhost:3000/app/tv/${tvShowId}/watch-providers`)
+            const raw = await fetch(`http://localhost:3000/app/anime/${animeId}/watch-providers`)
             const rawInJson = await raw.json()
             if(!raw.ok){
                 throw new Error({cause : rawInJson})
@@ -65,7 +65,7 @@ function WatchNowModalTvShows({setShowWatchModal, tvShowId}) {
 
                 <div className="watch-now-text">
                     <h2 className="sub-sub-heading">Where to Watch</h2>
-                    <p className="sub-body-style">Services to watch this Tv show</p>
+                    <p className="sub-body-style">Services to watch this anime</p>
                 </div>
 
                 <button
@@ -77,7 +77,8 @@ function WatchNowModalTvShows({setShowWatchModal, tvShowId}) {
                 </button>
             </div>
 
-            {fetchStatus == "completed" && <> 
+            {fetchStatus == "completed" && 
+            <> 
             <div className="watch-now-region">
                 <h2>Region</h2>
                 <select 
@@ -101,11 +102,11 @@ function WatchNowModalTvShows({setShowWatchModal, tvShowId}) {
             }
 
             {
-                fetchStatus == "loading" && <TicketSkeleton />
+                fetchStatus == "completed-empty" && <EmptyServices />
             }
 
             {
-                fetchStatus == "completed-empty" && <EmptyServices />
+                fetchStatus == "loading" && <TicketSkeleton />
             }
 
             {
@@ -117,4 +118,4 @@ function WatchNowModalTvShows({setShowWatchModal, tvShowId}) {
   )
 }
 
-export default WatchNowModalTvShows
+export default WatchNowModalAnime

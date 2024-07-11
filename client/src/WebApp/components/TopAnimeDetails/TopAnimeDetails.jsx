@@ -18,6 +18,7 @@ import { useAtom } from "jotai"
 import toast, { Toaster } from "react-hot-toast"
 import TopMovieDetailsError from "../TopMovieDetailsError/TopMovieDetailsError"
 import NotAuthenticatedModal from "../NotAuthenticatedModal/NotAuthenticatedModal"
+import WatchNowModalAnime from "../WatchNowModalAnime/WatchNowModalAnime"
 
 function TopAnimeDetails() {
     const [topAnimeInfo, setTopAnimeInfo] = useState({})
@@ -29,6 +30,7 @@ function TopAnimeDetails() {
     const [allAnime, setAllAnime] = useAtom(allAnimeAtom)
     const [isSignedIn, setIsSignedIn] = useAtom(isSignedInAtom)
     const [showNotAuthenticatedModal, setShowNotAuthenticatedModal] = useState(false)
+    const [showWatchModal, setShowWatchModal] = useState(false)
     const navigate = useNavigate()
 
     const mappedGenres = topAnimeInfo.genres?.map((singleGenre)=>{
@@ -76,20 +78,6 @@ function TopAnimeDetails() {
         setShowListModal(true)
     }
 
-    function featureComingSoon(name){
-        return toast.success(`The ${name} feature isn't available at the moment. Don't worry, David is working on it:)`, {
-            position : "bottom-right",
-            style : {
-                fontFamily : "manrope",
-                fontSize : "14px",
-                backgroundImage : "linear-gradient(to bottom right,rgb(266, 255, 201), transparent)",
-                border : "2px solid white",
-                boxShadow : "0 0 .4rem #00000018"
-            },
-            icon : "📣"
-        })
-    }
-
     function handleBackButton(){
         navigate(-1)
     }
@@ -97,6 +85,8 @@ function TopAnimeDetails() {
   return (
     <div className="top-anime-details">
             {showListModal && <AddToListModalAnime setShowListModal={setShowListModal} />}
+
+            {showWatchModal && <WatchNowModalAnime setShowWatchModal={setShowWatchModal} animeId={animeId} />}
 
             {animeFetchStatus == "loading" && <DetailsSkeleton /> }
 
@@ -116,7 +106,7 @@ function TopAnimeDetails() {
                 <div className="right">
                     <button 
                     onClick={()=>{
-                        featureComingSoon("Watch Now")
+                        setShowWatchModal(true)
                     }}
                     className="transparent-button">
                         <img src={tvIcon} alt="watch now" />

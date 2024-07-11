@@ -5,6 +5,7 @@ import { useEffect, useState } from "react"
 import SingleTicket from "../SingleTicket/SingleTicket"
 import TicketSkeleton from "../TicketSkeleton/TicketSkeleton"
 import WatchNowModalError from "../WatchNowModalError/WatchNowModalError"
+import EmptyServices from "../EmptyServices/EmptyServices"
 
 function WatchNowModal({setShowWatchModal, movieId}) {
     const [fetchStatus, setFetchStatus] = useState("loading")
@@ -27,6 +28,9 @@ function WatchNowModal({setShowWatchModal, movieId}) {
             }
             setAllData(rawInJson)
             const countriesFromRequest = Object.keys(rawInJson)
+            if(countriesFromRequest.length == 0){
+                return setFetchStatus("completed-empty")
+            }
             setCountries(countriesFromRequest.sort())
             setMainCountry(countriesFromRequest[0])
             setTickets(rawInJson[countriesFromRequest[0]])
@@ -99,6 +103,10 @@ function WatchNowModal({setShowWatchModal, movieId}) {
 
             {
                 fetchStatus == "loading" && <TicketSkeleton />
+            }
+
+            {
+                fetchStatus == "completed-empty" && <EmptyServices />
             }
 
             {

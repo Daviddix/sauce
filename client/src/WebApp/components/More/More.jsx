@@ -26,27 +26,6 @@ function More() {
       setShowListModal(true)
   }
 
-  function featureComingSoon(name){
-    return toast.success(`The ${name} feature isn't available at the moment. Don't worry, David is working on it:)`, {
-        position : "bottom-right",
-        style : {
-            fontFamily : "manrope",
-            fontSize : "14px",
-            backgroundImage : "linear-gradient(to bottom right,rgb(266, 255, 201), transparent)",
-            border : "2px solid white",
-            boxShadow:
-  `2.6px 4.3px 2.2px rgba(0, 0, 0, 0.045),
-  6.2px 10.2px 5.3px rgba(0, 0, 0, 0.065),
-  11.6px 19.3px 10px rgba(0, 0, 0, 0.08),
-  20.8px 34.4px 17.9px rgba(0, 0, 0, 0.095),
-  38.9px 64.3px 33.4px rgba(0, 0, 0, 0.115),
-  93px 154px 80px rgba(0, 0, 0, 0.16)`
-
-
-        },
-        icon : "📣"
-    })
-}
   return (
     mainMovieLink !== "" && <div className="movie-more-section">
       {showListModal && <AddToListModal setShowListModal={setShowListModal} />}
@@ -83,7 +62,6 @@ function More() {
                 <button
                 onClick={()=>{
                   setShowWatchModal(true)
-                  featureComingSoon("Watch Now")
                 }}
                 className="button-text-style secondary-button">
                 <img src={tvIconButton} alt="tv icon" />

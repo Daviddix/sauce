@@ -77,20 +77,6 @@ async function getMovieDetails(){
         setShowListModal(true)
     }
 
-    function featureComingSoon(name){
-        return toast.success(`The ${name} feature isn't available at the moment. Don't worry, David is working on it:)`, {
-            position : "bottom-right",
-            style : {
-                fontFamily : "manrope",
-                fontSize : "14px",
-                backgroundImage : "linear-gradient(to bottom right,rgb(266, 255, 201), transparent)",
-                border : "2px solid white",
-                boxShadow : "0 0 .4rem #00000018"
-            },
-            icon : "📣"
-        })
-    }
-
     function handleBackButton(){
         navigate(-1)
     }
@@ -119,7 +105,6 @@ async function getMovieDetails(){
                     <button 
                     onClick={()=>{
                         setShowWatchModal(true)
-                        featureComingSoon("Watch Now")
                     }}
                     className="transparent-button">
                         <img src={tvIcon} alt="watch now" />
