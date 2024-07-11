@@ -1,9 +1,9 @@
 import alertIcon from "../../../assets/app assets/icons/attention-icon.svg"
-import "./SidebarListError.css"
+import "./WatchNowModalError.css"
 
-function SidebarListError({refreshFromError}) {
+function WatchNowModalError({refreshFromError}) {
   return (
-    <div className="sidebar-list-error">
+    <div className="watch-modal-error">
             <div className="left">
                             <div className="left-circle">
                             <img src={alertIcon} alt="alert icon" />
@@ -12,11 +12,11 @@ function SidebarListError({refreshFromError}) {
     
                 <div className="right">
                 <p className="other-heading">
-                Unable to get Lists
+                Unable to get Streaming Services
                 </p>
     
                 <p className="body-style">
-                Oops, seems like an error ocurred when trying to get your lists. Don't worry, just click the "Retry" button and it will fix it up.
+                Oops, seems like an error ocurred when trying to get the streaming services. Don't worry, just click the "Retry" button and it will fix it up.
                 </p>
                 
     
@@ -30,4 +30,4 @@ function SidebarListError({refreshFromError}) {
   )
 }
 
-export default SidebarListError
+export default WatchNowModalError

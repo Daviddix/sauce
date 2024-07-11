@@ -1,19 +1,39 @@
 import closeIcon from "../../../assets/app assets/icons/close-icon.svg"
 import watchIcon from "../../../assets/app assets/icons/watch-icon.svg"
-import rightUpIcon from "../../../assets/app assets/icons/right-up-icon-ticket.svg"
 import "./WatchNowModal.css"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import SingleTicket from "../SingleTicket/SingleTicket"
+import TicketSkeleton from "../TicketSkeleton/TicketSkeleton"
+import WatchNowModalError from "../WatchNowModalError/WatchNowModalError"
 
 function WatchNowModal({setShowWatchModal, movieId}) {
     const [fetchStatus, setFetchStatus] = useState("loading")
+    const [countries, setCountries] = useState([])
+    const [mainCountry, setMainCountry] = useState("")
+    const [tickets, setTickets] = useState([])
+    const [allData, setAllData] = useState({})
+
+    useEffect(()=>{
+        getWatchProvidersDetails()
+    }, [])
+
     async function getWatchProvidersDetails(){
         try{
             setFetchStatus("loading")
             const raw = await fetch(`http://localhost:3000/app/movie/${movieId}/watch-providers`)
             const rawInJson = await raw.json()
-            console.log(rawInJson) 
+            if(!raw.ok){
+                throw new Error({cause : rawInJson})
+            }
+            setAllData(rawInJson)
+            const countriesFromRequest = Object.keys(rawInJson)
+            setCountries(countriesFromRequest.sort())
+            setMainCountry(countriesFromRequest[0])
+            setTickets(rawInJson[countriesFromRequest[0]])
+            setFetchStatus("completed")
         }
         catch(err){
+            console.log(err)
             setFetchStatus("error")
         }
     }
@@ -21,6 +41,19 @@ function WatchNowModal({setShowWatchModal, movieId}) {
     function closeModal(){
         setShowWatchModal(false)
     }
+
+    const mappedOptions = countries.map((country)=>{
+        return  <option value={country}>{country.toUpperCase()}</option>
+    })
+
+    const mappedTickets = tickets.map((ticket)=>{
+        return <SingleTicket
+        quality={ticket.quality}
+        type={ticket.type}
+        service={ticket.service}
+        link={ticket.link}
+        />
+    })
   return (
     <div className="watch-now-overlay">
         <div className="watch-now-modal">
@@ -41,78 +74,35 @@ function WatchNowModal({setShowWatchModal, movieId}) {
                 </button>
             </div>
 
-            {fetchStatus == "completed" &&
-            <>
+            {fetchStatus == "completed" && <> 
             <div className="watch-now-region">
                 <h2>Region</h2>
-                <select name="region" id="region">
-                    <option value="US">US</option>
-                </select>
+                <select 
+                onChange={(e)=>{
+                    setMainCountry(e.target.value)
+                    setTickets(allData[e.target.value])
+                }}
+                name="region" id="region">
+                {mappedOptions}
+                 </select>
+                
             </div>
 
             <div className="tickets-container">
                 <div className="tickets-container-inner">
-                    <div className="ticket">
-                        <div className="ticket-provider-image"></div>
-
-                        <div className="other-ticket-info">
-                            <div className="heading-arrow">
-                                <h1>Watch on Netflix</h1>
-                                <img src={rightUpIcon} alt="up icon" />
-                            </div>
-
-                            <div className="ticket-chips">
-                                <span>Rent</span>
-                                <span>HD</span>
-                            </div>
-                        </div>
-                    </div>
+                    {mappedTickets}
                 </div>
             </div>
 
-            </>
+            </>      
             }
 
             {
-                fetchStatus == "loading" && 
-                <>
-                <div className="region-skeleton">
-                    <div className="region-heading-skeleton"></div>
+                fetchStatus == "loading" && <TicketSkeleton />
+            }
 
-                    <div className="region-select-skeleton"></div>
-                </div>
-
-                <div className="tickets-container">
-                <div className="tickets-container-inner">
-                    <div className="ticket-skeleton">
-                        <div className="ticket-provider-image"></div>
-
-                        <div className="other-ticket-info">
-                            <div className="heading-arrow">
-                            </div>
-
-                            <div className="ticket-chips">
-                                <span></span>
-                                <span></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="ticket-skeleton">
-                        <div className="ticket-provider-image"></div>
-
-                        <div className="other-ticket-info">
-                            <div className="heading-arrow">
-                            </div>
-
-                            <div className="ticket-chips">
-                                <span></span>
-                                <span></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                </div>
-                </>
+            {
+                fetchStatus == "error" && <WatchNowModalError refreshFromError={getWatchProvidersDetails} />
             }
 
         </div>

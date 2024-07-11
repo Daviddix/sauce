@@ -1,0 +1,95 @@
+.ticket-skeleton{
+    width:100%;
+    display: flex;
+    padding: .5rem;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    background: linear-gradient(90deg,
+    hsl(240, 1%, 69%) 25%,
+     hsl(0, 0%, 66%) 50%,
+      hsl(0, 0%, 69%) 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+}
+
+.ticket-skeleton .ticket-provider-image{
+    width:8rem;
+    height:4.8rem;
+    border-radius: 7px;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    -ms-border-radius: 7px;
+    -o-border-radius: 7px;
+    background: var(--sk);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+    margin: 0 .5rem 0 0;
+}
+
+.ticket-skeleton .other-ticket-info .heading-arrow{
+    height:2rem;
+    width:15rem;
+    border-radius: 5px;
+    background: var(--sk);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+    margin: 0 0 .5rem 0;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
+.ticket-skeleton .other-ticket-info .ticket-chips span{
+    opacity: .9;
+    display: inline-block;
+    height: 1.5rem;
+    width:3rem;
+    background: var(--sk);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+    margin: 0 .5rem 0 0;
+    font-family: clashG;
+    font-size: 1.2rem;
+    font-weight: 500;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    border:none;
+}
+
+.region-skeleton{
+    padding: 1rem 1.5rem 1rem;
+}
+
+.region-skeleton .region-heading-skeleton{
+    height:1rem;
+    width:3rem;
+    border-radius: 2px;
+    background: var(--sk);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+    margin: 0 0 .5rem 0;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    -o-border-radius: 2px;
+}
+
+.region-skeleton .region-select-skeleton{
+    height:2rem;
+    width:4rem;
+    border-radius: 2px;
+    background: var(--sk);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    -o-border-radius: 2px;
+}
