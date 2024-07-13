@@ -1,7 +1,7 @@
 import alertIcon from "../../../assets/app assets/icons/attention-icon.svg"
 import "./MovieImagesError.css"
 
-function MovieImagesError({refreshFromError}) {
+function MovieImagesError({refreshFromError, content}) {
   return (
     <div className="images-section error">
       <h1 className="subheading">Images</h1>
@@ -15,10 +15,10 @@ function MovieImagesError({refreshFromError}) {
       </div>
 
       <div className="right">
-        <p className="other-heading">Failed to get movie images</p>
+        <p className="other-heading">Failed to get {content} images</p>
 
         <p className="body-style">
-          Oops, seems like an error ocurred when trying to get images from this movie
+          Oops, seems like an error ocurred when trying to get images from this {content}
           . Don't worry, just click the "Retry" button and it will fix
           it up.
         </p>

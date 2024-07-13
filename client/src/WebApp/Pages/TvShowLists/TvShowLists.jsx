@@ -96,7 +96,7 @@ function TvShowLists(){
         listFetchStatus == "loading" && <SingleListMovieSkeleton />
       }
       {
-        listFetchStatus == "error" &&  <SingleListMovieError refreshFromError={getInformationAboutList} />
+        listFetchStatus == "error" &&  <SingleListMovieError content={"tv shows"} refreshFromError={getInformationAboutList} />
       }
       {
         listFetchStatus == "completed" && 

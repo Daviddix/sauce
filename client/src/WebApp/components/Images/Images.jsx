@@ -29,6 +29,7 @@ function Images() {
   const {tvShowId} = useParams()
   
   useEffect(()=>{
+
     getImages()
   }, [movieId, animeId, tvShowId])
 
@@ -62,11 +63,11 @@ function Images() {
   return (
     <>
     {
-      imagesFetchStatus == "loading" &&  <MovieImagesSkeleton />
+      imagesFetchStatus == "loading" &&  <MovieImagesSkeleton  />
     }
 
     {
-      imagesFetchStatus == "error" &&  <MovieImagesError refreshFromError={getImages} />
+      imagesFetchStatus == "error" &&  <MovieImagesError content={movieId? "movies" : animeId? "anime" : "tv show"} refreshFromError={getImages} />
     }
 
     {

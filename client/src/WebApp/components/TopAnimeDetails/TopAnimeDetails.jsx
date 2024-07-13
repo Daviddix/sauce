@@ -90,7 +90,9 @@ function TopAnimeDetails() {
 
             {animeFetchStatus == "loading" && <DetailsSkeleton /> }
 
-            {animeFetchStatus == "error" && <TopMovieDetailsError refreshFromError={getAnimeDetails} handleBackButton={handleBackButton} />}
+            {animeFetchStatus == "error" && <TopMovieDetailsError 
+            content={"anime"}
+            refreshFromError={getAnimeDetails} handleBackButton={handleBackButton} />}
 
             {animeFetchStatus == "completed" &&
             <>

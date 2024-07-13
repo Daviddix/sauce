@@ -95,10 +95,10 @@ function AnimeLists(){
         listFetchStatus == "loading" && <SingleListMovieSkeleton />
       }
       {
-        listFetchStatus == "error" &&  <SingleListMovieError refreshFromError={getInformationAboutList} />
+        listFetchStatus == "error" &&  <SingleListMovieError content={"anime"} refreshFromError={getInformationAboutList} />
       }
       {
-        listFetchStatus == "completed" && 
+        listFetchStatus == "completed" &&  
         <>
         <div className="list-header">
         <div className="left-buttons">

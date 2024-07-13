@@ -98,7 +98,7 @@ function Lists() {
     <div className="list-layout">
       {listFetchStatus == "loading" && <SingleListMovieSkeleton />}
       {listFetchStatus == "error" && (
-        <SingleListMovieError refreshFromError={getInformationAboutList} />
+        <SingleListMovieError content={"movies"} refreshFromError={getInformationAboutList} />
       )}
       {listFetchStatus == "completed" && (
         <>

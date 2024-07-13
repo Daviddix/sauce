@@ -55,7 +55,7 @@ function RelatedAnime() {
                   fetchStatus == "loading" && <RelatedMoviesSkeleton />
                 }
                 {
-                  fetchStatus == "error" && <RelatedMoviesError refreshFromError={getRelatedTvShows} />
+                  fetchStatus == "error" && <RelatedMoviesError content={"tv shows"} refreshFromError={getRelatedTvShows} />
                 }
     </div>
   )
