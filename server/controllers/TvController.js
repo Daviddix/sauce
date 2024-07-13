@@ -81,7 +81,8 @@ async function getTvShowsThatMatchPrompt(req, res){
     })
 
     const tvShowInfoArray = await Promise.all(tmdbPromises);
-    res.send(tvShowInfoArray) 
+    const removedTvShowsNotFoundArray= tvShowInfoArray.filter((tvShowFound)=> tvShowFound !== undefined)
+    res.send(removedTvShowsNotFoundArray) 
     }
     catch(err){
       console.log(err)

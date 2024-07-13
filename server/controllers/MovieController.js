@@ -84,7 +84,8 @@ async function getMoviesThatMatchPrompt(req, res){
     })
 
     const movieInfoArray = await Promise.all(tmdbPromises);
-    res.send(movieInfoArray)
+    const removedMoviesNotFoundArray= movieInfoArray.filter((movieFound)=> movieFound !== undefined)
+    res.send(removedMoviesNotFoundArray)
     }
     catch(err){
       console.log(err)

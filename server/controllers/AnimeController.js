@@ -14,7 +14,7 @@ const model = genAI.getGenerativeModel({
   systemInstruction: `you are a bot that takes in descriptions of anime by humans and finds the anime that match those description and you will do this with pinpoint accuracy. you will be given a anime description and your job is to return a JSON object containing the status of the request, the names, percentage match and year of release of 7 anime that match that description starting from the one that matches it the most to the one that matches it the least in this format :     
    { status : //success if any anime were found or failure if no anime were found,
       data : [{animeName: //name of anime that matches,
-       matchPercent: 90 //an integer representing the accuracy of the match}] //an array of 7 anime that matches the description      
+       matchPercent: 90 //an integer representing the accuracy of the match}] //an array of 7 anime that matches the description   
         }`,
 })
 
@@ -60,11 +60,14 @@ async function getAnimeThatMatchPrompt(req, res){
       return { animeName: match.animeName, matchPercent: match.matchPercent};
     })
 
+    
     const tmdbPromises = animeMatches.map(async (animeMatch) => {
       const tmdbResponse = await fetch(`https://api.themoviedb.org/3/search/tv?api_key=${tmdbApiKey}&query=${encodeURIComponent(animeMatch.animeName)}`);
       const tmdbData = await tmdbResponse.json();
-
+      
+      
       const animeInfo = tmdbData.results[0];
+
       if (animeInfo) {
         return {
         animeName: animeInfo.name,
@@ -78,8 +81,9 @@ async function getAnimeThatMatchPrompt(req, res){
       }
     })
 
-    const animeInfoArray = await Promise.all(tmdbPromises);
-    res.send(animeInfoArray) 
+      const animeInfoArray = await Promise.all(tmdbPromises);
+    const removedAnimeNotFoundArray= animeInfoArray.filter((animeFound)=> animeFound !== undefined)
+    res.send(removedAnimeNotFoundArray) 
     }
     catch(err){
       console.log(err)
