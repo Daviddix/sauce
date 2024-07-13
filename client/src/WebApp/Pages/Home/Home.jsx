@@ -83,8 +83,6 @@ function Home() {
         
     </section>
 
-
-
     <ChatInput  />
     </>
   )
