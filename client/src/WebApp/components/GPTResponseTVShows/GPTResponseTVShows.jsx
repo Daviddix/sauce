@@ -131,6 +131,7 @@ function GPTResponseTVShows({inputValue, id, searchCategory}) {
         {tvShowFetchStatus === "loading" && skeletons}    
         {tvShowFetchStatus === "completed" && mappedTvShows}
         {tvShowFetchStatus === "error" && <GPTResponseError 
+        page={"tv Shows"}
         reasonForError={reasonForError}
         refreshFromError={refreshFromError} />}        
     </div>

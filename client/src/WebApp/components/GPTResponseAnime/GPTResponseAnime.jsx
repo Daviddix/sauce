@@ -134,6 +134,7 @@ function GPTResponseAnime({inputValue, id, searchCategory}) {
         {animeFetchStatus === "loading" && skeletons}    
         {animeFetchStatus === "completed" && mappedAnime}
         {animeFetchStatus === "error" && <GPTResponseError 
+        page={"anime"}
         reasonForError={reasonForError}
         refreshFromError={refreshFromError} />}        
     </div>

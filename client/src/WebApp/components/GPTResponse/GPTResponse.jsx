@@ -132,6 +132,7 @@ function GPTResponse({inputValue, id, searchCategory}) {
         {movieFetchStatus === "loading" && skeletons}    
         {movieFetchStatus === "completed" && mappedMovies}
         {movieFetchStatus === "error" && <GPTResponseError 
+        page={"movies"}
         reasonForError={reasonForError}
         refreshFromError={refreshFromError} />}        
     </div>
