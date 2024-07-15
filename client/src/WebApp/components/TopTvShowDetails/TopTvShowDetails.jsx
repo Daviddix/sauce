@@ -66,6 +66,7 @@ function TopTvShowDetails() {
                   }])
                 }
             setTvShowFetchStatus("completed")
+            document.title = `Sauce | ${topTvShowInfo.name}(${(topTvShowInfo.first_air_date.slice(0, 4))})`
             setMainTvShowLink(fetchInJson.homepage)
         }
         catch(err){

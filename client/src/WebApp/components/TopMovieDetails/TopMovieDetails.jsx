@@ -65,6 +65,7 @@ async function getMovieDetails(){
                   }])
                 }
             setMovieFetchStatus("completed")
+            document.title = `Sauce | ${topMovieInfo.title}(${(topMovieInfo.release_date.slice(0, 4))})`
             setMainMovieLink(fetchInJson.homepage)
         }
         catch(err){

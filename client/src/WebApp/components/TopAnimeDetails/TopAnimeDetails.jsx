@@ -66,6 +66,7 @@ function TopAnimeDetails() {
                   }])
                 }
             setAnimeFetchStatus("completed")
+            document.title = `Sauce | ${topAnimeInfo.name}(${(topAnimeInfo.first_air_date.slice(0, 4))})`
             setMainAnimeLink(fetchInJson.homepage)
         }
         catch(err){
