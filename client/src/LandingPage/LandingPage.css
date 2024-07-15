@@ -67,12 +67,39 @@ nav .bmc-logo{
     max-width: 90vw;
 }
 
-.heading > span{
+.heading > span.gradient{
     display: block;
     background-image: linear-gradient(91deg, #3A9FE8 39.12%, #3AE8B4 63.41%) !important;
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+}
+
+.heading .slide{
+    display:inline-block;
+    animation: show 1s ease forwards;
+    -webkit-animation: show 1s ease forwards;
+    background-image: linear-gradient(180deg, #0C202E 0%, #193F5A 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transform: translateY(-20px) rotateX(-20deg);
+    opacity:0;
+    -webkit-transform: translateY(-20px) rotateX(-20deg);
+    -moz-transform: translateY(-20px) rotateX(-20deg);
+    -ms-transform: translateY(-20px) rotateX(-20deg);
+    -o-transform: translateY(-20px) rotateX(-20deg);
+}
+
+@keyframes show {
+    to{
+        transform: translateY(0px);
+        opacity: 1;
+        -webkit-transform: translateY(0px);
+        -moz-transform: translateY(0px);
+        -ms-transform: translateY(0px);
+        -o-transform: translateY(0px);
+}
 }
 
 .landing-page-main .sub-heading{

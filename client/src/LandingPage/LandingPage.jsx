@@ -7,10 +7,39 @@ import buyMeCoffeeImage from "../assets/landing page assets/icons/bmc-button.svg
 import rightArrowIcon from "../assets/landing page assets/icons/arrow-right-icon.svg"
 import "./LandingPage.css"
 import {Link} from "react-router-dom"
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 function LandingPage() {
     const [showMenu, setShowMenu] = useState(false)
+    const [category, setCategory] = useState("Movies")
+    const categories = ["Movies", "TV Shows", "Anime"]
+    const spanRef = useRef()
+
+
+    function getNewCategory(){
+        console.log(category)
+        if(category == "Movies"){
+            return setCategory(categories[1])
+        }else if(category == "TV Shows"){
+            return setCategory(categories[2])
+        }else if(category == "Anime"){
+            return setCategory(categories[0])
+        }
+    }
+
+    useEffect(()=>{
+        spanRef.current.classList.remove("slide")
+        void spanRef.current.offsetWidth
+        spanRef.current.classList.add("slide")
+        const i = setInterval(()=>{
+            getNewCategory()
+        }, 7000)
+
+        return ()=>{
+            clearInterval(i)
+        }
+    }, [category])
+    
   return (
     <main className='landing-page-main'>
 
@@ -55,9 +84,9 @@ function LandingPage() {
             </nav>
         </header>
         
-        <h1 className="heading">Find Movies You've Forgotten <span className='gradient'>Using AI</span></h1>
+        <h1 className="heading">Find <span ref={spanRef} className="slide">{category}</span> You've Forgotten <span className='gradient'>Using AI</span></h1>
 
-        <p className="sub-heading">Introducing Sauce, an AI-powered web app, to find movies you've forgotten with just a brief, imperfect description. Reconnect with lost memories effortlessly</p>
+        <p className="sub-heading">Introducing Sauce, an AI-powered web app that helps you find Anime, tv shows and movies you've forgotten with just a brief, imperfect description. Reconnect with lost memories effortlessly</p>
 
         <div className="body-buttons">
             <Link to="/app/login">
