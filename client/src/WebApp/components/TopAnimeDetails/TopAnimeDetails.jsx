@@ -49,12 +49,12 @@ function TopAnimeDetails() {
             const fetchInJson = await rawFetch.json()
 
             if(!rawFetch.ok){
-                throw new Error({cause : fetchInJson})
+                throw new Error("an error", {cause : fetchInJson})
             }
             setTopAnimeInfo(fetchInJson)
             if(allAnime.length == 0){
                 setAllAnime([{
-                    animeName: fetchInJson.title,
+                    animeName: fetchInJson.name,
                     animeId: fetchInJson.id,
                     matchPercent : 0,
                     animeReleaseDate: fetchInJson.first_air_date,
@@ -66,10 +66,12 @@ function TopAnimeDetails() {
                   }])
                 }
             setAnimeFetchStatus("completed")
-            document.title = `Sauce | ${topAnimeInfo.name}(${(topAnimeInfo.first_air_date.slice(0, 4))})`
+            console.log(fetchInJson)
+            document.title = `Sauce | ${fetchInJson.name}(${(fetchInJson.first_air_date.slice(0, 4))})`
             setMainAnimeLink(fetchInJson.homepage)
         }
         catch(err){
+            console.log(err)
             setAnimeFetchStatus("error")
         }
     }

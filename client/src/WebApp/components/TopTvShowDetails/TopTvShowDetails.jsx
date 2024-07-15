@@ -54,7 +54,7 @@ function TopTvShowDetails() {
             setTopTvShowInfo(fetchInJson)
             if(allTvShows.length == 0){
                 setAllTvShows([{
-                    tvShowName: fetchInJson.title,
+                    tvShowName: fetchInJson.name,
                     tvShowId: fetchInJson.id,
                     matchPercent : 0,
                     tvShowReleaseDate: fetchInJson.first_air_date,
@@ -66,7 +66,7 @@ function TopTvShowDetails() {
                   }])
                 }
             setTvShowFetchStatus("completed")
-            document.title = `Sauce | ${topTvShowInfo.name}(${(topTvShowInfo.first_air_date.slice(0, 4))})`
+            document.title = `Sauce | ${fetchInJson.name}(${(fetchInJson.first_air_date.slice(0, 4))})`
             setMainTvShowLink(fetchInJson.homepage)
         }
         catch(err){
