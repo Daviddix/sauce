@@ -17,7 +17,7 @@ function LandingPage() {
 
 
     function getNewCategory(){
-        console.log(category)
+        
         if(category == "Movies"){
             return setCategory(categories[1])
         }else if(category == "TV Shows"){

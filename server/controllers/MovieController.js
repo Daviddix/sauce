@@ -88,7 +88,7 @@ async function getMoviesThatMatchPrompt(req, res){
     res.send(removedMoviesNotFoundArray)
     }
     catch(err){
-      console.log(err)
+      
         res.status(500).json(unknownError)
     }
 }
@@ -168,12 +168,12 @@ async function getWatchProvidersForSpecificMovie(req, res){
     const response = await fetch(url, options)
     const result = await response.text()
     const {streamingOptions} = await JSON.parse(result)
-    console.log(streamingOptions) 
+     
 
     res.send(streamingOptions)
   }
   catch(err){
-    console.log(err)
+    
     res.status(500).json(unknownError)
   }
 }

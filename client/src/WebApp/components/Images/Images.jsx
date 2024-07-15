@@ -57,7 +57,7 @@ function Images() {
     }
     catch(err){
       setImagesFetchStatus("error")
-      console.log(err)
+      
     }
   }
   return (

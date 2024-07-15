@@ -36,7 +36,7 @@ function WatchNowModalTvShows({setShowWatchModal, tvShowId}) {
             setFetchStatus("completed")
         }
         catch(err){
-            console.log(err)
+            
             setFetchStatus("error")
         }
     }

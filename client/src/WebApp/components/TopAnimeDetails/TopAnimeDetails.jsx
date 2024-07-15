@@ -69,7 +69,6 @@ function TopAnimeDetails() {
             setMainAnimeLink(fetchInJson.homepage)
         }
         catch(err){
-            console.log(JSON.stringify(err))
             setAnimeFetchStatus("error")
         }
     }

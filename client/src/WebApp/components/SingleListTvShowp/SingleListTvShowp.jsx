@@ -29,7 +29,7 @@ function SingleListTvShowp({tvShowName, tvShowReleaseDate, tvShowPoster, tvShowI
             notifyForTvShowDeletedFromList(listName)
         }
         catch(err){
-            console.log(err)
+            
             notifyForDeleteTvShowInListListError()
         }
     }

@@ -37,7 +37,7 @@ function WatchNowModal({setShowWatchModal, movieId}) {
             setFetchStatus("completed")
         }
         catch(err){
-            console.log(err)
+            
             setFetchStatus("error")
         }
     }

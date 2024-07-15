@@ -53,9 +53,9 @@ app.use("/app/list/tv", tvShowListRouter)
 mongoose.connect(MONGO_URI) 
 .then(()=>{
     app.listen(PORT, () => {
-    console.log('App listening on port 3000!') 
+     
 }) 
 })
 .catch((err)=>{ 
-    console.log("an error ocurred", err)
+    
 })

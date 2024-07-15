@@ -73,7 +73,7 @@ function Lists() {
     }
     catch(err){
       alert("an error ocurred when you tried to delete that list, please try again")
-      console.log(err)
+      
     }
   }
 

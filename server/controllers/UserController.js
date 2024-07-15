@@ -64,7 +64,7 @@ try{
         }
     }
     catch(err){
-        console.log(err)
+        
         res.status(400).json(unknownError)
     }
 }
@@ -100,7 +100,7 @@ async function logUserIn(req, res){
         }
     }
     catch(e){
-      console.log(e)
+      
         res.status(400).json(unknownError)
     }
 }

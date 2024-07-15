@@ -29,7 +29,7 @@ function SingleListMovie({movieName, movieReleaseDate, moviePoster, movieId, lis
             notifyForMovieDeletedFromList(listName)
         }
         catch(err){
-            console.log(err)
+            
             notifyForDeleteMovieInListListError()
         }
     }

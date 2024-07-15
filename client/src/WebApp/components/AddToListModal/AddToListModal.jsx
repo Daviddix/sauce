@@ -54,8 +54,8 @@ function AddToListModal({setShowListModal}) {
         }
         catch(err){
             setListFetchStatus("error")
-            console.log(err)
-            console.log(err?.cause)
+            
+            
         }
         
     }
@@ -66,7 +66,7 @@ function AddToListModal({setShowListModal}) {
           const movieToAddToList = movies.filter(
             (movie) => movie.movieId == movieIdToAddToList
           )[0]
-          console.log(movieToAddToList)
+          
           const rawFetch = await fetch(
             `http://localhost:3000/app/list/movies/${activeListId}`,
             {
@@ -88,7 +88,7 @@ function AddToListModal({setShowListModal}) {
           notifyForMovieAddedToList(listName)
           setRefreshList((prev)=> prev+1)
         } catch (err) {
-            console.log(err)
+            
             notifyForAddToListError()
             setAddingToList(false)
         }

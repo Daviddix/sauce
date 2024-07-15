@@ -85,7 +85,7 @@ async function getTvShowsThatMatchPrompt(req, res){
     res.send(removedTvShowsNotFoundArray) 
     }
     catch(err){
-      console.log(err)
+      
         res.status(500).json(unknownError)
     }
 }
@@ -165,12 +165,12 @@ async function getWatchProvidersForSpecificTvShow(req, res){
     const response = await fetch(url, options)
     const result = await response.text()
     const {streamingOptions} = await JSON.parse(result)
-    console.log(streamingOptions) 
+     
 
     res.send(streamingOptions)
   }
   catch(err){
-    console.log(err)
+    
     res.status(500).json(unknownError)
   }
 }

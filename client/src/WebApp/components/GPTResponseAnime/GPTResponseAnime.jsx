@@ -60,7 +60,7 @@ function GPTResponseAnime({inputValue, id, searchCategory}) {
           setDisableInput(false)
         }
       } catch (err) {
-        console.log(err)
+        
         setReasonForError(err.cause ? err.cause : "Network Error")
         setAnimeFetchStatus("error")
         setDisableInput(false)

@@ -60,8 +60,8 @@ function AnimeListContainer() {
       }
       catch(err){
           setListFetchStatus("error")
-          console.log(err)
-          console.log(err?.cause)
+          
+          
       }
       
   }

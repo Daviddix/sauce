@@ -46,7 +46,7 @@ function NewListModalAnime({setShowAddNewListModal, notifyForAnimeAddedToList, n
         catch(err){
             setCreatingNewList(false)
             notifyForAddToListError()
-            console.log(err)
+            
         }
        
     }

@@ -36,7 +36,7 @@ function WatchNowModalAnime({setShowWatchModal, animeId}) {
             setFetchStatus("completed")
         }
         catch(err){
-            console.log(err)
+            
             setFetchStatus("error")
         }
     }

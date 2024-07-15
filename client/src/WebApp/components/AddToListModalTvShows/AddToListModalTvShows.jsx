@@ -53,8 +53,8 @@ function AddToListModalTvShows({setShowListModal}) {
         }
         catch(err){
             setListFetchStatus("error")
-            console.log(err)
-            console.log(err?.cause)
+            
+            
         }
         
     }
@@ -86,7 +86,7 @@ function AddToListModalTvShows({setShowListModal}) {
           notifyForTvShowAddedToList(listName)
           setRefreshList((prev)=> prev+1)
         } catch (err) {
-            console.log(err)
+            
             notifyForAddToListError()
             setAddingToList(false)
         }

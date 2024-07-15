@@ -68,7 +68,6 @@ async function getMovieDetails(){
             setMainMovieLink(fetchInJson.homepage)
         }
         catch(err){
-            console.log(err.cause)
             setMovieFetchStatus("error")
         }
     }

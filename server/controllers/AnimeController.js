@@ -86,7 +86,7 @@ async function getAnimeThatMatchPrompt(req, res){
     res.send(removedAnimeNotFoundArray) 
     }
     catch(err){
-      console.log(err)
+      
         res.status(500).json(unknownError)
     }
 }
@@ -102,7 +102,7 @@ async function getInfoAboutSpecificAnime(req, res){
         res.send(animeData)
       }
       catch(err){ 
-        console.log(err)
+        
         res.status(500).json(unknownError)
       }
 }
@@ -168,12 +168,12 @@ async function getWatchProvidersForSpecificAnime(req, res){
     const response = await fetch(url, options)
     const result = await response.text()
     const {streamingOptions} = await JSON.parse(result)
-    console.log(streamingOptions) 
+     
 
     res.send(streamingOptions)
   }
   catch(err){
-    console.log(err)
+    
     res.status(500).json(unknownError)
   }
 }

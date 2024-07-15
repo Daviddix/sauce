@@ -58,7 +58,7 @@ function TvShowLists(){
                 throw new Error("err", {cause : fetchInJson})
             }
             const filteredTvShowList = allTvShowsListId.filter((id)=> id !== tvShowListId)
-            console.log(filteredTvShowList)
+            
             if(filteredTvShowList.length == 0){
                 navigate("/app")
                 setRefreshList((prev)=> prev + 1)
@@ -69,7 +69,7 @@ function TvShowLists(){
 
         }catch(err){
             alert("an error ocurred when you tried to delete that list, please try again")
-            console.log(err)
+            
         }
     }
 

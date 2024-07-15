@@ -47,7 +47,7 @@ function NewListModal({setShowAddNewListModal, notifyForMovieAddedToList, notify
         catch(err){
             setCreatingNewList(false)
             notifyForAddToListError()
-            console.log(err)
+            
         }
        
     }

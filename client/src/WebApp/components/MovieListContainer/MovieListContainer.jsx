@@ -20,7 +20,7 @@ function MovieListContainer() {
 
     async function getListsByUser(){
         setListFetchStatus("loading")
-        console.log("here")
+        
         try{
         const rawFetch = await fetch("http://localhost:3000/app/list/movies", {
             credentials: "include"
@@ -62,8 +62,8 @@ function MovieListContainer() {
       }
       catch(err){
           setListFetchStatus("error")
-          console.log(err)
-          console.log(err?.cause)
+          
+          
       }
       
   }

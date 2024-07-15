@@ -23,7 +23,7 @@ async function getInformationAboutParticularList(req, res){
         if(!particularList.listAuthor == userId){
             return res.status(404).json(notAuthorizedToView)
         }
-        console.log(listId, particularList)
+        
         res.status(200).json(particularList)
     }
     catch(err){
@@ -64,7 +64,7 @@ async function addAnimeToExistingList(req, res){
         res.status(200).json(listUpdated)
     }
     catch(err){ 
-        console.log(err)
+        
         res.status(500).json(unknownError)
     } 
 } 

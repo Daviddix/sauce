@@ -79,7 +79,7 @@ function ChatInput() {
   } 
   
   function handleInputHeightChange(e){
-    console.log(e.target.scrollHeight)
+    
     if(e.target.scrollHeight >= 100){
       return
     }else if(e.target.scrollHeight <= 45){
@@ -142,7 +142,7 @@ function ChatInput() {
               handleInputHeightChange(e)
             }}
             value={typedDescription}
-            placeholder="A movie about..."
+            placeholder={searchCategory == "Movies" ? `A movie about...` : searchCategory == "TV Shows" ? `A tv show about...` : `An anime about...`}
             disabled={disableInput}
             ref={inputRef}
             required

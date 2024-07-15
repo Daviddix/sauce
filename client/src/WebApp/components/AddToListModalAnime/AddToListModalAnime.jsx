@@ -53,8 +53,8 @@ function AddToListModalAnime({setShowListModal}) {
         }
         catch(err){
             setListFetchStatus("error")
-            console.log(err)
-            console.log(err?.cause)
+            
+            
         }
         
     }
@@ -65,7 +65,7 @@ function AddToListModalAnime({setShowListModal}) {
           const animeToAddToList = allAnime.filter(
             (anime) => anime.animeId == animeIdToAddToList
           )[0]
-          console.log(animeToAddToList)
+          
           const rawFetch = await fetch(
             `http://localhost:3000/app/list/anime/${activeListId}`,
             {
@@ -87,7 +87,7 @@ function AddToListModalAnime({setShowListModal}) {
           notifyForAnimeAddedToList(listName)
           setRefreshList((prev)=> prev+1)
         } catch (err) {
-            console.log(err)
+            
             notifyForAddToListError()
             setAddingToList(false)
         }

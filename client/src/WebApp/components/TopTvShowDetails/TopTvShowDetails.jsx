@@ -69,7 +69,6 @@ function TopTvShowDetails() {
             setMainTvShowLink(fetchInJson.homepage)
         }
         catch(err){
-            console.log(JSON.stringify(err))
             setTvShowFetchStatus("error")
         }
     }

@@ -34,7 +34,7 @@ function SingleListAnimep({animeName, animeReleaseDate, animePoster, animeId, li
             notifyForAnimeDeletedFromList(listName)
         }
         catch(err){
-            console.log(err)
+            
             notifyForDeleteAnimeInListListError()
         }
     }
