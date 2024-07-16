@@ -25,7 +25,7 @@ function NewListModalAnime({setShowAddNewListModal, notifyForAnimeAddedToList, n
             animeInList : [animeToAddToList],
             listAuthor : userInfo._id,
         }
-        const rawFetch = await fetch("https://sauce-backend.onrender.com/app/list/anime", {
+        const rawFetch = await fetch("https://sauce-dev.onrender.com/app/list/anime", {
             credentials : "include",
             headers: {
                 "Content-Type": "application/json"

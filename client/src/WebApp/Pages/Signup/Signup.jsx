@@ -62,7 +62,7 @@ function Signup() {
     }
     try {
       setCreatingUser(true)
-      const signUpResponse = await fetch("https://sauce-backend.onrender.com/app/user/signup", {
+      const signUpResponse = await fetch("https://sauce-dev.onrender.com/app/user/signup", {
         method: "POST",
         body: JSON.stringify(data),
         headers: {

@@ -10,7 +10,7 @@ function SingleListAnimep({animeName, animeReleaseDate, animePoster, animeId, li
 
     async function deleteAnimeFromList(){
         try{
-            const rawFetch = await fetch(`https://sauce-backend.onrender.com/app/list/anime/${listId}/m`,{
+            const rawFetch = await fetch(`https://sauce-dev.onrender.com/app/list/anime/${listId}/m`,{
                 method : "DELETE",
                 body : JSON.stringify({animeId}),
                 credentials : "include",

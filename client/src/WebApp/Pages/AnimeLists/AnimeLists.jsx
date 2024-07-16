@@ -33,7 +33,7 @@ function AnimeLists(){
     async function getInformationAboutList(){
         setListFetchStatus("loading")
         try{
-            const rawFetch = await fetch(`https://sauce-backend.onrender.com/app/list/anime/${animeListId}`, {
+            const rawFetch = await fetch(`https://sauce-dev.onrender.com/app/list/anime/${animeListId}`, {
                 credentials: "include"
             })
             const fetchInJson = await rawFetch.json()
@@ -50,7 +50,7 @@ function AnimeLists(){
 
     async function deleteList(id){
         try{
-            const rawFetch = await fetch(`https://sauce-backend.onrender.com/app/list/anime/${animeListId}/l`,{
+            const rawFetch = await fetch(`https://sauce-dev.onrender.com/app/list/anime/${animeListId}/l`,{
                 method : "DELETE",
                 credentials : "include"
               }) 
