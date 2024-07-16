@@ -42,7 +42,7 @@ function GPTResponse({inputValue, id, searchCategory}) {
             setMovieFetchStatus("completed")
             setDisableInput(false)
         } else {
-          const rawFetch = await fetch("http://localhost:3000/app/movie", {
+          const rawFetch = await fetch("https://sauce-backend.onrender.com/app/movie", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -71,7 +71,7 @@ function GPTResponse({inputValue, id, searchCategory}) {
         setMovieFetchStatus("loading")
         setDisableInput(true)
         try{
-        const rawFetch = await fetch("http://localhost:3000/app/movie",
+        const rawFetch = await fetch("https://sauce-backend.onrender.com/app/movie",
         {
             method : "POST",
             headers: {

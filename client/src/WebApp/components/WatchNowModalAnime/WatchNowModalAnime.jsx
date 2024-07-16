@@ -20,7 +20,7 @@ function WatchNowModalAnime({setShowWatchModal, animeId}) {
     async function getWatchProvidersDetails(){
         try{
             setFetchStatus("loading")
-            const raw = await fetch(`http://localhost:3000/app/anime/${animeId}/watch-providers`)
+            const raw = await fetch(`https://sauce-backend.onrender.com/app/anime/${animeId}/watch-providers`)
             const rawInJson = await raw.json()
             if(!raw.ok){
                 throw new Error({cause : rawInJson})

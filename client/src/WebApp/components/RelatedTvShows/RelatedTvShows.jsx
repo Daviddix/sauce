@@ -18,7 +18,7 @@ function RelatedAnime() {
   async function getRelatedTvShows(id){
     try{
       setFetchStatus("loading")
-      const rawFetch = await fetch(`http://localhost:3000/app/tv/${id}/related`)
+      const rawFetch = await fetch(`https://sauce-backend.onrender.com/app/tv/${id}/related`)
   
       const fetchInJson = await rawFetch.json()
       if(!rawFetch.ok){

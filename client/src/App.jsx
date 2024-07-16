@@ -35,7 +35,7 @@ async function getUserInfo(){
   setProfileFetchStatus("loading")
   setUserInfoStatus("loading")
   try{
-    const rawFetch = await fetch("http://localhost:3000/app/user/info",{
+    const rawFetch = await fetch("https://sauce-backend.onrender.com/app/user/info",{
       credentials: "include"
     })  
     const fetchJson = await rawFetch.json()

@@ -33,7 +33,7 @@ function TvShowLists(){
     async function getInformationAboutList(){
         setListFetchStatus("loading")
         try{
-            const rawFetch = await fetch(`http://localhost:3000/app/list/tv/${tvShowListId}`, {
+            const rawFetch = await fetch(`https://sauce-backend.onrender.com/app/list/tv/${tvShowListId}`, {
                 credentials: "include"
             })
             const fetchInJson = await rawFetch.json()
@@ -50,7 +50,7 @@ function TvShowLists(){
 
     async function deleteList(id){
         try{
-            const rawFetch = await fetch(`http://localhost:3000/app/list/tv/${tvShowListId}/l`,{
+            const rawFetch = await fetch(`https://sauce-backend.onrender.com/app/list/tv/${tvShowListId}/l`,{
                 method : "DELETE",
                 credentials : "include"
               }) 

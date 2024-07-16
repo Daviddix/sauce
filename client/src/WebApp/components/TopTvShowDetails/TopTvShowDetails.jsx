@@ -45,7 +45,7 @@ function TopTvShowDetails() {
     async function getTvShowDetails(){
         setTvShowFetchStatus("loading")
         try{
-            const rawFetch = await fetch(`http://localhost:3000/app/tv/${tvShowId}`)
+            const rawFetch = await fetch(`https://sauce-backend.onrender.com/app/tv/${tvShowId}`)
             const fetchInJson = await rawFetch.json()
 
             if(!rawFetch.ok){

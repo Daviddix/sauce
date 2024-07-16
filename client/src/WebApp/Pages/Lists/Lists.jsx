@@ -34,7 +34,7 @@ function Lists() {
   async function getInformationAboutList(){
     setListFetchStatus("loading")
     try{
-      const rawFetch = await fetch(`http://localhost:3000/app/list/movies/${movieListId}`, {
+      const rawFetch = await fetch(`https://sauce-backend.onrender.com/app/list/movies/${movieListId}`, {
             credentials: "include"
         })
         const fetchInJson = await rawFetch.json()
@@ -52,7 +52,7 @@ function Lists() {
 
   async function deleteList(id){
     try{
-    const rawFetch = await fetch(`http://localhost:3000/app/list/movies/${movieListId}/l`,{
+    const rawFetch = await fetch(`https://sauce-backend.onrender.com/app/list/movies/${movieListId}/l`,{
       method : "DELETE",
       credentials : "include"
     })

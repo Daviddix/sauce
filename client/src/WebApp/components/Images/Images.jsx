@@ -38,11 +38,11 @@ function Images() {
     setImagesFetchStatus("loading")
     let url
     if(movieId){
-      url = `http://localhost:3000/app/movie/${movieId}/images`
+      url = `https://sauce-backend.onrender.com/app/movie/${movieId}/images`
       }else if(tvShowId){
-      url = `http://localhost:3000/app/tv/${tvShowId}/images`
+      url = `https://sauce-backend.onrender.com/app/tv/${tvShowId}/images`
       }else if(animeId){
-      url = `http://localhost:3000/app/anime/${animeId}/images`
+      url = `https://sauce-backend.onrender.com/app/anime/${animeId}/images`
       }
     try{
       const rawFetch = await fetch(url)

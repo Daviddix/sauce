@@ -42,7 +42,7 @@ function GPTResponseAnime({inputValue, id, searchCategory}) {
             setAnimeFetchStatus("completed")
             setDisableInput(false)
         } else {
-          const rawFetch = await fetch("http://localhost:3000/app/anime", {
+          const rawFetch = await fetch("https://sauce-backend.onrender.com/app/anime", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -71,7 +71,7 @@ function GPTResponseAnime({inputValue, id, searchCategory}) {
         setAnimeFetchStatus("loading")
         setDisableInput(true)
         try{
-        const rawFetch = await fetch("http://localhost:3000/app/anime",
+        const rawFetch = await fetch("https://sauce-backend.onrender.com/app/anime",
         {
             method : "POST",
             headers: {

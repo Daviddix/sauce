@@ -42,7 +42,7 @@ function GPTResponseTVShows({inputValue, id, searchCategory}) {
             setTvShowFetchStatus("completed")
             setDisableInput(false)
         } else {
-          const rawFetch = await fetch("http://localhost:3000/app/tv", {
+          const rawFetch = await fetch("https://sauce-backend.onrender.com/app/tv", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -70,7 +70,7 @@ function GPTResponseTVShows({inputValue, id, searchCategory}) {
         setTvShowFetchStatus("loading")
         setDisableInput(true)
         try{
-        const rawFetch = await fetch("http://localhost:3000/app/tv",
+        const rawFetch = await fetch("https://sauce-backend.onrender.com/app/tv",
         {
             method : "POST",
             headers: {

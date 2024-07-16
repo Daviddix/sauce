@@ -22,7 +22,7 @@ function MovieListContainer() {
         setListFetchStatus("loading")
         
         try{
-        const rawFetch = await fetch("http://localhost:3000/app/list/movies", {
+        const rawFetch = await fetch("https://sauce-backend.onrender.com/app/list/movies", {
             credentials: "include"
         })
         const fetchInJson = await rawFetch.json()
@@ -47,7 +47,7 @@ function MovieListContainer() {
 
     async function getListsByUserWithoutLoading(){
       try{
-      const rawFetch = await fetch("http://localhost:3000/app/list/movies", {
+      const rawFetch = await fetch("https://sauce-backend.onrender.com/app/list/movies", {
           credentials: "include"
       })
       const fetchInJson = await rawFetch.json()

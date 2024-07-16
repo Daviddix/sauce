@@ -46,7 +46,7 @@ function TopMovieDetails() {
 async function getMovieDetails(){
         setMovieFetchStatus("loading")
         try{
-            const rawFetch = await fetch(`http://localhost:3000/app/movie/${movieId}`)
+            const rawFetch = await fetch(`https://sauce-backend.onrender.com/app/movie/${movieId}`)
             const fetchInJson = await rawFetch.json()
 
             if(!rawFetch.ok){
