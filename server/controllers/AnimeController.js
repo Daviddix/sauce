@@ -139,7 +139,7 @@ async function getImagesForSpecificAnime(req, res){
 async function getRelatedAnime(req, res){
   try{
       const animeId = Number(req.params.animeId)
-      const url = `https://api.themoviedb.org/3/tv/${animeId}/similar?language=en-US&page=1&api_key=${tmdbApiKey}`;
+      const url = `https://api.themoviedb.org/3/tv/${animeId}/recommendations?language=en-US&page=1&api_key=${tmdbApiKey}`;
       
       const response = await fetch(url)
     

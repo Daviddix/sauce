@@ -8,7 +8,7 @@ import SingleListMovieError from "../../components/SingleListMovieError/SingleLi
 import menuIcon from "../../../assets/app assets/icons/menu-icon.svg"
 import { Toaster } from "react-hot-toast"
 import { useAtom } from "jotai"
-import { activeListIdAtom, allAnimeListIdAtom, listIdToDeleteAtom, openSidebarAtom, refreshListAtom } from "../../globals/atom"
+import { activeListIdAtom, allAnimeListIdAtom, listCategoryToShowAtom, listIdToDeleteAtom, openSidebarAtom, refreshListAtom } from "../../globals/atom"
 import SingleListAnimep from "../../components/SingleListAnimep/SingleListAnimep"
 
 function AnimeLists(){
@@ -19,11 +19,13 @@ function AnimeLists(){
     const [allAnimeListId, setAllAnimeListId] = useAtom(allAnimeListIdAtom)
     const [refreshList, setRefreshList] = useAtom(refreshListAtom)
     const [openSidebar, setOpenSidebar] = useAtom(openSidebarAtom)
+    const [listCategoryToShow, setListCategoryToShow] = useAtom(listCategoryToShowAtom)
 
     const {animeListId} = useParams()
     const navigate = useNavigate()
 
     useEffect(()=>{
+      setListCategoryToShow("Anime")
         getInformationAboutList()
         setActiveListId(animeListId)
     }, [animeListId])

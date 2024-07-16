@@ -3,7 +3,7 @@ import ProfileContainer from "../ProfileContainer/ProfileContainer"
 import SidebarHeader from "../SidebarHeader/SidebarHeader"
 import MovieListContainer from "../MovieListContainer/MovieListContainer"
 import { useAtom } from "jotai"
-import { openSidebarAtom, userInfoAtom } from "../../globals/atom"
+import { listCategoryToShowAtom, openSidebarAtom, userInfoAtom } from "../../globals/atom"
 import ListTab from "../ListTab/ListTab"
 import { useState } from "react"
 import AnimeListContainer from "../AnimeListContainer/AnimeListContainer"
@@ -11,7 +11,7 @@ import TvShowListContainer from "../TvShowListContainer/TvShowListContainer"
 
 function Sidebar() {
   const [openSidebar, setOpenSidebar] = useAtom(openSidebarAtom)
-  const [listCategoryToShow, setListCategoryToShow] = useState("Movies")
+  const [listCategoryToShow, setListCategoryToShow] = useAtom(listCategoryToShowAtom)
   const [userInfo, setUserInfo] = useAtom(userInfoAtom)
 
   return (

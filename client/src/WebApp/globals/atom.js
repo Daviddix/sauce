@@ -43,3 +43,4 @@ export const allTvShowsListIdAtom = atom([])
 
 //category atoms
 export const searchCategoryAtom = atom("Movies")
+export const listCategoryToShowAtom = atom("Movies")

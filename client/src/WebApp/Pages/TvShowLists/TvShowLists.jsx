@@ -8,7 +8,7 @@ import SingleListMovieSkeleton from "../../components/SkeletonLoaders/SingleList
 import SingleListMovieError from "../../components/SingleListMovieError/SingleListMovieError"
 import { Toaster } from "react-hot-toast"
 import { useAtom } from "jotai"
-import { activeListIdAtom, allTvShowsListIdAtom, listIdToDeleteAtom, openSidebarAtom, refreshListAtom } from "../../globals/atom"
+import { activeListIdAtom, allTvShowsListIdAtom, listCategoryToShowAtom, listIdToDeleteAtom, openSidebarAtom, refreshListAtom } from "../../globals/atom"
 import SingleListTvShowp from "../../components/SingleListTvShowp/SingleListTvShowp"
 
 function TvShowLists(){
@@ -19,11 +19,13 @@ function TvShowLists(){
     const [allTvShowsListId, setAllTvShowsListId] = useAtom(allTvShowsListIdAtom)
     const [refreshList, setRefreshList] = useAtom(refreshListAtom)
     const [openSidebar, setOpenSidebar] = useAtom(openSidebarAtom)
+    const [listCategoryToShow, setListCategoryToShow] = useAtom(listCategoryToShowAtom)
 
     const {tvShowListId} = useParams()
     const navigate = useNavigate()
 
     useEffect(()=>{
+      setListCategoryToShow("TV Shows")
         getInformationAboutList()
         setActiveListId(tvShowListId)
     }, [tvShowListId])
