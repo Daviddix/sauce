@@ -125,7 +125,7 @@ function TopTvShowDetails() {
                 </div>
             </div>
 
-            <div className="top-tv-show-image">
+            <div className={topTvShowInfo.name.length >20 ? "top-tv-show-image large" : "top-tv-show-image"}>
             <img src={`https://image.tmdb.org/t/p/original${topTvShowInfo.backdrop_path}`} alt="" />
             </div>
             

@@ -12,6 +12,9 @@ function Header() {
     const [userInfoStatus, setUserInfoStatus] = useAtom(userInfoStatusAtom)
     const [showLogoutModal, setShowLogoutModal] = useAtom(showLogoutModalAtom)
 
+    console.log(userInfo.profilePicture)
+
+
   return (
     <header className="home-header">
                 <div className="header-inner">
@@ -23,8 +26,8 @@ function Header() {
                     <img src={menuIcon} alt="open list" />
                 </button>
 
-                {userInfoStatus == "completed"?
-                userInfo.profilePicture?   
+                {userInfoStatus == "completed"&&
+                userInfo.profilePicture&&   
                 <div className="right">                 
                     <button className="profile-button">
                     <img src={userInfo.profilePicture} alt="profile icon" className="user-profile-pic" />
@@ -36,10 +39,10 @@ function Header() {
             }}
             className="logout-button"><img src={logoutIcon} alt="logout" /></button>
             </div>
-                :
-                <Link to={"/app/signup"}>
+}
+                {userInfoStatus == "error" && <Link to={"/app/signup"}>
                 <button className="cta">Signup</button>
-                </Link> : ""
+                </Link> 
                 }
                 </div>
                 

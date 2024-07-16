@@ -129,7 +129,7 @@ function TopAnimeDetails() {
                 </div>
             </div>
 
-            <div className="top-anime-image">
+            <div className={topAnimeInfo.name.length > 20? "top-anime-image large" : "top-anime-image"}>
             <img src={`https://image.tmdb.org/t/p/original${topAnimeInfo.backdrop_path}`} alt="" />
             </div>
             

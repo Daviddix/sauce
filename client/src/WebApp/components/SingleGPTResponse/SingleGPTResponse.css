@@ -83,6 +83,7 @@
 
 .movie-options button{
     display: flex;
+    width:100%;
     align-items: center;
     justify-content: center;
     column-gap: .5rem;
