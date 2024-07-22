@@ -4,7 +4,7 @@ import { useEffect } from "react"
 
 function DashboardLayout({children}) {
   useEffect(()=>{
-    document.title = "Sauce | Find Movies You've Forgotten Using AI"
+    document.title = "Sauce | Find Movies, TV Shows & Anime You've Forgotten Using AI"
   }, [])
   return (
     <main className="layout-main">
