@@ -45,7 +45,7 @@ function TopAnimeDetails() {
     async function getAnimeDetails(){
         setAnimeFetchStatus("loading")
         try{
-            const rawFetch = await fetch(`https://sauce-dev.onrender.com/app/anime/${animeId}`)
+            const rawFetch = await fetch(`https://sauce-backend.onrender.com/app/anime/${animeId}`)
             const fetchInJson = await rawFetch.json()
 
             if(!rawFetch.ok){

@@ -26,7 +26,7 @@ function NewListModal({setShowAddNewListModal, notifyForMovieAddedToList, notify
             moviesInList : [movieToAddToList],
             listAuthor : userInfo._id
         }
-        const rawFetch = await fetch("https://sauce-dev.onrender.com/app/list/movies", {
+        const rawFetch = await fetch("https://sauce-backend.onrender.com/app/list/movies", {
             credentials : "include",
             headers: {
                 "Content-Type": "application/json"

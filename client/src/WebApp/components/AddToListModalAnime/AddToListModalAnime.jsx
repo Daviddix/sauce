@@ -40,7 +40,7 @@ function AddToListModalAnime({setShowListModal}) {
     async function getAnimeListsByUser(){
         setListFetchStatus("loading")
         try{
-        const rawFetch = await fetch("https://sauce-dev.onrender.com/app/list/anime", {
+        const rawFetch = await fetch("https://sauce-backend.onrender.com/app/list/anime", {
             credentials: "include"
         })
         const fetchInJson = await rawFetch.json()
@@ -67,7 +67,7 @@ function AddToListModalAnime({setShowListModal}) {
           )[0]
           
           const rawFetch = await fetch(
-            `https://sauce-dev.onrender.com/app/list/anime/${activeListId}`,
+            `https://sauce-backend.onrender.com/app/list/anime/${activeListId}`,
             {
               credentials: "include",
               body: JSON.stringify({animeData : animeToAddToList}),

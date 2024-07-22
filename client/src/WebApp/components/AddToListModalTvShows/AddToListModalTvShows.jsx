@@ -40,7 +40,7 @@ function AddToListModalTvShows({setShowListModal}) {
     async function getListsByUser(){
         setListFetchStatus("loading")
         try{
-        const rawFetch = await fetch("https://sauce-dev.onrender.com/app/list/tv/", {
+        const rawFetch = await fetch("https://sauce-backend.onrender.com/app/list/tv/", {
             credentials: "include" 
         })
         const fetchInJson = await rawFetch.json()
@@ -66,7 +66,7 @@ function AddToListModalTvShows({setShowListModal}) {
             (tvShow) => tvShow.tvShowId == tvShowIdToAddToList
           )[0]
           const rawFetch = await fetch(
-            `https://sauce-dev.onrender.com/app/list/tv/${activeListId}`,
+            `https://sauce-backend.onrender.com/app/list/tv/${activeListId}`,
             {
               credentials: "include",
               body: JSON.stringify({tvShowData : tvShowToAddToList}),

@@ -20,11 +20,11 @@ function Thriller({page}) {
     setThrillerFetchStatus("loading")
     try{
       if(movieId){
-      url = `https://sauce-dev.onrender.com/app/movie/${movieId}/video`
+      url = `https://sauce-backend.onrender.com/app/movie/${movieId}/video`
       }else if(tvShowId){
-      url = `https://sauce-dev.onrender.com/app/tv/${tvShowId}/video`
+      url = `https://sauce-backend.onrender.com/app/tv/${tvShowId}/video`
       }else if(animeId){
-      url = `https://sauce-dev.onrender.com/app/anime/${animeId}/video`
+      url = `https://sauce-backend.onrender.com/app/anime/${animeId}/video`
       }
       const rawFetch = await fetch(url)
 

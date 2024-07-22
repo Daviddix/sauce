@@ -27,7 +27,7 @@ function NewListModalTvShows({setShowAddNewListModal, notifyForTvShowAddedToList
             tvShowsInList : [tvShowToAddToList],
             listAuthor : userInfo._id,
         }
-        const rawFetch = await fetch("https://sauce-dev.onrender.com/app/list/tv", {
+        const rawFetch = await fetch("https://sauce-backend.onrender.com/app/list/tv", {
             credentials : "include",
             headers: {
                 "Content-Type": "application/json"

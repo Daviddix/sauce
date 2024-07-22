@@ -20,7 +20,7 @@ function TvShowListContainer() {
     async function getListsByUser(){
         setListFetchStatus("loading")
         try{
-        const rawFetch = await fetch("https://sauce-dev.onrender.com/app/list/tv", {
+        const rawFetch = await fetch("https://sauce-backend.onrender.com/app/list/tv", {
             credentials: "include"
         })
         const fetchInJson = await rawFetch.json()
@@ -45,7 +45,7 @@ function TvShowListContainer() {
 
     async function getListsByUserWithoutLoading(){
       try{
-      const rawFetch = await fetch("https://sauce-dev.onrender.com/app/list/tv", {
+      const rawFetch = await fetch("https://sauce-backend.onrender.com/app/list/tv", {
           credentials: "include"
       })
       const fetchInJson = await rawFetch.json()

@@ -6,7 +6,7 @@ import toast from "react-hot-toast"
 function SingleListTvShowp({tvShowName, tvShowReleaseDate, tvShowPoster, tvShowId, listId, getInformationAboutListFunction, listName, deleteList, listInfo}) {
     async function deleteTvShowFromList(){
         try{
-            const rawFetch = await fetch(`https://sauce-dev.onrender.com/app/list/tv/${listId}/m`,{
+            const rawFetch = await fetch(`https://sauce-backend.onrender.com/app/list/tv/${listId}/m`,{
                 method : "DELETE",
                 body : JSON.stringify({tvShowId}),
                 credentials : "include",
