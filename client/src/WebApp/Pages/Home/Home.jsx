@@ -9,6 +9,9 @@ import { activeListIdAtom, messagesAtom, showLogoutModalAtom } from '../../globa
 import GoToBottomButton from '../../components/GoToBottomButton/GoToBottomButton'
 import { get } from 'idb-keyval'
 import LogoutModal from "../../components/LogoutModal/LogoutModal"
+import GPTResponseAnime from '../../components/GPTResponseAnime/GPTResponseAnime'
+import GPTResponseTvShows from '../../components/GPTResponseTVShows/GPTResponseTVShows'
+
 
 function Home() {
   const [isFirstTimeUser, setIsFirstTimeUser] = useState(()=> JSON.parse(localStorage.getItem("first-time-user")))
@@ -25,12 +28,20 @@ function Home() {
       setActiveListId(0)
   }, [isFirstTimeUser])
 
-  const mappedMessages = messages.map(({from, value, inputValue, key, id})=>{
+  const mappedMessages = messages.map(({from, value, inputValue, key, id, searchCategory})=>{
     return (
       from === "user" ? 
-      <UserPrompt key={id} id={key} prompt={value} />  
+      <UserPrompt key={id} id={key} prompt={value} searchCategory={searchCategory} />  
       : 
-      <GPTResponse key={id} id={key} inputValue={inputValue} />
+      searchCategory == "Movies"?
+        <GPTResponse key={id} id={key} inputValue={inputValue} searchCategory={searchCategory} />
+        :
+          searchCategory == "Anime"?
+            <GPTResponseAnime key={id} id={key} inputValue={inputValue} searchCategory={searchCategory} />
+            :
+            searchCategory == "TV Shows"?
+            <GPTResponseTvShows key={id} id={key} inputValue={inputValue} searchCategory={searchCategory} />
+              : null
     )
   })
 
@@ -71,8 +82,6 @@ function Home() {
         </div>
         
     </section>
-
-
 
     <ChatInput  />
     </>

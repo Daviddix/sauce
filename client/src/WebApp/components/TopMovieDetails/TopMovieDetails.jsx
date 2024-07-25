@@ -10,13 +10,14 @@ import rankIcon from "../../../assets/app assets/icons/ranking-list-icon.svg"
 import "./TopMovieDetails.css"
 import { useEffect, useState } from "react"
 import { formatTime } from "../../globals/others"
-import MovieDetailsSkeleton from "../SkeletonLoaders/MovieDetailsSkeleton/MovieDetailsSkeleton"
+import DetailsSkeleton from "../SkeletonLoaders/DetailsSkeleton/DetailsSkeleton"
 import AddToListModal from "../../components/AddToListModal/AddToListModal"
-import { isSignedInAtom, mainLinkForMovieAtom, movieIdToAddToListAtom, movieMatchPercentageAtom, moviesAtom } from "../../globals/atom"
+import { isSignedInAtom, mainLinkForMovieAtom, movieIdToAddToListAtom, movieMatchPercentageAtom, allMoviesAtom } from "../../globals/atom"
 import { useAtom } from "jotai"
 import toast, { Toaster } from "react-hot-toast"
 import TopMovieDetailsError from "../TopMovieDetailsError/TopMovieDetailsError"
 import NotAuthenticatedModal from "../NotAuthenticatedModal/NotAuthenticatedModal"
+import WatchNowModal from '../../components/WatchNowModal/WatchNowModal'
 
 
 function TopMovieDetails() {
@@ -26,10 +27,12 @@ function TopMovieDetails() {
     const [movieIdToAddToList, setMovieIdToAddToList] = useAtom(movieIdToAddToListAtom)
     const [movieMatchPercentage, setMovieMatchPercentage] = useAtom(movieMatchPercentageAtom)
     const [mainMovieLink, setMainMovieLink] = useAtom(mainLinkForMovieAtom)
-    const [allMovies, setAllMovies] = useAtom(moviesAtom)
+    const [allMovies, setAllMovies] = useAtom(allMoviesAtom)
     const [isSignedIn, setIsSignedIn] = useAtom(isSignedInAtom)
     const [showNotAuthenticatedModal, setShowNotAuthenticatedModal] = useState(false)
+    const [showWatchModal, setShowWatchModal] = useState(false)
     const navigate = useNavigate()
+
 
     const mappedGenres = topMovieInfo.genres?.map((singleGenre)=>{
         return <div key={singleGenre.name} className="button-text-style">{singleGenre.name}</div>
@@ -40,7 +43,7 @@ function TopMovieDetails() {
         getMovieDetails()
     }, [movieId])
 
-    async function getMovieDetails(){
+async function getMovieDetails(){
         setMovieFetchStatus("loading")
         try{
             const rawFetch = await fetch(`https://sauce-backend.onrender.com/app/movie/${movieId}`)
@@ -62,30 +65,16 @@ function TopMovieDetails() {
                   }])
                 }
             setMovieFetchStatus("completed")
+            document.title = `Sauce | ${fetchInJson.title}(${(fetchInJson.release_date.slice(0, 4))})`
             setMainMovieLink(fetchInJson.homepage)
         }
         catch(err){
-            console.log(err.cause)
             setMovieFetchStatus("error")
         }
     }
 
     function showListModalFn(){
         setShowListModal(true)
-    }
-
-    function featureComingSoon(name){
-        return toast.success(`The ${name} feature isn't available at the moment. Don't worry, David is working on it:)`, {
-            position : "bottom-right",
-            style : {
-                fontFamily : "manrope",
-                fontSize : "14px",
-                backgroundImage : "linear-gradient(to bottom right,rgb(266, 255, 201), transparent)",
-                border : "2px solid white",
-                boxShadow : "0 0 .4rem #00000018"
-            },
-            icon : "📣"
-        })
     }
 
     function handleBackButton(){
@@ -95,7 +84,9 @@ function TopMovieDetails() {
     <div className="top-movie-details">
             {showListModal && <AddToListModal setShowListModal={setShowListModal} />}
 
-            {movieFetchStatus == "loading" && <MovieDetailsSkeleton /> }
+            {showWatchModal && <WatchNowModal setShowWatchModal={setShowWatchModal} movieId={movieId}/> }
+
+            {movieFetchStatus == "loading" && <DetailsSkeleton /> }
 
             {movieFetchStatus == "error" && <TopMovieDetailsError refreshFromError={getMovieDetails} handleBackButton={handleBackButton} />}
 
@@ -113,7 +104,7 @@ function TopMovieDetails() {
                 <div className="right">
                     <button 
                     onClick={()=>{
-                        featureComingSoon("Watch Now")
+                        setShowWatchModal(true)
                     }}
                     className="transparent-button">
                         <img src={tvIcon} alt="watch now" />

@@ -2,7 +2,7 @@ import alertIcon from "../../../assets/app assets/icons/attention-icon.svg"
 
 import "./GPTResponseError.css"
 
-function GPTResponseError({refreshFromError, reasonForError}) {
+function GPTResponseError({refreshFromError, reasonForError, page}) {
   return (
     <div className="gpt-response-error">
         <div className="left">
@@ -17,7 +17,7 @@ function GPTResponseError({refreshFromError, reasonForError}) {
             </p>
 
             <p className="body-style">
-            Oops, seems like an error ocurred when trying to get your movies. Don't worry, just click the "Retry" button and it will fix it up.
+            Oops, seems like an error ocurred when trying to get your {page}. Don't worry, just click the "Retry" button and it will fix it up.
             </p>
             
 

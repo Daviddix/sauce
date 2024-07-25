@@ -4,6 +4,11 @@
     max-width: 70rem;
 }
 
+.list-layout .left-buttons{
+    display: flex;
+    column-gap: 1rem;
+}
+
 .list-layout .list-header{
     display: flex;
     align-items: center;
@@ -21,5 +26,9 @@
     .list-movie-container{
         gap:2rem;
         grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+    }
+
+    .list-layout .left-buttons button:first-child{
+        display: none;
     }
 }

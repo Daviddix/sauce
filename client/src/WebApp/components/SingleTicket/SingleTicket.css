@@ -1,0 +1,64 @@
+.tickets-container-inner .ticket{
+    width:100%;
+    display: flex;
+    padding: .5rem;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    background-image: linear-gradient(to bottom right, #fff, #efefef6c);
+}
+
+.ticket .ticket-provider-image{
+    width:8rem;
+    height:4.8rem;
+    border:1px solid rgba(0, 0, 0, 0.247);
+    border-radius: 7px;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    -ms-border-radius: 7px;
+    -o-border-radius: 7px;
+    margin: 0 .5rem 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ticket .ticket-provider-image img{
+    max-height: 3rem;
+}
+
+.other-ticket-info .heading-arrow{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 0 .5rem 0;
+}
+
+.heading-arrow h1{
+    font-family: clashG;
+    font-size: 1.7rem;
+    font-weight: 500;
+    letter-spacing: -.5px;
+}
+
+.heading-arrow h1 a{
+    color: inherit;
+    text-decoration: none;
+}
+
+.other-ticket-info .ticket-chips span{
+    border:1px solid black;
+    opacity: .9;
+    margin: 0 .5rem 0 0;
+    font-family: clashG;
+    font-size: 1.2rem;
+    font-weight: 500;
+    padding:.2rem .4rem;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}

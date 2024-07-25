@@ -9,7 +9,7 @@ import NewListModal from "../../components/NewListModal/NewListModal"
 import ListSkeleton from "../SkeletonLoaders/ListSkeleton/ListSkeleton"
 import AddToListModalError from "../AddToListModalError/AddToListModalError"
 import { useAtom } from "jotai"
-import { movieIdToAddToListAtom, moviesAtom, refreshListAtom } from "../../globals/atom"
+import { movieIdToAddToListAtom, allMoviesAtom, refreshListAtom } from "../../globals/atom"
 import toast from 'react-hot-toast'
 
 function AddToListModal({setShowListModal}) {
@@ -19,7 +19,7 @@ function AddToListModal({setShowListModal}) {
     const [activeListId, setActiveListId] = useState(0)
     const [movieIdToAddToList, setMovieIdToAddToList] = useAtom(movieIdToAddToListAtom)
     const [refreshList, setRefreshList] = useAtom(refreshListAtom)
-    const [movies, setMovies] = useAtom(moviesAtom)
+    const [movies, setMovies] = useAtom(allMoviesAtom)
     const [addingToList, setAddingToList] = useState(false)
 
     const mappedLists = lists.map(({listName, listCoverImage, moviesInList, _id})=>{
@@ -41,8 +41,8 @@ function AddToListModal({setShowListModal}) {
     async function getListsByUser(){
         setListFetchStatus("loading")
         try{
-        const rawFetch = await fetch("https://sauce-backend.onrender.com/app/list", {
-            credentials: "include"
+        const rawFetch = await fetch("https://sauce-backend.onrender.com/app/list/movies/", {
+            credentials: "include" 
         })
         const fetchInJson = await rawFetch.json()
 
@@ -54,8 +54,8 @@ function AddToListModal({setShowListModal}) {
         }
         catch(err){
             setListFetchStatus("error")
-            console.log(err)
-            console.log(err?.cause)
+            
+            
         }
         
     }
@@ -66,9 +66,9 @@ function AddToListModal({setShowListModal}) {
           const movieToAddToList = movies.filter(
             (movie) => movie.movieId == movieIdToAddToList
           )[0]
-          console.log(movieToAddToList)
+          
           const rawFetch = await fetch(
-            `https://sauce-backend.onrender.com/app/list/${activeListId}`,
+            `https://sauce-backend.onrender.com/app/list/movies/${activeListId}`,
             {
               credentials: "include",
               body: JSON.stringify({movieData : movieToAddToList}),
@@ -88,7 +88,7 @@ function AddToListModal({setShowListModal}) {
           notifyForMovieAddedToList(listName)
           setRefreshList((prev)=> prev+1)
         } catch (err) {
-            console.log(err)
+            
             notifyForAddToListError()
             setAddingToList(false)
         }

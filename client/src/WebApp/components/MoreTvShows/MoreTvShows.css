@@ -1,0 +1,29 @@
+.tv-show-more-section .more-button-container {
+    display: grid;
+    gap: 1rem 1rem;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.more-button-container button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: .5rem;
+}
+
+.more-button-container a {
+    grid-column: 1/5;
+}
+
+.more-button-container button:not(.primary-button) {
+    padding: .8rem;
+    grid-column: span 2;
+}
+
+.more-button-container a{
+    text-decoration: none;
+}
+
+@media screen and (min-width:1000px) {
+    
+}

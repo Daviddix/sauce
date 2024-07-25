@@ -1,0 +1,34 @@
+.anime-details-layout .subheading {
+    margin: 0 0 1rem 0;
+}
+
+
+.other-anime-details .images-section,
+.other-anime-details .thriller-section,
+.other-anime-details .anime-more-section,
+.other-anime-details .related-anime {
+    width: 90vw;
+    max-width: 60rem;
+    margin: 0 auto 2rem auto;
+}
+
+
+@media screen and (min-width:1000px) {
+    .anime-details-layout .other-anime-details {
+        max-width: 90vw;
+        margin: 2rem auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 2rem;
+    }
+
+    .other-anime-details .images-section,
+    .other-anime-details .thriller-section,
+    .other-anime-details .anime-more-section,
+    .other-anime-details .related-anime {
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto 2rem auto;
+    }
+
+}

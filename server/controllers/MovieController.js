@@ -68,8 +68,9 @@ async function getMoviesThatMatchPrompt(req, res){
       const tmdbData = await tmdbResponse.json();
 
       const movieInfo = tmdbData.results[0];
-      return {
-        movieName: movieInfo?.title? movieInfo.title : movieInfo.original_title,
+      if(movieInfo){
+        return {
+        movieName: movieInfo.title,
         matchPercent: movieMatch.matchPercent,
         movieId: movieInfo.id,
         movieReleaseDate: movieInfo.release_date,
@@ -77,14 +78,17 @@ async function getMoviesThatMatchPrompt(req, res){
         movieRating : movieInfo.vote_average,
         moviePoster : movieInfo.poster_path
       } 
+      }
+      
 
     })
 
     const movieInfoArray = await Promise.all(tmdbPromises);
-    res.send(movieInfoArray)
+    const removedMoviesNotFoundArray= movieInfoArray.filter((movieFound)=> movieFound !== undefined)
+    res.send(removedMoviesNotFoundArray)
     }
     catch(err){
-      console.log(err)
+      
         res.status(500).json(unknownError)
     }
 }
@@ -148,4 +152,30 @@ async function getRelatedMovies(req, res){
     }
 }
 
-module.exports = {getMoviesThatMatchPrompt, getInfoAboutSpecificMovie, getThrillerForSpecificMovie, getImagesForSpecificMovie, getRelatedMovies}
+async function getWatchProvidersForSpecificMovie(req, res){
+  try{
+    const movieId = Number(req.params.movieId)
+    const url = `https://streaming-availability.p.rapidapi.com/shows/movie/${movieId}?series_granularity=show&output_language=en`;
+
+    const options = {
+      method: 'GET',
+      headers: {
+        'x-rapidapi-key': '49e392e49dmsh7349412d909e6b5p1df9dcjsn3bc19068971a',
+        'x-rapidapi-host': 'streaming-availability.p.rapidapi.com'
+      }
+    };
+
+    const response = await fetch(url, options)
+    const result = await response.text()
+    const {streamingOptions} = await JSON.parse(result)
+     
+
+    res.send(streamingOptions)
+  }
+  catch(err){
+    
+    res.status(500).json(unknownError)
+  }
+}
+
+module.exports = {getMoviesThatMatchPrompt, getInfoAboutSpecificMovie, getThrillerForSpecificMovie, getImagesForSpecificMovie, getRelatedMovies, getWatchProvidersForSpecificMovie}

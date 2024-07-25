@@ -3,7 +3,7 @@ import alertIcon from "../../../assets/app assets/icons/attention-icon.svg"
 import backIcon from "../../../assets/app assets/icons/left-icon.svg"
 import { Link } from "react-router-dom"
 
-function SingleListMovieError({refreshFromError}) {
+function SingleListMovieError({refreshFromError, content}) {
   return (
     <>
     <div className="list-header">
@@ -23,11 +23,11 @@ function SingleListMovieError({refreshFromError}) {
 
             <div className="right">
             <p className="other-heading">
-            Failed to get movies in this list
+            Failed to get {content} in this list
             </p>
 
             <p className="body-style">
-            Oops, seems like an error ocurred when trying to get the movies from this list. Don't worry, just click the "Retry" button and it will fix it up.
+            Oops, seems like an error ocurred when trying to get the {content} from this list. Don't worry, just click the "Retry" button and it will fix it up.
             </p>
             
 

@@ -6,7 +6,7 @@ import { useAtom } from "jotai"
 import { inputValueFromEditAtom, messagesAtom, gptToRefreshAtom, userInfoAtom, disableInputAtom } from "../../globals/atom"
 
 
-function UserPrompt({prompt, id}) {
+function UserPrompt({prompt, id, searchCategory}) {
   const mainDivRef = useRef(null)
   const [inputValueFromEdit, setInputValueFromEdit] = useAtom(inputValueFromEditAtom)
   const [messages, setMessages] = useAtom(messagesAtom)

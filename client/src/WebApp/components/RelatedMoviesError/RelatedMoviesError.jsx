@@ -1,7 +1,7 @@
 import "./RelatedMoviesError.css"
 import alertIcon from "../../../assets/app assets/icons/attention-icon.svg"
 
-function RelatedMoviesError({refreshFromError}) {
+function RelatedMoviesError({refreshFromError, content}) {
   return (
     <div className="related-movies-error">
       <div className="left">
@@ -11,10 +11,10 @@ function RelatedMoviesError({refreshFromError}) {
       </div>
 
       <div className="right">
-        <p className="other-heading">Failed to get related movies</p>
+        <p className="other-heading">Failed to get related {content}</p>
 
         <p className="body-style">
-          Oops, seems like an error ocurred when trying to get related movies
+          Oops, seems like an error ocurred when trying to get related {content}
           . Don't worry, just click the "Retry" button and it will fix
           it up.
         </p>

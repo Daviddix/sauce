@@ -5,13 +5,13 @@ import { set,get } from 'idb-keyval'
 import "./GPTResponse.css" 
 
 import {useEffect, useState} from "react"
-import { disableInputAtom, gptToRefreshAtom, messagesAtom,moviesAtom } from "../../globals/atom"
+import { disableInputAtom, gptToRefreshAtom, messagesAtom,allMoviesAtom } from "../../globals/atom"
 import GPTResponseError from "../GPTResponseError/GPTResponseError"
 import { Toaster } from "react-hot-toast"
 
-function GPTResponse({inputValue, id}) {
+function GPTResponse({inputValue, id, searchCategory}) {
     const [movies, setMovies] = useState([])
-    const [allMovies, setAllMovies] = useAtom(moviesAtom)
+    const [allMovies, setAllMovies] = useAtom(allMoviesAtom)
     const [movieFetchStatus, setMovieFetchStatus] = useState("loading")
     const [messages, setMessages] = useAtom(messagesAtom)
     const [reasonForError, setReasonForError] = useState("unknown")
@@ -67,6 +67,7 @@ function GPTResponse({inputValue, id}) {
     }
 
     async function makeRequestWithoutIndexedDb(movieDescription, idOfResponse){
+      
         setMovieFetchStatus("loading")
         setDisableInput(true)
         try{
@@ -127,10 +128,11 @@ function GPTResponse({inputValue, id}) {
     <div className="gpt-response-container">
         <Toaster toastOptions={{duration : 4000}} />
 
-        <h1>Top Results</h1>
+        <h1>Top Results <small>{searchCategory}</small></h1>
         {movieFetchStatus === "loading" && skeletons}    
         {movieFetchStatus === "completed" && mappedMovies}
         {movieFetchStatus === "error" && <GPTResponseError 
+        page={"movies"}
         reasonForError={reasonForError}
         refreshFromError={refreshFromError} />}        
     </div>

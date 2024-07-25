@@ -27,7 +27,7 @@ function AddToListModal({setShowLogoutModal}) {
         catch(err){
             alert(err)
             setLoggingUserOut(false)
-            console.log(err)
+            
         }
     }
 

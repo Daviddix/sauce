@@ -2,27 +2,38 @@ import { useEffect, useState } from "react"
 import "./Thriller.css"
 import { useParams } from "react-router-dom"
 
-function Thriller() {
-  const [movieThrillerLink, setMovieThrillerLink] = useState({})
+function Thriller({page}) {
+  const [thrillerLink, setTrillerLink] = useState("")
   const [thrillerFetchStatus, setThrillerFetchStatus] = useState("loading")
 
+  const {animeId} = useParams()
   const {movieId} = useParams()
+  const {tvShowId} = useParams()
 
   useEffect(()=>{
-    getMovieThrillerData()
-  }, [movieId])
+    getThrillerData()
+  }, [animeId, movieId, tvShowId])
 
 
-  async function getMovieThrillerData(){
+  async function getThrillerData(){
+    let url;
     setThrillerFetchStatus("loading")
     try{
-      const rawFetch = await fetch(`https://sauce-backend.onrender.com/app/movie/${movieId}/video`)
+      if(movieId){
+      url = `https://sauce-backend.onrender.com/app/movie/${movieId}/video`
+      }else if(tvShowId){
+      url = `https://sauce-backend.onrender.com/app/tv/${tvShowId}/video`
+      }else if(animeId){
+      url = `https://sauce-backend.onrender.com/app/anime/${animeId}/video`
+      }
+      const rawFetch = await fetch(url)
+
       const jsonFetch = await rawFetch.json()
 
       if(!rawFetch.ok){
          throw new Error()
       }
-      setMovieThrillerLink(jsonFetch.results[0].key)
+      setTrillerLink(jsonFetch.results[0].key)
       setThrillerFetchStatus("completed")
     }
     catch{
@@ -30,7 +41,7 @@ function Thriller() {
     }
   }
   return (
-        <div className="movie-thriller-section">
+        <div className="thriller-section">
           <h1 className="subheading">Thriller</h1>
           {
             thrillerFetchStatus === "loading" ? 
@@ -39,8 +50,8 @@ function Thriller() {
             <iframe 
             frameBorder="0"
             id="inlineFrameExample"
-            title={movieThrillerLink}
-            src={"https://www.youtube.com/embed/" + movieThrillerLink}
+            title={thrillerLink}
+            src={"https://www.youtube.com/embed/" + thrillerLink}
             className="video"
           />
           }

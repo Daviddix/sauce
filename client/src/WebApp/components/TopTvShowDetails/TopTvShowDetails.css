@@ -1,0 +1,158 @@
+.tv-show-details-layout .top-tv-show-details-header {
+    width: 90vw;
+    margin: 2rem 5vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: absolute;
+    left: 0;
+    z-index: 8;
+}
+
+.top-tv-show-details-header .right {
+    display: flex;
+    gap: 1rem;
+}
+
+.top-tv-show-details-header .right button img {
+    width: 1.6rem;
+}
+
+.top-tv-show-details .top-tv-show-image {
+    min-width: 100%;
+    height: 42rem;
+    overflow: hidden;
+    position: relative;
+}
+
+.top-tv-show-details .top-tv-show-image.large{
+    height: 45rem;
+}
+
+.top-tv-show-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.top-tv-show-details .top-tv-show-image::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 20rem;
+    background: linear-gradient(180deg, #FFF 0%, rgba(0, 0, 0, 0.00) 0.01%, rgba(0, 0, 0, 0.00) 47.43%, rgba(0, 0, 0, 0.62) 72%, #000 100%);
+}
+
+.top-tv-show-details .top-tv-show-image.large::after{
+    height: 25rem;
+}
+
+.top-tv-show-details .tv-show-name-and-stats {
+    position: absolute;
+    top: 32rem;
+    left: 5vw;
+    color: white;
+}
+
+.tv-show-name-and-stats h1.tight-heading-style {
+    color: white;
+    margin: 0 0 .5rem 0;
+}
+
+.tv-show-name-and-stats .tv-show-stats {
+    max-width: fit-content;
+    gap: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-wrap: wrap;
+}
+
+.tv-show-stats>div {
+    gap: .5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.top-tv-show-details-info>div {
+    width: 90vw;
+    max-width: 60rem;
+    margin: 1.5rem auto;
+}
+
+.top-tv-show-details-info .subheading{
+    margin: 0 0 1rem 0;
+}
+
+.tv-show-genre .genre-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    max-width: fit-content;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin: .5rem 0 0;
+}
+
+.genre-container div {
+    border-radius: 0.8rem;
+    border: 1px solid #000;
+    background: white;
+    padding: 1rem;
+    -webkit-border-radius: 0.8rem;
+    -moz-border-radius: 0.8rem;
+    -ms-border-radius: 0.8rem;
+    -o-border-radius: 0.8rem;
+}
+
+@media screen and (min-width:1000px) {
+    .top-tv-show-details .tv-show-name-and-stats {
+        position: static;
+    }
+
+    .top-tv-show-details .top-tv-show-image {
+        height: 61rem;
+    }
+
+    .top-tv-show-details{
+        position: relative;
+    }
+
+    .top-tv-show-details .top-tv-show-details-info {
+        position: absolute;
+        bottom:0;
+        left: 5vw;
+    }
+
+    .top-tv-show-details .top-tv-show-image::after {
+        display: none;
+    }
+
+    .top-tv-show-details .top-tv-show-image::before {
+        content: "";
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to left, #FFF 0%, rgba(0, 0, 0, 0.00) 0.01%, rgba(0, 0, 0, 0.00) 36.14%, rgba(0, 0, 0, 0.62) 62.44%, #000 100%);
+        position: absolute;
+    }
+
+    .top-tv-show-details .tv-show-description h1,
+    .top-tv-show-details .tv-show-description p,
+    .tv-show-genre h1 {
+        color: white;
+    }
+
+    .top-tv-show-details .tv-show-description p{
+        width:70rem;
+    }
+
+    .genre-container>div {
+        background-color: transparent;
+        color: white;
+        border-color: white;
+    }
+}

@@ -220,7 +220,7 @@ letter-spacing: -0.028rem;
     letter-spacing: -0.014rem;
 }
 
-.list-movie-title{
+.list-movie-title, .list-anime-title, .list-tv-show-title{
     color: #000;
     font-family: clashG;
     font-size: 1.4rem;

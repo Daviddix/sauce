@@ -1,0 +1,9 @@
+.related-anime .related-anime-container{
+    max-width:100%;
+}
+
+.related-anime-container .related-anime-container-inner{
+    display:flex;
+    overflow-y: auto;
+    column-gap: 1rem;
+}

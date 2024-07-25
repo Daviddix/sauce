@@ -1,5 +1,4 @@
 const mongoose = require("mongoose")
-const bcrypt = require('bcryptjs')
 
 const userSchema = new mongoose.Schema({
     profilePicture : {
@@ -20,6 +19,16 @@ const userSchema = new mongoose.Schema({
     savedLists : [{
         type : mongoose.Schema.Types.ObjectId, 
         ref : "Lists"
+    }], 
+
+    savedAnimeLists : [{
+        type : mongoose.Schema.Types.ObjectId, 
+        ref : "AnimeLists"
+    }],
+
+    savedTvShowsLists : [{
+        type : mongoose.Schema.Types.ObjectId, 
+        ref : "TvShowsLists"
     }]
 })
 

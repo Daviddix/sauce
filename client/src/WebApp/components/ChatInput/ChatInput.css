@@ -74,7 +74,6 @@
 
 .home-input > textarea::placeholder{
     font-weight: 500;
-    /* line-height: 40px; */
 }
 
 .home-input > button{

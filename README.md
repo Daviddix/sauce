@@ -1,6 +1,7 @@
 # <p style="text-align: center;">Sauce</p>
 
-![Sauce](https://iili.io/JpTUMjS.png)
+![Sauce](https://iili.io/dxUXdyx.png)
+![Sauce](https://iili.io/dxUXHYb.png)
 
 ## Table of contents
 
@@ -11,21 +12,21 @@
   - [Author](#author)
 
 ## Overview
-Introducing Sauce, an AI-powered web app, to find movies you've forgotten with just a brief, imperfect description. Reconnect with lost memories effortlessly.
+Sauce is a powerful web application designed to help you rediscover Anime, TV shows, and Movies you've forgotten. Just provide any description or fragmentary details you remember – it doesn’t have to be perfect. Sauce uses AI to match your description with the right title, bringing those lost memories back to life. Whether it's a scene, a character, or a vague plotline, Sauce will help you find what you're looking for with ease.
 
 ### Features
 
-- Search for a movie based on a description
+- Search for an Anime, Movie or TV Show based on a description
 
-- Save movies to your lists(a way to save the movie for later)
+- Save movies, TV Shows or Anime to your lists(a way to save them for later)
 
-- View details about a specific movie(name, year of release, description, ratings, length, images, trailer, genre)
+- View details about a specific Movie, TV Show or Anime(name, year of release, description, ratings, length, images, trailer, genre)
 
-- Use the Discover feature(searches for the description of a random image)
+- Use the Discover feature(searches for the description of a random Movie, TV Show or Anime)
 
 ### Screenshot
 
-![screenshot of home page](/client/public/sauce-desktop-mockup.png)
+![screenshot of home page](./client/src/assets/landing%20page%20assets/images/sauce-desktop-mockup.png)
 
 
 ### Link
@@ -41,6 +42,7 @@ Introducing Sauce, an AI-powered web app, to find movies you've forgotten with j
 - mongoDB(mongoose)
 - Vanilla CSS
 - Design : figma
+- Gemini API + TMDB
 
 
 ## Author

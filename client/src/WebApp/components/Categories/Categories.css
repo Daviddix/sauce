@@ -1,0 +1,100 @@
+.chat-input-inner .top-buttons{
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.top-buttons .category-selector-container{
+    position: relative;
+}
+
+.category-selector-container .all-categories-container{
+    position: absolute;
+    background-color: white;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    padding: .5rem 0;
+    width:15rem;
+    box-shadow:0 1px  4px hsla(0, 0%, 0%, 0.144);
+    bottom:2.3rem;
+    left:-100%;
+}
+
+.all-categories-container h1{
+    width: 90%;
+    margin:auto;
+}
+
+.all-categories-container hr{
+    width:100%;
+    background-color: rgba(0, 0, 0, 0.075);
+    opacity: .2;
+    margin: .5rem 0;
+}
+
+.all-categories-container .categories{
+    display: flex;
+    flex-direction: column;
+    row-gap: .5rem;
+}
+
+.categories button{
+    width:90%;
+    padding: .5rem 1rem;
+    display: block;
+    margin: auto;
+    border: none;
+    background-color: transparent;
+    text-align: left;
+    border-radius: 100px;
+    -webkit-border-radius: 100px;
+    -moz-border-radius: 100px;
+    -ms-border-radius: 100px;
+    -o-border-radius: 100px;
+    font-family: clashG;
+    font-weight: 400;
+    font-size:1.5rem;
+    transition: .15s ease-in;
+    -webkit-transition: .15s ease-in;
+    -moz-transition: .15s ease-in;
+    -ms-transition: .15s ease-in;
+    -o-transition: .15s ease-in;
+    opacity: .6;
+}
+
+.category-selector-container .categories-button{
+    background-color: transparent;
+    border:none;
+    font-size:1.4rem;
+    font-weight: 500;
+    font-family: manrope;
+    display: flex;
+    align-items: center;
+    margin:0 2rem 0 0;
+}
+
+.category-selector-container .categories-button.rotate img{
+    transition: .4s ease;
+    transform: rotateZ(-180deg);
+    -webkit-transform: rotateZ(-180deg);
+    -moz-transform: rotateZ(-180deg);
+    -ms-transform: rotateZ(-180deg);
+    -o-transform: rotateZ(-180deg);
+    -webkit-transition: .4s ease;
+    -moz-transition: .4s ease;
+    -ms-transition: .4s ease;
+    -o-transition: .4s ease;
+}
+
+.categories button:hover{
+    background-color: rgba(0, 0, 0, 0.116);
+}
+
+.categories button.active{
+    background-color: var(--primary-100);
+    opacity: 1;
+    font-weight: 500;
+    color: #252525;
+}

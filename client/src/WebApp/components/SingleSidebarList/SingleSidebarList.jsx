@@ -8,7 +8,7 @@ function SingleSidebarList({listName, listCoverImage,moviesInList, activeListId,
     <div
     onClick={()=>{
       setActiveListId(id)
-      navigate(`/app/list/${id}`)
+      navigate(`/app/list/movie/${id}`)
     }}
     tabIndex={0} 
     className={activeListId == id? "single-list active" : "single-list"}>

@@ -3,8 +3,8 @@
 }
 
 
-.other-movie-details .movie-images-section,
-.other-movie-details .movie-thriller-section,
+.other-movie-details .images-section,
+.other-movie-details .thriller-section,
 .other-movie-details .movie-more-section,
 .other-movie-details .related-movies {
     width: 90vw;
@@ -22,8 +22,8 @@
         column-gap: 2rem;
     }
 
-    .other-movie-details .movie-images-section,
-    .other-movie-details .movie-thriller-section,
+    .other-movie-details .images-section,
+    .other-movie-details .thriller-section,
     .other-movie-details .movie-more-section,
     .other-movie-details .related-movies {
         width: 100%;

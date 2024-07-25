@@ -1,0 +1,158 @@
+.anime-details-layout .top-anime-details-header {
+    width: 90vw;
+    margin: 2rem 5vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: absolute;
+    left: 0;
+    z-index: 8;
+}
+
+.top-anime-details-header .right {
+    display: flex;
+    gap: 1rem;
+}
+
+.top-anime-details-header .right button img {
+    width: 1.6rem;
+}
+
+.top-anime-details .top-anime-image {
+    min-width: 100%;
+    height: 42rem;
+    overflow: hidden;
+    position: relative;
+}
+
+.top-anime-details .top-anime-image.large{
+    height: 45rem;
+}
+
+.top-anime-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.top-anime-details .top-anime-image::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 22rem;
+    background: linear-gradient(180deg, #FFF 0%, rgba(0, 0, 0, 0.00) 0.01%, rgba(0, 0, 0, 0.00) 47.43%, rgba(0, 0, 0, 0.62) 72%, #000 100%);
+}
+
+.top-anime-details .top-anime-image.large::after{
+    height: 25rem;
+}
+
+.top-anime-details .anime-name-and-stats {
+    position: absolute;
+    top: 32rem;
+    left: 5vw;
+    color: white;
+}
+
+.anime-name-and-stats h1.tight-heading-style {
+    color: white;
+    margin: 0 0 .5rem 0;
+}
+
+.anime-name-and-stats .anime-stats {
+    max-width: fit-content;
+    gap: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex-wrap: wrap;
+}
+
+.anime-stats>div {
+    gap: .5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.top-anime-details-info>div {
+    width: 90vw;
+    max-width: 60rem;
+    margin: 1.5rem auto;
+}
+
+.top-anime-details-info .subheading{
+    margin: 0 0 1rem 0;
+}
+
+.anime-genre .genre-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    max-width: fit-content;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin: .5rem 0 0;
+}
+
+.genre-container div {
+    border-radius: 0.8rem;
+    border: 1px solid #000;
+    background: white;
+    padding: 1rem;
+    -webkit-border-radius: 0.8rem;
+    -moz-border-radius: 0.8rem;
+    -ms-border-radius: 0.8rem;
+    -o-border-radius: 0.8rem;
+}
+
+@media screen and (min-width:1000px) {
+    .top-anime-details .anime-name-and-stats {
+        position: static;
+    }
+
+    .top-anime-details .top-anime-image {
+        height: 61rem;
+    }
+
+    .top-anime-details{
+        position: relative;
+    }
+
+    .top-anime-details .top-anime-details-info {
+        position: absolute;
+        bottom:0;
+        left: 5vw;
+    }
+
+    .top-anime-details .top-anime-image::after {
+        display: none;
+    }
+
+    .top-anime-details .top-anime-image::before {
+        content: "";
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to left, #FFF 0%, rgba(0, 0, 0, 0.00) 0.01%, rgba(0, 0, 0, 0.00) 36.14%, rgba(0, 0, 0, 0.62) 62.44%, #000 100%);
+        position: absolute;
+    }
+
+    .top-anime-details .anime-description h1,
+    .top-anime-details .anime-description p,
+    .anime-genre h1 {
+        color: white;
+    }
+
+    .top-anime-details .anime-description p{
+        width:70rem;
+    }
+
+    .genre-container>div {
+        background-color: transparent;
+        color: white;
+        border-color: white;
+    }
+}

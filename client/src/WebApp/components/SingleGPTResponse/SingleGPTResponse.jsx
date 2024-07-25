@@ -10,6 +10,7 @@ import {useNavigate} from "react-router-dom"
 import { useAtom } from "jotai";
 import {isSignedInAtom, movieIdToAddToListAtom, movieMatchPercentageAtom} from "../../globals/atom"
 import toast from "react-hot-toast"
+import WatchNowModal from '../../components/WatchNowModal/WatchNowModal'
 
 function SingleGPTResponse({movieName, matchPercent, movieId, movieReleaseDate, movieOverview, movieRating, moviePoster}) {
     const [accuracyClassName, setAccuracyClassName] = useState("")
@@ -18,6 +19,7 @@ function SingleGPTResponse({movieName, matchPercent, movieId, movieReleaseDate, 
     const [movieMatchPercentage, setMovieMatchPercentage] = useAtom(movieMatchPercentageAtom)
     const [isSignedIn, setIsSignedIn] = useAtom(isSignedInAtom)
     const [showNotAuthenticatedModal, setShowNotAuthenticatedModal] = useState(false)
+    const [showWatchModal, setShowWatchModal] = useState(false)
 
     function showListModalFn(){
         setShowListModal(true)
@@ -30,29 +32,6 @@ function SingleGPTResponse({movieName, matchPercent, movieId, movieReleaseDate, 
     function goToMainMoviePage(){
         setMovieMatchPercentage(matchPercent)
         navigate(`/app/movie/${movieId}`)
-    }
-
-    function featureComingSoon(name){
-        console.log("heyy")
-        return toast.success(`The ${name} feature isn't available at the moment. Don't worry, David is working on it:)`, {
-            position : "bottom-right",
-            style : {
-                fontFamily : "manrope",
-                fontSize : "14px",
-                backgroundImage : "linear-gradient(to bottom right,rgb(266, 255, 201), transparent)",
-                border : "2px solid white",
-                boxShadow:
-      `2.6px 4.3px 2.2px rgba(0, 0, 0, 0.045),
-      6.2px 10.2px 5.3px rgba(0, 0, 0, 0.065),
-      11.6px 19.3px 10px rgba(0, 0, 0, 0.08),
-      20.8px 34.4px 17.9px rgba(0, 0, 0, 0.095),
-      38.9px 64.3px 33.4px rgba(0, 0, 0, 0.115),
-      93px 154px 80px rgba(0, 0, 0, 0.16)`
-    
-    
-            },
-            icon : "📣"
-        })
     }
     
     const navigate = useNavigate()
@@ -68,6 +47,7 @@ function SingleGPTResponse({movieName, matchPercent, movieId, movieReleaseDate, 
       }, [matchPercent])
   return (
     <div className="movie-image-and-details">
+        {showWatchModal && <WatchNowModal setShowWatchModal={setShowWatchModal} movieId={movieId} />}
         {showListModal && <AddToListModal setShowListModal={setShowListModal} />}
         {showNotAuthenticatedModal && <NotAuthenticatedModal setShowNotAuthenticatedModal={setShowNotAuthenticatedModal} />}
         <div className="movie-image">
@@ -111,7 +91,7 @@ function SingleGPTResponse({movieName, matchPercent, movieId, movieReleaseDate, 
 
                 <button 
                 onClick={()=>{
-                    featureComingSoon("Watch Now")
+                    setShowWatchModal(true)
                 }}
                 className="button-text-style secondary-button">
                 <img src={tvIcon} alt="tv icon" />

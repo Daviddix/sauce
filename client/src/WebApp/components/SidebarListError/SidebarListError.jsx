@@ -26,7 +26,7 @@ function SidebarListError({refreshFromError}) {
                 }}
                 className="secondary-button button-text-style">Retry</button>
                 </div>
-          </div> 
+    </div> 
   )
 }
 
