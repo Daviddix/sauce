@@ -86,7 +86,7 @@ function LandingPage() {
         
         <h1 className="heading">Find <span ref={spanRef} className="slide">{category}</span> You've Forgotten <span className='gradient'>Using AI</span></h1>
 
-        <p className="sub-heading">Introducing Sauce, an AI-powered web app that helps you find Anime, tv shows and movies you've forgotten with just a brief, imperfect description. Reconnect with lost memories effortlessly</p>
+        <p className="sub-heading">Introducing Sauce, an AI-powered web app that helps you find Anime, TV Shows and Movies you've forgotten with just a brief, imperfect description. Reconnect with lost memories effortlessly</p>
 
         <div className="body-buttons">
             <Link to="/app/login">
