@@ -1,6 +1,7 @@
 # <p style="text-align: center;">Sauce</p>
 
-![Sauce](https://iili.io/JpTUMjS.png)
+![Sauce](https://iili.io/dxUXdyx.png)
+![Sauce](https://iili.io/dxUXHYb.png)
 
 ## Table of contents
 
@@ -25,7 +26,7 @@ Sauce is a powerful web application designed to help you rediscover Anime, TV sh
 
 ### Screenshot
 
-![screenshot of home page](/client/public/sauce-desktop-mockup.png)
+![screenshot of home page](./client/src/assets/landing%20page%20assets/images/sauce-desktop-mockup.png)
 
 
 ### Link
@@ -41,6 +42,7 @@ Sauce is a powerful web application designed to help you rediscover Anime, TV sh
 - mongoDB(mongoose)
 - Vanilla CSS
 - Design : figma
+- Gemini API + TMDB
 
 
 ## Author
