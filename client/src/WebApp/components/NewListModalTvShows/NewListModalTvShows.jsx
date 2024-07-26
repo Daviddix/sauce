@@ -46,6 +46,7 @@ function NewListModalTvShows({setShowAddNewListModal, notifyForTvShowAddedToList
         setRefreshList((prev)=> prev+1)
         }
         catch(err){
+            console.log(err)
             setCreatingNewList(false)
             notifyForAddToListError()
             

@@ -43,6 +43,7 @@ function Lists() {
             throw new Error("Err", {cause : fetchInJson})
         }
         setListInfo(fetchInJson)
+        console.log(fetchInJson)
         setListFetchStatus("completed")
     }
     catch(err){

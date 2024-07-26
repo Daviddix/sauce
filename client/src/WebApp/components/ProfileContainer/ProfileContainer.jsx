@@ -9,6 +9,7 @@ function ProfileContainer() {
   const [userInfoStatus, setUserInfoStatus] = useAtom(userInfoStatusAtom)
   const [showLogoutModal, setShowLogoutModal] = useAtom(showLogoutModalAtom)
   
+  console.log(userInfo)
   
   return (
       <div className="profile-view-list">

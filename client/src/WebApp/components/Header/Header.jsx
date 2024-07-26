@@ -12,8 +12,6 @@ function Header() {
     const [userInfoStatus, setUserInfoStatus] = useAtom(userInfoStatusAtom)
     const [showLogoutModal, setShowLogoutModal] = useAtom(showLogoutModalAtom)
 
-    console.log(userInfo.profilePicture)
-
 
   return (
     <header className="home-header">
