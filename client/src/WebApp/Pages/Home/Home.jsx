@@ -46,11 +46,9 @@ function Home() {
   })
 
   function userHasScrolledToEndOfChat(e){
-    if(e.target.scrollTop !== e.target.scrollHeight - e.target.offsetHeight){
-      setShowDownButton(true)
-    }else{
-      setShowDownButton(false)
-    }
+    const tolerance = 1
+    const isAtBottom = e.target.scrollHeight - e.target.scrollTop <= e.target.clientHeight + tolerance
+    setShowDownButton(!isAtBottom)
   }
 
   async function getMessagesFromIndexedDb(){
